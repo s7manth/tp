@@ -13,8 +13,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/festivecat.png" width="200px">
 
-[ [homepage](http://FestiveCat.github.io/) ] 
-[ [github](https://github.com/FestiveCat) ] 
+[ [homepage](http://FestiveCat.github.io/) ]
+[ [github](https://github.com/FestiveCat) ]
 [ [portfolio](team/festivecat.md) ]
 
 * Role: Member
