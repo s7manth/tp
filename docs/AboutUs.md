@@ -29,14 +29,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Sumanth Yalamarty
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/s7manth.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/festivecat.md)]
+[[github](http://github.com/s7manth)] [[portfolio](team/s7manth.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: member
 
 ### Jean Doe
 
