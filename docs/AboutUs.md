@@ -9,7 +9,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Ong Han Yang
 
 <img src="images/festivecat.png" width="200px">
 
@@ -19,15 +19,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Member
 
-### Jane Doe
+### Kashish Varshney
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kxshxsh.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/festivecat.md)]
+[ [github](https://github.com/kxshxsh) ]
+[ [portfolio](team/kxshxsh.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Member
 
 ### Johnny Doe
 
