@@ -21,13 +21,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Jane Doe
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/cyolune.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/festivecat.md)]
+[ [github](https://github.com/Cyolune) ]
+[ [portfolio](team/cyolune.md) ] 
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Member
 
 ### Johnny Doe
 
