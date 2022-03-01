@@ -48,12 +48,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Neeladri Bhuiya
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/zawedcvg)]
+[[portfolio](team/zawedcvg.md)]
 
 * Role: Developer
-* Responsibilities: UI
