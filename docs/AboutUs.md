@@ -9,7 +9,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Ong Han Yang
 
 <img src="images/festivecat.png" width="200px">
 
@@ -19,33 +19,31 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Member
 
-### Jane Doe
+### Kashish Varshney
+
+<img src="images/kxshxsh.png" width="200px">
+
+[ [github](https://github.com/kxshxsh) ]
+[ [portfolio](team/kxshxsh.md)]
+
+* Role: Member
+
+### Sumanth Yalamarty
+
+<img src="images/s7manth.png" width="200px">
+
+[[github](http://github.com/s7manth)] [[portfolio](team/s7manth.md)]
+
+* Role: member
+
+### Jan Alfenson Tan
 
 <img src="images/cyolune.png" width="200px">
 
 [ [github](https://github.com/Cyolune) ]
-[ [portfolio](team/cyolune.md) ] 
+[ [portfolio](team/cyolune.md) ]
 
 * Role: Member
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/festivecat.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/festivecat.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
 
 ### James Doe
 
