@@ -4,7 +4,7 @@
 
 # TAilor
 
-TAilor is **desktop app for managing contacts, optimized for use via a Command Line Interface (CLI)** while still
+TAilor is a **desktop app for managing contacts, optimized for use via a Command Line Interface (CLI)** while still
 having the benefits of a Graphical User Interface (GUI). If you are a Computer Science Teaching Assistant who can type 
 fast, TAilor can get your contact management tasks done faster than traditional GUI apps.
 <br>
@@ -13,16 +13,18 @@ fast, TAilor can get your contact management tasks done faster than traditional 
 TAilor can (as of v1.2):
 * add, delete, edit and view student's contact details
 * store the contact details of your students
-* contact students in bulk or individually
+* contact students in bulk or individually </p>
+
+Additional features can be found in our **[User Guide](docs/UserGuide.md)**.
 
 ## Contact
-To reach any of our developers, you can find our contact details in AboutUs.md, which can be found in the docs folder.
+To reach any of our developers, you can find our contact details in **[AboutUs](docs/AboutUs.md)**.
 
 ## Git
 To get the latest version of TAilor, you can find our latest release at:<br>
 https://github.com/AY2122S2-CS2103T-W12-1/tp/releases <br><br>
-To transfer any data from your current TAilor version to the latest one, refer to our 
-**[User Guide](docs/UserGuide.md)**
+To transfer any data from your current TAilor version to the latest one, refer to our
+**[User Guide](docs/UserGuide.md)**.
 
 ## Credits
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).<br>
