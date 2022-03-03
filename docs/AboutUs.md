@@ -36,15 +36,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: member
 
-### Jean Doe
+### Jan Alfenson Tan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/cyolune.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/festivecat.md)]
+[ [github](https://github.com/Cyolune) ]
+[ [portfolio](team/cyolune.md) ]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Member
 
 ### James Doe
 
