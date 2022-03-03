@@ -309,31 +309,75 @@ Priorities: High (must have), Medium (nice to have), Low (unlikely to have)
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `TAilor` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case 1 (UC1): Importing an existing database**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to import an existing file
+2. TAilor requests for the file location
+3. User specifies the file location
+4. TAilor uploads the file
 
     Use case ends.
 
-**Extensions**
+**Extensions:**
 
-* 2a. The list is empty.
+* 4a. User requests to add more students manually (UC2)
+ 
+    User case ends
 
-  Use case ends.
+**Use case 2 (UC2): Manually adding students**
 
-* 3a. The given index is invalid.
+**MSS**
 
-    * 3a1. AddressBook shows an error message.
+1. User uses the 'add' command
+2. TAilor updates the database with student details
 
-      Use case resumes at step 2.
+   Use case ends.
+   
+**Extensions:**
 
+* 1a. User adds permanent student to the class group
+    * 1a1. User uses the permanent tag with student details
+    * 1a2. TAilor adds the student contact details to the respective group's database
+
+      Use case ends.
+
+
+* 1b. User adds temporary student to the class group
+    * 1b1. User uses the temporary tag with student details
+    * 1b2. TAilor asks for validity of temporary tag
+    * 1b3. User enters the lifespan of the entry
+    * 1b4. TAilor adds the student contact details to the respective group's database
+    
+      Use case ends.
+
+
+
+**Use case 3 (UC3): Finding a student**
+
+**MSS**
+
+1. User requests to find student through particular keywords
+2. TAilor returns contact details of matching student
+
+   Use case ends.
+
+**Extensions:**
+
+* 2a. TAilor doesn't find any matches
+  * 2a1. TAilor displays the error message
+
+    User case ends
+  
+* 2b. TAilor finds more than one matching student
+  * 2b1. TAilor returns list of matching students
+  * 2b2. User enters index to select desired student
+  
+    User case ends
+  
 *{More to be added}*
 
 ### Non-Functional Requirements
