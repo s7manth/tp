@@ -45,12 +45,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Member
 
-### James Doe
+### Neeladri Bhuiya
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zawedcvg.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/festivecat.md)]
+[[github](http://github.com/zawedcvg)]
+[[portfolio](team/zawedcvg.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Member
