@@ -324,8 +324,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-* **Tutorial group**: A group of students managed under a tutor.
 * **Tutor**: A tutor is a teaching assistant for a particular module in NUS.
+* **Tutorial group**: A group of students managed under a tutor.
 
 --------------------------------------------------------------------------------------------------------------------
 

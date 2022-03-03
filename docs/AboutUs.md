@@ -47,9 +47,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Neeladri Bhuiya
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zawedcvg.png" width="200px">
 
 [[github](http://github.com/zawedcvg)]
 [[portfolio](team/zawedcvg.md)]
 
-* Role: Developer
+* Role: Member
