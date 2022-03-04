@@ -136,7 +136,7 @@ Mails a person from the student roster.
 
 Format: `mail [e/EMAIL]…​`
 
-* This opens the default email application on the system with the specified mail address pre-filled at the receiver's 
+* This opens the default email application on the system with the specified mail address pre-filled at the receiver's
   address.
 * This can be used to specify multiple addresses to send the same mail in a single go as well.
 
