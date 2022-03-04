@@ -13,21 +13,21 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=festivecat&breakdown=true)
 
 * **Enhancements implemented**:
-  * **Sample Feature 1**: Sample description
+  * **Sample Feature 1**: `Count` command
     * What it does:
-    allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
+    Allows users to count the number of contacts according to a given input. Also shows the users
+    the list of contacts.
     * Justification:
-    This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
+    This feature improves the product significantly because it can be used to count and view the
+    students/contacts that have a certain tag or class assigned to them.
     * Highlights:
-    This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-    * Credits:
-    *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+    The execution of the "finding according to a given input" will be used to extend 
+    the original functionality of the `find` command.
     * Time spent on this (estimate):
     0mins
 
 * **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * Find command (Pull requests [\#nil]())
 
 * **Documentation**:
   * User Guide (UG):
@@ -41,6 +41,8 @@ Given below are my contributions to the project.
 
 * **Project management**:
   * Drove team meetings forward, increasing productivity.
+  * Upkept a list of deliverables per week, updating it frequently so that everyone
+  is on the same page.
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#nil]()
+  * PRs reviewed (with non-trivial review comments): [\#42]()
