@@ -27,7 +27,10 @@ public class StringBuilderUtil {
      */
     public void appendAll(Object... objectArray) {
         for (Object o : objectArray) {
-            this.stringBuilder.append(o.toString());
+            if (o == null) {
+                continue;
+            }
+            this.stringBuilder.append(o);
         }
     }
 

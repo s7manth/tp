@@ -59,7 +59,7 @@ public class Config {
         StringBuilderUtil stringBuilderUtil = StringBuilderUtil.getInstance();
         stringBuilderUtil.appendAll("Current log level : ", logLevel,
                 "\nPreference file Location : ", userPrefsFilePath);
-        return stringBuilderUtil.toString();
+        return stringBuilderUtil.getFormattedOutput();
     }
 
 }

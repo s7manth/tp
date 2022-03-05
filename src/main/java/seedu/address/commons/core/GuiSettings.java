@@ -76,6 +76,6 @@ public class GuiSettings implements Serializable {
         stringBuilderUtil.appendAll("Width : ", windowWidth, "\n",
                 "Height : ", windowHeight, "\n",
                 "Position : ", windowCoordinates);
-        return stringBuilderUtil.toString();
+        return stringBuilderUtil.getFormattedOutput();
     }
 }
