@@ -325,7 +325,7 @@ Priorities: High (must have), Medium (nice to have), Low (unlikely to have)
 **Extensions:**
 
 * 4a. User requests to add more students manually (UC2)
- 
+
     User case ends
 
 **Use case 2 (UC2): Manually adding students**
@@ -336,7 +336,7 @@ Priorities: High (must have), Medium (nice to have), Low (unlikely to have)
 2. TAilor updates the database with student details
 
    Use case ends.
-   
+
 **Extensions:**
 
 * 1a. User adds permanent student to the class group
@@ -351,7 +351,7 @@ Priorities: High (must have), Medium (nice to have), Low (unlikely to have)
     * 1b2. TAilor asks for validity of temporary tag
     * 1b3. User enters the lifespan of the entry
     * 1b4. TAilor adds the student contact details to the respective group's database
-    
+
       Use case ends.
 
 
@@ -371,13 +371,13 @@ Priorities: High (must have), Medium (nice to have), Low (unlikely to have)
   * 2a1. TAilor displays the error message
 
     User case ends
-  
+
 * 2b. TAilor finds more than one matching student
   * 2b1. TAilor returns list of matching students
   * 2b2. User enters index to select desired student
-  
+
     User case ends
-  
+
 *{More to be added}*
 
 ### Non-Functional Requirements
