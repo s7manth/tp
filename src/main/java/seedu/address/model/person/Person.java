@@ -7,10 +7,11 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.commons.util.StringBuilderUtil;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Person in the class group.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
@@ -103,21 +104,17 @@ public class Person {
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+        final StringBuilderUtil stringBuilderUtil = StringBuilderUtil.getInstance();
+        stringBuilderUtil.appendAll(getName(), "; Phone: ", getPhone(),
+                "; Email: ", getEmail(),
+                "; Address: ", getAddress());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
+            stringBuilderUtil.append("; Tags: ");
+            tags.forEach(stringBuilderUtil::append);
         }
-        return builder.toString();
+        return stringBuilderUtil.getFormattedOutput();
     }
 
 }
