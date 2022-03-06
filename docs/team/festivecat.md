@@ -21,7 +21,7 @@ Given below are my contributions to the project.
     This feature improves the product significantly because it can be used to count and view the
     students/contacts that have a certain tag or class assigned to them.
     * Highlights:
-    The execution of the "finding according to a given input" will be used to extend 
+    The execution of the "finding according to a given input" will be used to extend
     the original functionality of the `find` command.
     * Time spent on this (estimate):
     0mins

@@ -189,16 +189,16 @@ Format: `exit`
 
 ### Saving the data
 
-TAilor data are saved in the hard disk automatically after any command that changes the data. 
+TAilor data are saved in the hard disk automatically after any command that changes the data.
 There is no need to save manually.
 
 ### Editing the data file
 
-TAilor data are saved as a JSON file `[JAR file location]/data/TAilor.json`. Advanced users are 
+TAilor data are saved as a JSON file `[JAR file location]/data/TAilor.json`. Advanced users are
 welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning"> :exclamation: **Caution:**
-If your changes to the data file makes its format invalid, TAilor will discard all data and start 
+If your changes to the data file makes its format invalid, TAilor will discard all data and start
 with an empty data file at the next run.
 </div>
 
@@ -207,7 +207,7 @@ with an empty data file at the next run.
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the 
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the
        file that contains the data of your previous TAilor home folder.
 
 --------------------------------------------------------------------------------------------------------------------

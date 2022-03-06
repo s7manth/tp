@@ -9,13 +9,13 @@ created with JavaFX. It is written in Java, and has about 10 kLoC.
 ###Given below are my contributions to the project:
 
 - **Code contributed:** [RepoSense Link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=zawedcvg&breakdown=true)
-- **Enhancements Implemented:** 
+- **Enhancements Implemented:**
     - Feature: Edit
       - allows the user to edit student details
       - more details to be added soon.
 - **Contribution to the User Guide:**
     - to be added soon
-- **Contribution to the Developer Guide:** 
+- **Contribution to the Developer Guide:**
     - Non-Functional requirements
     - Glossary
 - **Contributions to team-based tasks:**
