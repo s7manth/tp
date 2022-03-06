@@ -13,7 +13,7 @@
 # Link to issue, if needed.
 # wrap desc. text at the end of the above line, do not exceed line
 # length
-# 
+#
 # Example:
 # There was a need to count the number of students in a given class.
 # Hence we implemented the count command in a previous commit, and now
