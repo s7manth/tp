@@ -9,7 +9,7 @@ created with JavaFX. It is written in Java, and has about 10 kLoC.
 ###Given below are my contributions to the project:
 
 - **Code contributed:** [RepoSense Link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=s7manth&breakdown=true)
-- **Enhancements Implemented:** 
+- **Enhancements Implemented:**
     - Feature: Mail
       - allows the user to send mails to student(s)
       - more details to be added soon.
