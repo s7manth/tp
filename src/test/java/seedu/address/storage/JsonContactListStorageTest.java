@@ -6,7 +6,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.HOON;
 import static seedu.address.testutil.TypicalPersons.IDA;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalContactList;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -26,11 +26,11 @@ public class JsonContactListStorageTest {
     public Path testFolder;
 
     @Test
-    public void readAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> readAddressBook(null));
+    public void readContactList_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> readContactList(null));
     }
 
-    private java.util.Optional<ReadOnlyContactList> readAddressBook(String filePath) throws Exception {
+    private java.util.Optional<ReadOnlyContactList> readContactList(String filePath) throws Exception {
         return new JsonContactListStorage(Paths.get(filePath)).readContactList(addToTestDataPathIfNotNull(filePath));
     }
 
@@ -42,69 +42,69 @@ public class JsonContactListStorageTest {
 
     @Test
     public void read_missingFile_emptyResult() throws Exception {
-        assertFalse(readAddressBook("NonExistentFile.json").isPresent());
+        assertFalse(readContactList("NonExistentFile.json").isPresent());
     }
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatContactList.json"));
+        assertThrows(DataConversionException.class, () -> readContactList("notJsonFormatContactList.json"));
     }
 
     @Test
-    public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidPersonContactList.json"));
+    public void readContactList_invalidPersonContactList_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readContactList("invalidPersonContactList.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidPersonContactList.json"));
+    public void readContactList_invalidAndValidPersonContactList_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readContactList("invalidAndValidPersonContactList.json"));
     }
 
     @Test
-    public void readAndSaveAddressBook_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
-        ContactList original = getTypicalAddressBook();
-        JsonContactListStorage jsonAddressBookStorage = new JsonContactListStorage(filePath);
+    public void readAndSaveContactList_allInOrder_success() throws Exception {
+        Path filePath = testFolder.resolve("TempContactList.json");
+        ContactList original = getTypicalContactList();
+        JsonContactListStorage jsonContactListStorage = new JsonContactListStorage(filePath);
 
         // Save in new file and read back
-        jsonAddressBookStorage.saveContactList(original, filePath);
-        ReadOnlyContactList readBack = jsonAddressBookStorage.readContactList(filePath).get();
+        jsonContactListStorage.saveContactList(original, filePath);
+        ReadOnlyContactList readBack = jsonContactListStorage.readContactList(filePath).get();
         assertEquals(original, new ContactList(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addPerson(HOON);
         original.removePerson(ALICE);
-        jsonAddressBookStorage.saveContactList(original, filePath);
-        readBack = jsonAddressBookStorage.readContactList(filePath).get();
+        jsonContactListStorage.saveContactList(original, filePath);
+        readBack = jsonContactListStorage.readContactList(filePath).get();
         assertEquals(original, new ContactList(readBack));
 
         // Save and read without specifying file path
         original.addPerson(IDA);
-        jsonAddressBookStorage.saveContactList(original); // file path not specified
-        readBack = jsonAddressBookStorage.readContactList().get(); // file path not specified
+        jsonContactListStorage.saveContactList(original); // file path not specified
+        readBack = jsonContactListStorage.readContactList().get(); // file path not specified
         assertEquals(original, new ContactList(readBack));
 
     }
 
     @Test
-    public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(null, "SomeFile.json"));
+    public void saveContactList_nullContactList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveContactList(null, "SomeFile.json"));
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code contactList} at the specified {@code filePath}.
      */
-    private void saveAddressBook(ReadOnlyContactList addressBook, String filePath) {
+    private void saveContactList(ReadOnlyContactList contactList, String filePath) {
         try {
             new JsonContactListStorage(Paths.get(filePath))
-                    .saveContactList(addressBook, addToTestDataPathIfNotNull(filePath));
+                    .saveContactList(contactList, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
     }
 
     @Test
-    public void saveAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(new ContactList(), null));
+    public void saveContactList_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveContactList(new ContactList(), null));
     }
 }
