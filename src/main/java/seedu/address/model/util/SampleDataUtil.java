@@ -40,7 +40,7 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyContactList getSampleAddressBook() {
+    public static ReadOnlyContactList getSampleContactList() {
         ContactList sampleAb = new ContactList();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);

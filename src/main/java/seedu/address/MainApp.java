@@ -69,19 +69,19 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s contact list and {@code userPrefs}. <br>
+     * The data from the sample contact list will be used instead if {@code storage}'s contact list is not found,
+     * or an empty contact list will be used instead if errors occur when reading {@code storage}'s contact list.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyContactList> addressBookOptional;
+        Optional<ReadOnlyContactList> contactListOptional;
         ReadOnlyContactList initialData;
         try {
-            addressBookOptional = storage.readContactList();
-            if (!addressBookOptional.isPresent()) {
+            contactListOptional = storage.readContactList();
+            if (!contactListOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample ContactList");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = contactListOptional.orElseGet(SampleDataUtil::getSampleContactList);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty ContactList");
             initialData = new ContactList();
@@ -173,7 +173,7 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping TAilor ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {
