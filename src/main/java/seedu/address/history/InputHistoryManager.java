@@ -1,16 +1,23 @@
 package seedu.address.history;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A class to record the commands entered by the user
  */
 public class InputHistoryManager implements InputHistory {
-    String lastUserInput;
+    private final int INIT_INPUT_INDEX_VALUE = -1;
+
+    private List<String> previousInputs;
+    private int currentInputIndex;
 
     /**
      * Constructs an {@code InputHistoryManager}
      */
     public InputHistoryManager() {
-        this.lastUserInput = "";
+        this.previousInputs = new ArrayList<>();
+        this.currentInputIndex = INIT_INPUT_INDEX_VALUE;
     }
 
     /**
@@ -19,7 +26,8 @@ public class InputHistoryManager implements InputHistory {
      */
     @Override
     public void storeInput(String input) {
-        this.lastUserInput = input;
+        this.previousInputs.add(input);
+        currentInputIndex = refreshInputIndex();
     }
 
     /**
@@ -27,6 +35,17 @@ public class InputHistoryManager implements InputHistory {
      */
     @Override
     public String getPreviousUserInput() {
-        return this.lastUserInput;
+        // Return the first input provided by the user at app launch.
+        if (currentInputIndex == INIT_INPUT_INDEX_VALUE) {
+            return previousInputs.get(0);
+        }
+
+        String previousUserInput = previousInputs.get(currentInputIndex);
+        currentInputIndex--;
+        return previousUserInput;
+    }
+
+    private int refreshInputIndex() {
+        return previousInputs.size() - 1;
     }
 }
