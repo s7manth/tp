@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's address in the class group.
+ * Represents a mod a Person's is taking.
  * Guarantees: immutable; is valid as declared in {@link #isValidMod(String)}
  */
 public class Mod {
