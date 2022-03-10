@@ -23,10 +23,38 @@ public class CommandBox extends UiPart<Region> {
 
     private final CommandExecutor commandExecutor;
 
-    private final InputHistory inputHistory;
+    private final InputHistory inputHistory = new InputHistoryManager();
 
     @FXML
     private TextField commandTextField;
+
+    // Define the up key event filter and its behaviour.
+    private final EventHandler<KeyEvent> upFilter = keyEvent -> {
+        if (keyEvent.getCode() != KeyCode.UP) {
+            return;
+        }
+
+        // gets the last user input, then fills the text field with it
+        String prevUserInput = inputHistory.getPreviousUserInput();
+        commandTextField.setText(prevUserInput);
+
+        // consumes the up keypress event
+        keyEvent.consume();
+    };
+
+    // Define the down key event filter and its behaviour.
+    private final EventHandler<KeyEvent> downFilter = keyEvent -> {
+        if (keyEvent.getCode() != KeyCode.DOWN) {
+            return;
+        }
+
+        // gets the last user input, then fills the text field with it
+        String prevUserInput = inputHistory.getNextUserInput();
+        commandTextField.setText(prevUserInput);
+
+        // consumes the up keypress event
+        keyEvent.consume();
+    };
 
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
@@ -34,26 +62,11 @@ public class CommandBox extends UiPart<Region> {
     public CommandBox(CommandExecutor commandExecutor) {
         super(FXML);
         this.commandExecutor = commandExecutor;
-        this.inputHistory = new InputHistoryManager();
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
 
-        // Define the up key event filter and its behaviour.
-        EventHandler<KeyEvent> upFilter = keyEvent -> {
-            if (keyEvent.getCode() != KeyCode.UP) {
-                return;
-            }
-
-            // gets the last user input, then fills the text field with it
-            String lastUserInput = inputHistory.getPreviousUserInput();
-            commandTextField.setText(lastUserInput);
-
-            // consumes the up keypress event
-            keyEvent.consume();
-        };
-
-
         commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, upFilter);
+        commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, downFilter);
     }
 
     /**

@@ -31,7 +31,7 @@ public class InputHistoryManager implements InputHistory {
     }
 
     /**
-     * Returns a previous user input.
+     * Returns the previous user input with respect to the pointer.
      */
     @Override
     public String getPreviousUserInput() {
@@ -45,7 +45,7 @@ public class InputHistoryManager implements InputHistory {
     }
 
     /**
-     * Returns a previous user input.
+     * Returns the next user input with respect to the pointer.
      */
     @Override
     public String getNextUserInput() {
