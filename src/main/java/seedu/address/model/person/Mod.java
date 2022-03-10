@@ -9,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Mod {
 
-    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Mod codes must be in the form of 2-3 Capitalised characters, 4 " +
+            "digits then an optional extra capitalised character.";
 
     /*
      * The first 2-3 characters of the module code must be capital letters,

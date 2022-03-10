@@ -27,7 +27,7 @@ class JsonAdaptedPerson {
     private final String name;
     private final String phone;
     private final String email;
-    private final String address;
+    private final String mod;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -40,7 +40,7 @@ class JsonAdaptedPerson {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.mod = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -53,7 +53,7 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        address = source.getMod().value;
+        mod = source.getMod().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -94,13 +94,13 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        if (address == null) {
+        if (mod == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Mod.class.getSimpleName()));
         }
-        if (!Mod.isValidMod(address)) {
+        if (!Mod.isValidMod(mod)) {
             throw new IllegalValueException(Mod.MESSAGE_CONSTRAINTS);
         }
-        final Mod modelMod = new Mod(address);
+        final Mod modelMod = new Mod(mod);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelMod, modelTags);

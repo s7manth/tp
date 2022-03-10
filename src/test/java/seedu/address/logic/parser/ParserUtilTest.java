@@ -24,12 +24,12 @@ public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
-    private static final String INVALID_EMAIL = "example.com";
+    private static final String INVALID_MOD = "example.com";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
+    private static final String VALID_MOD = "CS2103T";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
@@ -114,14 +114,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        Mod expectedMod = new Mod(VALID_ADDRESS);
-        assertEquals(expectedMod, ParserUtil.parseMod(VALID_ADDRESS));
+        Mod expectedMod = new Mod(VALID_MOD);
+        assertEquals(expectedMod, ParserUtil.parseMod(VALID_MOD));
     }
 
     @Test
     public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        Mod expectedMod = new Mod(VALID_ADDRESS);
+        String addressWithWhitespace = WHITESPACE + VALID_MOD + WHITESPACE;
+        Mod expectedMod = new Mod(VALID_MOD);
         assertEquals(expectedMod, ParserUtil.parseMod(addressWithWhitespace));
     }
 
@@ -132,7 +132,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseEmail_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_EMAIL));
+        assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_MOD));
     }
 
     @Test
