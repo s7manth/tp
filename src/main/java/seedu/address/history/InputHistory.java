@@ -15,4 +15,9 @@ public interface InputHistory {
      */
     String getPreviousUserInput();
 
+    /**
+     * Returns a next input by the user.
+     */
+    String getNextUserInput();
+
 }
