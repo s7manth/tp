@@ -7,6 +7,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
+import seedu.address.history.InputHistory;
+import seedu.address.history.InputHistoryManager;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -21,6 +23,8 @@ public class CommandBox extends UiPart<Region> {
 
     private final CommandExecutor commandExecutor;
 
+    private final InputHistory inputHistory;
+
     @FXML
     private TextField commandTextField;
 
@@ -30,6 +34,7 @@ public class CommandBox extends UiPart<Region> {
     public CommandBox(CommandExecutor commandExecutor) {
         super(FXML);
         this.commandExecutor = commandExecutor;
+        this.inputHistory = new InputHistoryManager();
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
 
@@ -39,8 +44,9 @@ public class CommandBox extends UiPart<Region> {
                 return;
             }
 
-            // clears the text field. a placeholder behaviour
-            commandTextField.clear();
+            // gets the last user input, then fills the text field with it
+            String lastUserInput = inputHistory.getPreviousUserInput();
+            commandTextField.setText(lastUserInput);
 
             // consumes the up keypress event
             keyEvent.consume();
@@ -56,6 +62,8 @@ public class CommandBox extends UiPart<Region> {
     @FXML
     private void handleCommandEntered() {
         String commandText = commandTextField.getText();
+        inputHistory.storeInput(commandText);
+
         if (commandText.equals("")) {
             return;
         }

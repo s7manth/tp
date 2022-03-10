@@ -23,10 +23,10 @@ public class InputHistoryManager implements InputHistory {
     }
 
     /**
-     * Returns the last user input.
+     * Returns a previous user input.
      */
     @Override
-    public String getLastUserInput() {
+    public String getPreviousUserInput() {
         return this.lastUserInput;
     }
 }

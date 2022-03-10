@@ -11,8 +11,8 @@ public interface InputHistory {
     void storeInput(String input);
 
     /**
-     * Returns the most recent input by the user.
+     * Returns a previous input by the user.
      */
-    String getLastUserInput();
+    String getPreviousUserInput();
 
 }
