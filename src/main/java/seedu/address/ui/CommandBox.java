@@ -45,6 +45,8 @@ public class CommandBox extends UiPart<Region> {
             // consumes the up keypress event
             keyEvent.consume();
         };
+
+
         commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, upFilter);
     }
 
