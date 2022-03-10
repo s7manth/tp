@@ -23,17 +23,19 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Group group;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Group group, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, group, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.group = group;
         this.tags.addAll(tags);
     }
 
@@ -52,6 +54,8 @@ public class Person {
     public Address getAddress() {
         return address;
     }
+
+    public Group getGroup() { return group;}
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -93,13 +97,14 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getGroup().equals(getGroup())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, group, tags);
     }
 
     @Override
@@ -107,6 +112,7 @@ public class Person {
         final StringBuilderUtil stringBuilderUtil = StringBuilderUtil.getInstance();
         stringBuilderUtil.appendAll(getName(), "; Phone: ", getPhone(),
                 "; Email: ", getEmail(),
+                "; Group: ", getGroup(),
                 "; Address: ", getAddress());
 
         Set<Tag> tags = getTags();
