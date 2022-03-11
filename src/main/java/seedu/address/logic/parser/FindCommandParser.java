@@ -67,7 +67,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         }
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
-            String[] keywords = argMultimap.getValue(PREFIX_ADDRESS).get().split("\\s+");
+            String[] keywords = argMultimap.getValue(PREFIX_TAG).get().split("\\s+");
             compPreds.addPredicate(new TagsContainsKeywordsPredicate(Arrays.asList(keywords)));
         }
 

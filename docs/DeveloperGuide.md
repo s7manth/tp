@@ -368,7 +368,7 @@ Priorities: High (must have), Medium (nice to have), Low (unlikely to have)
 **Extensions:**
 
 * 2a. TAilor doesn't find any matches
-  * 2a1. TAilor displays the error message
+  * 2a1. TAilor displays an empty list
 
     User case ends
 
