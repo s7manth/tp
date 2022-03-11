@@ -55,7 +55,9 @@ public class Person {
         return address;
     }
 
-    public Group getGroup() { return group;}
+    public Group getGroup() {
+        return group;
+    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
