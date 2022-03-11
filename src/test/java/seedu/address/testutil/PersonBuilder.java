@@ -5,11 +5,11 @@ import java.util.Set;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Group;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.person.Group;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -85,7 +85,9 @@ public class PersonBuilder {
         this.phone = new Phone(phone);
         return this;
     }
-
+    /**
+     * Sets the {@code Group} of the {@code Person} that we are building.
+     */
     public PersonBuilder withGroup(String group) {
         this.group = new Group(group);
         return this;
