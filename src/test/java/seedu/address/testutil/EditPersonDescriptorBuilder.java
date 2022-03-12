@@ -35,7 +35,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getMod());
+        descriptor.setMod(person.getMod());
         descriptor.setTags(person.getTags());
     }
 
@@ -66,8 +66,8 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Mod} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Mod(address));
+    public EditPersonDescriptorBuilder withMod(String address) {
+        descriptor.setMod(new Mod(address));
         return this;
     }
 

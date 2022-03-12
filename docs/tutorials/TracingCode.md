@@ -127,7 +127,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
         try {
             //We can deduce that the previous line of code modifies model in some way
             // since it's being stored here.
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveContactList(model.getContactList());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -225,12 +225,12 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
     **`JsonSerializableAddressBook` constructor:**
     ``` java
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyContactList} into this class for Jackson use.
      *
      * @param source future changes to this will not affect the created
-     * {@code JsonSerializableAddressBook}.
+     * {@code JsonSerializableContactList}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableContactList(ReadOnlyContactList source) {
         persons.addAll(
             source.getPersonList()
                   .stream()

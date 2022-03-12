@@ -21,10 +21,10 @@ public class ModTest {
 
     @Test
     public void isValidMod() {
-        // null address
+        // null mod
         assertThrows(NullPointerException.class, () -> Mod.isValidMod(null));
 
-        // invalid addresses
+        // invalid mods
         assertFalse(Mod.isValidMod("")); // empty string
         assertFalse(Mod.isValidMod(" ")); // spaces only
         assertFalse(Mod.isValidMod("cs2030S")); // non-capital prefix
@@ -36,7 +36,7 @@ public class ModTest {
         assertFalse(Mod.isValidMod("CS10000")); // >4 digits
         assertFalse(Mod.isValidMod("CS12X34")); // characters between digits
 
-        // valid addresses
+        // valid mods
         assertTrue(Mod.isValidMod("CS2100")); // 2 character prefix
         assertTrue(Mod.isValidMod("GER1000")); // 3 character prefix
         assertTrue(Mod.isValidMod("CS1101S")); // 2 character prefix, 1 character suffix

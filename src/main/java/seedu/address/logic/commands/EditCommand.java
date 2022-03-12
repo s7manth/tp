@@ -96,7 +96,7 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Mod updatedMod = editPersonDescriptor.getAddress().orElse(personToEdit.getMod());
+        Mod updatedMod = editPersonDescriptor.getMod().orElse(personToEdit.getMod());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedMod, updatedTags);
@@ -141,7 +141,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setAddress(toCopy.mod);
+            setMod(toCopy.mod);
             setTags(toCopy.tags);
         }
 
@@ -176,11 +176,11 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setAddress(Mod mod) {
+        public void setMod(Mod mod) {
             this.mod = mod;
         }
 
-        public Optional<Mod> getAddress() {
+        public Optional<Mod> getMod() {
             return Optional.ofNullable(mod);
         }
 
@@ -219,7 +219,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
+                    && getMod().equals(e.getMod())
                     && getTags().equals(e.getTags());
         }
     }

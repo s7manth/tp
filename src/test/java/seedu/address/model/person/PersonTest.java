@@ -80,7 +80,7 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different address -> returns false
+        // different mod -> returns false
         editedAlice = new PersonBuilder(ALICE).withMod(VALID_MOD_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
