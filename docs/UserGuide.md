@@ -29,7 +29,7 @@ Assistant who can type fast, TAilor can get your contact management tasks done f
    * **`list`** : Lists all contacts.
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact
-     named `John Doe` to the Address Book.
+     named `John Doe` to the Contact List.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -114,21 +114,29 @@ Examples:
 
 ### Locating persons by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds persons whose details contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find PREFIX/KEYWORD [KEYWORD] [PREFIX/KEYWORD [KEYWORD]]…​`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* The prefixes used are the same as other commands:
+  * `n/` for name
+  * `p/` for phone
+  * `e/` for email
+  * `a/` for address
+  * `t/` for tags
+* Multiple keywords can be given for each tag.
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* Only the specified prefix will be searched
+* For names, only full words will be matched e.g. `Han` will not match `Hans`
+* For the rest, partial words will be matched e.g. `exam` will match `abc@example.com`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find n\John` returns `john` and `John Doe`
+* `find n\alex david` returns `Alex Yeoh`, `David Li`<br>
+  ![result for 'find n\alex david'](images/findAlexDavidResult.png)
 
 ### Mailing student(s) : `mail`
 
@@ -173,12 +181,6 @@ Clears all entries from the student roster.
 
 Format: `clear`
 
-### Count all entries : `count`
-
-Counts all entries from the student roster to return total number of students.
-
-Format: `count`
-
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -218,11 +220,10 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
-**Count** | `count`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Exit** | `exit`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Find** | `find PREFIX/KEYWORD [MORE_KEYWORDS] [PREFIX/KEYWORD [MORE_KEYWORDS]]`<br> e.g., `find n/James Jake`
 **List** | `list`
 **Mail** | `mail`<br> e.g., `mail e/johndoe@example.com`
 **Mail All** | `mailall`

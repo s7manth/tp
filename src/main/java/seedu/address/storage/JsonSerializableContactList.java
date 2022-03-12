@@ -16,7 +16,7 @@ import seedu.address.model.person.Person;
 /**
  * An Immutable ContactList that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "contactlist")
 class JsonSerializableContactList {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
@@ -41,7 +41,7 @@ class JsonSerializableContactList {
     }
 
     /**
-     * Converts this address book into the model's {@code ContactList} object.
+     * Converts this contact list into the model's {@code ContactList} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
