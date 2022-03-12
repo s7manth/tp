@@ -24,7 +24,7 @@ Given below are my contributions to the project.
       Incorporated many individual classes for each of the search conditions, as well as a compounded search condition
       that allows searching based on all conditions passed into it.
     * Time spent on this (estimate):
-      180mins
+      210mins
   * **Feature 2**: Implementing `Mod` class
     * What it does:
       This is basically another field/detail about a person, like Name and Email.
@@ -33,7 +33,7 @@ Given below are my contributions to the project.
       By having this `Mod` class, Teaching Assistants can now tag students with a certain Class, ie `CS2030S`
       To better keep track of their students.
     * Time spent on this (estimate):
-      120mins
+      150mins
 
 * **Enhancements to existing features**:
   * Add Mod class/field (Pull reuqest [\#70]()) 
