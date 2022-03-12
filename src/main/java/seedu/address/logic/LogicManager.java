@@ -55,7 +55,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyContactList getAddressBook() {
+    public ReadOnlyContactList getContactList() {
         return model.getContactList();
     }
 
