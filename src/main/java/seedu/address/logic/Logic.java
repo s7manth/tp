@@ -28,13 +28,13 @@ public interface Logic {
      *
      * @see seedu.address.model.Model#getContactList()
      */
-    ReadOnlyContactList getAddressBook();
+    ReadOnlyContactList getContactList();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' contact list file path.
      */
     Path getContactListFilePath();
 
