@@ -35,17 +35,17 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' contact list file path.
      */
     Path getContactListFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' contact list file path.
      */
-    void setContactListFilePath(Path addressBookFilePath);
+    void setContactListFilePath(Path contactListFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces contact list data with the data in {@code contactList}.
      */
     void setContactList(ReadOnlyContactList contactList);
 
@@ -53,26 +53,26 @@ public interface Model {
     ReadOnlyContactList getContactList();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in the contact list.
      */
     boolean hasPerson(Person person);
 
     /**
      * Deletes the given person.
-     * The person must exist in the address book.
+     * The person must exist in the contact list.
      */
     void deletePerson(Person target);
 
     /**
      * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * {@code person} must not already exist in the contact list.
      */
     void addPerson(Person person);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in the contact list.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the contact list.
      */
     void setPerson(Person target, Person editedPerson);
 

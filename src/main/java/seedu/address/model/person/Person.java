@@ -22,18 +22,18 @@ public class Person {
     private final Email email;
 
     // Data fields
-    private final Address address;
+    private final Mod mod;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Mod mod, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, mod, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.mod = mod;
         this.tags.addAll(tags);
     }
 
@@ -49,8 +49,8 @@ public class Person {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public Mod getMod() {
+        return mod;
     }
 
     /**
@@ -92,14 +92,14 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getMod().equals(getMod())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, mod, tags);
     }
 
     @Override
@@ -107,7 +107,7 @@ public class Person {
         final StringBuilderUtil stringBuilderUtil = StringBuilderUtil.getInstance();
         stringBuilderUtil.appendAll(getName(), "; Phone: ", getPhone(),
                 "; Email: ", getEmail(),
-                "; Address: ", getAddress());
+                "; Mod: ", getMod());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

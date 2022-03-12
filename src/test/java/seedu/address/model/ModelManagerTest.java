@@ -61,12 +61,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+    public void setContactListFilePath_nullPath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setContactListFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setContactListFilePath_validPath_setsContactListFilePath() {
         Path path = Paths.get("address/book/file/path");
         modelManager.setContactListFilePath(path);
         assertEquals(path, modelManager.getContactListFilePath());
