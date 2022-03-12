@@ -36,7 +36,7 @@ Given below are my contributions to the project.
       150mins
 
 * **Enhancements to existing features**:
-  * Add Mod class/field (Pull reuqest [\#70]()) 
+  * Add Mod class/field (Pull request [\#70]())
   * Find command (Pull requests [\#75]())
 
 * **Documentation**:
