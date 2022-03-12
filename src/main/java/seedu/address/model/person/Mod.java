@@ -32,7 +32,7 @@ public class Mod {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid mod.
      */
     public static boolean isValidMod(String test) {
         return test.matches(VALIDATION_REGEX);
