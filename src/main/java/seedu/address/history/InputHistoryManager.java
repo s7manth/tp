@@ -7,7 +7,7 @@ import java.util.List;
  * A class to record the commands entered by the user
  */
 public class InputHistoryManager implements InputHistory {
-    private final int INIT_INPUT_INDEX_VALUE = 0;
+    private static final int INIT_INPUT_INDEX_VALUE = 0;
 
     private List<String> previousInputs;
     private int indexPointer;
