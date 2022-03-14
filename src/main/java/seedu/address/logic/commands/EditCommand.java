@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -20,6 +21,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Group;
 import seedu.address.model.person.Mod;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -40,6 +42,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_GROUP + "GROUP] "
             + "[" + PREFIX_MOD + "MOD] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -97,9 +100,9 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Mod updatedMod = editPersonDescriptor.getMod().orElse(personToEdit.getMod());
+        Group updatedGroup = editPersonDescriptor.getGroup().orElse(personToEdit.getGroup());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedMod, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedMod, updatedGroup, updatedTags);
     }
 
     @Override
@@ -130,6 +133,7 @@ public class EditCommand extends Command {
         private Email email;
         private Mod mod;
         private Set<Tag> tags;
+        private Group group;
 
         public EditPersonDescriptor() {}
 
@@ -141,6 +145,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
+            setGroup(toCopy.group);
             setMod(toCopy.mod);
             setTags(toCopy.tags);
         }
@@ -182,6 +187,14 @@ public class EditCommand extends Command {
 
         public Optional<Mod> getMod() {
             return Optional.ofNullable(mod);
+        }
+
+        public void setGroup(Group group) {
+            this.group = group;
+        }
+
+        public Optional<Group> getGroup() {
+            return Optional.ofNullable(group);
         }
 
         /**
