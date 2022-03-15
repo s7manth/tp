@@ -24,3 +24,7 @@ docs/_site/
 /.project
 /.settings/
 /bin/
+
+# Log files for the application
+*.log.0
+*.log.0.lck
