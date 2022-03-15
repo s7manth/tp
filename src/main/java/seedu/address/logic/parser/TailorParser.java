@@ -63,6 +63,9 @@ public class TailorParser {
         case MailCommand.COMMAND_WORD:
             return new MailCommandParser().parse(arguments);
 
+        case MailAllCommand.COMMAND_WORD:
+            return new MailAllCommand();
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
