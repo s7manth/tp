@@ -43,7 +43,7 @@ public class JsonUserPrefsStorage implements UserPrefsStorage {
     @Override
     public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException {
         JsonUtil.saveJsonFile(userPrefs, filePath);
-        FileUtil.addNewLineToFile(filePath);
+//        FileUtil.addNewLineToFile(filePath);
     }
 
 }

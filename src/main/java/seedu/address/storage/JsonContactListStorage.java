@@ -75,7 +75,7 @@ public class JsonContactListStorage implements ContactListStorage {
 
         FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonSerializableContactList(contactList), filePath);
-        FileUtil.addNewLineToFile(filePath);
+//        FileUtil.addNewLineToFile(filePath);
     }
 
 }
