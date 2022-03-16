@@ -1,1 +1,12 @@
+{
+  "guiSettings" : {
+    "windowWidth" : 1920.0,
+    "windowHeight" : 1053.0,
+    "windowCoordinates" : {
+      "x" : 0,
+      "y" : 27
+    }
+  },
+  "contactListFilePath" : "data/contactlist.json"
+}
 
