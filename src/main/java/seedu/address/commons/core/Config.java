@@ -12,7 +12,7 @@ import seedu.address.commons.util.StringBuilderUtil;
  */
 public class Config {
 
-    public static final Path DEFAULT_CONFIG_FILE = Paths.get("aconfig.json");
+    public static final Path DEFAULT_CONFIG_FILE = Paths.get("config.json");
 
     // Config values customizable through config file
     private Level logLevel = Level.INFO;

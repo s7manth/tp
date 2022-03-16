@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -75,6 +76,7 @@ public class JsonContactListStorage implements ContactListStorage {
 
         FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonSerializableContactList(contactList), filePath);
+        FileUtil.addNewLineToFile(filePath);
     }
 
 }
