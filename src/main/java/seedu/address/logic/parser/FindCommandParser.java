@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -14,6 +15,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.predicates.CompoundedPredicates;
 import seedu.address.model.person.predicates.EmailContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.GroupContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.ModContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.PhoneContainsKeywordsPredicate;
@@ -41,7 +43,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         // with index preambles.
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(" " + trimmedArgs, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_MOD, PREFIX_TAG);
+                        PREFIX_GROUP, PREFIX_MOD, PREFIX_TAG);
 
 
 
@@ -69,6 +71,11 @@ public class FindCommandParser implements Parser<FindCommand> {
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             String[] keywords = argMultimap.getValue(PREFIX_TAG).get().split("\\s+");
             compPreds.addPredicate(new TagsContainsKeywordsPredicate(Arrays.asList(keywords)));
+        }
+
+        if (argMultimap.getValue(PREFIX_GROUP).isPresent()) {
+            String[] keywords = argMultimap.getValue(PREFIX_GROUP).get().split("\\s+");
+            compPreds.addPredicate(new GroupContainsKeywordsPredicate(Arrays.asList(keywords)));
         }
 
         if (compPreds.isEmpty()) {
