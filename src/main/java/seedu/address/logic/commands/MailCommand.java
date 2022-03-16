@@ -1,16 +1,16 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.MailUtil.launchMail;
+
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.MailUtil.launchMail;
 
 /**
  * Opens the system default mail app with person identified using it's
@@ -29,6 +29,10 @@ public class MailCommand extends Command {
 
     private final Index index;
 
+    /**
+     * Constructor for the MailCommand class.
+     * @param index The index of the person to mail to.
+     */
     public MailCommand(Index index) {
         requireNonNull(index);
         this.index = index;

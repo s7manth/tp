@@ -1,12 +1,12 @@
 package seedu.address.commons.util;
 
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.person.Email;
-
-import java.awt.*;
+import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.person.Email;
 
 public class MailUtil {
 
