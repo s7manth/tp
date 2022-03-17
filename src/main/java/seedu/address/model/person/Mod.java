@@ -12,8 +12,8 @@ public class Mod {
     public static final String MESSAGE_CONSTRAINTS = "Mod codes must be in the form of 2-3 Capitalised characters, 4 "
             + "digits then an optional extra capitalised character.";
 
-    public static final String DEFAULT_GROUP_MESSAGE_CONSTRAINTS = "Default group titles within a group must not be " +
-            "blank";
+    public static final String DEFAULT_GROUP_MESSAGE_CONSTRAINTS = "Default group titles within a group must not be "
+            + "blank";
 
     /*
      * The first 2-3 characters of the module code must be capital letters,
@@ -25,7 +25,7 @@ public class Mod {
 
     public final String value;
 
-    public String defaultGroup;
+    private String defaultGroup;
 
     /**
      * Constructs an {@code Mod}.
@@ -36,15 +36,20 @@ public class Mod {
         requireNonNull(mod);
         checkArgument(isValidMod(mod), MESSAGE_CONSTRAINTS);
         value = mod;
-        defaultGroup = null;
+        this.defaultGroup = null;
     }
 
+    /**
+     * Constructor for the {@code Mod} class.
+     * @param mod The module.
+     * @param defaultGrp The default group.
+     */
     public Mod(String mod, String defaultGrp) {
         requireNonNull(mod);
         requireNonNull(defaultGrp);
         checkArgument(isValidDefaultGroup(defaultGrp), DEFAULT_GROUP_MESSAGE_CONSTRAINTS);
         value = mod;
-        defaultGroup = defaultGrp;
+        this.defaultGroup = defaultGrp;
     }
 
     /**
@@ -56,6 +61,15 @@ public class Mod {
 
     public static boolean isValidDefaultGroup(String test) {
         return test.matches(GROUP_VALIDATION_REGEX);
+    }
+
+    public String getDefaultGroup() {
+        return defaultGroup;
+    }
+
+
+    public void setDefaultGroup(String defaultGroup) {
+        this.defaultGroup = defaultGroup;
     }
 
     @Override

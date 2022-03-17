@@ -1,13 +1,13 @@
 package seedu.address.model.person;
 
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.ModuleNotFoundException;
-
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Optional;
+
+import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.ModuleNotFoundException;
 
 public class UniqueModuleList implements Iterable<Mod> {
 
@@ -22,6 +22,11 @@ public class UniqueModuleList implements Iterable<Mod> {
         return internalList.stream().anyMatch(x -> x.value.equalsIgnoreCase(moduleCode));
     }
 
+    /**
+     * Retrieves the module.
+     * @param mod The module to be retrieved.
+     * @return An optional module.
+     */
     public Optional<Mod> retrieveMod(Mod mod) {
         requireNonNull(mod);
         String modCode = mod.value;

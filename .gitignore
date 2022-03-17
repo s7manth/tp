@@ -24,3 +24,7 @@ docs/_site/
 /.project
 /.settings/
 /bin/
+
+
+*.log.*
+*.log.*.lck

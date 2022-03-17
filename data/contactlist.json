@@ -48,5 +48,19 @@
     "mod" : "CS2103T",
     "group" : "W12-1",
     "tagged" : [ ]
+  }, {
+    "name" : "Sumanth",
+    "phone" : "12345678",
+    "email" : "sumanth@gmail.com",
+    "mod" : "CS2103T",
+    "group" : "W-12",
+    "tagged" : [ "team1" ]
+  }, {
+    "name" : "Kavita Varshney",
+    "phone" : "9959203845",
+    "email" : "kavitagupta_v@yahoo.com",
+    "mod" : "CS2030S",
+    "group" : "T08",
+    "tagged" : [ ]
   } ]
 }

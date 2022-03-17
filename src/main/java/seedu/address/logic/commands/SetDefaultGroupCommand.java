@@ -1,14 +1,13 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.person.Mod;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniqueModuleList;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD;
+
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.person.Mod;
+import seedu.address.model.person.UniqueModuleList;
 
 public class SetDefaultGroupCommand extends Command {
 
@@ -28,6 +27,11 @@ public class SetDefaultGroupCommand extends Command {
     private final Mod mod;
     private final String defaultValue;
 
+    /**
+     * Constructor for {@code SetDefaultGroupCommand}.
+     * @param mod The module whose default has to be set.
+     * @param defaultValue The default value.
+     */
     public SetDefaultGroupCommand(Mod mod, String defaultValue) {
         this.mod = mod;
         this.defaultValue = defaultValue;
@@ -53,3 +57,4 @@ public class SetDefaultGroupCommand extends Command {
     }
 
 }
+

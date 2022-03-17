@@ -133,7 +133,7 @@ public class ModelManager implements Model {
     @Override
     public boolean isDefaultPresent(Mod mod) {
         requireNonNull(mod);
-        return mod.defaultGroup != null;
+        return mod.getDefaultGroup() != null;
     }
 
     @Override
@@ -144,12 +144,12 @@ public class ModelManager implements Model {
 
     @Override
     public String retrievePrevDefault(Mod mod) {
-        return mod.defaultGroup;
+        return mod.getDefaultGroup();
     }
 
     @Override
     public void setDefaultGroup(Mod mod, String value) {
-        mod.defaultGroup = value;
+        mod.setDefaultGroup(value);
     }
 
     @Override
