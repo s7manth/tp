@@ -4,6 +4,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Mod;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniqueModuleList;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
@@ -35,13 +36,19 @@ public class SetDefaultGroupCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        if (model.isDefaultPresent(mod)) {
-            String prevDefault = model.retrievePrevDefault(mod);
-            return new CommandResult(String.format(MESSAGE_DEFAULT_UPDATE, mod, prevDefault, defaultValue));
+        UniqueModuleList moduleList = new UniqueModuleList();
+        if (model.doesModExist(mod)) {
+            Mod matchingMod = moduleList.retrieveMod(mod).get(); //since guaranteed to not be null
+            if (model.isDefaultPresent(matchingMod)) {
+                String prevDefault = model.retrievePrevDefault(matchingMod);
+                return new CommandResult(String.format(MESSAGE_DEFAULT_UPDATE, mod, prevDefault, defaultValue));
+            }
+            model.setDefaultGroup(matchingMod, defaultValue);
+        } else {
+            moduleList.add(mod);
+            model.setDefaultGroup(mod, defaultValue);
         }
 
-        model.setDefaultGroup(mod, defaultValue);
         return new CommandResult(String.format(MESSAGE_SUCCESS, mod, defaultValue));
     }
 

@@ -74,15 +74,9 @@ public class ParserUtil {
         if (!Mod.isValidMod(trimmedCode)) {
             throw new ParseException(Mod.MESSAGE_CONSTRAINTS);
         }
-//        if (doesModExist(mod)) {
-//
-//        }
         return new Mod(trimmedCode);
     }
-//
-//    public static boolean doesModExist(mod) {
-//        UniqueModuleList.internalList
-//    }
+
 
     /**
      * Parses a {@code String group} into an {@code Group}

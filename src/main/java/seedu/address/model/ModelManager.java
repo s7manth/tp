@@ -13,6 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Mod;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniqueModuleList;
 
 /**
  * Represents the in-memory model of the contact list data.
@@ -133,6 +134,12 @@ public class ModelManager implements Model {
     public boolean isDefaultPresent(Mod mod) {
         requireNonNull(mod);
         return mod.defaultGroup != null;
+    }
+
+    @Override
+    public boolean doesModExist(Mod mod) {
+        requireNonNull(mod);
+        return new UniqueModuleList().contains(mod.value);
     }
 
     @Override

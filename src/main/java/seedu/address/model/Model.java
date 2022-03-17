@@ -93,6 +93,8 @@ public interface Model {
      */
     boolean isDefaultPresent(Mod mod);
 
+    boolean doesModExist(Mod mod);
+
     /**
      * Retrieves the current default group value for a particular module
      * @param mod the module object who's default value is to be retrieved.

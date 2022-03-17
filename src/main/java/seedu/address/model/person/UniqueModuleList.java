@@ -7,6 +7,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Optional;
 
 public class UniqueModuleList implements Iterable<Mod> {
 
@@ -21,16 +22,22 @@ public class UniqueModuleList implements Iterable<Mod> {
         return internalList.stream().anyMatch(x -> x.value.equalsIgnoreCase(moduleCode));
     }
 
+    public Optional<Mod> retrieveMod(Mod mod) {
+        requireNonNull(mod);
+        String modCode = mod.value;
+        return internalList.stream().filter(x -> x.value.equalsIgnoreCase(modCode)).findAny();
+    }
+
     /**
      * Adds a person to the list.
      * The person must not already exist in the list.
      */
-    public void add(String modCode) {
-        requireNonNull(modCode);
-        if (contains(modCode)) {
+    public void add(Mod mod) {
+        requireNonNull(mod);
+        if (contains(mod.value)) {
             throw new DuplicatePersonException();
         }
-        internalList.add(new Mod(modCode));
+        internalList.add(mod);
     }
 
     /**
@@ -60,4 +67,7 @@ public class UniqueModuleList implements Iterable<Mod> {
         return internalList.hashCode();
     }
 
+    public ArrayList<Mod> getList() {
+        return internalList;
+    }
 }
