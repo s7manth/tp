@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Mod;
 import seedu.address.model.person.Person;
 
 /**
@@ -126,6 +127,22 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public boolean isDefaultPresent(Mod mod) {
+        requireNonNull(mod);
+        return mod.defaultGroup != null;
+    }
+
+    @Override
+    public String retrievePrevDefault(Mod mod) {
+        return mod.defaultGroup;
+    }
+
+    @Override
+    public void setDefaultGroup(Mod mod, String value) {
+        mod.defaultGroup = value;
     }
 
     @Override

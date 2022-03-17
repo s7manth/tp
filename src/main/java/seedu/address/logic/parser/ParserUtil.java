@@ -9,11 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Group;
-import seedu.address.model.person.Mod;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -74,12 +70,19 @@ public class ParserUtil {
      */
     public static Mod parseMod(String mod) throws ParseException {
         requireNonNull(mod);
-        String trimmedAddress = mod.trim();
-        if (!Mod.isValidMod(trimmedAddress)) {
+        String trimmedCode = mod.trim();
+        if (!Mod.isValidMod(trimmedCode)) {
             throw new ParseException(Mod.MESSAGE_CONSTRAINTS);
         }
-        return new Mod(trimmedAddress);
+//        if (doesModExist(mod)) {
+//
+//        }
+        return new Mod(trimmedCode);
     }
+//
+//    public static boolean doesModExist(mod) {
+//        UniqueModuleList.internalList
+//    }
 
     /**
      * Parses a {@code String group} into an {@code Group}

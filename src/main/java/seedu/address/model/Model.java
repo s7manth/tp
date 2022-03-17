@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.Mod;
 import seedu.address.model.person.Person;
 
 /**
@@ -84,4 +85,20 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Checks if the specified mod already has a default value set.
+     * @param mod the module object meant to be checked
+     * @return true
+     */
+    boolean isDefaultPresent(Mod mod);
+
+    /**
+     * Retrieves the current default group value for a particular module
+     * @param mod the module object who's default value is to be retrieved.
+     * @return String the default group title.
+     */
+    String retrievePrevDefault(Mod mod);
+
+    void setDefaultGroup(Mod mod, String value);
 }
