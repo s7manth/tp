@@ -41,33 +41,5 @@
     "mod" : "GER1000",
     "group" : "1",
     "tagged" : [ "colleagues" ]
-  }, {
-    "name" : "Sumanth",
-    "phone" : "12345678",
-    "email" : "sumanth@gmail.com",
-    "mod" : "CS2103T",
-    "group" : "W-12",
-    "tagged" : [ "team1" ]
-  }, {
-    "name" : "Kavita Varshney",
-    "phone" : "9959203845",
-    "email" : "kavitagupta_v@yahoo.com",
-    "mod" : "CS2030S",
-    "group" : "T08",
-    "tagged" : [ ]
-  }, {
-    "name" : "Jan",
-    "phone" : "2132445",
-    "email" : "jan@gmail.com",
-    "mod" : "CS2103T",
-    "group" : "W111",
-    "tagged" : [ ]
-  }, {
-    "name" : "kashish",
-    "phone" : "12345678",
-    "email" : "kash@gmail.com",
-    "mod" : "CS2103T",
-    "group" : "W123",
-    "tagged" : [ ]
   } ]
 }
