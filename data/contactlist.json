@@ -42,13 +42,6 @@
     "group" : "1",
     "tagged" : [ "colleagues" ]
   }, {
-    "name" : "Kashish Varshney",
-    "phone" : "12345678",
-    "email" : "e0589909@u.nus.edu",
-    "mod" : "CS2103T",
-    "group" : "W12-1",
-    "tagged" : [ ]
-  }, {
     "name" : "Sumanth",
     "phone" : "12345678",
     "email" : "sumanth@gmail.com",
@@ -61,6 +54,20 @@
     "email" : "kavitagupta_v@yahoo.com",
     "mod" : "CS2030S",
     "group" : "T08",
+    "tagged" : [ ]
+  }, {
+    "name" : "Jan",
+    "phone" : "2132445",
+    "email" : "jan@gmail.com",
+    "mod" : "CS2103T",
+    "group" : "W111",
+    "tagged" : [ ]
+  }, {
+    "name" : "kashish",
+    "phone" : "12345678",
+    "email" : "kash@gmail.com",
+    "mod" : "CS2103T",
+    "group" : "W123",
     "tagged" : [ ]
   } ]
 }
