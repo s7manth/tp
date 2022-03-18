@@ -15,9 +15,9 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.SetDefaultGroupCommand;
 import seedu.address.logic.commands.MailAllCommand;
 import seedu.address.logic.commands.MailCommand;
+import seedu.address.logic.commands.SetDefaultGroupCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
