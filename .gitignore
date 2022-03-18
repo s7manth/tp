@@ -25,6 +25,6 @@ docs/_site/
 /.settings/
 /bin/
 
-# Log files for the application
-*.log.0
-*.log.0.lck
+
+*.log.*
+*.log.*.lck

@@ -22,7 +22,7 @@ public class Person {
     private final Email email;
 
     // Data fields
-    private final Group group;
+    private Group group;
     private final Mod mod;
     private final Set<Tag> tags = new HashSet<>();
 
@@ -65,6 +65,14 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Sets the group allocation for the {@code Person}.
+     * @param groupTitle the String with the desired group title.
+     */
+    public void setGroup(String groupTitle) {
+        this.group = new Group(groupTitle);
     }
 
     /**
