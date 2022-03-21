@@ -1,0 +1,206 @@
+Mar 21, 2022 6:20:14 PM seedu.address.MainApp init
+INFO: =============================[ Initializing ContactList ]===========================
+Mar 21, 2022 6:20:14 PM seedu.address.MainApp initConfig
+INFO: Using config file : config.json
+Mar 21, 2022 6:20:15 PM seedu.address.MainApp initPrefs
+INFO: Using prefs file : preferences.json
+Mar 21, 2022 6:20:15 PM seedu.address.commons.core.LogsCenter init
+INFO: currentLogLevel: INFO
+Mar 21, 2022 6:20:15 PM seedu.address.MainApp initModelManager
+INFO: Task List data file not found. Will be starting with a sample TaskList
+Mar 21, 2022 6:20:15 PM seedu.address.MainApp start
+INFO: Starting ContactList V0.2.0ea
+Mar 21, 2022 6:20:15 PM seedu.address.ui.UiManager start
+INFO: Starting UI...
+Mar 21, 2022 6:20:40 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][newtask ok /by 2022-03-01 23:59]
+Mar 21, 2022 6:20:40 PM seedu.address.ui.MainWindow executeCommand
+INFO: Invalid command: newtask ok /by 2022-03-01 23:59
+Mar 21, 2022 6:20:54 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][add ok /by 2022-03-01 23:59]
+Mar 21, 2022 6:20:54 PM seedu.address.ui.MainWindow executeCommand
+INFO: Invalid command: add ok /by 2022-03-01 23:59
+Mar 21, 2022 6:21:35 PM seedu.address.MainApp stop
+INFO: ============================ [ Stopping TAilor ] =============================
+Mar 21, 2022 6:21:42 PM seedu.address.MainApp init
+INFO: =============================[ Initializing ContactList ]===========================
+Mar 21, 2022 6:21:42 PM seedu.address.MainApp initConfig
+INFO: Using config file : config.json
+Mar 21, 2022 6:21:42 PM seedu.address.MainApp initPrefs
+INFO: Using prefs file : preferences.json
+Mar 21, 2022 6:21:42 PM seedu.address.commons.core.LogsCenter init
+INFO: currentLogLevel: INFO
+Mar 21, 2022 6:21:42 PM seedu.address.MainApp initModelManager
+INFO: Task List data file not found. Will be starting with a sample TaskList
+Mar 21, 2022 6:21:42 PM seedu.address.MainApp start
+INFO: Starting ContactList V0.2.0ea
+Mar 21, 2022 6:21:42 PM seedu.address.ui.UiManager start
+INFO: Starting UI...
+Mar 21, 2022 6:21:54 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][newtask ok /by 1234-01-01 00:00]
+Mar 21, 2022 6:21:54 PM seedu.address.ui.MainWindow executeCommand
+INFO: Invalid command: newtask ok /by 1234-01-01 00:00
+Mar 21, 2022 6:22:43 PM seedu.address.MainApp init
+INFO: =============================[ Initializing ContactList ]===========================
+Mar 21, 2022 6:22:43 PM seedu.address.MainApp initConfig
+INFO: Using config file : config.json
+Mar 21, 2022 6:22:43 PM seedu.address.MainApp initPrefs
+INFO: Using prefs file : preferences.json
+Mar 21, 2022 6:22:43 PM seedu.address.commons.core.LogsCenter init
+INFO: currentLogLevel: INFO
+Mar 21, 2022 6:22:43 PM seedu.address.MainApp initModelManager
+INFO: Task List data file not found. Will be starting with a sample TaskList
+Mar 21, 2022 6:22:44 PM seedu.address.MainApp start
+INFO: Starting ContactList V0.2.0ea
+Mar 21, 2022 6:22:44 PM seedu.address.ui.UiManager start
+INFO: Starting UI...
+Mar 21, 2022 6:22:58 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][newtask ok /by 1234-01-01 00:00]
+Mar 21, 2022 6:22:58 PM seedu.address.ui.MainWindow executeCommand
+INFO: Invalid command: newtask ok /by 1234-01-01 00:00
+Mar 21, 2022 6:23:14 PM seedu.address.MainApp init
+INFO: =============================[ Initializing ContactList ]===========================
+Mar 21, 2022 6:23:14 PM seedu.address.MainApp initConfig
+INFO: Using config file : config.json
+Mar 21, 2022 6:23:14 PM seedu.address.MainApp initPrefs
+INFO: Using prefs file : preferences.json
+Mar 21, 2022 6:23:14 PM seedu.address.commons.core.LogsCenter init
+INFO: currentLogLevel: INFO
+Mar 21, 2022 6:23:14 PM seedu.address.MainApp initModelManager
+INFO: Task List data file not found. Will be starting with a sample TaskList
+Mar 21, 2022 6:23:14 PM seedu.address.MainApp start
+INFO: Starting ContactList V0.2.0ea
+Mar 21, 2022 6:23:14 PM seedu.address.ui.UiManager start
+INFO: Starting UI...
+Mar 21, 2022 6:23:32 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][newtask ok /by 1234-01-01 00:00]
+Mar 21, 2022 6:24:39 PM seedu.address.MainApp init
+INFO: =============================[ Initializing ContactList ]===========================
+Mar 21, 2022 6:24:39 PM seedu.address.MainApp initConfig
+INFO: Using config file : config.json
+Mar 21, 2022 6:24:39 PM seedu.address.MainApp initPrefs
+INFO: Using prefs file : preferences.json
+Mar 21, 2022 6:24:39 PM seedu.address.commons.core.LogsCenter init
+INFO: currentLogLevel: INFO
+Mar 21, 2022 6:24:39 PM seedu.address.MainApp initModelManager
+INFO: Task List data file not found. Will be starting with a sample TaskList
+Mar 21, 2022 6:24:40 PM seedu.address.MainApp start
+INFO: Starting ContactList V0.2.0ea
+Mar 21, 2022 6:24:40 PM seedu.address.ui.UiManager start
+INFO: Starting UI...
+Mar 21, 2022 6:24:58 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][newtask ok by/1234-01-01 00:00]
+Mar 21, 2022 6:25:18 PM seedu.address.ui.MainWindow executeCommand
+INFO: Invalid command: newtask ok by/1234-01-01 00:00
+Mar 21, 2022 6:25:44 PM seedu.address.MainApp init
+INFO: =============================[ Initializing ContactList ]===========================
+Mar 21, 2022 6:25:44 PM seedu.address.MainApp initConfig
+INFO: Using config file : config.json
+Mar 21, 2022 6:25:45 PM seedu.address.MainApp initPrefs
+INFO: Using prefs file : preferences.json
+Mar 21, 2022 6:25:45 PM seedu.address.commons.core.LogsCenter init
+INFO: currentLogLevel: INFO
+Mar 21, 2022 6:25:45 PM seedu.address.MainApp initModelManager
+INFO: Task List data file not found. Will be starting with a sample TaskList
+Mar 21, 2022 6:25:45 PM seedu.address.MainApp start
+INFO: Starting ContactList V0.2.0ea
+Mar 21, 2022 6:25:45 PM seedu.address.ui.UiManager start
+INFO: Starting UI...
+Mar 21, 2022 6:26:04 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][newtask ok by/1234-01-01 00:00]
+Mar 21, 2022 6:27:21 PM seedu.address.MainApp init
+INFO: =============================[ Initializing ContactList ]===========================
+Mar 21, 2022 6:27:21 PM seedu.address.MainApp initConfig
+INFO: Using config file : config.json
+Mar 21, 2022 6:27:21 PM seedu.address.MainApp initPrefs
+INFO: Using prefs file : preferences.json
+Mar 21, 2022 6:27:21 PM seedu.address.commons.core.LogsCenter init
+INFO: currentLogLevel: INFO
+Mar 21, 2022 6:27:21 PM seedu.address.MainApp initModelManager
+INFO: Task List data file not found. Will be starting with a sample TaskList
+Mar 21, 2022 6:27:21 PM seedu.address.MainApp start
+INFO: Starting ContactList V0.2.0ea
+Mar 21, 2022 6:27:21 PM seedu.address.ui.UiManager start
+INFO: Starting UI...
+Mar 21, 2022 6:27:30 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][newtask ok by/1234-01-01 00:00]
+Mar 21, 2022 6:27:30 PM seedu.address.ui.MainWindow executeCommand
+INFO: Invalid command: newtask ok by/1234-01-01 00:00
+Mar 21, 2022 6:27:40 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][newtask ok by/1234-01-01 01:01]
+Mar 21, 2022 6:27:40 PM seedu.address.ui.MainWindow executeCommand
+INFO: Invalid command: newtask ok by/1234-01-01 01:01
+Mar 21, 2022 6:27:44 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][newtask ok by/2000-01-01 01:01]
+Mar 21, 2022 6:27:44 PM seedu.address.ui.MainWindow executeCommand
+INFO: Invalid command: newtask ok by/2000-01-01 01:01
+Mar 21, 2022 6:27:48 PM seedu.address.MainApp stop
+INFO: ============================ [ Stopping TAilor ] =============================
+Mar 21, 2022 6:27:59 PM seedu.address.MainApp init
+INFO: =============================[ Initializing ContactList ]===========================
+Mar 21, 2022 6:27:59 PM seedu.address.MainApp initConfig
+INFO: Using config file : config.json
+Mar 21, 2022 6:28:00 PM seedu.address.MainApp initPrefs
+INFO: Using prefs file : preferences.json
+Mar 21, 2022 6:28:00 PM seedu.address.commons.core.LogsCenter init
+INFO: currentLogLevel: INFO
+Mar 21, 2022 6:28:00 PM seedu.address.MainApp initModelManager
+INFO: Task List data file not found. Will be starting with a sample TaskList
+Mar 21, 2022 6:28:00 PM seedu.address.MainApp start
+INFO: Starting ContactList V0.2.0ea
+Mar 21, 2022 6:28:00 PM seedu.address.ui.UiManager start
+INFO: Starting UI...
+Mar 21, 2022 6:28:12 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][newtask ok by/1234-01-01 00:00]
+Mar 21, 2022 6:30:13 PM seedu.address.MainApp init
+INFO: =============================[ Initializing ContactList ]===========================
+Mar 21, 2022 6:30:13 PM seedu.address.MainApp initConfig
+INFO: Using config file : config.json
+Mar 21, 2022 6:30:13 PM seedu.address.MainApp initPrefs
+INFO: Using prefs file : preferences.json
+Mar 21, 2022 6:30:13 PM seedu.address.commons.core.LogsCenter init
+INFO: currentLogLevel: INFO
+Mar 21, 2022 6:30:13 PM seedu.address.MainApp initModelManager
+INFO: Task List data file not found. Will be starting with a sample TaskList
+Mar 21, 2022 6:30:13 PM seedu.address.MainApp start
+INFO: Starting ContactList V0.2.0ea
+Mar 21, 2022 6:30:13 PM seedu.address.ui.UiManager start
+INFO: Starting UI...
+Mar 21, 2022 6:30:22 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][newtask ok by/1234-01-01 00:00]
+Mar 21, 2022 6:30:22 PM seedu.address.ui.MainWindow executeCommand
+INFO: Result: New task added: seedu.address.model.tasks.Task@2841a6
+Mar 21, 2022 6:30:52 PM seedu.address.MainApp stop
+INFO: ============================ [ Stopping TAilor ] =============================
+Mar 21, 2022 6:38:38 PM seedu.address.MainApp init
+INFO: =============================[ Initializing ContactList ]===========================
+Mar 21, 2022 6:38:39 PM seedu.address.MainApp initConfig
+INFO: Using config file : config.json
+Mar 21, 2022 6:38:39 PM seedu.address.MainApp initPrefs
+INFO: Using prefs file : preferences.json
+Mar 21, 2022 6:38:39 PM seedu.address.commons.core.LogsCenter init
+INFO: currentLogLevel: INFO
+Mar 21, 2022 6:38:39 PM seedu.address.MainApp initModelManager
+INFO: Task List data file not found. Will be starting with a sample TaskList
+Mar 21, 2022 6:38:39 PM seedu.address.MainApp start
+INFO: Starting ContactList V0.2.0ea
+Mar 21, 2022 6:38:39 PM seedu.address.ui.UiManager start
+INFO: Starting UI...
+Mar 21, 2022 6:38:45 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][newtask]
+Mar 21, 2022 6:38:45 PM seedu.address.ui.MainWindow executeCommand
+INFO: Invalid command: newtask
+Mar 21, 2022 6:38:53 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][newtask ok by/1234-01-01 00:00]
+Mar 21, 2022 6:38:53 PM seedu.address.ui.MainWindow executeCommand
+INFO: Result: New task added: ok, by 1234-01-01T00:00
+Mar 21, 2022 6:38:55 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][newtask]
+Mar 21, 2022 6:38:55 PM seedu.address.ui.MainWindow executeCommand
+INFO: Invalid command: newtask
+Mar 21, 2022 6:38:59 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][newtask ok by/1234-01-01 00:00]
+Mar 21, 2022 6:38:59 PM seedu.address.ui.MainWindow executeCommand
+INFO: Invalid command: newtask ok by/1234-01-01 00:00
+Mar 21, 2022 6:39:09 PM seedu.address.MainApp stop
+INFO: ============================ [ Stopping TAilor ] =============================

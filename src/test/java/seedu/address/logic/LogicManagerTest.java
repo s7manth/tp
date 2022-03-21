@@ -28,7 +28,9 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.tasks.PriorityTaskList;
 import seedu.address.storage.JsonContactListStorage;
+import seedu.address.storage.JsonTaskListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PersonBuilder;
@@ -47,7 +49,9 @@ public class LogicManagerTest {
         JsonContactListStorage contactListStorage =
                 new JsonContactListStorage(temporaryFolder.resolve("data/contactlist.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(contactListStorage, userPrefsStorage);
+        JsonTaskListStorage taskListStorage =
+                new JsonTaskListStorage(temporaryFolder.resolve("data/tasklist.json"));
+        StorageManager storage = new StorageManager(contactListStorage, userPrefsStorage, taskListStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -76,7 +80,9 @@ public class LogicManagerTest {
                 new JsonContactListIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionContactList.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(contactListStorage, userPrefsStorage);
+        JsonTaskListStorage taskListStorage =
+                new JsonTaskListStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
+        StorageManager storage = new StorageManager(contactListStorage, userPrefsStorage, taskListStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -130,7 +136,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getContactList(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getContactList(), new UserPrefs(), new PriorityTaskList());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 

@@ -7,6 +7,8 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Mod;
 import seedu.address.model.person.Person;
+import seedu.address.model.tasks.ReadOnlyTaskList;
+import seedu.address.model.tasks.Task;
 
 /**
  * The API of the Model component.
@@ -103,4 +105,24 @@ public interface Model {
     String retrievePrevDefault(Mod mod);
 
     void setDefaultGroup(Mod mod, String value);
+
+    /**
+     * Returns true if a task with the same identity as {@code task} exists in the task manager.
+     */
+    boolean hasTask(Task task);
+
+    /**
+     * Deletes the given task.
+     * The task must exist in the task manager.
+     */
+    void deleteTask(Task target);
+
+    /**
+     * Adds the given task.
+     * {@code task} must not already exist in the task manager.
+     */
+    void addTask(Task task);
+
+    /** Returns an unmodifiable view of the task list */
+    ReadOnlyTaskList getTaskList();
 }
