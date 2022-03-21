@@ -34,4 +34,7 @@ public class VersionedContactList {
         return contactListVersions.remove(lastIndex);
     }
 
+    public boolean isEarliestVersion() {
+        return contactListVersions.size() == 1;
+    }
 }

@@ -109,4 +109,9 @@ public interface Model {
      * Contact List remains unchanged if there are no existing previous versions.
      */
     void undoContactList();
+
+    /**
+     * Checks if Contact List version is the oldest since application initialisation.
+     */
+    boolean isEarliestContactListVersion();
 }
