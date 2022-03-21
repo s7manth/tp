@@ -201,7 +201,7 @@ Format: `newtask DESCRIPTION by/DATETIME`
   * hh represents the hour, as in 24-hour (ie 3am is 0300, 3pm is 1500)
   * mm represents the minute.
   * The dashes `-`, colons `:` and the `T` must be in the corresponding positions.
-  * The Time and Date being input must be valid. Ie, it is not possible to input a task 
+  * The Time and Date being input must be valid. Ie, it is not possible to input a task
     with a deadline of 31st February.
 
 Examples:
@@ -229,7 +229,7 @@ There is no need to save manually.
 
 ### Editing the data file
 
-TAilor data are saved as a JSON file `[JAR file location]/data/contactlist.json`. 
+TAilor data are saved as a JSON file `[JAR file location]/data/contactlist.json`.
 Task List data is also saved as a JSON file `[JAR file location]/data/tasklist.json`. Advanced users are
 welcome to update the data directly by editing those data files.
 

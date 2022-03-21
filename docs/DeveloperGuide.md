@@ -188,7 +188,7 @@ For example, LogicManager now tries to save to the storage's contact list and ta
             storage.saveTaskList(model.getTaskList());
 ```
 
-The Tasks are represented as with a Description (internally just a String) and a Deadline 
+The Tasks are represented as with a Description (internally just a String) and a Deadline
 (internally is based on java.time.LocalDateTime). Hence, the date/time input and the storage
 are also based on LocalDateTime to maintain consistency.
 
