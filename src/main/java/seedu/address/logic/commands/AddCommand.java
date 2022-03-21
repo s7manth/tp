@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Mod;
 import seedu.address.model.person.Person;
 
 /**
@@ -55,6 +56,12 @@ public class AddCommand extends Command {
 
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+        Mod currentMod = toAdd.getMod();
+        String defaultValue = currentMod.getDefaultGroup();
+        if (defaultValue != null) {
+            toAdd.setGroup(defaultValue);
         }
 
         model.addPerson(toAdd);

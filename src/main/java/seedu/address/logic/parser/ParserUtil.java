@@ -74,12 +74,13 @@ public class ParserUtil {
      */
     public static Mod parseMod(String mod) throws ParseException {
         requireNonNull(mod);
-        String trimmedAddress = mod.trim();
-        if (!Mod.isValidMod(trimmedAddress)) {
+        String trimmedCode = mod.trim();
+        if (!Mod.isValidMod(trimmedCode)) {
             throw new ParseException(Mod.MESSAGE_CONSTRAINTS);
         }
-        return new Mod(trimmedAddress);
+        return new Mod(trimmedCode);
     }
+
 
     /**
      * Parses a {@code String group} into an {@code Group}

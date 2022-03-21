@@ -20,6 +20,7 @@ import seedu.address.model.ContactList;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.person.Mod;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -146,6 +147,26 @@ public class AddCommandTest {
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isDefaultPresent(Mod mod) {
+            return false;
+        }
+
+        @Override
+        public boolean doesModExist(Mod mod) {
+            return false;
+        }
+
+        @Override
+        public String retrievePrevDefault(Mod mod) {
+            return null;
+        }
+
+        @Override
+        public void setDefaultGroup(Mod mod, String value) {
+
         }
     }
 
