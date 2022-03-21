@@ -9,11 +9,11 @@ src/main/resources/docs/
 /*.iml
 
 # Storage/log files
-/data/
-/config.json
-/preferences.json
+#/data/
+#/config.json
+#/preferences.json
 /*.log.*
-
+/tailorapp.log.0
 
 # Test sandbox files
 src/test/data/sandbox/
