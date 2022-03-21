@@ -4,6 +4,8 @@ package seedu.address.logic.commands;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
+import java.lang.reflect.UndeclaredThrowableException;
+
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -23,5 +25,10 @@ public class UndoCommand extends Command {
         model.undoContactList();
 
         return new CommandResult(MESSAGE_SUCCESS);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof UndoCommand;
     }
 }
