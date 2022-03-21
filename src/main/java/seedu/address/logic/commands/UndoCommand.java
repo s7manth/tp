@@ -19,11 +19,11 @@ public class UndoCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.isEarliestContactListVersion()) {
+        if (model.isEarliestContentVersion()) {
             throw new CommandException(MESSAGE_EARLIEST_VERSION);
         }
 
-        model.undoContactList();
+        model.undoContents();
 
         return new CommandResult(MESSAGE_SUCCESS);
 

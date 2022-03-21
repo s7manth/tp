@@ -24,7 +24,7 @@ public class ModelManager implements Model {
     private final ContactList contactList;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final VersionedContactList versionedContactList;
+    private final VersionedContents versionedContents;
 
     /**
      * Initializes a ModelManager with the given contactList and userPrefs.
@@ -37,7 +37,7 @@ public class ModelManager implements Model {
         this.contactList = new ContactList(contactList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.contactList.getPersonList());
-        this.versionedContactList = new VersionedContactList();
+        this.versionedContents = new VersionedContents();
     }
 
     public ModelManager() {
@@ -115,6 +115,22 @@ public class ModelManager implements Model {
         contactList.setPerson(target, editedPerson);
     }
 
+    //=========== VersionedContactList ================================================================================
+
+    public void undoContents() {
+        Content contents = versionedContents.undo();
+        setContactList(contents.getContactList());
+    }
+
+    @Override
+    public boolean isEarliestContentVersion() {
+        return versionedContents.isEarliestVersion();
+    }
+
+    public void updateVersionedContent() {
+        versionedContents.addContactListVersion(new Content(getContactList()));
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -152,16 +168,6 @@ public class ModelManager implements Model {
     @Override
     public void setDefaultGroup(Mod mod, String value) {
         mod.setDefaultGroup(value);
-    }
-
-    @Override
-    public void undoContactList() {
-        setContactList(versionedContactList.undo());
-    }
-
-    @Override
-    public boolean isEarliestContactListVersion() {
-        return versionedContactList.isEarliestVersion();
     }
 
     @Override

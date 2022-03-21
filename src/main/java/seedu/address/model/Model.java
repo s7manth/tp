@@ -108,10 +108,10 @@ public interface Model {
      * Reverts the Contact List to a previous version since application initialisation.
      * Contact List remains unchanged if there are no existing previous versions.
      */
-    void undoContactList();
+    void undoContents();
 
     /**
      * Checks if Contact List version is the oldest since application initialisation.
      */
-    boolean isEarliestContactListVersion();
+    boolean isEarliestContentVersion();
 }
