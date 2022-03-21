@@ -18,7 +18,7 @@ public class NewTaskCommand extends Command {
             + "Parameters: DESCRIPTION (must be non-empty) "
             + PREFIX_DEADLINE + "DEADLINE \n"
             + "Example: " + COMMAND_WORD + " Submit CS2100 Assignment 1 "
-            + PREFIX_DEADLINE + "2022-03-25 23:59";
+            + PREFIX_DEADLINE + "2022-03-25T23:59";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task manager";
