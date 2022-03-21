@@ -37,7 +37,7 @@ public class ModelManager implements Model {
         this.contactList = new ContactList(contactList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.contactList.getPersonList());
-        this.versionedContents = new VersionedContents();
+        this.versionedContents = new VersionedContents(new Content(getContactList()));
     }
 
     public ModelManager() {
@@ -84,6 +84,9 @@ public class ModelManager implements Model {
     @Override
     public void setContactList(ReadOnlyContactList contactList) {
         this.contactList.resetData(contactList);
+
+        // adding this command to each method that affects content as temporary solution
+        updateVersionedContent();
     }
 
     @Override
@@ -100,12 +103,18 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         contactList.removePerson(target);
+
+        // adding this command to each method that affects content as temporary solution
+        updateVersionedContent();
     }
 
     @Override
     public void addPerson(Person person) {
         contactList.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
+        // adding this command to each method that affects content as temporary solution
+        updateVersionedContent();
     }
 
     @Override
@@ -113,9 +122,12 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         contactList.setPerson(target, editedPerson);
+
+        // adding this command to each method that affects content as temporary solution
+        updateVersionedContent();
     }
 
-    //=========== VersionedContactList ================================================================================
+    //=========== VersionedContent ================================================================================
 
     public void undoContents() {
         Content contents = versionedContents.undo();
@@ -128,7 +140,7 @@ public class ModelManager implements Model {
     }
 
     public void updateVersionedContent() {
-        versionedContents.addContactListVersion(new Content(getContactList()));
+        versionedContents.addContentVersion(new Content(getContactList()));
     }
 
     //=========== Filtered Person List Accessors =============================================================

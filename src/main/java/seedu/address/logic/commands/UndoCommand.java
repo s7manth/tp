@@ -12,8 +12,8 @@ import static java.util.Objects.requireNonNull;
 public class UndoCommand extends Command {
     public static final String COMMAND_WORD = "undo";
 
-    public static final String MESSAGE_EARLIEST_VERSION = "The contact list is already in its earliest version";
-    public static final String MESSAGE_SUCCESS = "Contact List changed to previous version";
+    public static final String MESSAGE_EARLIEST_VERSION = "There are no versions before this";
+    public static final String MESSAGE_SUCCESS = "Contents have been changed to previous version";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
