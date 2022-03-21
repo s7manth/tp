@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 
 /**
- * Unmodifiable view of an contact list
+ * Unmodifiable view of a contact list
  */
 public interface ReadOnlyContactList {
 

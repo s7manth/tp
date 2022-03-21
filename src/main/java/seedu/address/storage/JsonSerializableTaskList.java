@@ -1,24 +1,24 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tasks.PriorityTaskList;
 import seedu.address.model.tasks.ReadOnlyTaskList;
 import seedu.address.model.tasks.Task;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Queue;
-import java.util.stream.Collectors;
-
 /**
  * An Immutable TaskList that is serializable to JSON format.
  */
 @JsonRootName(value = "tasklist")
-public class JsonSerializableTaskList {
+class JsonSerializableTaskList {
 
     public static final String MESSAGE_DUPLICATE_TASK = "Task list contains duplicate task(s).";
 
@@ -51,7 +51,7 @@ public class JsonSerializableTaskList {
         PriorityTaskList priorityTaskList = new PriorityTaskList();
         for (JsonAdaptedTask jsonAdaptedTask : tasks) {
             Task task = jsonAdaptedTask.toModelType();
-            if (tasks.contains(tasks)) {
+            if (priorityTaskList.contains(task)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TASK);
             }
             priorityTaskList.add(task);

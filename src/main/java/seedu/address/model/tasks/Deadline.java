@@ -1,10 +1,10 @@
 package seedu.address.model.tasks;
 
-import java.time.LocalDateTime;
-import java.time.Month;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.time.LocalDateTime;
+import java.time.Month;
 
 /**
  * Represents a Task's Deadline in the task manager.
@@ -65,25 +65,35 @@ public class Deadline implements Comparable<Deadline> {
      */
     public static boolean isValidDeadline(int year, int month, int day, int hour, int minute) {
         boolean isValidYear = year > 0;
-        if (!isValidYear) return false; // these are scattered throughout to short circuit
+        if (!isValidYear) {
+            return false; // these are scattered throughout to short circuit
+        }
 
         // if is end of century, check if it is divisible by 400. else, check if divisible by 4
         boolean isLeap = year % 100 == 0
                 ? year % 400 == 0
                 : year % 4 == 0;
         boolean isValidMonth = month > 0 && month < 13; // months 1 to 12 only
-        if (!isValidMonth) return false;
+        if (!isValidMonth) {
+            return false;
+        }
 
         boolean isValidDay = day > 0 && (isLeap
                 ? day <= Month.of(month).maxLength()
                 : day <= Month.of(month).minLength());
-        if (!isValidDay) return false;
+        if (!isValidDay) {
+            return false;
+        }
 
         boolean isValidHour = hour > -1 && hour < 24; // 0 to 23
-        if (!isValidHour) return false;
+        if (!isValidHour) {
+            return false;
+        }
 
         boolean isValidMinute = minute > -1 && minute < 60; //0 to 59
-        if (!isValidMinute) return false;
+        if (!isValidMinute) {
+            return false;
+        }
 
         return true;
     }
@@ -95,7 +105,9 @@ public class Deadline implements Comparable<Deadline> {
      * @return true if the deadline is valid
      */
     public static boolean isValidDeadline(String deadline) {
-        if (!isCorrectFormat(deadline)) return false;
+        if (!isCorrectFormat(deadline)) {
+            return false;
+        }
         int[] parsed = splitDeadline(deadline);
         return isValidDeadline(parsed[0], parsed[1], parsed[2], parsed[3], parsed[4]);
     }
@@ -119,12 +131,14 @@ public class Deadline implements Comparable<Deadline> {
                 Integer.parseInt(splitTime[0]),
                 Integer.parseInt(splitTime[1]),
         };
-    };
+    }
 
     /**
      * Checks if the given {@code String deadline} is in the correct format of
-     * {@code YYYY-MM-DD HH:mm}, Where Y = year, M = month, D = days, H = hour as in 24hour,
-     * m = minute. All these should be digits
+     * {@code YYYY-MM-DDTHH:mm}, Where Y = year, M = month, D = days, H = hour as in 24hour,
+     * m = minute. All these should be digits.
+     * T should remain as a constant and should not be changed or replaced.
+     *
      * The dashes (-), spaces and colon should also be in the correct locations.
      *
      * @param deadline the given deadline to check

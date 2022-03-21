@@ -5,6 +5,6 @@ package seedu.address.model.tasks.exceptions;
  */
 public class TaskNotFoundException extends RuntimeException {
     public TaskNotFoundException() {
-        super("Error 404, person not found!");
+        super("Error 404, task not found!");
     }
 }

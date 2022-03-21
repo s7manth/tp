@@ -19,7 +19,7 @@ import seedu.address.model.tasks.ReadOnlyTaskList;
 import seedu.address.model.tasks.Task;
 
 /**
- * Represents the in-memory model of the contact list data.
+ * Represents the in-memory model of the contact list and task list data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -30,13 +30,13 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
 
     /**
-     * Initializes a ModelManager with the given contactList and userPrefs.
+     * Initializes a ModelManager with the given contactList, userPrefs and taskList.
      */
     public ModelManager(ReadOnlyContactList contactList, ReadOnlyUserPrefs userPrefs, ReadOnlyTaskList taskList) {
-        requireAllNonNull(contactList, userPrefs);
+        requireAllNonNull(contactList, userPrefs, taskList);
 
-        logger.fine("Initializing with contact list: " + contactList + ", user prefs " + userPrefs +
-                " and task manager: " + taskList);
+        logger.fine("Initializing with contact list: " + contactList + ", user prefs " + userPrefs
+                + " and task manager: " + taskList);
 
         this.contactList = new ContactList(contactList);
         this.taskList = new PriorityTaskList(taskList);
@@ -202,6 +202,7 @@ public class ModelManager implements Model {
         return this.taskList;
     }
 
+    //=========== OTHERS =============================================================
 
     @Override
     public boolean equals(Object obj) {

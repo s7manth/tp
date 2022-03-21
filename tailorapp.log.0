@@ -810,3 +810,456 @@ Mar 21, 2022 7:54:52 PM seedu.address.ui.MainWindow executeCommand
 INFO: Result: New task added: charlie4, by 2002-02-28T00:00
 Mar 21, 2022 7:54:54 PM seedu.address.MainApp stop
 INFO: ============================ [ Stopping TAilor ] =============================
+Mar 21, 2022 11:21:32 PM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\JsonSerializableTaskListTest\invalidTaskTaskList.json: com.fasterxml.jackson.databind.JsonMappingException: Instantiation of [simple type, class seedu.address.storage.JsonSerializableTaskList] value failed (java.lang.NullPointerException): null
+ at [Source: {
+  "persons": [ {
+    "name": "Hans Muster",
+    "phone": "9482424",
+    "email": "invalid@email!3e",
+    "mod": "4th street"
+  } ]
+}
+; line: 8, column: 1]
+Mar 21, 2022 11:34:44 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonTaskListStorageTest\NonExistentFile.json not found
+Mar 21, 2022 11:34:44 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonTaskListStorageTest\invalidAndValidTaskList.json not found
+Mar 21, 2022 11:34:44 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonTaskListStorageTest\invalidTaskList.json not found
+Mar 21, 2022 11:34:44 PM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\JsonTaskListStorageTest\notJsonFormatTaskList.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'not': was expecting 'null', 'true', 'false' or NaN
+ at [Source: not json format!
+; line: 1, column: 4]
+Mar 21, 2022 11:35:32 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonTaskListStorageTest\NonExistentFile.json not found
+Mar 21, 2022 11:35:32 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonTaskListStorageTest\invalidAndValidTaskList.json not found
+Mar 21, 2022 11:35:32 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonTaskListStorageTest\invalidTaskList.json not found
+Mar 21, 2022 11:35:32 PM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\JsonTaskListStorageTest\notJsonFormatTaskList.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'not': was expecting 'null', 'true', 'false' or NaN
+ at [Source: not json format!
+; line: 1, column: 4]
+Mar 21, 2022 11:35:56 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonTaskListStorageTest\NonExistentFile.json not found
+Mar 21, 2022 11:35:57 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonTaskListStorageTest\invalidAndValidTaskList.json not found
+Mar 21, 2022 11:35:57 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonTaskListStorageTest\invalidTaskList.json not found
+Mar 21, 2022 11:35:57 PM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\JsonTaskListStorageTest\notJsonFormatTaskList.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'not': was expecting 'null', 'true', 'false' or NaN
+ at [Source: not json format!
+; line: 1, column: 4]
+Mar 21, 2022 11:36:30 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonTaskListStorageTest\NonExistentFile.json not found
+Mar 21, 2022 11:36:31 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonTaskListStorageTest\invalidAndValidTaskList.json not found
+Mar 21, 2022 11:36:31 PM seedu.address.storage.JsonTaskListStorage readTaskList
+INFO: Illegal values found in src\test\data\JsonTaskListStorageTest\invalidTaskTaskList.json: Descriptions should only contain alphanumeric characters and spaces, and it should not be blank
+Mar 21, 2022 11:36:31 PM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\JsonTaskListStorageTest\notJsonFormatTaskList.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'not': was expecting 'null', 'true', 'false' or NaN
+ at [Source: not json format!
+; line: 1, column: 4]
+Mar 21, 2022 11:36:53 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonTaskListStorageTest\NonExistentFile.json not found
+Mar 21, 2022 11:36:54 PM seedu.address.storage.JsonTaskListStorage readTaskList
+INFO: Illegal values found in src\test\data\JsonTaskListStorageTest\invalidAndValidTaskTaskList.json: Deadlines should be in the format YYYY-MM-DDTHH:mm. Do not replace the "T". Example: 2022-03-21T19:38
+Mar 21, 2022 11:36:54 PM seedu.address.storage.JsonTaskListStorage readTaskList
+INFO: Illegal values found in src\test\data\JsonTaskListStorageTest\invalidTaskTaskList.json: Descriptions should only contain alphanumeric characters and spaces, and it should not be blank
+Mar 21, 2022 11:36:54 PM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\JsonTaskListStorageTest\notJsonFormatTaskList.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'not': was expecting 'null', 'true', 'false' or NaN
+ at [Source: not json format!
+; line: 1, column: 4]
+Mar 21, 2022 11:37:03 PM seedu.address.AppParameters parse
+WARNING: Invalid config path a . Using default config path.
+Mar 21, 2022 11:37:05 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\ConfigUtilTest\NonExistentFile.json not found
+Mar 21, 2022 11:37:05 PM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\ConfigUtilTest\NotJsonFormatConfig.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'this': was expecting 'null', 'true', 'false' or NaN
+ at [Source: this file is not in json format!
+; line: 1, column: 5]
+Mar 21, 2022 11:37:06 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][uicfhmowqewca]
+Mar 21, 2022 11:37:06 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][list]
+Mar 21, 2022 11:37:06 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][add n/Amy Bee p/11111111 e/amy@example.com g/T02 m/CS1101S]
+Mar 21, 2022 11:37:06 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][delete 9]
+Mar 21, 2022 11:37:07 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonContactListStorageTest\NonExistentFile.json not found
+Mar 21, 2022 11:37:07 PM seedu.address.storage.JsonContactListStorage readContactList
+INFO: Illegal values found in src\test\data\JsonContactListStorageTest\invalidAndValidPersonContactList.json: Person's Group field is missing!
+Mar 21, 2022 11:37:07 PM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\JsonContactListStorageTest\notJsonFormatContactList.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'not': was expecting 'null', 'true', 'false' or NaN
+ at [Source: not json format!
+; line: 1, column: 4]
+Mar 21, 2022 11:37:07 PM seedu.address.storage.JsonContactListStorage readContactList
+INFO: Illegal values found in src\test\data\JsonContactListStorageTest\invalidPersonContactList.json: Names should only contain alphanumeric characters and spaces, and it should not be blank
+Mar 21, 2022 11:37:07 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonTaskListStorageTest\NonExistentFile.json not found
+Mar 21, 2022 11:37:07 PM seedu.address.storage.JsonTaskListStorage readTaskList
+INFO: Illegal values found in src\test\data\JsonTaskListStorageTest\invalidAndValidTaskTaskList.json: Deadlines should be in the format YYYY-MM-DDTHH:mm. Do not replace the "T". Example: 2022-03-21T19:38
+Mar 21, 2022 11:37:07 PM seedu.address.storage.JsonTaskListStorage readTaskList
+INFO: Illegal values found in src\test\data\JsonTaskListStorageTest\invalidTaskTaskList.json: Descriptions should only contain alphanumeric characters and spaces, and it should not be blank
+Mar 21, 2022 11:37:07 PM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\JsonTaskListStorageTest\notJsonFormatTaskList.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'not': was expecting 'null', 'true', 'false' or NaN
+ at [Source: not json format!
+; line: 1, column: 4]
+Mar 21, 2022 11:37:07 PM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\JsonUserPrefsStorageTest\NotJsonFormatUserPrefs.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'Not': was expecting 'null', 'true', 'false' or NaN
+ at [Source: Not a json file!
+; line: 1, column: 4]
+Mar 21, 2022 11:37:07 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonUserPrefsStorageTest\NonExistentFile.json not found
+Mar 21, 2022 11:42:16 PM seedu.address.AppParameters parse
+WARNING: Invalid config path a . Using default config path.
+Mar 21, 2022 11:42:18 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\ConfigUtilTest\NonExistentFile.json not found
+Mar 21, 2022 11:42:18 PM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\ConfigUtilTest\NotJsonFormatConfig.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'this': was expecting 'null', 'true', 'false' or NaN
+ at [Source: this file is not in json format!
+; line: 1, column: 5]
+Mar 21, 2022 11:42:18 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][uicfhmowqewca]
+Mar 21, 2022 11:42:18 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][list]
+Mar 21, 2022 11:42:18 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][add n/Amy Bee p/11111111 e/amy@example.com g/T02 m/CS1101S]
+Mar 21, 2022 11:42:18 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][delete 9]
+Mar 21, 2022 11:42:19 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonContactListStorageTest\NonExistentFile.json not found
+Mar 21, 2022 11:42:19 PM seedu.address.storage.JsonContactListStorage readContactList
+INFO: Illegal values found in src\test\data\JsonContactListStorageTest\invalidAndValidPersonContactList.json: Person's Group field is missing!
+Mar 21, 2022 11:42:19 PM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\JsonContactListStorageTest\notJsonFormatContactList.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'not': was expecting 'null', 'true', 'false' or NaN
+ at [Source: not json format!
+; line: 1, column: 4]
+Mar 21, 2022 11:42:19 PM seedu.address.storage.JsonContactListStorage readContactList
+INFO: Illegal values found in src\test\data\JsonContactListStorageTest\invalidPersonContactList.json: Names should only contain alphanumeric characters and spaces, and it should not be blank
+Mar 21, 2022 11:42:19 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonTaskListStorageTest\NonExistentFile.json not found
+Mar 21, 2022 11:42:19 PM seedu.address.storage.JsonTaskListStorage readTaskList
+INFO: Illegal values found in src\test\data\JsonTaskListStorageTest\invalidAndValidTaskTaskList.json: Deadlines should be in the format YYYY-MM-DDTHH:mm. Do not replace the "T". Example: 2022-03-21T19:38
+Mar 21, 2022 11:42:19 PM seedu.address.storage.JsonTaskListStorage readTaskList
+INFO: Illegal values found in src\test\data\JsonTaskListStorageTest\invalidTaskTaskList.json: Descriptions should only contain alphanumeric characters and spaces, and it should not be blank
+Mar 21, 2022 11:42:19 PM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\JsonTaskListStorageTest\notJsonFormatTaskList.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'not': was expecting 'null', 'true', 'false' or NaN
+ at [Source: not json format!
+; line: 1, column: 4]
+Mar 21, 2022 11:42:19 PM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\JsonUserPrefsStorageTest\NotJsonFormatUserPrefs.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'Not': was expecting 'null', 'true', 'false' or NaN
+ at [Source: Not a json file!
+; line: 1, column: 4]
+Mar 21, 2022 11:42:19 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonUserPrefsStorageTest\NonExistentFile.json not found
+Mar 21, 2022 11:43:38 PM seedu.address.AppParameters parse
+WARNING: Invalid config path a . Using default config path.
+Mar 21, 2022 11:43:40 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\ConfigUtilTest\NonExistentFile.json not found
+Mar 21, 2022 11:43:40 PM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\ConfigUtilTest\NotJsonFormatConfig.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'this': was expecting 'null', 'true', 'false' or NaN
+ at [Source: this file is not in json format!
+; line: 1, column: 5]
+Mar 21, 2022 11:43:40 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][uicfhmowqewca]
+Mar 21, 2022 11:43:40 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][list]
+Mar 21, 2022 11:43:40 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][add n/Amy Bee p/11111111 e/amy@example.com g/T02 m/CS1101S]
+Mar 21, 2022 11:43:40 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][delete 9]
+Mar 21, 2022 11:43:41 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonContactListStorageTest\NonExistentFile.json not found
+Mar 21, 2022 11:43:41 PM seedu.address.storage.JsonContactListStorage readContactList
+INFO: Illegal values found in src\test\data\JsonContactListStorageTest\invalidAndValidPersonContactList.json: Person's Group field is missing!
+Mar 21, 2022 11:43:41 PM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\JsonContactListStorageTest\notJsonFormatContactList.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'not': was expecting 'null', 'true', 'false' or NaN
+ at [Source: not json format!
+; line: 1, column: 4]
+Mar 21, 2022 11:43:41 PM seedu.address.storage.JsonContactListStorage readContactList
+INFO: Illegal values found in src\test\data\JsonContactListStorageTest\invalidPersonContactList.json: Names should only contain alphanumeric characters and spaces, and it should not be blank
+Mar 21, 2022 11:43:41 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonTaskListStorageTest\NonExistentFile.json not found
+Mar 21, 2022 11:43:41 PM seedu.address.storage.JsonTaskListStorage readTaskList
+INFO: Illegal values found in src\test\data\JsonTaskListStorageTest\invalidAndValidTaskTaskList.json: Deadlines should be in the format YYYY-MM-DDTHH:mm. Do not replace the "T". Example: 2022-03-21T19:38
+Mar 21, 2022 11:43:41 PM seedu.address.storage.JsonTaskListStorage readTaskList
+INFO: Illegal values found in src\test\data\JsonTaskListStorageTest\invalidTaskTaskList.json: Descriptions should only contain alphanumeric characters and spaces, and it should not be blank
+Mar 21, 2022 11:43:41 PM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\JsonTaskListStorageTest\notJsonFormatTaskList.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'not': was expecting 'null', 'true', 'false' or NaN
+ at [Source: not json format!
+; line: 1, column: 4]
+Mar 21, 2022 11:43:41 PM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\JsonUserPrefsStorageTest\NotJsonFormatUserPrefs.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'Not': was expecting 'null', 'true', 'false' or NaN
+ at [Source: Not a json file!
+; line: 1, column: 4]
+Mar 21, 2022 11:43:41 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonUserPrefsStorageTest\NonExistentFile.json not found
+Mar 21, 2022 11:43:55 PM seedu.address.AppParameters parse
+WARNING: Invalid config path a . Using default config path.
+Mar 21, 2022 11:43:56 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\ConfigUtilTest\NonExistentFile.json not found
+Mar 21, 2022 11:43:56 PM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\ConfigUtilTest\NotJsonFormatConfig.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'this': was expecting 'null', 'true', 'false' or NaN
+ at [Source: this file is not in json format!
+; line: 1, column: 5]
+Mar 21, 2022 11:43:57 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][uicfhmowqewca]
+Mar 21, 2022 11:43:57 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][list]
+Mar 21, 2022 11:43:57 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][add n/Amy Bee p/11111111 e/amy@example.com g/T02 m/CS1101S]
+Mar 21, 2022 11:43:57 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][delete 9]
+Mar 21, 2022 11:43:57 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonContactListStorageTest\NonExistentFile.json not found
+Mar 21, 2022 11:43:57 PM seedu.address.storage.JsonContactListStorage readContactList
+INFO: Illegal values found in src\test\data\JsonContactListStorageTest\invalidAndValidPersonContactList.json: Person's Group field is missing!
+Mar 21, 2022 11:43:57 PM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\JsonContactListStorageTest\notJsonFormatContactList.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'not': was expecting 'null', 'true', 'false' or NaN
+ at [Source: not json format!
+; line: 1, column: 4]
+Mar 21, 2022 11:43:57 PM seedu.address.storage.JsonContactListStorage readContactList
+INFO: Illegal values found in src\test\data\JsonContactListStorageTest\invalidPersonContactList.json: Names should only contain alphanumeric characters and spaces, and it should not be blank
+Mar 21, 2022 11:43:57 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonTaskListStorageTest\NonExistentFile.json not found
+Mar 21, 2022 11:43:57 PM seedu.address.storage.JsonTaskListStorage readTaskList
+INFO: Illegal values found in src\test\data\JsonTaskListStorageTest\invalidAndValidTaskTaskList.json: Deadlines should be in the format YYYY-MM-DDTHH:mm. Do not replace the "T". Example: 2022-03-21T19:38
+Mar 21, 2022 11:43:57 PM seedu.address.storage.JsonTaskListStorage readTaskList
+INFO: Illegal values found in src\test\data\JsonTaskListStorageTest\invalidTaskTaskList.json: Descriptions should only contain alphanumeric characters and spaces, and it should not be blank
+Mar 21, 2022 11:43:57 PM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\JsonTaskListStorageTest\notJsonFormatTaskList.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'not': was expecting 'null', 'true', 'false' or NaN
+ at [Source: not json format!
+; line: 1, column: 4]
+Mar 21, 2022 11:43:57 PM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\JsonUserPrefsStorageTest\NotJsonFormatUserPrefs.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'Not': was expecting 'null', 'true', 'false' or NaN
+ at [Source: Not a json file!
+; line: 1, column: 4]
+Mar 21, 2022 11:43:57 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonUserPrefsStorageTest\NonExistentFile.json not found
+Mar 21, 2022 11:59:26 PM seedu.address.AppParameters parse
+WARNING: Invalid config path a . Using default config path.
+Mar 21, 2022 11:59:31 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\ConfigUtilTest\NonExistentFile.json not found
+Mar 21, 2022 11:59:32 PM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\ConfigUtilTest\NotJsonFormatConfig.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'this': was expecting 'null', 'true', 'false' or NaN
+ at [Source: this file is not in json format!
+; line: 1, column: 5]
+Mar 21, 2022 11:59:33 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][uicfhmowqewca]
+Mar 21, 2022 11:59:33 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][list]
+Mar 21, 2022 11:59:33 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][add n/Amy Bee p/11111111 e/amy@example.com g/T02 m/CS1101S]
+Mar 21, 2022 11:59:33 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][delete 9]
+Mar 21, 2022 11:59:35 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonContactListStorageTest\NonExistentFile.json not found
+Mar 21, 2022 11:59:35 PM seedu.address.storage.JsonContactListStorage readContactList
+INFO: Illegal values found in src\test\data\JsonContactListStorageTest\invalidAndValidPersonContactList.json: Person's Group field is missing!
+Mar 21, 2022 11:59:35 PM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\JsonContactListStorageTest\notJsonFormatContactList.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'not': was expecting 'null', 'true', 'false' or NaN
+ at [Source: not json format!
+; line: 1, column: 4]
+Mar 21, 2022 11:59:35 PM seedu.address.storage.JsonContactListStorage readContactList
+INFO: Illegal values found in src\test\data\JsonContactListStorageTest\invalidPersonContactList.json: Names should only contain alphanumeric characters and spaces, and it should not be blank
+Mar 21, 2022 11:59:35 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonTaskListStorageTest\NonExistentFile.json not found
+Mar 21, 2022 11:59:35 PM seedu.address.storage.JsonTaskListStorage readTaskList
+INFO: Illegal values found in src\test\data\JsonTaskListStorageTest\invalidAndValidTaskTaskList.json: Deadlines should be in the format YYYY-MM-DDTHH:mm. Do not replace the "T". Example: 2022-03-21T19:38
+Mar 21, 2022 11:59:35 PM seedu.address.storage.JsonTaskListStorage readTaskList
+INFO: Illegal values found in src\test\data\JsonTaskListStorageTest\invalidTaskTaskList.json: Descriptions should only contain alphanumeric characters and spaces, and it should not be blank
+Mar 21, 2022 11:59:35 PM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\JsonTaskListStorageTest\notJsonFormatTaskList.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'not': was expecting 'null', 'true', 'false' or NaN
+ at [Source: not json format!
+; line: 1, column: 4]
+Mar 21, 2022 11:59:35 PM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\JsonUserPrefsStorageTest\NotJsonFormatUserPrefs.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'Not': was expecting 'null', 'true', 'false' or NaN
+ at [Source: Not a json file!
+; line: 1, column: 4]
+Mar 21, 2022 11:59:35 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonUserPrefsStorageTest\NonExistentFile.json not found
+Mar 22, 2022 12:21:15 AM seedu.address.AppParameters parse
+WARNING: Invalid config path a . Using default config path.
+Mar 22, 2022 12:21:17 AM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\ConfigUtilTest\NonExistentFile.json not found
+Mar 22, 2022 12:21:17 AM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\ConfigUtilTest\NotJsonFormatConfig.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'this': was expecting 'null', 'true', 'false' or NaN
+ at [Source: this file is not in json format!
+; line: 1, column: 5]
+Mar 22, 2022 12:21:17 AM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][uicfhmowqewca]
+Mar 22, 2022 12:21:17 AM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][list]
+Mar 22, 2022 12:21:17 AM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][add n/Amy Bee p/11111111 e/amy@example.com g/T02 m/CS1101S]
+Mar 22, 2022 12:21:17 AM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][delete 9]
+Mar 22, 2022 12:21:18 AM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonContactListStorageTest\NonExistentFile.json not found
+Mar 22, 2022 12:21:18 AM seedu.address.storage.JsonContactListStorage readContactList
+INFO: Illegal values found in src\test\data\JsonContactListStorageTest\invalidAndValidPersonContactList.json: Person's Group field is missing!
+Mar 22, 2022 12:21:18 AM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\JsonContactListStorageTest\notJsonFormatContactList.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'not': was expecting 'null', 'true', 'false' or NaN
+ at [Source: not json format!
+; line: 1, column: 4]
+Mar 22, 2022 12:21:18 AM seedu.address.storage.JsonContactListStorage readContactList
+INFO: Illegal values found in src\test\data\JsonContactListStorageTest\invalidPersonContactList.json: Names should only contain alphanumeric characters and spaces, and it should not be blank
+Mar 22, 2022 12:21:18 AM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonTaskListStorageTest\NonExistentFile.json not found
+Mar 22, 2022 12:21:18 AM seedu.address.storage.JsonTaskListStorage readTaskList
+INFO: Illegal values found in src\test\data\JsonTaskListStorageTest\invalidAndValidTaskTaskList.json: Deadlines should be in the format YYYY-MM-DDTHH:mm. Do not replace the "T". Example: 2022-03-21T19:38
+Mar 22, 2022 12:21:18 AM seedu.address.storage.JsonTaskListStorage readTaskList
+INFO: Illegal values found in src\test\data\JsonTaskListStorageTest\invalidTaskTaskList.json: Descriptions should only contain alphanumeric characters and spaces, and it should not be blank
+Mar 22, 2022 12:21:18 AM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\JsonTaskListStorageTest\notJsonFormatTaskList.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'not': was expecting 'null', 'true', 'false' or NaN
+ at [Source: not json format!
+; line: 1, column: 4]
+Mar 22, 2022 12:21:18 AM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\JsonUserPrefsStorageTest\NotJsonFormatUserPrefs.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'Not': was expecting 'null', 'true', 'false' or NaN
+ at [Source: Not a json file!
+; line: 1, column: 4]
+Mar 22, 2022 12:21:18 AM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonUserPrefsStorageTest\NonExistentFile.json not found
+Mar 22, 2022 12:24:50 AM seedu.address.AppParameters parse
+WARNING: Invalid config path a . Using default config path.
+Mar 22, 2022 12:24:51 AM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\ConfigUtilTest\NonExistentFile.json not found
+Mar 22, 2022 12:24:51 AM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\ConfigUtilTest\NotJsonFormatConfig.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'this': was expecting 'null', 'true', 'false' or NaN
+ at [Source: this file is not in json format!
+; line: 1, column: 5]
+Mar 22, 2022 12:24:52 AM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][uicfhmowqewca]
+Mar 22, 2022 12:24:52 AM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][list]
+Mar 22, 2022 12:24:52 AM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][add n/Amy Bee p/11111111 e/amy@example.com g/T02 m/CS1101S]
+Mar 22, 2022 12:24:52 AM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][delete 9]
+Mar 22, 2022 12:24:52 AM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonContactListStorageTest\NonExistentFile.json not found
+Mar 22, 2022 12:24:52 AM seedu.address.storage.JsonContactListStorage readContactList
+INFO: Illegal values found in src\test\data\JsonContactListStorageTest\invalidAndValidPersonContactList.json: Person's Group field is missing!
+Mar 22, 2022 12:24:52 AM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\JsonContactListStorageTest\notJsonFormatContactList.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'not': was expecting 'null', 'true', 'false' or NaN
+ at [Source: not json format!
+; line: 1, column: 4]
+Mar 22, 2022 12:24:52 AM seedu.address.storage.JsonContactListStorage readContactList
+INFO: Illegal values found in src\test\data\JsonContactListStorageTest\invalidPersonContactList.json: Names should only contain alphanumeric characters and spaces, and it should not be blank
+Mar 22, 2022 12:24:52 AM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonTaskListStorageTest\NonExistentFile.json not found
+Mar 22, 2022 12:24:53 AM seedu.address.storage.JsonTaskListStorage readTaskList
+INFO: Illegal values found in src\test\data\JsonTaskListStorageTest\invalidAndValidTaskTaskList.json: Deadlines should be in the format YYYY-MM-DDTHH:mm. Do not replace the "T". Example: 2022-03-21T19:38
+Mar 22, 2022 12:24:53 AM seedu.address.storage.JsonTaskListStorage readTaskList
+INFO: Illegal values found in src\test\data\JsonTaskListStorageTest\invalidTaskTaskList.json: Descriptions should only contain alphanumeric characters and spaces, and it should not be blank
+Mar 22, 2022 12:24:53 AM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\JsonTaskListStorageTest\notJsonFormatTaskList.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'not': was expecting 'null', 'true', 'false' or NaN
+ at [Source: not json format!
+; line: 1, column: 4]
+Mar 22, 2022 12:24:53 AM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\JsonUserPrefsStorageTest\NotJsonFormatUserPrefs.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'Not': was expecting 'null', 'true', 'false' or NaN
+ at [Source: Not a json file!
+; line: 1, column: 4]
+Mar 22, 2022 12:24:53 AM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonUserPrefsStorageTest\NonExistentFile.json not found
+Mar 22, 2022 12:25:37 AM seedu.address.AppParameters parse
+WARNING: Invalid config path a . Using default config path.
+Mar 22, 2022 12:25:39 AM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\ConfigUtilTest\NonExistentFile.json not found
+Mar 22, 2022 12:25:39 AM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\ConfigUtilTest\NotJsonFormatConfig.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'this': was expecting 'null', 'true', 'false' or NaN
+ at [Source: this file is not in json format!
+; line: 1, column: 5]
+Mar 22, 2022 12:25:40 AM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][uicfhmowqewca]
+Mar 22, 2022 12:25:40 AM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][list]
+Mar 22, 2022 12:25:40 AM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][add n/Amy Bee p/11111111 e/amy@example.com g/T02 m/CS1101S]
+Mar 22, 2022 12:25:40 AM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][delete 9]
+Mar 22, 2022 12:25:41 AM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonContactListStorageTest\NonExistentFile.json not found
+Mar 22, 2022 12:25:41 AM seedu.address.storage.JsonContactListStorage readContactList
+INFO: Illegal values found in src\test\data\JsonContactListStorageTest\invalidAndValidPersonContactList.json: Person's Group field is missing!
+Mar 22, 2022 12:25:41 AM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\JsonContactListStorageTest\notJsonFormatContactList.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'not': was expecting 'null', 'true', 'false' or NaN
+ at [Source: not json format!
+; line: 1, column: 4]
+Mar 22, 2022 12:25:41 AM seedu.address.storage.JsonContactListStorage readContactList
+INFO: Illegal values found in src\test\data\JsonContactListStorageTest\invalidPersonContactList.json: Names should only contain alphanumeric characters and spaces, and it should not be blank
+Mar 22, 2022 12:25:41 AM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonTaskListStorageTest\NonExistentFile.json not found
+Mar 22, 2022 12:25:41 AM seedu.address.storage.JsonTaskListStorage readTaskList
+INFO: Illegal values found in src\test\data\JsonTaskListStorageTest\invalidAndValidTaskTaskList.json: Deadlines should be in the format YYYY-MM-DDTHH:mm. Do not replace the "T". Example: 2022-03-21T19:38
+Mar 22, 2022 12:25:41 AM seedu.address.storage.JsonTaskListStorage readTaskList
+INFO: Illegal values found in src\test\data\JsonTaskListStorageTest\invalidTaskTaskList.json: Descriptions should only contain alphanumeric characters and spaces, and it should not be blank
+Mar 22, 2022 12:25:41 AM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\JsonTaskListStorageTest\notJsonFormatTaskList.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'not': was expecting 'null', 'true', 'false' or NaN
+ at [Source: not json format!
+; line: 1, column: 4]
+Mar 22, 2022 12:25:41 AM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\JsonUserPrefsStorageTest\NotJsonFormatUserPrefs.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'Not': was expecting 'null', 'true', 'false' or NaN
+ at [Source: Not a json file!
+; line: 1, column: 4]
+Mar 22, 2022 12:25:41 AM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonUserPrefsStorageTest\NonExistentFile.json not found
+Mar 22, 2022 12:25:59 AM seedu.address.AppParameters parse
+WARNING: Invalid config path a . Using default config path.
+Mar 22, 2022 12:26:02 AM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\ConfigUtilTest\NonExistentFile.json not found
+Mar 22, 2022 12:26:02 AM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\ConfigUtilTest\NotJsonFormatConfig.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'this': was expecting 'null', 'true', 'false' or NaN
+ at [Source: this file is not in json format!
+; line: 1, column: 5]
+Mar 22, 2022 12:26:03 AM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][uicfhmowqewca]
+Mar 22, 2022 12:26:03 AM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][list]
+Mar 22, 2022 12:26:03 AM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][add n/Amy Bee p/11111111 e/amy@example.com g/T02 m/CS1101S]
+Mar 22, 2022 12:26:03 AM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][delete 9]
+Mar 22, 2022 12:26:04 AM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonContactListStorageTest\NonExistentFile.json not found
+Mar 22, 2022 12:26:04 AM seedu.address.storage.JsonContactListStorage readContactList
+INFO: Illegal values found in src\test\data\JsonContactListStorageTest\invalidAndValidPersonContactList.json: Person's Group field is missing!
+Mar 22, 2022 12:26:04 AM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\JsonContactListStorageTest\notJsonFormatContactList.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'not': was expecting 'null', 'true', 'false' or NaN
+ at [Source: not json format!
+; line: 1, column: 4]
+Mar 22, 2022 12:26:04 AM seedu.address.storage.JsonContactListStorage readContactList
+INFO: Illegal values found in src\test\data\JsonContactListStorageTest\invalidPersonContactList.json: Names should only contain alphanumeric characters and spaces, and it should not be blank
+Mar 22, 2022 12:26:04 AM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonTaskListStorageTest\NonExistentFile.json not found
+Mar 22, 2022 12:26:04 AM seedu.address.storage.JsonTaskListStorage readTaskList
+INFO: Illegal values found in src\test\data\JsonTaskListStorageTest\invalidAndValidTaskTaskList.json: Deadlines should be in the format YYYY-MM-DDTHH:mm. Do not replace the "T". Example: 2022-03-21T19:38
+Mar 22, 2022 12:26:04 AM seedu.address.storage.JsonTaskListStorage readTaskList
+INFO: Illegal values found in src\test\data\JsonTaskListStorageTest\invalidTaskTaskList.json: Descriptions should only contain alphanumeric characters and spaces, and it should not be blank
+Mar 22, 2022 12:26:04 AM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\JsonTaskListStorageTest\notJsonFormatTaskList.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'not': was expecting 'null', 'true', 'false' or NaN
+ at [Source: not json format!
+; line: 1, column: 4]
+Mar 22, 2022 12:26:04 AM seedu.address.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\JsonUserPrefsStorageTest\NotJsonFormatUserPrefs.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'Not': was expecting 'null', 'true', 'false' or NaN
+ at [Source: Not a json file!
+; line: 1, column: 4]
+Mar 22, 2022 12:26:04 AM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file src\test\data\JsonUserPrefsStorageTest\NonExistentFile.json not found
+Mar 22, 2022 12:28:56 AM seedu.address.MainApp init
+INFO: =============================[ Initializing ContactList ]===========================
+Mar 22, 2022 12:28:56 AM seedu.address.MainApp initConfig
+INFO: Using config file : config.json
+Mar 22, 2022 12:28:57 AM seedu.address.MainApp initPrefs
+INFO: Using prefs file : preferences.json
+Mar 22, 2022 12:28:57 AM seedu.address.commons.core.LogsCenter init
+INFO: currentLogLevel: INFO
+Mar 22, 2022 12:28:57 AM seedu.address.MainApp start
+INFO: Starting ContactList V0.2.0ea
+Mar 22, 2022 12:28:57 AM seedu.address.ui.UiManager start
+INFO: Starting UI...
+Mar 22, 2022 12:28:59 AM seedu.address.MainApp stop
+INFO: ============================ [ Stopping TAilor ] =============================

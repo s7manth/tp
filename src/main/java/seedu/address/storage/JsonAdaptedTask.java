@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tasks.Deadline;
 import seedu.address.model.tasks.Description;
@@ -10,7 +11,7 @@ import seedu.address.model.tasks.Task;
 /**
  * Jackson-friendly version of {@link Task}.
  */
-public class JsonAdaptedTask {
+class JsonAdaptedTask {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
 
@@ -43,7 +44,8 @@ public class JsonAdaptedTask {
     public Task toModelType() throws IllegalValueException {
 
         if (description == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
         }
         if (!Description.isValidDesc(description)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
@@ -51,7 +53,8 @@ public class JsonAdaptedTask {
         final Description modelDesc = new Description(description);
 
         if (deadline == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Deadline.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Deadline.class.getSimpleName()));
         }
         if (!Deadline.isValidDeadline(deadline)) {
             throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);

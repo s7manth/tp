@@ -1,14 +1,14 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tasks.Task;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
-
 /**
- * Adds a task to the task manager.
+ * Adds a task to the task list.
  */
 public class NewTaskCommand extends Command {
 
@@ -26,7 +26,7 @@ public class NewTaskCommand extends Command {
     private final Task toAdd;
 
     /**
-     * Creates an NewTaskCommand to add the specified {@code task}
+     * Creates a NewTaskCommand to add the specified {@code task}
      */
     public NewTaskCommand(Task task) {
         requireNonNull(task);

@@ -3,6 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.testutil.TypicalPersons.getTypicalContactList;
+import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
 
 import java.nio.file.Path;
 
@@ -14,6 +15,8 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.ContactList;
 import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.tasks.PriorityTaskList;
+import seedu.address.model.tasks.ReadOnlyTaskList;
 
 public class StorageManagerTest {
 
@@ -62,8 +65,26 @@ public class StorageManagerTest {
     }
 
     @Test
+    public void taskListReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonTaskListStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonTaskListStorageTest} class.
+         */
+        PriorityTaskList original = getTypicalTaskList();
+        storageManager.saveTaskList(original);
+        ReadOnlyTaskList retrieved = storageManager.readTaskList().get();
+        assertEquals(original, new PriorityTaskList(retrieved));
+    }
+
+    @Test
     public void getContactListFilePath() {
         assertNotNull(storageManager.getContactListFilePath());
+    }
+
+    @Test
+    public void getTaskListFilePath() {
+        assertNotNull(storageManager.getTaskListFilePath());
     }
 
 }

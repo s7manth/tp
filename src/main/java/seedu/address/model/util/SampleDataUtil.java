@@ -13,7 +13,11 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.tasks.*;
+import seedu.address.model.tasks.Deadline;
+import seedu.address.model.tasks.Description;
+import seedu.address.model.tasks.PriorityTaskList;
+import seedu.address.model.tasks.ReadOnlyTaskList;
+import seedu.address.model.tasks.Task;
 
 /**
  * Contains utility methods for populating {@code ContactList} with sample data.
@@ -61,8 +65,8 @@ public class SampleDataUtil {
 
     public static Task[] getSampleTasks() {
         return new Task[] {
-                new Task(new Description("Check CS2100 Assignment 1 submissions"), new Deadline("2022-03-21 18:16")),
-                new Task(new Description("Mark CS2030S Lab 6"), new Deadline("2022-03-27 23:59"))
+            new Task(new Description("Check CS2100 Assignment 1 submissions"), new Deadline("2022-03-21 18:16")),
+            new Task(new Description("Mark CS2030S Lab 6"), new Deadline("2022-03-27 23:59"))
         };
     }
 

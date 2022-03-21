@@ -34,6 +34,18 @@ Given below are my contributions to the project.
       To better keep track of their students.
     * Time spent on this (estimate):
       150mins
+  * **Feature 3**: Implementing the Task Manager Functionality
+    * What it does:
+      The task manager will help the target audience keep track of tasks for their students better.
+      For example, a Teaching Assistant can use the task manager to keep track of when certain assignments are due,
+      which allows them to contact their students if needed.
+    * Justification:
+      This features allows our application to be more than just any contact management/contact list application.
+      By incorporating this, the target audience now has an in-built feature to assist in their task-tracking activities.
+      This feature can also be extended to be linked to students or Mods or Groups. It can also be extended to use
+      different priority systems to rank the Tasks.
+    * Time spent on this (estimate):
+      360mins
 
 * **Enhancements to existing features**:
   * Add Mod class/field (Pull request [\#70]())
@@ -42,9 +54,10 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide (UG):
     * Reviewed UG for v1.1, made minor formatting and grammatical changes.
-    * Modified part on Find Command to incorporate extended features.
+    * Updated UG for parts I have modified/implemented/extended.
   * Developer Guide (DG):
     * Changed some "Address Book" into "Contact List" to better represent the project.
+    * Updated DG for parts I have modified/implemented/extended.
 
 * **Contribution to team-based tasks**:
   * Made team organisation and repository at the beginning.

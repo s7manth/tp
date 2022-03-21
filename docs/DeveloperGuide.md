@@ -110,7 +110,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `TailorParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `TailorParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -141,7 +141,7 @@ The `Model` component,
 
 The `Storage` component,
 * can save both contact list data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from both `ContactListStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -153,6 +153,59 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Task Manager feature
+
+#### Implementation
+
+A simple replication of how AddressBook/ContactList is interlinked with the Storage, Model and Logic components is done
+for the Task Manager feature. In particular, these classes were created for this feature:
+
+Logic:
+* NewTaskCommand (and its parser)
+* RemoveTaskCommand (and its parser)
+
+Model:
+* DuplicateTaskException
+* TaskNotFoundException
+* Deadline
+* Description
+* Task (that uses Deadline and Description like how Person uses Name and Phone)
+* ReadOnlyTaskList
+* PriorityTaskList
+
+Storage:
+* JsonAdaptedTask
+* JsonSerializableTaskList
+* JsonTaskListStorage
+* TaskListStorage
+
+Most of these classes were linked to the respective XYZManager components in a similar way as ContactList.
+For example, LogicManager now tries to save to the storage's contact list and task lists:
+
+```
+            storage.saveContactList(model.getContactList());
+            storage.saveTaskList(model.getTaskList());
+```
+
+The Tasks are represented as with a Description (internally just a String) and a Deadline 
+(internally is based on java.time.LocalDateTime). Hence, the date/time input and the storage
+are also based on LocalDateTime to maintain consistency.
+
+The current Task List uses a Priority Queue internally to sort/rank the tasks. Hence, the tasks
+are prioritised according to the closeness to the deadline. Ie, a Task with a deadline of 1 March
+will be in front of another Task with deadline of 1 December of the same year.
+
+#### Design Considerations
+
+**Aspect: Extendibility **
+
+* Extendibility was heavily considered when implementing this feature. For Instance,
+  * A ReadOnlyTaskList was done instead of just a singular TaskList, to allow for multiple versions of a Task List being
+    used if desired. Ie perhaps a Task List that is sorted according to a new "Emergency" level instead of just date-time.
+  * Deadline and Description classes were used instead of just a String and a LocalDateTime field to make the codebase more
+    consistent with one another as seen from Person and its corresponding fields. This also would then allow a consolidated
+    parsing and checking via the utilities.
 
 ### \[Proposed\] Undo/redo feature
 

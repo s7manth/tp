@@ -1,12 +1,12 @@
 package seedu.address.storage;
 
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.tasks.PriorityTaskList;
-import seedu.address.model.tasks.ReadOnlyTaskList;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
+
+import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.model.tasks.PriorityTaskList;
+import seedu.address.model.tasks.ReadOnlyTaskList;
 
 /**
  * Represents a storage for {@link PriorityTaskList}.

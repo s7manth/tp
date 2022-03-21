@@ -1,12 +1,22 @@
 package seedu.address.model.tasks;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.Objects;
 
+/**
+ * Represents a Task in the Task List.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class Task implements Comparable<Task> {
     private final Description description;
     private final Deadline deadline;
 
+    /**
+     * Constructs a Task. All fields must not be null.
+     */
     public Task(Description description, Deadline deadline) {
+        requireAllNonNull(description, deadline);
         this.description = description;
         this.deadline = deadline;
     }

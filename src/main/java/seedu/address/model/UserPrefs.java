@@ -16,7 +16,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path contactListFilePath = Paths.get("data" , "contactlist.json");
-    private Path taskListFilePath = Paths.get("data","tasklist.json");
+    private Path taskListFilePath = Paths.get("data", "tasklist.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -80,7 +80,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && contactListFilePath.equals(o.contactListFilePath);
+                && contactListFilePath.equals(o.contactListFilePath)
+                && taskListFilePath.equals(o.taskListFilePath);
     }
 
     @Override
