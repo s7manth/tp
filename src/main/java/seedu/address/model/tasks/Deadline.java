@@ -13,7 +13,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Deadline implements Comparable<Deadline> {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Deadlines should be in the format YYYY-MM-DD HH:mm";
+            "Deadlines should be in the format YYYY-MM-DDTHH:mm. Do not replace the \"T\". Example: 2022-03-21T19:38";
 
     /*
      * Deadlines should be in the format YYYY-MM-DD HH:mm exactly.
@@ -25,7 +25,7 @@ public class Deadline implements Comparable<Deadline> {
      * The rest of the spots must be dashes (-) or spaces ( ) or colons (:)
      * Further validation is needed and done for the numerical ranges.
      */
-    public static final String VALIDATION_REGEX = "[0-9]{4}-[0-1][0-9]-[0-3][0-9][\\s][0-2][0-9]:[0-5][0-9]";
+    public static final String VALIDATION_REGEX = "[0-9]{4}-[0-1][0-9]-[0-3][0-9][T][0-2][0-9]:[0-5][0-9]";
 
     public final LocalDateTime deadline;
 
@@ -75,8 +75,8 @@ public class Deadline implements Comparable<Deadline> {
         if (!isValidMonth) return false;
 
         boolean isValidDay = day > 0 && (isLeap
-                ? day < Month.of(month).maxLength()
-                : day < Month.of(month).minLength());
+                ? day <= Month.of(month).maxLength()
+                : day <= Month.of(month).minLength());
         if (!isValidDay) return false;
 
         boolean isValidHour = hour > -1 && hour < 24; // 0 to 23
@@ -109,7 +109,7 @@ public class Deadline implements Comparable<Deadline> {
     private static int[] splitDeadline(String deadline) {
         requireNonNull(deadline);
         assert(isCorrectFormat(deadline));
-        String[] split = deadline.split(" "); //0 is date, 1 is time
+        String[] split = deadline.split("T"); //0 is date, 1 is time
         String[] splitDate = split[0].split("-");
         String[] splitTime = split[1].split(":");
         return new int[] {
@@ -143,7 +143,7 @@ public class Deadline implements Comparable<Deadline> {
 
     @Override
     public int compareTo(Deadline other) {
-        return -1 * deadline.compareTo(other.deadline);
+        return deadline.compareTo(other.deadline);
     }
 
     @Override

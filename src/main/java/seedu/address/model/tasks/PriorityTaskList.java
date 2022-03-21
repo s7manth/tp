@@ -1,5 +1,6 @@
 package seedu.address.model.tasks;
 
+import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.tasks.exceptions.DuplicateTaskException;
 import seedu.address.model.tasks.exceptions.TaskNotFoundException;
 
@@ -25,6 +26,13 @@ public class PriorityTaskList implements ReadOnlyTaskList {
         } else {
             throw new RuntimeException("Unsupported Task List");
         }
+    }
+    /**
+     * Resets the existing data of this {@code PriorityTaskList} with {@code newData}.
+     */
+    public void resetData(PriorityTaskList newData) {
+        requireNonNull(newData);
+        pq = new PriorityQueue<>(newData.pq);
     }
 
     @Override

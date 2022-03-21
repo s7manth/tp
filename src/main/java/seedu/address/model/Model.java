@@ -56,6 +56,24 @@ public interface Model {
     ReadOnlyContactList getContactList();
 
     /**
+     * Returns the user prefs' task list file path.
+     */
+    Path getTaskListFilePath();
+
+    /**
+     * Sets the user prefs' task list file path.
+     */
+    void setTaskListFilePath(Path taskListFilePath);
+
+    /**
+     * Replaces task list data with the data in {@code taskList}.
+     */
+    void setTaskList(ReadOnlyTaskList taskList);
+
+    /** Returns the task list */
+    ReadOnlyTaskList getTaskList();
+
+    /**
      * Returns true if a person with the same identity as {@code person} exists in the contact list.
      */
     boolean hasPerson(Person person);
@@ -123,6 +141,4 @@ public interface Model {
      */
     void addTask(Task task);
 
-    /** Returns an unmodifiable view of the task list */
-    ReadOnlyTaskList getTaskList();
 }

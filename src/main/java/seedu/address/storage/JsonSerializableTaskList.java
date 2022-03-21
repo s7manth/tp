@@ -9,6 +9,7 @@ import seedu.address.model.tasks.ReadOnlyTaskList;
 import seedu.address.model.tasks.Task;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Queue;
 import java.util.stream.Collectors;
@@ -37,17 +38,8 @@ public class JsonSerializableTaskList {
      * @param source future changes to this will not affect the created {@code JsonSerializableContactList}.
      */
     public JsonSerializableTaskList(ReadOnlyTaskList source) {
-        if (source instanceof Queue<?>) {
-            // This is okay as a ReadOnlyTaskList should only have tasks.
-            @SuppressWarnings("unchecked")
-            Queue<Task> qTask = (Queue<Task>) source;
-            tasks.addAll(qTask.stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
-        } else if (source instanceof List<?>) {
-            // This is okay as a ReadOnlyTaskList should only have tasks.
-            @SuppressWarnings("unchecked")
-            List<Task> listTask = (List<Task>) source;
-            tasks.addAll(listTask.stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
-        }
+        Collection<Task> srcCollection = source.getInternalList();
+        tasks.addAll(srcCollection.stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
     }
 
     /**

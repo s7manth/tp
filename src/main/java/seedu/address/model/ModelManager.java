@@ -25,7 +25,7 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final ContactList contactList;
-    private final ReadOnlyTaskList taskList;
+    private final PriorityTaskList taskList;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
@@ -81,6 +81,17 @@ public class ModelManager implements Model {
     public void setContactListFilePath(Path contactListFilePath) {
         requireNonNull(contactListFilePath);
         userPrefs.setContactListFilePath(contactListFilePath);
+    }
+
+    @Override
+    public Path getTaskListFilePath() {
+        return userPrefs.getTaskListFilePath();
+    }
+
+    @Override
+    public void setTaskListFilePath(Path taskListFilePath) {
+        requireNonNull(taskListFilePath);
+        userPrefs.setTaskListFilePath(taskListFilePath);
     }
 
     //=========== ContactList ================================================================================
@@ -159,6 +170,14 @@ public class ModelManager implements Model {
     }
 
     //=========== Task Manager =============================================================
+
+    @Override
+    public void setTaskList(ReadOnlyTaskList taskList) {
+        if (taskList instanceof PriorityTaskList) {
+            PriorityTaskList ptl = (PriorityTaskList) taskList;
+            this.taskList.resetData(ptl);
+        }
+    }
 
     @Override
     public boolean hasTask(Task task) {

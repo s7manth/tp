@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.tasks.ReadOnlyTaskList;
@@ -43,7 +44,17 @@ public class JsonTaskListStorage implements TaskListStorage {
     public Optional<ReadOnlyTaskList> readTaskList(Path filePath) throws DataConversionException, IOException {
         requireNonNull(filePath);
 
-        return Optional.empty();
+        Optional<JsonSerializableTaskList> jsonTaskList = JsonUtil.readJsonFile(
+                filePath, JsonSerializableTaskList.class);
+        if (!jsonTaskList.isPresent()) {
+            return Optional.empty();
+        }
+        try {
+            return Optional.of(jsonTaskList.get().toModelType());
+        } catch (IllegalValueException ive) {
+            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
+            throw new DataConversionException(ive);
+        }
     }
 
     @Override

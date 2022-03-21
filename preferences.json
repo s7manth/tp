@@ -3,8 +3,8 @@
     "windowWidth" : 1000.0,
     "windowHeight" : 640.0,
     "windowCoordinates" : {
-      "x" : 172,
-      "y" : 1
+      "x" : 142,
+      "y" : 197
     }
   },
   "contactListFilePath" : "data\\contactlist.json",

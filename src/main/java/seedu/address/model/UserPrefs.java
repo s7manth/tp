@@ -38,6 +38,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setContactListFilePath(newUserPrefs.getContactListFilePath());
+        setTaskListFilePath(newUserPrefs.getTaskListFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -91,7 +92,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public String toString() {
         StringBuilderUtil stringBuilderUtil = StringBuilderUtil.getInstance();
         stringBuilderUtil.appendAll("Gui Settings : ", guiSettings,
-                "\nLocal data file location : ", contactListFilePath);
+                "\nLocal contactlist file location : ", contactListFilePath,
+                "\nLocal tasklist file location : ", taskListFilePath);
         return stringBuilderUtil.getFormattedOutput();
     }
 
