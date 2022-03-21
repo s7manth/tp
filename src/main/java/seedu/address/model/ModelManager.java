@@ -24,6 +24,7 @@ public class ModelManager implements Model {
     private final ContactList contactList;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final VersionedContactList versionedContactList;
 
     /**
      * Initializes a ModelManager with the given contactList and userPrefs.
@@ -36,6 +37,7 @@ public class ModelManager implements Model {
         this.contactList = new ContactList(contactList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.contactList.getPersonList());
+        this.versionedContactList = new VersionedContactList();
     }
 
     public ModelManager() {
@@ -150,6 +152,11 @@ public class ModelManager implements Model {
     @Override
     public void setDefaultGroup(Mod mod, String value) {
         mod.setDefaultGroup(value);
+    }
+
+    @Override
+    public void undoContactList() {
+        setContactList(versionedContactList.undo());
     }
 
     @Override

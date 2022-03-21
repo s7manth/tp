@@ -103,4 +103,10 @@ public interface Model {
     String retrievePrevDefault(Mod mod);
 
     void setDefaultGroup(Mod mod, String value);
+
+    /**
+     * Reverts the Contact List to a previous version since application initialisation.
+     * Contact List remains unchanged if there are no existing previous versions.
+     */
+    void undoContactList();
 }
