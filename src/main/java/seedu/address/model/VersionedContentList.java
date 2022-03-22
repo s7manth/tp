@@ -13,6 +13,7 @@ public class VersionedContentList {
 
     /**
      * Constructor for the VersionedContactList object.
+     * @param initialContent initial content state of the app
      */
     public VersionedContentList(Content initialContent) {
         this.contentVersions = new LinkedList<>();
@@ -21,7 +22,7 @@ public class VersionedContentList {
 
     /**
      * Adds a new Content version.
-     * @param newContentVersion new ContentVersion to add
+     * @param newContentVersion new content version to add
      */
     public void addContentVersion(Content newContentVersion) {
         requireNonNull(newContentVersion);
@@ -29,16 +30,42 @@ public class VersionedContentList {
     }
 
     /**
-     * Removes and returns the previous Content version
-     * @return previous Content version
+     * Returns a copy of the content version list
      */
-    public void undo() {
-        popLastContentVersion();
+    public List<Content> getContentVersions() {
+        return List.copyOf(this.contentVersions);
     }
 
     /**
-     * Pops the previous Content version unless at the earliest version
-     * @return previous Content version
+     * Removes the current content version, and returns the content version just before this
+     * @return most recent previous content state
+     */
+    public Content undo() {
+        popLastContentVersion();
+        return latestContent();
+    }
+
+    /**
+     * Returns true if at the earliest Content version, false otherwise
+     */
+    public boolean isEarliestVersion() {
+        return contentVersions.size() == 1;
+    }
+
+    /**
+     * String representation of the versioned contact list.
+     */
+    @Override
+    public String toString() {
+        StringBuilder resString = new StringBuilder();
+        for (Content contentVersion : contentVersions) {
+            resString.append(contentVersion.toString() + "\n");
+        }
+        return resString.toString();
+    }
+
+    /**
+     * Pops the current content version from the content version list
      */
     private void popLastContentVersion() {
         assert contentVersions.size() >= 1;
@@ -54,35 +81,7 @@ public class VersionedContentList {
     /**
      * Returns the latest Content Version
      */
-    public Content latestContent() {
-        Content latestContent = contentVersions.get(contentVersions.size() - 1);
-        assert latestContent != null;
-        return latestContent;
-    }
-
-    /**
-     * Returns true if at the earliest Content version, false otherwise
-     */
-    public boolean isEarliestVersion() {
-        return contentVersions.size() == 1;
-    }
-
-    /**
-     * Returns a copy of the Content object
-     */
-    private Content getContentCopy(Content content) {
-        return Content.copyContent(content);
-    }
-
-    /**
-     * String representation of the versioned contact list.
-     */
-    @Override
-    public String toString() {
-        String resString = "";
-        for (int i = 0; i < contentVersions.size(); i++) {
-            resString += contentVersions.get(i).toString() + "\n";
-        }
-        return resString;
+    private Content latestContent() {
+        return contentVersions.get(contentVersions.size() - 1);
     }
 }

@@ -40,7 +40,7 @@ public class ModelManager implements Model {
         this.contactList = new ContactList(contactList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.contactList.getPersonList());
-        this.versionedContents = new VersionedContentList(new Content(new ContactList(getContactList())));
+        this.versionedContents = new VersionedContentList(new Content(getContactList()));
     }
 
     public ModelManager() {
@@ -135,8 +135,7 @@ public class ModelManager implements Model {
     public void undoContents() {
         // ContactList contactList = new ContactList();
         // contactList.addPerson(ALICE);
-        versionedContents.undo();
-        Content newContent = versionedContents.latestContent();
+        Content newContent = versionedContents.undo();
         ContactList newContactList = new ContactList(newContent.getContactList());
 
         logger.info(versionedContents.toString());
@@ -150,8 +149,7 @@ public class ModelManager implements Model {
     }
 
     public void updateVersionedContent() {
-        ContactList newContactList = new ContactList(getContactList());
-        Content newContent = new Content(newContactList);
+        Content newContent = new Content(getContactList());
         versionedContents.addContentVersion(newContent);
     }
 
