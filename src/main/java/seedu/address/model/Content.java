@@ -1,13 +1,20 @@
 package seedu.address.model;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * Wrapper class for contents that are undoable in the Model
  */
 public class Content {
     private final ReadOnlyContactList contactList;
 
+    /**
+     * Constructor for the Content class.
+     * @param contactList contact list version of the content
+     */
     public Content(ReadOnlyContactList contactList) {
-        this.contactList = contactList;
+        requireNonNull(contactList);
+        this.contactList = new ContactList(contactList);
     }
 
     /**
@@ -31,5 +38,10 @@ public class Content {
         return other == this // short circuit if same object
                 || (other instanceof Content // instanceof handles nulls
                 && contactList.equals(((Content) other).getContactList()));
+    }
+
+    @Override
+    public String toString() {
+        return this.contactList.toString();
     }
 }

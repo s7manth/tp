@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.HashSet;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,9 +12,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Mod;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniqueModuleList;
+import seedu.address.model.person.*;
+
 
 /**
  * Represents the in-memory model of the contact list data.
@@ -24,7 +24,10 @@ public class ModelManager implements Model {
     private final ContactList contactList;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final VersionedContents versionedContents;
+    private final VersionedContentList versionedContents;
+
+    public static final Person ALICE = new Person(new Name("Alice Pauline"), new Phone("94351253"),
+            new Email("alice@example.com"), new Mod("CS2103T"), new Group("T01"), new HashSet<>());
 
     /**
      * Initializes a ModelManager with the given contactList and userPrefs.
@@ -37,7 +40,7 @@ public class ModelManager implements Model {
         this.contactList = new ContactList(contactList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.contactList.getPersonList());
-        this.versionedContents = new VersionedContents(new Content(getContactList()));
+        this.versionedContents = new VersionedContentList(new Content(new ContactList(getContactList())));
     }
 
     public ModelManager() {
@@ -82,11 +85,11 @@ public class ModelManager implements Model {
     //=========== ContactList ================================================================================
 
     @Override
-    public void setContactList(ReadOnlyContactList contactList) {
-        this.contactList.resetData(contactList);
+    public void setContactList(ReadOnlyContactList newContactList) {
+        this.contactList.resetData(newContactList);
 
         // adding this command to each method that affects content as temporary solution
-        updateVersionedContent();
+        // updateVersionedContent();
     }
 
     @Override
@@ -130,8 +133,15 @@ public class ModelManager implements Model {
     //=========== VersionedContent ================================================================================
 
     public void undoContents() {
-        Content contents = versionedContents.undo();
-        setContactList(contents.getContactList());
+        // ContactList contactList = new ContactList();
+        // contactList.addPerson(ALICE);
+        versionedContents.undo();
+        Content newContent = versionedContents.latestContent();
+        ContactList newContactList = new ContactList(newContent.getContactList());
+
+        logger.info(versionedContents.toString());
+
+        setContactList(newContactList);
     }
 
     @Override
@@ -140,7 +150,13 @@ public class ModelManager implements Model {
     }
 
     public void updateVersionedContent() {
-        versionedContents.addContentVersion(new Content(getContactList()));
+        ContactList newContactList = new ContactList(getContactList());
+        Content newContent = new Content(newContactList);
+        versionedContents.addContentVersion(newContent);
+    }
+
+    public VersionedContentList getVersionedContents() {
+        return this.versionedContents;
     }
 
     //=========== Filtered Person List Accessors =============================================================
