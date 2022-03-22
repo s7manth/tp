@@ -15,9 +15,12 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.core.Version;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.*;
+import seedu.address.model.ContactList;
+import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyContactList;
+import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.VersionedContentList;
 import seedu.address.model.person.Mod;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
@@ -174,7 +177,10 @@ public class AddCommandTest {
         }
 
         @Override
-        public VersionedContentList getVersionedContents() {return null;}
+        public VersionedContentList getVersionedContents() {
+            return null;
+        }
+
     }
 
     /**

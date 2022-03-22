@@ -1,13 +1,14 @@
 package seedu.address.model;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.PersonBuilder;
-
-import static org.junit.jupiter.api.Assertions.*;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalContactList;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.PersonBuilder;
 
 class ContentTest {
     private final Content typicalContent = new Content(getTypicalContactList());
