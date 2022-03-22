@@ -13,7 +13,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=festivecat&breakdown=true)
 
 * **Enhancements implemented**:
-  * **Feature 1**: Extending `Find` command
+  * **Feature 1**: Extending `Find` command [\#75]()
     * What it does:
       Originally: `Find` only allows users to search contacts in the database using names.
       Now, `Find` allows users to search contacts using names, phone, tags, email etc. (All fields in a Person)
@@ -25,7 +25,7 @@ Given below are my contributions to the project.
       that allows searching based on all conditions passed into it.
     * Time spent on this (estimate):
       210mins
-  * **Feature 2**: Implementing `Mod` class
+  * **Feature 2**: Implementing `Mod` class [\#72]()
     * What it does:
       This is basically another field/detail about a person, like Name and Email.
     * Justification:
@@ -34,7 +34,7 @@ Given below are my contributions to the project.
       To better keep track of their students.
     * Time spent on this (estimate):
       150mins
-  * **Feature 3**: Implementing the Task Manager Functionality
+  * **Feature 3**: Implementing the Task Manager Functionality [\#88]()
     * What it does:
       The task manager will help the target audience keep track of tasks for their students better.
       For example, a Teaching Assistant can use the task manager to keep track of when certain assignments are due,
@@ -45,7 +45,7 @@ Given below are my contributions to the project.
       This feature can also be extended to be linked to students or Mods or Groups. It can also be extended to use
       different priority systems to rank the Tasks.
     * Time spent on this (estimate):
-      540mins
+      600mins
 
 * **Enhancements to existing features**:
   * Add Mod class/field (Pull request [\#70]())
@@ -55,9 +55,13 @@ Given below are my contributions to the project.
   * User Guide (UG):
     * Reviewed UG for v1.1, made minor formatting and grammatical changes.
     * Updated UG for parts I have modified/implemented/extended.
+      * In particular, I included the extra search parameters that can be used in the Find Command.
+      * I also incorporated the new Task Manager commands, `newtask` and `deltask` and how they should be used.
   * Developer Guide (DG):
     * Changed some "Address Book" into "Contact List" to better represent the project.
     * Updated DG for parts I have modified/implemented/extended.
+      * In particular, I remade the Model and Storage UML diagrams to include the newly implemented Task Manager functionality.
+      * There is also a section under "Implementations" that describes how the Task Manager interacts with the rest of TAilor.
 
 * **Contribution to team-based tasks**:
   * Made team organisation and repository at the beginning.
