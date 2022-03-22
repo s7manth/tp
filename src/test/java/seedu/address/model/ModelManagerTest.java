@@ -89,6 +89,28 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void undoContents() {
+        modelManager.addPerson(ALICE);
+        modelManager.undoContents();
+
+        assertEquals(modelManager, new ModelManager());
+    }
+
+    @Test
+    public void isEarliestContentVersion() {
+        assertTrue(modelManager.isEarliestContentVersion());
+
+        modelManager.addPerson(ALICE);
+        assertFalse(modelManager.isEarliestContentVersion());
+    }
+
+    @Test
+    public void getVersionedContents() {
+        Content initialContents = new Content(new ContactList());
+        assertEquals(modelManager.getVersionedContents(), new VersionedContentList(initialContents));
+    }
+
+    @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
     }
@@ -129,4 +151,5 @@ public class ModelManagerTest {
         differentUserPrefs.setContactListFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(contactList, differentUserPrefs)));
     }
+
 }

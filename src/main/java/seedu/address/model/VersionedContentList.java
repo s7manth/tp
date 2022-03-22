@@ -84,4 +84,20 @@ public class VersionedContentList {
     private Content latestContent() {
         return contentVersions.get(contentVersions.size() - 1);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof VersionedContentList)) {
+            return false;
+        }
+
+        VersionedContentList otherVersionedContentList = (VersionedContentList) other;
+        return this.contentVersions.equals(((VersionedContentList) other).getContentVersions());
+    }
 }

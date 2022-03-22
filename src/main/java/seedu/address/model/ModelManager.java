@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.HashSet;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,7 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Mod;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.UniqueModuleList;
 
 
 /**
@@ -24,10 +25,9 @@ public class ModelManager implements Model {
     private final ContactList contactList;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final VersionedContentList versionedContents;
 
-    public static final Person ALICE = new Person(new Name("Alice Pauline"), new Phone("94351253"),
-            new Email("alice@example.com"), new Mod("CS2103T"), new Group("T01"), new HashSet<>());
+    /** List of versioned contents */
+    private final VersionedContentList versionedContents;
 
     /**
      * Initializes a ModelManager with the given contactList and userPrefs.
@@ -132,15 +132,15 @@ public class ModelManager implements Model {
 
     //=========== VersionedContent ================================================================================
 
+    /**
+     * Changes the content state of the app to the version just before the current
+     */
     public void undoContents() {
-        // ContactList contactList = new ContactList();
-        // contactList.addPerson(ALICE);
+        // Removes the current content version from version list and gets the previous content version
         Content newContent = versionedContents.undo();
         ContactList newContactList = new ContactList(newContent.getContactList());
 
-        logger.info(versionedContents.toString());
-
-        setContactList(newContactList);
+        this.contactList.resetData(newContactList);
     }
 
     @Override
@@ -148,7 +148,7 @@ public class ModelManager implements Model {
         return versionedContents.isEarliestVersion();
     }
 
-    public void updateVersionedContent() {
+    private void updateVersionedContent() {
         Content newContent = new Content(getContactList());
         versionedContents.addContentVersion(newContent);
     }

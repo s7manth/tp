@@ -116,5 +116,9 @@ public interface Model {
      */
     boolean isEarliestContentVersion();
 
+    /**
+     * Returns the VersionedContents of the model
+     * @return versioned contents of the model
+     */
     VersionedContentList getVersionedContents();
 }

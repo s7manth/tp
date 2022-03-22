@@ -61,6 +61,16 @@ class VersionedContentListTest {
         assertFalse(emptyVersionedContents.isEarliestVersion());
     }
 
+    @Test
+    void equals() {
+        VersionedContentList emptyVersionedContents = new VersionedContentList(emptyContent);
+        VersionedContentList anotherEmptyVersionedContents = new VersionedContentList(emptyContent);
+        VersionedContentList typicalVersionedContents = new VersionedContentList(typicalContent);
+
+        assertEquals(emptyVersionedContents, anotherEmptyVersionedContents);
+        assertNotEquals(emptyVersionedContents, typicalVersionedContents);
+    }
+
     /**
      * A stub ReadOnlyContactList whose persons list can violate interface constraints.
      */
