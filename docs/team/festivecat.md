@@ -16,7 +16,7 @@ Given below are my contributions to the project.
   * **Feature 1**: Extending `Find` command
     * What it does:
       Originally: `Find` only allows users to search contacts in the database using names.
-      Now, `Find` allows users to search contacts using names, phone, tags, email etc. (All fields in a Person)
+      Now, `Find` allows users to search contacts using names, studentNumber, tags, email etc. (All fields in a Person)
     * Justification:
       This feature improves the product significantly because it can be used to find and view the
       students/contacts easily. Makes the original command more robust.

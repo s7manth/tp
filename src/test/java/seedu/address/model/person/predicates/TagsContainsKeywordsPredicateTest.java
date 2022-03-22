@@ -70,7 +70,7 @@ public class TagsContainsKeywordsPredicateTest {
 
         // Keywords match phone, email, name and mod, but does not match tags
         predicate = new TagsContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Alice", "CS2105"));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
+        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withStudentNumber("A0246813G")
                 .withEmail("alice@email.com").withMod("CS2105").withTags("friend", "colleagues").build()));
     }
 }

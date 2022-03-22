@@ -67,9 +67,9 @@ public class ModContainsKeywordsPredicateTest {
         predicate = new ModContainsKeywordsPredicate(Arrays.asList("MA1101R"));
         assertFalse(predicate.test(new PersonBuilder().withMod("CS2100").build()));
 
-        // Keywords match phone, email and name, but does not match mod
+        // Keywords match student number, email and name, but does not match mod
         predicate = new ModContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Alice"));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
+        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withStudentNumber("A0246813G")
                 .withEmail("alice@email.com").withMod("CS2105").build()));
     }
 }

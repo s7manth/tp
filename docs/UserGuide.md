@@ -109,7 +109,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * You can remove all the person’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the studentNumber number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 ### Locating persons by name: `find`
@@ -120,7 +120,7 @@ Format: `find PREFIX/KEYWORD [KEYWORD] [PREFIX/KEYWORD [KEYWORD]]…​`
 
 * The prefixes used are the same as other commands:
   * `n/` for name
-  * `p/` for phone
+  * `p/` for studentNumber
   * `e/` for email
   * `a/` for address
   * `t/` for tags
@@ -216,15 +216,15 @@ with an empty data file at the next run.
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Exit** | `exit`
-**Find** | `find PREFIX/KEYWORD [MORE_KEYWORDS] [PREFIX/KEYWORD [MORE_KEYWORDS]]`<br> e.g., `find n/James Jake`
-**List** | `list`
-**Mail** | `mail`<br> e.g., `mail e/johndoe@example.com`
-**Mail All** | `mailall`
-**Help** | `help`
+| Action       | Format, Examples                                                                                                                                                      |
+|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**    | `clear`                                                                                                                                                               |
+| **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Exit**     | `exit`                                                                                                                                                                |
+| **Find**     | `find PREFIX/KEYWORD [MORE_KEYWORDS] [PREFIX/KEYWORD [MORE_KEYWORDS]]`<br> e.g., `find n/James Jake`                                                                  |
+| **List**     | `list`                                                                                                                                                                |
+| **Mail**     | `mail`<br> e.g., `mail e/johndoe@example.com`                                                                                                                         |
+| **Mail All** | `mailall`                                                                                                                                                             |
+| **Help**     | `help`                                                                                                                                                                |
