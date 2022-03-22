@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -69,6 +70,12 @@ public interface Model {
      * {@code person} must not already exist in the contact list.
      */
     void addPerson(Person person);
+
+    void addMod(Mod mod);
+
+    Optional<Mod> getMod(Mod mod);
+
+    String getDefaultGroupModel(Mod mod);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.

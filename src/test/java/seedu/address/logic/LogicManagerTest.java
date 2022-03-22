@@ -28,6 +28,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniqueModuleList;
 import seedu.address.storage.JsonContactListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
@@ -130,7 +131,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getContactList(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getContactList(), new UserPrefs(), new UniqueModuleList());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 

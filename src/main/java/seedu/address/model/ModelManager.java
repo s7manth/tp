@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -20,13 +21,27 @@ import seedu.address.model.person.UniqueModuleList;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-
     private final ContactList contactList;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final UniqueModuleList moduleList;
 
     /**
-     * Initializes a ModelManager with the given contactList and userPrefs.
+     * Initializes a ModelManager with the given contactList, userPrefs and a moduleList.
+     */
+    public ModelManager(ReadOnlyContactList contactList, ReadOnlyUserPrefs userPrefs, UniqueModuleList moduleList) {
+        requireAllNonNull(contactList, userPrefs);
+
+        logger.fine("Initializing with contact list: " + contactList + " and user prefs " + userPrefs);
+
+        this.contactList = new ContactList(contactList);
+        this.userPrefs = new UserPrefs(userPrefs);
+        this.moduleList = moduleList;
+        filteredPersons = new FilteredList<>(this.contactList.getPersonList());
+    }
+
+    /**
+     * Initializes a ModelManager with the given contactList, userPrefs and a empty moduleList.
      */
     public ModelManager(ReadOnlyContactList contactList, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(contactList, userPrefs);
@@ -35,11 +50,12 @@ public class ModelManager implements Model {
 
         this.contactList = new ContactList(contactList);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.moduleList = new UniqueModuleList();
         filteredPersons = new FilteredList<>(this.contactList.getPersonList());
     }
 
     public ModelManager() {
-        this(new ContactList(), new UserPrefs());
+        this(new ContactList(), new UserPrefs(), new UniqueModuleList());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -133,13 +149,31 @@ public class ModelManager implements Model {
     @Override
     public boolean isDefaultPresent(Mod mod) {
         requireNonNull(mod);
-        return mod.getDefaultGroup() != null;
+        Mod modInList = this.getMod(mod).get();
+        return modInList.getDefaultGroup() != null;
     }
 
     @Override
     public boolean doesModExist(Mod mod) {
         requireNonNull(mod);
-        return new UniqueModuleList().contains(mod.value);
+        return moduleList.contains(mod.value);
+    }
+
+    @Override
+    public String getDefaultGroupModel(Mod mod) {
+        Mod modInList = this.getMod(mod).get();
+        return modInList.getDefaultGroup();
+
+    }
+
+    @Override
+    public void addMod(Mod mod) {
+        moduleList.add(mod);
+    }
+
+    @Override
+    public Optional<Mod> getMod(Mod mod) {
+        return moduleList.retrieveMod(mod);
     }
 
     @Override

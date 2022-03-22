@@ -4,10 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD;
 
+import java.util.Optional;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Mod;
-import seedu.address.model.person.UniqueModuleList;
 
 public class SetDefaultGroupCommand extends Command {
 
@@ -40,16 +41,15 @@ public class SetDefaultGroupCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        UniqueModuleList moduleList = new UniqueModuleList();
         if (model.doesModExist(mod)) {
-            Mod matchingMod = moduleList.retrieveMod(mod).get(); //since guaranteed to not be null
-            if (model.isDefaultPresent(matchingMod)) {
-                String prevDefault = model.retrievePrevDefault(matchingMod);
+            Optional<Mod> matchingMod = model.getMod(mod); //since guaranteed to not be null
+            if (model.isDefaultPresent(matchingMod.get())) {
+                String prevDefault = model.retrievePrevDefault(matchingMod.get());
                 return new CommandResult(String.format(MESSAGE_DEFAULT_UPDATE, mod, prevDefault, defaultValue));
             }
-            model.setDefaultGroup(matchingMod, defaultValue);
+            model.setDefaultGroup(matchingMod.get(), defaultValue);
         } else {
-            moduleList.add(mod);
+            model.addMod(mod);
             model.setDefaultGroup(mod, defaultValue);
         }
 

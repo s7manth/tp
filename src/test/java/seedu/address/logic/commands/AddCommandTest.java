@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -151,19 +152,34 @@ public class AddCommandTest {
 
         @Override
         public boolean isDefaultPresent(Mod mod) {
-            return false;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public boolean doesModExist(Mod mod) {
-            return false;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public String retrievePrevDefault(Mod mod) {
-            return null;
+            throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public void addMod(Mod mod) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<Mod> getMod(Mod mod) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String getDefaultGroupModel(Mod mod) {
+            throw new AssertionError("This method should not be called.");
+
+        }
         @Override
         public void setDefaultGroup(Mod mod, String value) {
 
