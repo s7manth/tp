@@ -18,8 +18,10 @@ public class StudentNumberContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        StudentNumberContainsKeywordsPredicate firstPredicate = new StudentNumberContainsKeywordsPredicate(firstPredicateKeywordList);
-        StudentNumberContainsKeywordsPredicate secondPredicate = new StudentNumberContainsKeywordsPredicate(secondPredicateKeywordList);
+        StudentNumberContainsKeywordsPredicate firstPredicate =
+                new StudentNumberContainsKeywordsPredicate(firstPredicateKeywordList);
+        StudentNumberContainsKeywordsPredicate secondPredicate =
+                new StudentNumberContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
@@ -42,8 +44,8 @@ public class StudentNumberContainsKeywordsPredicateTest {
     @Test
     public void test_studentNumberContainsKeywords_returnsTrue() {
         // One keyword
-        StudentNumberContainsKeywordsPredicate predicate = new StudentNumberContainsKeywordsPredicate(Collections.singletonList(
-                "12345"));
+        StudentNumberContainsKeywordsPredicate predicate =
+                new StudentNumberContainsKeywordsPredicate(Collections.singletonList("12345"));
         assertTrue(predicate.test(new PersonBuilder().withStudentNumber("A0246813G").build()));
 
         // Multiple keywords
@@ -58,7 +60,8 @@ public class StudentNumberContainsKeywordsPredicateTest {
     @Test
     public void test_studentNumberDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        StudentNumberContainsKeywordsPredicate predicate = new StudentNumberContainsKeywordsPredicate(Collections.emptyList());
+        StudentNumberContainsKeywordsPredicate predicate =
+                new StudentNumberContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new PersonBuilder().withStudentNumber("A0246813G").build()));
 
         // Non-matching keyword

@@ -60,7 +60,8 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidStudentNumber_throwsIllegalValueException() {
         JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, INVALID_STUDENT_NUMBER, VALID_EMAIL, VALID_MOD, VALID_GROUP, VALID_TAGS);
+                new JsonAdaptedPerson(VALID_NAME, INVALID_STUDENT_NUMBER, VALID_EMAIL,
+                        VALID_MOD, VALID_GROUP, VALID_TAGS);
         String expectedMessage = StudentNumber.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -111,7 +112,8 @@ public class JsonAdaptedPersonTest {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_STUDENT_NUMBER, VALID_EMAIL, VALID_MOD, VALID_GROUP, invalidTags);
+                new JsonAdaptedPerson(VALID_NAME, VALID_STUDENT_NUMBER,
+                        VALID_EMAIL, VALID_MOD, VALID_GROUP, invalidTags);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 

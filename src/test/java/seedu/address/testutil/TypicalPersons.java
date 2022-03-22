@@ -1,5 +1,18 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MOD_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MOD_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENT_NUMBER_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENT_NUMBER_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -7,7 +20,7 @@ import java.util.List;
 import seedu.address.model.ContactList;
 import seedu.address.model.person.Person;
 
-import static seedu.address.logic.commands.CommandTestUtil.*;
+
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -44,7 +57,8 @@ public class TypicalPersons {
             new PersonBuilder().withName(VALID_NAME_AMY).withStudentNumber(VALID_STUDENT_NUMBER_AMY)
             .withEmail(VALID_EMAIL_AMY).withMod(VALID_MOD_AMY)
             .withGroup(VALID_GROUP_AMY).withTags(VALID_TAG_FRIEND).build();
-    public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withStudentNumber(VALID_STUDENT_NUMBER_BOB)
+    public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB)
+            .withStudentNumber(VALID_STUDENT_NUMBER_BOB)
             .withEmail(VALID_EMAIL_BOB).withMod(VALID_MOD_BOB)
             .withGroup(VALID_GROUP_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
