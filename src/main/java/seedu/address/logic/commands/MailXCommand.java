@@ -25,9 +25,9 @@ import seedu.address.model.person.Person;
  * Opens the system default mail app with people
  * identified by the arguments specified by the user.
  */
-public class MailMCommand extends Command {
+public class MailXCommand extends Command {
 
-    public static final String COMMAND_WORD = "mail-m";
+    public static final String COMMAND_WORD = "mail-x";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Opens the mail box with the emails of the people identified by parameters \n"
@@ -52,10 +52,10 @@ public class MailMCommand extends Command {
     private final MailMDescriptor mailMDescriptor;
 
     /**
-     * Constructor for the MailMCommand class.
+     * Constructor for the MailXCommand class.
      * @param mailMDescriptor The {@code MailMDescriptor} object which collates all the email addresses to mail to.
      */
-    public MailMCommand(MailMDescriptor mailMDescriptor) {
+    public MailXCommand(MailMDescriptor mailMDescriptor) {
         requireNonNull(mailMDescriptor);
 
         this.mailMDescriptor = mailMDescriptor;
@@ -148,8 +148,8 @@ public class MailMCommand extends Command {
     }
 
     /**
-     * Checks whether two {@code MailMCommand} objects are equal.
-     * @param other The {@code MailMCommand} to check equality against.
+     * Checks whether two {@code MailXCommand} objects are equal.
+     * @param other The {@code MailXCommand} to check equality against.
      * @return The boolean value specifying the equality.
      */
     @Override
@@ -165,7 +165,7 @@ public class MailMCommand extends Command {
         }
 
         // state check
-        MailMCommand m = (MailMCommand) other;
+        MailXCommand m = (MailXCommand) other;
         return mailMDescriptor.equals(m.mailMDescriptor);
     }
 

@@ -16,8 +16,8 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MailAllCommand;
-import seedu.address.logic.commands.MailMCommand;
-import seedu.address.logic.commands.MailSCommand;
+import seedu.address.logic.commands.MailXCommand;
+import seedu.address.logic.commands.MailIndexCommand;
 import seedu.address.logic.commands.SetDefaultGroupCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -75,11 +75,11 @@ public class TailorParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case MailMCommand.COMMAND_WORD:
-            return new MailMCommandParser().parse(arguments);
+        case MailXCommand.COMMAND_WORD:
+            return new MailXCommandParser().parse(arguments);
 
-        case MailSCommand.COMMAND_WORD:
-            return new MailSCommandParser().parse(arguments);
+        case MailIndexCommand.COMMAND_WORD:
+            return new MailIndexCommandParser().parse(arguments);
 
         case MailAllCommand.COMMAND_WORD:
             return new MailAllCommand();

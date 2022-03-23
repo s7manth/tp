@@ -15,9 +15,9 @@ import seedu.address.model.person.Person;
  * Opens the system default mail app with the person
  * identified by the index specified by the user.
  */
-public class MailSCommand extends Command {
+public class MailIndexCommand extends Command {
 
-    public static final String COMMAND_WORD = "mail-s";
+    public static final String COMMAND_WORD = "mail-index";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Opens the mailbox to email the person identified by the "
@@ -30,10 +30,10 @@ public class MailSCommand extends Command {
     private final Index targetIndex;
 
     /**
-     * Constructor for the {@code MailSCommand} class.
+     * Constructor for the {@code MailIndexCommand} class.
      * @param targetIndex The index of the person in the contact list.
      */
-    public MailSCommand(Index targetIndex) {
+    public MailIndexCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -59,14 +59,14 @@ public class MailSCommand extends Command {
     }
 
     /**
-     * Checks whether two {@code MailSCommand} objects are equal.
-     * @param other The {@code MailSCommand} to check equality against.
+     * Checks whether two {@code MailIndexCommand} objects are equal.
+     * @param other The {@code MailIndexCommand} to check equality against.
      * @return The boolean value specifying whether the two objects are equal or not.
      */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof MailSCommand// instanceof handles nulls
-                && targetIndex.equals(((MailSCommand) other).targetIndex)); // state check
+                || (other instanceof MailIndexCommand// instanceof handles nulls
+                && targetIndex.equals(((MailIndexCommand) other).targetIndex)); // state check
     }
 }
