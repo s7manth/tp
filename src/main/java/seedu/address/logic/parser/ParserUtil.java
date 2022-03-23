@@ -14,7 +14,6 @@ import seedu.address.model.person.Group;
 import seedu.address.model.person.Mod;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.StudentNumber;
-import seedu.address.model.person.StudentNumber;
 import seedu.address.model.tag.Tag;
 
 /**
