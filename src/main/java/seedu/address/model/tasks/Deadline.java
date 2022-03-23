@@ -22,7 +22,7 @@ public class Deadline implements Comparable<Deadline> {
      * DD can only be 00 to 39
      * HH can only be 00 to 29
      * mm can only be 00 to 59
-     * The rest of the spots must be dashes (-) or spaces ( ) or colons (:)
+     * The rest of the spots must be dashes (-) or colons (:) or the character T
      * Further validation is needed and done for the numerical ranges.
      */
     public static final String VALIDATION_REGEX = "[0-9]{4}-[0-1][0-9]-[0-3][0-9][T][0-2][0-9]:[0-5][0-9]";
