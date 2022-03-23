@@ -157,7 +157,7 @@ Example:
 * `mail-index 2` would open the default mail on the system with the "to" box filled with the
   specified mail. Now, the email is ready to be sent to the person with the index 2 as shown on the application.
 
-### Mailing student(s) : `mail-x`
+### Mailing student subset based on arguments : `mail-x`
 
 Mails a subset of students from the contact list. This is a broader version of mail functionality as it can
 cover multiple students at once in order to mail them simultaneously.
