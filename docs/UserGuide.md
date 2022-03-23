@@ -226,7 +226,25 @@ Format: `deltask INDEX`
 Examples:
 * `delete 2` deletes the 2nd person in the task list.
 
+
+### Undo/redo a command: `undo`/`redo`
+
+Undoes the most recent command that changed the contact list or task list.
+
+Format: `undo`/`redo`
+* `undo`/`redo` will not work on commands that does not change the contact list or task list, eg. mail.
+
+Examples:
+* `delete 1` will delete the first person on the list. `undo` will then revert the contact list to contain the person deleted.
+
+
 ---
+### Shortcuts
+
+Button | Result
+--------|------------------
+**UP** | Refills command textbox with previous entered command
+**DOWN** | Refills command textbox with the command entered after the current one
 
 ### Saving the data
 
@@ -273,3 +291,4 @@ Action | Format, Examples
 **Help** | `help`
 **New Task** | `newtask DESCRIPTION by/DEADLINE` <br> e.g., `newtask Do homework by/2022-03-21T12:34`
 **Delete Task** | `deltask INDEX` <br> e.g., `deltask 3`
+**Undo/Redo** | `undo`/`redo`
