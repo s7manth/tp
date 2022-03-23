@@ -116,16 +116,21 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagramV2.png" width="550" />
+<img src="images/ModelClassDiagramV3.png" width="550" />
 
 
 The `Model` component,
 
-* stores the contact list data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the content data i.e., all `Person` and `Task` objects (which are contained in a `UniquePersonList` and `PriorityTaskList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores the task list data i.e., all `Task` objects (which are contained in a `PriorityTaskList` object).
+* stores a `VersionedContentList` object that stores the previous states of content data (to support `undo`/`redo`)
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+
+`VersionedContents` stores versions of the `Content` object, which in turn stores a `ContactList` and `PriorityTaskList` object. The class diagram for VersionedContents can be found below.
+
+<img src="images/VersionedContentsClassDiagram.png" width="250" />
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects. This diagram is also truncated slightly as it does not show the Task classes.<br>
 
@@ -224,17 +229,17 @@ will be in front of another Task with deadline of 1 December of the same year.
 
 #### Implementation
 
-The undo/redo mechanism is facilitated by `VersionedContents`. It extends `Contents` with an undo/redo history, stored internally as an `contentStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The undo/redo mechanism is facilitated by `VersionedContents`. It extends `Content` with an undo/redo history, stored internally as an `contentStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedContent#commit()` — Saves the current content state in its history.
-* `VersionedContent#undo()` — Restores the previous content state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone content state from its history.
+* `VersionedContents#commit()` — Saves the current content state in its history.
+* `VersionedContents#undo()` — Restores the previous content state from its history.
+* `VersionedContents#redo()` — Restores a previously undone content state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitContent()`, `Model#undoContent()` and `Model#redoContent()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedContent` will be initialized with the initial content state, and the `currentStatePointer` pointing to that single content state.
+Step 1. The user launches the application for the first time. The `VersionedContents` will be initialized with the initial content state, and the `currentStatePointer` pointing to that single content state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
