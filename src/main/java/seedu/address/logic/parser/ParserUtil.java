@@ -13,7 +13,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Group;
 import seedu.address.model.person.Mod;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.StudentNumber;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tasks.Deadline;
 import seedu.address.model.tasks.Description;
@@ -54,18 +54,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
+     * Parses a {@code String studentNumber} into a {@code StudentNumber}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * @throws ParseException if the given {@code studentNumber} is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+    public static StudentNumber parseStudentNumber(String studentNumber) throws ParseException {
+        requireNonNull(studentNumber);
+        String trimmedStudentNumber = studentNumber.trim();
+        if (!StudentNumber.isValidStudentNumber(trimmedStudentNumber)) {
+            throw new ParseException(StudentNumber.MESSAGE_CONSTRAINTS);
         }
-        return new Phone(trimmedPhone);
+        return new StudentNumber(trimmedStudentNumber);
     }
 
     /**
