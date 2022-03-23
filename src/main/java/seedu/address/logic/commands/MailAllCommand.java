@@ -10,12 +10,21 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 
+/**
+ * Opens the system default mail application to mail all the people in the contact list.
+ */
 public class MailAllCommand extends Command {
 
     public static final String COMMAND_WORD = "mailall";
 
     private static final String MESSAGE_SUCCESS = "Opening app for bulk emailing";
 
+    /**
+     * Executes the mailall command.
+     * @param model {@code Model} which the command should operate on.
+     * @return A {@code CommandResult} object specifying the success message.
+     * @throws CommandException if the command execution goes unexpected.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();

@@ -3,7 +3,10 @@ package seedu.address.logic.commands;
 import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.MailUtil.launchMail;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +22,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
- * Opens the system default mail app with person identified using it's
- * displayed index from the class group as the receiver.
+ * Opens the system default mail app with people
+ * identified by the arguments specified by the user.
  */
 public class MailMCommand extends Command {
 
@@ -50,7 +53,7 @@ public class MailMCommand extends Command {
 
     /**
      * Constructor for the MailMCommand class.
-     * @param mailMDescriptor The indexes of the students to mail to.
+     * @param mailMDescriptor The {@code MailMDescriptor} object which collates all the email addresses to mail to.
      */
     public MailMCommand(MailMDescriptor mailMDescriptor) {
         requireNonNull(mailMDescriptor);
@@ -59,17 +62,24 @@ public class MailMCommand extends Command {
     }
 
     /**
-     * Executes the mail command.
+     * Executes the mail-m command.
      * @param model {@code Model} which the command should operate on.
      * @return {@code CommandResult} object that contains the result of the execution.
      * @throws CommandException if any noncompliance occurs in the command execution.
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        launchMail(createEmailList(mailMDescriptor, model));
+        launchMail(createEmailList(this.mailMDescriptor, model));
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
+    /**
+     * Creates the email list as specified the arguments passed by the user.
+     * @param mailMDescriptor The {@code MailMDescriptor} object which collates all the email addresses to mail to.
+     * @param model {@code Model} which the command should operate on.
+     * @return The list of email addresses to whom the mail is directed towards.
+     * @throws CommandException if the command execution goes unexpected.
+     */
     private Email[] createEmailList(MailMDescriptor mailMDescriptor, Model model) throws CommandException {
         List<Email> emailList = new ArrayList<>();
         List<Person> lastShownList = model.getFilteredPersonList();
@@ -137,6 +147,11 @@ public class MailMCommand extends Command {
         return emailListToReturn;
     }
 
+    /**
+     * Checks whether two {@code MailMCommand} objects are equal.
+     * @param other The {@code MailMCommand} to check equality against.
+     * @return The boolean value specifying the equality.
+     */
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -163,8 +178,7 @@ public class MailMCommand extends Command {
         public MailMDescriptor() {}
 
         /**
-         * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * Copy constructor with set values.
          */
         public MailMDescriptor(MailMDescriptor toCopy) {
             setName(toCopy.name);
@@ -173,38 +187,75 @@ public class MailMCommand extends Command {
             setMod(toCopy.mod);
         }
 
+        /**
+         * Sets the name field for the {@code MailMDescriptor} object.
+         * @param name The name to be set.
+         */
         public void setName(Name name) {
             this.name = name;
         }
 
+        /**
+         * Obtains the name field for the {@code MailMDescriptor} object.
+         * @return The {@code Optional} object containing the name.
+         */
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
         }
 
+        /**
+         * Sets the email field for the {@code MailMDescriptor} object.
+         * @param email The email to be set.
+         */
         public void setEmail(Email email) {
             this.email = email;
         }
 
+        /**
+         * Obtains the email field for the {@code MailMDescriptor} object.
+         * @return The {@code Optional} object containing the email.
+         */
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
         }
 
+        /**
+         * Sets the mod field for the {@code MailMDescriptor} object.
+         * @param mod The mod to be set.
+         */
         public void setMod(Mod mod) {
             this.mod = mod;
         }
 
+        /**
+         * Obtains the mod field for the {@code MailMDescriptor} object.
+         * @return The {@code Optional} object containing the mod.
+         */
         public Optional<Mod> getMod() {
             return Optional.ofNullable(mod);
         }
 
+        /**
+         * Sets the group field for the {@code MailMDescriptor} object.
+         * @param group The group to be set.
+         */
         public void setGroup(Group group) {
             this.group = group;
         }
 
+        /**
+         * Obtains the group field for the {@code MailMDescriptor} object.
+         * @return The {@code Optional} object containing the group.
+         */
         public Optional<Group> getGroup() {
             return Optional.ofNullable(group);
         }
 
+        /**
+         * Checks whether two {@code MailMDescriptor} objects are equal or not.
+         * @param other The {@code MailMDescriptor} to check equality against.
+         * @return The boolean value specifying whether the two objects are equal or not.
+         */
         @Override
         public boolean equals(Object other) {
             // short circuit if same object

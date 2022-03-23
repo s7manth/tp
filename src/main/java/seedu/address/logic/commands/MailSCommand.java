@@ -1,22 +1,27 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.MailUtil.launchMail;
+
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.MailUtil.launchMail;
-
+/**
+ * Opens the system default mail app with the person
+ * identified by the index specified by the user.
+ */
 public class MailSCommand extends Command {
 
     public static final String COMMAND_WORD = "mail-s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Opens the mailbox to email the person identified by the index number used in the displayed person list.\n"
+            + ": Opens the mailbox to email the person identified by the "
+            + "index number used in the displayed person list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
@@ -24,10 +29,20 @@ public class MailSCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Constructor for the {@code MailSCommand} class.
+     * @param targetIndex The index of the person in the contact list.
+     */
     public MailSCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
+    /**
+     * Executes the mail-s command.
+     * @param model {@code Model} which the command should operate on.
+     * @return {@code CommandResult} object that contains the result of the execution.
+     * @throws CommandException if any noncompliance occurs in the command execution.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -43,6 +58,11 @@ public class MailSCommand extends Command {
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToEmail.getEmail()));
     }
 
+    /**
+     * Checks whether two {@code MailSCommand} objects are equal.
+     * @param other The {@code MailSCommand} to check equality against.
+     * @return The boolean value specifying whether the two objects are equal or not.
+     */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

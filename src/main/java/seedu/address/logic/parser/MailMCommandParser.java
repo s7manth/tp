@@ -7,8 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.address.logic.commands.MailMCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.commands.MailMCommand.MailMDescriptor;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 
 /**
