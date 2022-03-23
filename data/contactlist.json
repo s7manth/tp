@@ -37,6 +37,7 @@
   }, {
     "name" : "Roy Balakrishnan",
     "email" : "royb@example.com",
+    "studentNumber" : "A5555555Z",
     "mod" : "GER1000",
     "group" : "T09",
     "tagged" : [ "colleagues" ]

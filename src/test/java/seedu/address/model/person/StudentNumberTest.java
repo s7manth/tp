@@ -31,12 +31,12 @@ public class StudentNumberTest {
         assertFalse(StudentNumber.isValidStudentNumber("AgenZ")); // non-numeric
         assertFalse(StudentNumber.isValidStudentNumber("A9011p041B")); // alphabets within digits
         assertFalse(StudentNumber.isValidStudentNumber("A9312 534B")); // spaces within digits
-        assertFalse(StudentNumber.isValidStudentNumber("a1234567b")); // lowercase letters
-        assertFalse(StudentNumber.isValidStudentNumber("a1234567B")); // lowercase beginning A letter
         assertFalse(StudentNumber.isValidStudentNumber("B1234567X")); // begins with capital letter that is not A
 
         // valid student numbers
         assertTrue(StudentNumber.isValidStudentNumber("A0225771K")); // exact format as desired
         assertTrue(StudentNumber.isValidStudentNumber("A9312153P")); // another valid number
+        assertTrue(StudentNumber.isValidStudentNumber("a1234567b")); // lowercase letters are allowed
+        assertTrue(StudentNumber.isValidStudentNumber("a1234567B")); // lowercase beginning A letter allowed
     }
 }

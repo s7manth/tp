@@ -57,10 +57,10 @@ Assistant who can type fast, TAilor can get your contact management tasks done f
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME a/STUDENT_NUMBER`, `a/STUDENT_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `a/A0123456H a/A1111111H`, only `a/A1111111H` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -80,15 +80,15 @@ Format: `help`
 
 Adds a person to the student roster.
 
-Format: `add n/NAME a/STUDENT_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MOD g/GROUP [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe a/A1234567L e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe a/A1234567L e/johnd@example.com m/CS2103T g/W12`
+* `add n/Betsy Crowe a/A0121212G e/betsycrowe@example.com m/CS2101 g/G02 t/criminal`
 
 ### Listing all persons : `list`
 
@@ -100,7 +100,7 @@ Format: `list`
 
 Edits an existing person in the student roster.
 
-Format: `edit INDEX [n/NAME] [a/STUDENT_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [a/STUDENT_NUMBER] [e/EMAIL] [m/MOD] [g/GROUP] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -218,15 +218,15 @@ with an empty data file at the next run.
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MODULE g/GROUP [t/TAG]…​` <br> e.g., `add n/James Ho a/A1234567Y e/jamesho@example.com m/CS2100 g/W12 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [a/STUDENT_NUMBER] [e/EMAIL] [m/MODULE] [g/GROUP] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Exit** | `exit`
-**Find** | `find PREFIX/KEYWORD [MORE_KEYWORDS] [PREFIX/KEYWORD [MORE_KEYWORDS]]`<br> e.g., `find n/James Jake`
-**List** | `list`
-**Mail** | `mail`<br> e.g., `mail e/johndoe@example.com`
-**Mail All** | `mailall`
-**Help** | `help`
+| Action       | Format, Examples                                                                                                                                                   |
+|--------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**      | `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MODULE g/GROUP [t/TAG]…​` <br> e.g., `add n/James Ho a/A1234567Y e/jamesho@example.com m/CS2100 g/W12 t/friend t/colleague` |
+| **Clear**    | `clear`                                                                                                                                                            |
+| **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                |
+| **Edit**     | `edit INDEX [n/NAME] [a/STUDENT_NUMBER] [e/EMAIL] [m/MODULE] [g/GROUP] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                             |
+| **Exit**     | `exit`                                                                                                                                                             |
+| **Find**     | `find PREFIX/KEYWORD [MORE_KEYWORDS] [PREFIX/KEYWORD [MORE_KEYWORDS]]`<br> e.g., `find n/James Jake`                                                               |
+| **List**     | `list`                                                                                                                                                             |
+| **Mail**     | `mail`<br> e.g., `mail e/johndoe@example.com`                                                                                                                      |
+| **Mail All** | `mailall`                                                                                                                                                          |
+| **Help**     | `help`                                                                                                                                                             |

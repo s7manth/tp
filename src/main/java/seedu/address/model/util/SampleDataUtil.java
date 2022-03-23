@@ -20,22 +20,22 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
-            new Person(new Name("Alex Yeoh"), new StudentNumber("87438807"), new Email("alexyeoh@example.com"),
+            new Person(new Name("Alex Yeoh"), new StudentNumber("A8743880A"), new Email("alexyeoh@example.com"),
             new Mod("CS2030S"), new Group("T01"),
                 getTagSet("friends")),
-            new Person(new Name("Bernice Yu"), new StudentNumber("99272758"), new Email("berniceyu@example.com"),
+            new Person(new Name("Bernice Yu"), new StudentNumber("A9927275B"), new Email("berniceyu@example.com"),
                 new Mod("CS2030S"), new Group("T01"),
                 getTagSet("colleagues", "friends")),
-            new Person(new Name("Charlotte Oliveiro"), new StudentNumber("93210283"),
+            new Person(new Name("Charlotte Oliveiro"), new StudentNumber("A9321028C"),
                     new Email("charlotte@example.com"), new Mod("CS2030S"), new Group("T02"),
                 getTagSet("neighbours")),
-            new Person(new Name("David Li"), new StudentNumber("91031282"), new Email("lidavid@example.com"),
+            new Person(new Name("David Li"), new StudentNumber("A9103128D"), new Email("lidavid@example.com"),
                 new Mod("CS2030S"), new Group("T03"),
                 getTagSet("family")),
-            new Person(new Name("Irfan Ibrahim"), new StudentNumber("92492021"), new Email("irfan@example.com"),
+            new Person(new Name("Irfan Ibrahim"), new StudentNumber("A9249202E"), new Email("irfan@example.com"),
                 new Mod("CS2030S"), new Group("T02"),
                 getTagSet("classmates")),
-            new Person(new Name("Roy Balakrishnan"), new StudentNumber("92624417"), new Email("royb@example.com"),
+            new Person(new Name("Roy Balakrishnan"), new StudentNumber("A9262441F"), new Email("royb@example.com"),
                 new Mod("CS2030S"), new Group("T01"),
                 getTagSet("colleagues"))
         };

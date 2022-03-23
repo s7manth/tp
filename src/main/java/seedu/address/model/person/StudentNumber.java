@@ -11,9 +11,9 @@ public class StudentNumber {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Student Number numbers should begin with a capital 'A', followed by 7 digits"
-                    + " and finally concluded by one capitalised letter.";
-    public static final String VALIDATION_REGEX = "^[A][0-9]{7}[A-Z]";
+            "Student Numbers should begin with the letter 'A', followed by 7 digits"
+                    + " and finally concluded by one letter.";
+    public static final String VALIDATION_REGEX = "^[aA][0-9]{7}[a-zA-Z]";
     public final String value;
 
     /**
@@ -28,7 +28,7 @@ public class StudentNumber {
     }
 
     /**
-     * Returns true if a given string is a valid phone number.
+     * Returns true if a given string is a valid student number.
      */
     public static boolean isValidStudentNumber(String test) {
         return test.matches(VALIDATION_REGEX);

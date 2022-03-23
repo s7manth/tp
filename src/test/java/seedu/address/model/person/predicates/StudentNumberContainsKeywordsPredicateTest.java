@@ -37,7 +37,7 @@ public class StudentNumberContainsKeywordsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different phone number -> returns false
+        // different student number -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
@@ -68,7 +68,7 @@ public class StudentNumberContainsKeywordsPredicateTest {
         predicate = new StudentNumberContainsKeywordsPredicate(Arrays.asList("23456"));
         assertFalse(predicate.test(new PersonBuilder().withStudentNumber("A0246813G").build()));
 
-        // Keywords match name, email and mod, but does not match phone
+        // Keywords match name, email and mod, but does not match student number
         predicate = new StudentNumberContainsKeywordsPredicate(Arrays.asList("CS2105", "alice@email.com", "Alice"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withStudentNumber("A0246813G")
                 .withEmail("alice@email.com").withMod("CS2105").build()));
