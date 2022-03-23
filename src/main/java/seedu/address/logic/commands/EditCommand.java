@@ -20,7 +20,12 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Group;
+import seedu.address.model.person.Mod;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.StudentNumber;
 import seedu.address.model.person.StudentNumber;
 import seedu.address.model.tag.Tag;
 
@@ -93,7 +98,8 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        StudentNumber updatedStudentNumber = editPersonDescriptor.getStudentNumber().orElse(personToEdit.getStudentNumber());
+        StudentNumber updatedStudentNumber = editPersonDescriptor.getStudentNumber()
+                .orElse(personToEdit.getStudentNumber());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Mod updatedMod = editPersonDescriptor.getMod().orElse(personToEdit.getMod());
         Group updatedGroup = editPersonDescriptor.getGroup().orElse(personToEdit.getGroup());

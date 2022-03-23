@@ -11,8 +11,8 @@ public class StudentNumber {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Student Number numbers should begin with a capital 'A', followed by 7 digits" +
-                    " and finally concluded by one capitalised letter.";
+            "Student Number numbers should begin with a capital 'A', followed by 7 digits"
+                    + " and finally concluded by one capitalised letter.";
     public static final String VALIDATION_REGEX = "^[A][0-9]{7}[A-Z]";
     public final String value;
 

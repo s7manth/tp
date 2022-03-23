@@ -17,7 +17,8 @@ public class StudentNumberContainsKeywordsPredicate extends PersonContainsKeywor
     @Override
     public boolean test(Person person) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCaseSubstring(person.getStudentNumber().value, keyword));
+                .anyMatch(keyword ->
+                        StringUtil.containsWordIgnoreCaseSubstring(person.getStudentNumber().value, keyword));
     }
 
     @Override
