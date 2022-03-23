@@ -172,7 +172,7 @@ Example:
 
 Mails everybody in the student roster.
 
-Format: `mailall`
+Format: `mail-all`
 
 * Opens the default email application on the system with all email addresses pre-filled in the receiver's
   field.
@@ -243,5 +243,5 @@ with an empty data file at the next run.
 | **List**       | `list`                                                                                                                                                          |
 | **Mail Index** | `mail-index`<br> e.g., `mail 2`                                                                                                                                 |
 | **Mail X**     | `mail-x`<br> e.g., `mail e/johndoe@example.com n/Alex`                                                                                                          |
-| **Mail All**   | `mailall`                                                                                                                                                       |
+| **Mail All**   | `mail-all`                                                                                                                                                      |
 | **Help**       | `help`                                                                                                                                                          |
