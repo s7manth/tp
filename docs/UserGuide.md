@@ -154,7 +154,7 @@ Example:
 
 ### Mailing student(s) : `mail-x`
 
-Mails a subset of students from the contact list. This is a broader version of mail functionality as it can 
+Mails a subset of students from the contact list. This is a broader version of mail functionality as it can
 cover multiple students at once in order to mail them simultaneously.
 
 Format: `mail [e/EMAIL] [g/GROUP] [m/MOD] [n/NAME]`
