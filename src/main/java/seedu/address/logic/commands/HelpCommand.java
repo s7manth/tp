@@ -1,11 +1,9 @@
 package seedu.address.logic.commands;
 
+import java.util.Objects;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-
-import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Format full help instructions for every command for display.
@@ -33,41 +31,41 @@ public class HelpCommand extends Command {
             return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
         } else {
             switch (commandWordArg.trim()) {
-                case AddCommand.COMMAND_WORD:
-                    return new CommandResult(AddCommand.MESSAGE_USAGE);
+            case AddCommand.COMMAND_WORD:
+                return new CommandResult(AddCommand.MESSAGE_USAGE);
 
-                case EditCommand.COMMAND_WORD:
-                    return new CommandResult(EditCommand.MESSAGE_USAGE);
+            case EditCommand.COMMAND_WORD:
+                return new CommandResult(EditCommand.MESSAGE_USAGE);
 
-                case DeleteCommand.COMMAND_WORD:
-                    return new CommandResult(DeleteCommand.MESSAGE_USAGE);
+            case DeleteCommand.COMMAND_WORD:
+                return new CommandResult(DeleteCommand.MESSAGE_USAGE);
 
-                case ClearCommand.COMMAND_WORD:
-                    return new CommandResult(ClearCommand.MESSAGE_USAGE);
+            case ClearCommand.COMMAND_WORD:
+                return new CommandResult(ClearCommand.MESSAGE_USAGE);
 
-                case FindCommand.COMMAND_WORD:
-                    return new CommandResult(FindCommand.MESSAGE_USAGE);
+            case FindCommand.COMMAND_WORD:
+                return new CommandResult(FindCommand.MESSAGE_USAGE);
 
-                case ListCommand.COMMAND_WORD:
-                    return new CommandResult(ListCommand.MESSAGE_USAGE);
+            case ListCommand.COMMAND_WORD:
+                return new CommandResult(ListCommand.MESSAGE_USAGE);
 
-                case ExitCommand.COMMAND_WORD:
-                    return new CommandResult(ExitCommand.MESSAGE_USAGE);
+            case ExitCommand.COMMAND_WORD:
+                return new CommandResult(ExitCommand.MESSAGE_USAGE);
 
-                case SetDefaultGroupCommand.COMMAND_WORD:
-                    return new CommandResult(SetDefaultGroupCommand.MESSAGE_USAGE);
+            case SetDefaultGroupCommand.COMMAND_WORD:
+                return new CommandResult(SetDefaultGroupCommand.MESSAGE_USAGE);
 
-                case HelpCommand.COMMAND_WORD:
-                    return new CommandResult(HelpCommand.MESSAGE_USAGE);
+            case HelpCommand.COMMAND_WORD:
+                return new CommandResult(HelpCommand.MESSAGE_USAGE);
 
-                case MailCommand.COMMAND_WORD:
-                    return new CommandResult(MailCommand.MESSAGE_USAGE);
+            case MailCommand.COMMAND_WORD:
+                return new CommandResult(MailCommand.MESSAGE_USAGE);
 
-                case MailAllCommand.COMMAND_WORD:
-                    return new CommandResult(MailAllCommand.MESSAGE_USAGE);
+            case MailAllCommand.COMMAND_WORD:
+                return new CommandResult(MailAllCommand.MESSAGE_USAGE);
 
-                default:
-                    throw new CommandException(INVALID_COMMAND_USAGE);
+            default:
+                throw new CommandException(INVALID_COMMAND_USAGE);
             }
         }
     }
