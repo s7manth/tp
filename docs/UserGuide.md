@@ -28,7 +28,8 @@ Assistant who can type fast, TAilor can get your contact management tasks done f
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe a/A0123456P e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact
+   * **`add`**`n/John Doe a/A0123456P e/johnd@example.com m/CS2103T g/W12` : Adds a student
+
      named `John Doe` to the Contact List.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
@@ -82,13 +83,16 @@ Adds a person to the student roster.
 
 Format: `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MOD g/GROUP [t/TAG]…​`
 
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe a/A1234567L e/johnd@example.com m/CS2103T g/W12`
-* `add n/Betsy Crowe a/A0121212G e/betsycrowe@example.com m/CS2101 g/G02 t/criminal`
+
+* `add n/John Doe a/A1234567L e/johnd@example.com m/CS2030S g/B12G`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com m/CS2100 g/T1 p/1234567 t/criminal`
+
 
 ### Listing all persons : `list`
 
@@ -189,6 +193,39 @@ Exits the program.
 
 Format: `exit`
 
+### Adding a new task: `newtask`
+
+Adds a new Task with a given description and deadline.
+
+Format: `newtask DESCRIPTION by/DATETIME`
+
+* Description must be non-empty. Ie, it cannot consist of all spaces.
+* DATETIME has to be in the format of : `YYYY-MM-DDThh:mm` , where
+  * YYYY represents a 4-digit year
+  * MM represents a 2-digit month (so March will be 03, November 11)
+  * DD represents a 2-digit day (1st day of the month will be 01)
+  * hh represents the hour, as in 24-hour (ie 3am is 0300, 3pm is 1500)
+  * mm represents the minute.
+  * The dashes `-`, colons `:` and the `T` must be in the corresponding positions.
+  * The Time and Date being input must be valid. Ie, it is not possible to input a task
+    with a deadline of 31st February.
+
+Examples:
+* `newtask Do Homework by/2022-03-21T23:59` creates a task with description of "Do Homework" and is due on 21 March 2022, 11:59pm.
+
+### Deleting an existing task: `deltask`
+
+Deletes the specified person from the task list.
+
+Format: `deltask INDEX`
+
+* Deletes the task at the specified `INDEX`.
+* The index refers to the index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `delete 2` deletes the 2nd person in the task list.
+
 ---
 
 ### Saving the data
@@ -198,12 +235,16 @@ There is no need to save manually.
 
 ### Editing the data file
 
-TAilor data are saved as a JSON file `[JAR file location]/data/TAilor.json`. Advanced users are
-welcome to update data directly by editing that data file.
+TAilor data are saved as a JSON file `[JAR file location]/data/contactlist.json`.
+Task List data is also saved as a JSON file `[JAR file location]/data/tasklist.json`. Advanced users are
+welcome to update the data directly by editing those data files.
 
 <div markdown="span" class="alert alert-warning"> :exclamation: **Caution:**
 If your changes to the data file makes its format invalid, TAilor will discard all data and start
 with an empty data file at the next run.
+
+To reset the files, perform any command that changes the contact list or task list (ie add new task, add new contact).
+WARNING: This will override the pre-existing data with the new data you entered.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -218,15 +259,17 @@ with an empty data file at the next run.
 
 ## Command summary
 
-| Action       | Format, Examples                                                                                                                                                   |
-|--------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**      | `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MODULE g/GROUP [t/TAG]…​` <br> e.g., `add n/James Ho a/A1234567Y e/jamesho@example.com m/CS2100 g/W12 t/friend t/colleague` |
-| **Clear**    | `clear`                                                                                                                                                            |
-| **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                |
-| **Edit**     | `edit INDEX [n/NAME] [a/STUDENT_NUMBER] [e/EMAIL] [m/MODULE] [g/GROUP] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                             |
-| **Exit**     | `exit`                                                                                                                                                             |
-| **Find**     | `find PREFIX/KEYWORD [MORE_KEYWORDS] [PREFIX/KEYWORD [MORE_KEYWORDS]]`<br> e.g., `find n/James Jake`                                                               |
-| **List**     | `list`                                                                                                                                                             |
-| **Mail**     | `mail`<br> e.g., `mail e/johndoe@example.com`                                                                                                                      |
-| **Mail All** | `mailall`                                                                                                                                                          |
-| **Help**     | `help`                                                                                                                                                             |
+Action | Format, Examples
+--------|------------------
+**Add** | `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MODULE g/GROUP [t/TAG]…​` <br> e.g., `add n/James Ho a/A1234567Y e/jamesho@example.com m/CS2100 g/W12 t/friend t/colleague`
+**Clear** | `clear`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Edit** | `edit INDEX [n/NAME] [a/STUDENT_NUMBER] [e/EMAIL] [m/MODULE] [g/GROUP] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Exit** | `exit`
+**Find** | `find PREFIX/KEYWORD [MORE_KEYWORDS] [PREFIX/KEYWORD [MORE_KEYWORDS]]`<br> e.g., `find n/James Jake a/A0217`
+**List** | `list`
+**Mail** | `mail`<br> e.g., `mail e/johndoe@example.com`
+**Mail All** | `mailall`
+**Help** | `help`
+**New Task** | `newtask DESCRIPTION by/DEADLINE` <br> e.g., `newtask Do homework by/2022-03-21T12:34`
+**Delete Task** | `deltask INDEX` <br> e.g., `deltask 3`

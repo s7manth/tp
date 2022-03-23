@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD;
@@ -65,6 +66,16 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
+
+    public static final String VALID_DESCRIPTION_HOMEWORK = "Do homework";
+    public static final String VALID_DESCRIPTION_ASSIGNMENT = "Check assignment submissions";
+    public static final String VALID_DEADLINE_HOMEWORK = "2022-03-21T21:24";
+    public static final String VALID_DEADLINE_ASSIGNMENT = "1234-05-06T07:08";
+    public static final String DEADLINE_HOMEWORK = " " + PREFIX_DEADLINE + VALID_DEADLINE_HOMEWORK;
+    public static final String DEADLINE_ASSIGNMENT = " " + PREFIX_DEADLINE + VALID_DEADLINE_ASSIGNMENT;
+
+    public static final String INVALID_DESCRIPTION = "&&"; // symbols not allowed
+    public static final String INVALID_DEADLINE = "1234-05-06T00:08"; // Cannot have 0th hour.
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
