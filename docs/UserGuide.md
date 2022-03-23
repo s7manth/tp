@@ -3,9 +3,9 @@ layout: page
 title: User Guide
 ---
 
-TAilor is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI)
+TAilor is a **desktop app for managing contacts, optimized for use via a Command Line Interface (CLI)**
 while still having the benefits of a Graphical User Interface (GUI). If you are a Computer Science Teaching
-Assistant who can type fast, TAilor can get your contact management tasks done faster than traditional GUI apps.
+Assistant who can type fast, TAilor can get tedious contact management tasks done faster than traditional GUI apps!
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -20,7 +20,7 @@ Assistant who can type fast, TAilor can get your contact management tasks done f
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note
    how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/GUI.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter
    will open the help window.<br>
@@ -52,10 +52,10 @@ Assistant who can type fast, TAilor can get your contact management tasks done f
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/consultation` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/dropped`, `t/makeup t/consultation` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME a/STUDENT_NUMBER`, `a/STUDENT_NUMBER n/NAME` is also acceptable.
@@ -76,6 +76,11 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+### Listing all persons : `list`
+
+Shows a list of all persons in the student roster.
+
+Format: `list`
 
 ### Adding a person: `add`
 
@@ -91,14 +96,8 @@ A person can have any number of tags (including 0)
 Examples:
 
 * `add n/John Doe a/A1234567L e/johnd@example.com m/CS2030S g/B12G`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com m/CS2100 g/T1 p/1234567 t/criminal`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com m/CS2100 g/T1 a/a0123456x t/stable`
 
-
-### Listing all persons : `list`
-
-Shows a list of all persons in the student roster.
-
-Format: `list`
 
 ### Editing a person : `edit`
 
@@ -116,6 +115,39 @@ Examples:
 *  `edit 1 a/A1122334X e/johndoe@example.com` Edits the studentNumber and email address of the 1st person to 
    be `A1122334X` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
+### Deleting a person : `delete`
+
+Deletes the specified person from the student roster.
+
+Format: `delete INDEX`
+
+* Deletes the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd person in the student roster.
+* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+### Setting a default group value for a specific mod: `set-default-group`
+
+Sets a default group value for a particular mod that can be updated using the same command several times. Helps 
+prevent users from repeatedly entering the same data.
+
+Format: `set-default-group m/MOD g/GROUP`
+
+* MOD may or may not be an existing mod in TAilor's local database
+* GROUP can be set any number of times for the same Mod
+
+Examples:
+* `set-default-group m/CS2101 g/G02`
+  ![result for 'set-default-group m/CS2101 g/G02'](images/set_default_ex1.png)
+
+
+* followed by `set-default-group m/CS2101 g/G02-MonThur4-6`
+
+  ![result for updating default group of m/CS2101](images/set_default_ex2.png)
 
 ### Locating persons by name: `find`
 
@@ -167,19 +199,6 @@ Format: `mailall`
 * Opens the default email application on the system with all email addresses pre-filled in the receiver's
   field.
 
-### Deleting a person : `delete`
-
-Deletes the specified person from the student roster.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the student roster.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
@@ -230,14 +249,14 @@ Examples:
 
 ### Saving the data
 
-TAilor data are saved in the hard disk automatically after any command that changes the data.
-There is no need to save manually.
+TAilor's data is saved in the hard disk automatically after any command that changes the data.
+There is no need to save it manually.
 
 ### Editing the data file
 
-TAilor data are saved as a JSON file `[JAR file location]/data/contactlist.json`.
-Task List data is also saved as a JSON file `[JAR file location]/data/tasklist.json`. Advanced users are
-welcome to update the data directly by editing those data files.
+TAilor's data is saved as two JSON files. The first being ContactList's data as `[JAR file location]/data/contactlist.
+json` and the other being Task List's data saved as `[JAR file location]/data/tasklist.json`. 
+ Advanced users are welcome to update the data directly by editing those data files.
 
 <div markdown="span" class="alert alert-warning"> :exclamation: **Caution:**
 If your changes to the data file makes its format invalid, TAilor will discard all data and start
@@ -253,23 +272,24 @@ WARNING: This will override the pre-existing data with the new data you entered.
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the
-       file that contains the data of your previous TAilor home folder.
+       file that contains the data of your previous TAilor home folder!
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MODULE g/GROUP [t/TAG]…​` <br> e.g., `add n/James Ho a/A1234567Y e/jamesho@example.com m/CS2100 g/W12 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [a/STUDENT_NUMBER] [e/EMAIL] [m/MODULE] [g/GROUP] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Exit** | `exit`
-**Find** | `find PREFIX/KEYWORD [MORE_KEYWORDS] [PREFIX/KEYWORD [MORE_KEYWORDS]]`<br> e.g., `find n/James Jake a/A0217`
-**List** | `list`
-**Mail** | `mail`<br> e.g., `mail e/johndoe@example.com`
-**Mail All** | `mailall`
-**Help** | `help`
-**New Task** | `newtask DESCRIPTION by/DEADLINE` <br> e.g., `newtask Do homework by/2022-03-21T12:34`
-**Delete Task** | `deltask INDEX` <br> e.g., `deltask 3`
+| Action                | Format, Examples                                                                                                                                                   |
+|-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**              | `help`                                                                                                                                                             |
+| **List**              | `list`                                                                                                                                                             |
+| **Add**               | `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MODULE g/GROUP [t/TAG]…​` <br> e.g., `add n/James Ho a/A1234567Y e/jamesho@example.com m/CS2100 g/W12 t/friend t/colleague` |                                                                                                                                                         |
+| **Edit**              | `edit INDEX [n/NAME] [a/STUDENT_NUMBER] [e/EMAIL] [m/MODULE] [g/GROUP] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                             |
+| **Delete**            | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                |
+| **Set Default Group** | `set-default-group m/MOD g/GROUP` <br> e.g., `set-default-group m/CS2103T g/W12-1`                                                                                 |
+| **Find**              | `find PREFIX/KEYWORD [MORE_KEYWORDS] [PREFIX/KEYWORD [MORE_KEYWORDS]]`<br> e.g., `find n/James Jake a/A0217`                                                       |
+| **Mail**              | `mail`<br> e.g., `mail e/johndoe@example.com`                                                                                                                      |
+| **Mail All**          | `mailall`                                                                                                                                                          |
+| **New Task**          | `newtask DESCRIPTION by/DEADLINE` <br> e.g., `newtask Do homework by/2022-03-21T12:34`                                                                             |
+| **Delete Task**       | `deltask INDEX` <br> e.g., `deltask 3`                                                                                                                             |
+| **Clear**             | `clear`                                                                                                                                                            |
+| **Exit**              | `exit`                                                                                                                                                             |
