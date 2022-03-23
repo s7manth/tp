@@ -11,7 +11,7 @@ import seedu.address.model.person.UniqueModuleList;
 
 public class SetDefaultGroupCommand extends Command {
 
-    public static final String COMMAND_WORD = "setDefaultGroup";
+    public static final String COMMAND_WORD = "set-default-group";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets a default value for group in the given Mod. "
             + "Parameters: "
