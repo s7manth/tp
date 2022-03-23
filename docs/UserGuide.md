@@ -162,7 +162,7 @@ Example:
 Mails a subset of students from the contact list. This is a broader version of mail functionality as it can
 cover multiple students at once in order to mail them simultaneously.
 
-Format: `mail [e/EMAIL] [g/GROUP] [m/MOD] [n/NAME]`
+Format: `mail-x [e/EMAIL] [g/GROUP] [m/MOD] [n/NAME]`
 
 * This opens the default email application on the system with all the mail addresses specified by the arguments.
 * The mail addresses are additively added to the receiver's box.
@@ -173,7 +173,7 @@ Example:
   all the mail addresses covered by the arguments specified. Now, the email is ready to be sent to `johndoe@example.com`
   and Alex.
 
-### Bulk Emails to everyone on the database : `mailall`
+### Bulk Emails to everyone on the database : `mail-all`
 
 Mails everybody in the student roster.
 
