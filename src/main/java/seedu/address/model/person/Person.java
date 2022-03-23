@@ -18,7 +18,7 @@ public class Person {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
+    private final StudentNumber studentNumber;
     private final Email email;
 
     // Data fields
@@ -29,10 +29,10 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Mod mod, Group group, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, mod, group, tags);
+    public Person(Name name, StudentNumber studentNumber, Email email, Mod mod, Group group, Set<Tag> tags) {
+        requireAllNonNull(name, studentNumber, email, mod, group, tags);
         this.name = name;
-        this.phone = phone;
+        this.studentNumber = studentNumber;
         this.email = email;
         this.mod = mod;
         this.group = group;
@@ -43,8 +43,8 @@ public class Person {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public StudentNumber getStudentNumber() {
+        return studentNumber;
     }
 
     public Email getEmail() {
@@ -104,7 +104,7 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
+                && otherPerson.getStudentNumber().equals(getStudentNumber())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getGroup().equals(getGroup())
                 && otherPerson.getMod().equals(getMod())
@@ -114,13 +114,13 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, mod, group, tags);
+        return Objects.hash(name, studentNumber, email, mod, group, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilderUtil stringBuilderUtil = StringBuilderUtil.getInstance();
-        stringBuilderUtil.appendAll(getName(), "; Phone: ", getPhone(),
+        stringBuilderUtil.appendAll(getName(), "; StudentNumber: ", getStudentNumber(),
                 "; Email: ", getEmail(),
                 "; Group: ", getGroup(),
                 "; Mod: ", getMod());
