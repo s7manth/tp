@@ -5,12 +5,21 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
+Class "<<interface>>\nReadOnlyTaskList" as ReadOnlyTaskList
 Class "<<interface>>\nReadOnlyContactList" as ReadOnlyContactList
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
+Class "<<interface>>\nReadOnlyContent" as ReadOnlyContent
+
 Class ContactList
 Class ModelManager
 Class UserPrefs
+Class Content
+
+Class PriorityTaskList
+Class Task
+Class Description
+Class Deadline
 
 Class UniquePersonList
 Class Person
@@ -26,16 +35,27 @@ Class Tag
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-ContactList .up.|> ReadOnlyContactList
-
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyContactList
-ModelManager -left-> "1" ContactList
+Model .left.> ReadOnlyContent
+ModelManager -left-> "1" Content
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-ContactList *--> "1" UniquePersonList
+Content .up.|> ReadOnlyContent
+Content -down-> "1" ReadOnlyTaskList
+Content -down-> "1" ReadOnlyContactList
+
+PriorityTaskList .up.|> ReadOnlyTaskList
+PriorityTaskList -down-> "~* all" Task
+Task *--> Description
+Task *--> Deadline
+
+
+ReadOnlyContactList -[hidden]left-> ReadOnlyTaskList
+
+ContactList .up.|> ReadOnlyContactList
+ContactList *-> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
 Person *--> Name
 Person *--> StudentNumber
