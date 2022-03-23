@@ -91,8 +91,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseStudentNumber_validValueWithoutWhitespace_returnsStudentNumber() throws Exception {
-        StudentNumber expectedStudentNumber = new StudentNumber(VALID_MOD);
-        assertEquals(expectedStudentNumber, ParserUtil.parseStudentNumber(VALID_MOD));
+        StudentNumber expectedStudentNumber = new StudentNumber(VALID_STUDENT_NUMBER);
+        assertEquals(expectedStudentNumber, ParserUtil.parseStudentNumber(VALID_STUDENT_NUMBER));
     }
 
     @Test

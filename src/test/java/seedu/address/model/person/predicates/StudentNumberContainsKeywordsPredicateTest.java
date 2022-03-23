@@ -45,15 +45,15 @@ public class StudentNumberContainsKeywordsPredicateTest {
     public void test_studentNumberContainsKeywords_returnsTrue() {
         // One keyword
         StudentNumberContainsKeywordsPredicate predicate =
-                new StudentNumberContainsKeywordsPredicate(Collections.singletonList("12345"));
+                new StudentNumberContainsKeywordsPredicate(Collections.singletonList("02468"));
         assertTrue(predicate.test(new PersonBuilder().withStudentNumber("A0246813G").build()));
 
         // Multiple keywords
-        predicate = new StudentNumberContainsKeywordsPredicate(Arrays.asList("123", "345"));
+        predicate = new StudentNumberContainsKeywordsPredicate(Arrays.asList("024", "813G"));
         assertTrue(predicate.test(new PersonBuilder().withStudentNumber("A0246813G").build()));
 
         // Only one matching keyword
-        predicate = new StudentNumberContainsKeywordsPredicate(Arrays.asList("123", "456"));
+        predicate = new StudentNumberContainsKeywordsPredicate(Arrays.asList("123", "0246"));
         assertTrue(predicate.test(new PersonBuilder().withStudentNumber("A0246813G").build()));
     }
 
