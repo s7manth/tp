@@ -17,6 +17,8 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MailAllCommand;
 import seedu.address.logic.commands.MailCommand;
+import seedu.address.logic.commands.NewTaskCommand;
+import seedu.address.logic.commands.RemoveTaskCommand;
 import seedu.address.logic.commands.SetDefaultGroupCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -43,7 +45,7 @@ public class TailorParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        final String commandWord = matcher.group("commandWord");
+        final String commandWord = matcher.group("commandWord").toLowerCase();
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
@@ -79,6 +81,12 @@ public class TailorParser {
 
         case MailAllCommand.COMMAND_WORD:
             return new MailAllCommand();
+
+        case NewTaskCommand.COMMAND_WORD:
+            return new NewTaskCommandParser().parse(arguments);
+
+        case RemoveTaskCommand.COMMAND_WORD:
+            return new RemoveTaskCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

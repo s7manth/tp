@@ -28,7 +28,8 @@ Assistant who can type fast, TAilor can get your contact management tasks done f
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com m/CS2103T g/W12` : Adds a student
+   * **`add`**`n/John Doe a/A0123456P e/johnd@example.com m/CS2103T g/W12` : Adds a student
+
      named `John Doe` to the Contact List.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
@@ -57,10 +58,10 @@ Assistant who can type fast, TAilor can get your contact management tasks done f
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME a/STUDENT_NUMBER`, `a/STUDENT_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `a/A0123456H a/A1111111H`, only `a/A1111111H` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -80,15 +81,18 @@ Format: `help`
 
 Adds a person to the student roster.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL m/MODULE g/GROUP [t/TAG]…​`
+Format: `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MOD g/GROUP [t/TAG]…​`
+
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+
+* `add n/John Doe a/A1234567L e/johnd@example.com m/CS2030S g/B12G`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com m/CS2100 g/T1 p/1234567 t/criminal`
+
 
 ### Listing all persons : `list`
 
@@ -100,7 +104,7 @@ Format: `list`
 
 Edits an existing person in the student roster.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [g/GROUP] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [a/STUDENT_NUMBER] [e/EMAIL] [m/MOD] [g/GROUP] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -109,7 +113,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [g/GROUP] [t/TAG]…
 * You can remove all the person’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 1 a/A1122334X e/johndoe@example.com` Edits the studentNumber and email address of the 1st person to 
+   be `A1122334X` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 ### Locating persons by name: `find`
@@ -120,7 +125,7 @@ Format: `find PREFIX/KEYWORD [KEYWORD] [PREFIX/KEYWORD [KEYWORD]]…​`
 
 * The prefixes used are the same as other commands:
   * `n/` for name
-  * `p/` for phone
+  * `a/` for studentNumber
   * `e/` for email
   * `m/` for module
   * `g/` for group
@@ -203,6 +208,39 @@ Exits the program.
 
 Format: `exit`
 
+### Adding a new task: `newtask`
+
+Adds a new Task with a given description and deadline.
+
+Format: `newtask DESCRIPTION by/DATETIME`
+
+* Description must be non-empty. Ie, it cannot consist of all spaces.
+* DATETIME has to be in the format of : `YYYY-MM-DDThh:mm` , where
+  * YYYY represents a 4-digit year
+  * MM represents a 2-digit month (so March will be 03, November 11)
+  * DD represents a 2-digit day (1st day of the month will be 01)
+  * hh represents the hour, as in 24-hour (ie 3am is 0300, 3pm is 1500)
+  * mm represents the minute.
+  * The dashes `-`, colons `:` and the `T` must be in the corresponding positions.
+  * The Time and Date being input must be valid. Ie, it is not possible to input a task
+    with a deadline of 31st February.
+
+Examples:
+* `newtask Do Homework by/2022-03-21T23:59` creates a task with description of "Do Homework" and is due on 21 March 2022, 11:59pm.
+
+### Deleting an existing task: `deltask`
+
+Deletes the specified person from the task list.
+
+Format: `deltask INDEX`
+
+* Deletes the task at the specified `INDEX`.
+* The index refers to the index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `delete 2` deletes the 2nd person in the task list.
+
 ---
 
 ### Saving the data
@@ -212,12 +250,16 @@ There is no need to save manually.
 
 ### Editing the data file
 
-TAilor data are saved as a JSON file `[JAR file location]/data/TAilor.json`. Advanced users are
-welcome to update data directly by editing that data file.
+TAilor data are saved as a JSON file `[JAR file location]/data/contactlist.json`.
+Task List data is also saved as a JSON file `[JAR file location]/data/tasklist.json`. Advanced users are
+welcome to update the data directly by editing those data files.
 
 <div markdown="span" class="alert alert-warning"> :exclamation: **Caution:**
 If your changes to the data file makes its format invalid, TAilor will discard all data and start
 with an empty data file at the next run.
+
+To reset the files, perform any command that changes the contact list or task list (ie add new task, add new contact).
+WARNING: This will override the pre-existing data with the new data you entered.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -231,6 +273,7 @@ with an empty data file at the next run.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
+
 
 | Action         | Format, Examples                                                                                                                                                |
 |----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|

@@ -31,6 +31,9 @@ class JsonSerializableContactList {
         this.persons.addAll(persons);
     }
 
+    @JsonCreator
+    public JsonSerializableContactList() {}
+
     /**
      * Converts a given {@code ReadOnlyContactList} into this class for Jackson use.
      *
