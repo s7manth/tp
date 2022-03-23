@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static seedu.address.commons.util.MailUtil.launchMail;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -18,15 +19,12 @@ public class MailAllCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
-        Email[] emailList = new Email[lastShownList.size()];
+        List<Email> emails = lastShownList.stream().map(Person::getEmail).distinct().collect(Collectors.toList());
 
-        int i = 0;
-        for (Person p : lastShownList) {
-            emailList[i] = p.getEmail();
-            i++;
-        }
+        Email[] emailArray = new Email[emails.size()];
 
-        launchMail(emailList);
+        emailArray = emails.toArray(emailArray);
+        launchMail(emailArray);
 
         return new CommandResult(MESSAGE_SUCCESS);
     }
