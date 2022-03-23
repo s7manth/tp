@@ -13,10 +13,10 @@ public class SetDefaultGroupCommand extends Command {
 
     public static final String COMMAND_WORD = "setDefaultGroup";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets a default value for group in the given Mod. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets a default value for group in the given Mod. \n"
             + "Parameters: "
             + PREFIX_MOD + "MOD "
-            + PREFIX_GROUP + "GROUP"
+            + PREFIX_GROUP + "GROUP \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_GROUP + "W12-1 "
             + PREFIX_MOD + "CS2103T";

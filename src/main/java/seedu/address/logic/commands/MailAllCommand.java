@@ -15,6 +15,9 @@ public class MailAllCommand extends Command {
 
     private static final String MESSAGE_SUCCESS = "Opening app for bulk emailing";
 
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": For Mailing everyone in the contact list.\n"
+            + "Example: " + COMMAND_WORD;
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
