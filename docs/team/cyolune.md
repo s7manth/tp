@@ -17,12 +17,12 @@ Given below are my contributions to the project.
     * What it does:
     Allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
     * Justification:
-    This feature improves TAilor significantly because a user can make mistakes in commands and we 
+    This feature improves TAilor significantly because a user can make mistakes in commands and we
     should provide a convenient way to rectify them.
     * Highlights:
-    This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of 
-    design alternatives. The implementation too was challenging as it required changes to existing commands, 
-    and modifications to the ModelManager class was done with the addition of new classes to increase extendability of 
+    This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of
+    design alternatives. The implementation too was challenging as it required changes to existing commands,
+    and modifications to the ModelManager class was done with the addition of new classes to increase extendability of
     this feature (in the case of additions of new content to be undone other than contacts and tasks)
     * Time spent on this (estimate):
     600 mins
@@ -32,7 +32,7 @@ Given below are my contributions to the project.
     entered at a later time can be reached by pressing the 'down' button as well.
     * Justification:
     This feature improves TAilor significantly and works very well with undo as a user who has made a mistake in their command
-    can undo and quickly fill the command textbox with the mistyped command, allowing them to quickly correct their typo 
+    can undo and quickly fill the command textbox with the mistyped command, allowing them to quickly correct their typo
     and enter the intended command.
     * Highlights:
     This feature required extensive research on JavaFX and how events such as keypresses are captured.
