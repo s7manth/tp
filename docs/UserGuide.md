@@ -139,19 +139,34 @@ Examples:
 * `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find n/alex david'](images/findAlexDavidResult.png)
 
-### Mailing student(s) : `mail`
+### Mailing a particular student based on index : `mail-index`
 
-Mails a person from the student roster.
+Mails a person from the student roster based on the index number shown in the application.
 
-Format: `mail [e/EMAIL]…​`
+Format: `mail-index INDEX`
 
 * This opens the default email application on the system with the specified mail address pre-filled at the receiver's
   address.
-* This can be used to specify multiple addresses to send the same mail in a single go as well.
 
 Example:
-* `mail e/johndoe@example.com` would open the default mail on the system with the "to" box filled with the
-  specified mail. Now, the email is ready to be sent to `johndoe@example.com`.
+* `mail-index 2` would open the default mail on the system with the "to" box filled with the
+  specified mail. Now, the email is ready to be sent to the person with the index 2 as shown on the application.
+
+### Mailing student(s) : `mail-x`
+
+Mails a subset of students from the contact list. This is a broader version of mail functionality as it can 
+cover multiple students at once in order to mail them simultaneously.
+
+Format: `mail [e/EMAIL] [g/GROUP] [m/MOD] [n/NAME]`
+
+* This opens the default email application on the system with all the mail addresses specified by the arguments.
+* The mail addresses are additively added to the receiver's box.
+* This can be used to specify multiple prefix based arguments to send the same mail in a single go.
+
+Example:
+* `mail-x e/johndoe@example.com n/Alex` would open the default mail on the system with the "to" box filled with the
+  all the mail addresses covered by the arguments specified. Now, the email is ready to be sent to `johndoe@example.com`
+  and Alex.
 
 ### Bulk Emails to everyone on the database : `mailall`
 
@@ -217,15 +232,16 @@ with an empty data file at the next run.
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL m/MODULE g/GROUP [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com m/CS2100 g/W12 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [m/MODULE] [g/GROUP] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Exit** | `exit`
-**Find** | `find PREFIX/KEYWORD [MORE_KEYWORDS] [PREFIX/KEYWORD [MORE_KEYWORDS]]`<br> e.g., `find n/James Jake`
-**List** | `list`
-**Mail** | `mail`<br> e.g., `mail e/johndoe@example.com`
-**Mail All** | `mailall`
-**Help** | `help`
+| Action         | Format, Examples                                                                                                                                                |
+|----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**        | `add n/NAME p/PHONE_NUMBER e/EMAIL m/MODULE g/GROUP [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com m/CS2100 g/W12 t/friend t/colleague` |
+| **Clear**      | `clear`                                                                                                                                                         |
+| **Delete**     | `delete INDEX`<br> e.g., `delete 3`                                                                                                                             |
+| **Edit**       | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [m/MODULE] [g/GROUP] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                            |
+| **Exit**       | `exit`                                                                                                                                                          |
+| **Find**       | `find PREFIX/KEYWORD [MORE_KEYWORDS] [PREFIX/KEYWORD [MORE_KEYWORDS]]`<br> e.g., `find n/James Jake`                                                            |
+| **List**       | `list`                                                                                                                                                          |
+| **Mail Index** | `mail-index`<br> e.g., `mail 2`                                                                                                                                 |
+| **Mail X**     | `mail-x`<br> e.g., `mail e/johndoe@example.com n/Alex`                                                                                                          |
+| **Mail All**   | `mailall`                                                                                                                                                       |
+| **Help**       | `help`                                                                                                                                                          |
