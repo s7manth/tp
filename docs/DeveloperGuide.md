@@ -2,24 +2,28 @@
 layout: page
 title: Developer Guide
 ---
+## Table of Contents
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 <div markdown="span" class="alert alert-primary">
 
@@ -27,6 +31,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 </div>
 
 ### Architecture
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -68,6 +73,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 The sections below give more details of each component.
 
 ### UI component
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2122S2-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
@@ -85,6 +91,7 @@ The `UI` component,
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
 ### Logic component
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 **API** : [`Logic.java`](https://github.com/AY2122S2-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
@@ -114,7 +121,9 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
+
 **API** : [`Model.java`](https://github.com/AY2122S2-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+
 
 <img src="images/ModelClassDiagramV3.png" width="550" />
 
@@ -140,6 +149,7 @@ The `Model` component,
 
 
 ### Storage component
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 **API** : [`Storage.java`](https://github.com/AY2122S2-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -151,20 +161,24 @@ The `Storage` component,
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 This section describes some noteworthy details on how certain features are implemented.
 
 ### Task Manager feature
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 #### Implementation
 
-This Task Manager feature is implemented with reference to how AddressBook/ContactList was implemented.
+This Task Manager feature is implemented similarly to how commands interact with the XYZManagers,
+as seen in the [architecture](#architecture).
 Below shows the important classes that were created:
 
 Logic:
@@ -186,7 +200,7 @@ Storage:
 * JsonTaskListStorage
 * TaskListStorage
 
-Most of these classes were linked to the respective XYZManager components in a similar way as ContactList.
+Most of these classes were linked to the respective XYZManager components.
 For example, LogicManager now tries to save to the storage's contact list and task lists:
 
 ```
@@ -194,9 +208,9 @@ For example, LogicManager now tries to save to the storage's contact list and ta
             storage.saveTaskList(model.getTaskList());
 ```
 
-The following sequence diagram shows how the newTask operation works:
+The following sequence diagram also shows how the newTask operation works in more detail:
 
-<img src="images/newTask-SequenceDiagram.png" width="500" />
+<img src="images/newTask-SequenceDiagram.png" width="1000" />
 
 The current Task List uses a Priority Queue internally to sort/rank the tasks. Hence, the tasks
 are prioritised according to the closeness to the deadline. Ie, a Task with a deadline of 1 March
@@ -226,6 +240,7 @@ will be in front of another Task with deadline of 1 December of the same year.
     allow for finer control over the codebase.
 
 ### Undo/redo feature
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 #### Implementation
 
@@ -344,6 +359,7 @@ user over the previously set default group value.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -354,8 +370,10 @@ user over the previously set default group value.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Requirements**
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 ### Product scope
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 **Target user profile**:
 
@@ -370,6 +388,7 @@ user over the previously set default group value.
 
 
 ### User stories
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 Priorities: High (must have), Medium (nice to have), Low (unlikely to have)
 
@@ -410,6 +429,7 @@ Priorities: High (must have), Medium (nice to have), Low (unlikely to have)
 
 
 ### Use cases
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 (For all use cases below, the **System** is `TAilor` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -483,6 +503,7 @@ Priorities: High (must have), Medium (nice to have), Low (unlikely to have)
 *{More to be added}*
 
 ### Non-Functional Requirements
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
@@ -493,6 +514,7 @@ Priorities: High (must have), Medium (nice to have), Low (unlikely to have)
 *{More to be added}*
 
 ### Glossary
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
@@ -503,6 +525,7 @@ Priorities: High (must have), Medium (nice to have), Low (unlikely to have)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 Given below are instructions to test the app manually.
 
@@ -512,6 +535,7 @@ testers are expected to do more *exploratory* testing.
 </div>
 
 ### Launch and shutdown
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 1. Initial launch
 
@@ -529,6 +553,7 @@ testers are expected to do more *exploratory* testing.
 1. _{ more test cases …​ }_
 
 ### Deleting a person
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 1. Deleting a person while all persons are being shown
 
@@ -546,6 +571,7 @@ testers are expected to do more *exploratory* testing.
 1. _{ more test cases …​ }_
 
 ### Saving data
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 1. Dealing with missing/corrupted data files
 

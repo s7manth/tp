@@ -65,8 +65,8 @@ public class SampleDataUtil {
 
     public static Task[] getSampleTasks() {
         return new Task[] {
-            new Task(new Description("Check CS2100 Assignment 1 submissions"), new Deadline("2022-03-21 18:16")),
-            new Task(new Description("Mark CS2030S Lab 6"), new Deadline("2022-03-27 23:59"))
+            new Task(new Description("Check CS2100 Assignment 1 submissions"), new Deadline("2022-03-21T18:16")),
+            new Task(new Description("Mark CS2030S Lab 6"), new Deadline("2022-03-27T23:59"))
         };
     }
 
