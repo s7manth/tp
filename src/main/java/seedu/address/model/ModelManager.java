@@ -104,9 +104,6 @@ public class ModelManager implements Model {
     @Override
     public void setContactList(ReadOnlyContactList newContactList) {
         this.contactList.resetData(newContactList);
-
-        // adding this command to each method that affects content as temporary solution
-        // updateVersionedContent();
     }
 
     @Override
@@ -123,18 +120,12 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         contactList.removePerson(target);
-
-        // adding this command to each method that affects content as temporary solution
-        commitContent();
     }
 
     @Override
     public void addPerson(Person person) {
         contactList.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-
-        // adding this command to each method that affects content as temporary solution
-        commitContent();
     }
 
     @Override
@@ -152,12 +143,42 @@ public class ModelManager implements Model {
     /**
      * Changes the content state of the app to the version just before the current
      */
+    @Override
     public void undoContents() {
-        // Removes the current content version from version list and gets the previous content version
         Content newContent = versionedContents.undo();
-        ContactList newContactList = new ContactList(newContent.getContactList());
+        updateContent(newContent);
+    }
 
-        this.contactList.resetData(newContactList);
+    /**
+     * Changes the content state of TAilor to the version just after the current
+     */
+    @Override
+    public void redoContents() {
+        Content newContent = versionedContents.redo();
+        updateContent(newContent);
+    }
+
+    /**
+     * Returns the current history of versioned contents
+     */
+    public VersionedContents getVersionedContents() {
+        return this.versionedContents;
+    }
+
+    /**
+     * Returns the current content state
+     */
+    public Content getCurrentContent() {
+        return this.versionedContents.getCurrentContent();
+    }
+
+    /**
+     * Commits the current content state to versionedContents
+     */
+    @Override
+    public void commitContent() {
+        Content newContent = new Content(getContactList(), getTaskList());
+        versionedContents.addContentVersion(newContent);
     }
 
     @Override
@@ -165,13 +186,17 @@ public class ModelManager implements Model {
         return versionedContents.canUndo();
     }
 
-    private void commitContent() {
-        Content newContent = new Content(getContactList(), getTaskList());
-        versionedContents.addContentVersion(newContent);
+    @Override
+    public boolean canRedo() {
+        return versionedContents.canRedo();
     }
 
-    public VersionedContents getVersionedContents() {
-        return this.versionedContents;
+    private void updateContent(Content newContent) {
+        ReadOnlyContactList newContactList = newContent.getContactList();
+        ReadOnlyTaskList newTaskList = newContent.getTaskList();
+
+        this.contactList.resetData(new ContactList(newContactList));
+        this.taskList.resetData(new PriorityTaskList(newTaskList));
     }
 
     //=========== Filtered Person List Accessors =============================================================

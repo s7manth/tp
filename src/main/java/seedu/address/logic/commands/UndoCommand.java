@@ -18,12 +18,11 @@ public class UndoCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.canUndo()) {
+        if (!model.canUndo()) {
             throw new CommandException(MESSAGE_EARLIEST_VERSION);
         }
 
         model.undoContents();
-
         return new CommandResult(MESSAGE_SUCCESS);
 
     }

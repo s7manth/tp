@@ -125,13 +125,29 @@ public interface Model {
     void setDefaultGroup(Mod mod, String value);
 
     /**
-<<<<<<< HEAD
-     * Reverts the Contact List to a previous version since application initialisation.
-     * Contact List remains unchanged if there are no existing previous versions.
+     * Reverts the Contents to a previous version since application initialisation.
      */
     void undoContents();
 
+    /**
+     * Reverts the Contents to a version after the current one since application initialisation.
+     */
+    void redoContents();
+
+    /**
+     * Commits the new content state to the history
+     */
+    void commitContent();
+
+    /**
+     * Checks if the model has a content state before the current one
+     */
     boolean canUndo();
+
+    /**
+     * Checks if the model has a content state after the current one
+     */
+    boolean canRedo();
 
     /**
      * Returns the VersionedContents of the model

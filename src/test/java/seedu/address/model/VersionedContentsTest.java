@@ -19,7 +19,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.tasks.PriorityTaskList;
 import seedu.address.testutil.ContentBuilder;
 
-class VersionedContentListTest {
+class VersionedContentsTest {
     private final Content typicalContent = getTypicalContent();
     private final Content emptyContent = new ContentBuilder().build();
 
@@ -27,6 +27,9 @@ class VersionedContentListTest {
     void constructor() {
         VersionedContents versionedContents = new VersionedContents(emptyContent);
         assertEquals(versionedContents.getContentStateList(), List.of(emptyContent));
+
+        VersionedContents newVersionedContents = new VersionedContents(new VersionedContents(typicalContent));
+        assertEquals(newVersionedContents, new VersionedContents(typicalContent));
     }
 
     @Test

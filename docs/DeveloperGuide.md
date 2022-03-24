@@ -246,11 +246,11 @@ will be in front of another Task with deadline of 1 December of the same year.
 
 The undo/redo mechanism is facilitated by `VersionedContents`. It extends `Content` with an undo/redo history, stored internally as an `contentStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedContents#commit()` — Saves the current content state in its history.
-* `VersionedContents#undo()` — Restores the previous content state from its history.
-* `VersionedContents#redo()` — Restores a previously undone content state from its history.
+* `VersionedContents#commitContent()` — Saves the current content state in its history.
+* `VersionedContents#undoContents()` — Restores the previous content state from its history.
+* `VersionedContents#redoContents()` — Restores a previously undone content state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitContent()`, `Model#undoContent()` and `Model#redoContent()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitContent()`, `Model#undoContents()` and `Model#redoContents()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
@@ -270,7 +270,7 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoContent()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous content state, and restores the content to that state.
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoContents()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous content state, and restores the content to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -287,13 +287,13 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoContent()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the content to that state.
+The `redo` command does the opposite — it calls `Model#redoContents()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the content to that state.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `contentStateList.size() - 1`, pointing to the latest contact list state, then there are no undone content states to restore. The `redo` command uses `Model#canRedoContent()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the content, such as `list`, will usually not call `Model#commitContent()`, `Model#undoContent()` or `Model#redoContent()`. Thus, the `contentStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the content, such as `list`, will usually not call `Model#commitContent()`, `Model#undoContents()` or `Model#redoContents()`. Thus, the `contentStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 

@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -12,6 +13,7 @@ import static seedu.address.testutil.TypicalTasks.ASSIGNMENT;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -104,19 +106,30 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    //=========== VersionedContent tests ================================================================================
+
+    @Test
     public void undoContents() {
         modelManager.addPerson(ALICE);
+        modelManager.commitContent();
         modelManager.undoContents();
 
-        assertEquals(modelManager, new ModelManager());
+        assertEquals(modelManager.getCurrentContent(), new Content(new ContactList(), new PriorityTaskList()));
     }
 
     @Test
-    public void isEarliestContentVersion() {
-        assertTrue(modelManager.canUndo());
-
+    public void redoContents() {
         modelManager.addPerson(ALICE);
-        assertFalse(modelManager.canUndo());
+        modelManager.commitContent();
+        modelManager.undoContents();
+        modelManager.redoContents();
+
+        ContactList contactListWithAlice = new ContactListBuilder().withPerson(ALICE).build();
+        assertEquals(modelManager.getCurrentContent(), new Content(contactListWithAlice, new PriorityTaskList()));
     }
 
     @Test
@@ -126,9 +139,46 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    public void getCurrentContent() {
+        assertEquals(modelManager.getCurrentContent(), new Content(new ContactList(), new PriorityTaskList()));
     }
+
+    @Test
+    public void commitContent() {
+        VersionedContents initVersionedContents = new VersionedContents(modelManager.getVersionedContents());
+        modelManager.addPerson(ALICE);
+        modelManager.commitContent();
+        VersionedContents newVersionedContents = new VersionedContents(modelManager.getVersionedContents());
+
+        assertNotEquals(initVersionedContents, newVersionedContents);
+        Content newContent = newVersionedContents.getCurrentContent();
+        initVersionedContents.addContentVersion(newContent);
+        assertEquals(initVersionedContents, newVersionedContents);
+    }
+
+    @Test
+    public void canUndo() {
+        assertFalse(modelManager.canUndo());
+
+        modelManager.addPerson(ALICE);
+        modelManager.commitContent();
+        assertTrue(modelManager.canUndo());
+    }
+
+    @Test
+    public void canRedo() {
+        assertFalse(modelManager.canRedo());
+
+        modelManager.addPerson(ALICE);
+        modelManager.commitContent();
+        assertFalse(modelManager.canRedo());
+
+        modelManager.undoContents();
+        assertTrue(modelManager.canRedo());
+    }
+
+
+    //=========== Other tests ================================================================================
 
     @Test
     public void equals() {

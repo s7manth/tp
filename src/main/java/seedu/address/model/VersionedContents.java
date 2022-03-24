@@ -27,6 +27,20 @@ public class VersionedContents {
     }
 
     /**
+     * Create a new copy of VersionedContents from a given one
+     * @param otherVersionedContent other VersionedContents to copy from
+     */
+    public VersionedContents(VersionedContents otherVersionedContent) {
+        requireNonNull(otherVersionedContent);
+        List<Content> newContentStates = otherVersionedContent.getContentStateList();
+
+        assert newContentStates.size() > 0; // VersionedContents must always contain 1 content version at least
+
+        this.contentStateList.addAll(List.copyOf(newContentStates));
+        this.currentStatePointer = newestVersionIndex();
+    }
+
+    /**
      * Adds a new Content version.
      * @param newContentVersion new content version to add
      */

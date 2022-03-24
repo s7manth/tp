@@ -189,9 +189,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public void undoContents() {}
-
-        @Override
         public void setDefaultGroup(Mod mod, String value) {
             throw new AssertionError("This method should not be called.");
         }
@@ -217,7 +214,19 @@ public class AddCommandTest {
         }
 
         @Override
+        public void undoContents() {throw new AssertionError("This method should not be called.");}
+
+        @Override
+        public void redoContents() {throw new AssertionError("This method should not be called.");}
+
+        @Override
         public boolean canUndo() {throw new AssertionError("This method should not be called.");}
+
+        @Override
+        public boolean canRedo() {throw new AssertionError("This method should not be called.");}
+
+        @Override
+        public void commitContent() {throw new AssertionError("This method should not be called.");}
     }
 
     /**
