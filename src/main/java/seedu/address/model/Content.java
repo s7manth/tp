@@ -3,7 +3,6 @@ package seedu.address.model;
 import seedu.address.commons.util.StringBuilderUtil;
 import seedu.address.model.tasks.PriorityTaskList;
 import seedu.address.model.tasks.ReadOnlyTaskList;
-import seedu.address.model.tasks.Task;
 
 import static java.util.Objects.requireNonNull;
 
@@ -60,6 +59,6 @@ public class Content {
         stringBuilderUtil.appendAll("Contact List: ", contactList.toString()
                 , "\nTask List: ", taskList.toString());
 
-        return stringBuilderUtil.toString();
+        return stringBuilderUtil.getFormattedOutput();
     }
 }

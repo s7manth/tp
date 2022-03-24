@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.TypicalContents.getTypicalContent;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalContactList;
 
@@ -16,10 +17,12 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
+import seedu.address.model.tasks.PriorityTaskList;
+import seedu.address.testutil.ContentBuilder;
 
 class VersionedContentListTest {
-    private final Content typicalContent = new Content(getTypicalContactList());
-    private final Content emptyContent = new Content(new ContactListStub(List.of()));
+    private final Content typicalContent = getTypicalContent();
+    private final Content emptyContent = new ContentBuilder().build();
 
     @Test
     void constructor() {
@@ -47,7 +50,7 @@ class VersionedContentListTest {
     void undo() {
         List<Person> newPersons = List.of(ALICE);
         ContactListStub newData = new ContactListStub(newPersons);
-        Content content = new Content(newData);
+        Content content = new Content(newData, new PriorityTaskList());
         VersionedContents emptyVersionedContents = new VersionedContents(emptyContent);
 
         emptyVersionedContents.addContentVersion(content);

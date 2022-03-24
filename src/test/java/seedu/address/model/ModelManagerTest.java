@@ -19,6 +19,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.address.model.tasks.PriorityTaskList;
 import seedu.address.testutil.ContactListBuilder;
+import seedu.address.testutil.ContentBuilder;
 
 public class ModelManagerTest {
 
@@ -120,7 +121,7 @@ public class ModelManagerTest {
 
     @Test
     public void getVersionedContents() {
-        Content initialContents = new Content(new ContactList());
+        Content initialContents = new ContentBuilder().build();
         assertEquals(modelManager.getVersionedContents(), new VersionedContents(initialContents));
     }
 
