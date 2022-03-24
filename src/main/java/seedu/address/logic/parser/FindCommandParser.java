@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Arrays;
@@ -18,7 +18,7 @@ import seedu.address.model.person.predicates.EmailContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.GroupContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.ModContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
-import seedu.address.model.person.predicates.PhoneContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.StudentNumberContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.TagsContainsKeywordsPredicate;
 
 /**
@@ -42,7 +42,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         // need to add whitespace for compatibility with tokenizer that was originally used for commands
         // with index preambles.
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(" " + trimmedArgs, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                ArgumentTokenizer.tokenize(" " + trimmedArgs, PREFIX_NAME, PREFIX_STUDENT_NUMBER, PREFIX_EMAIL,
                         PREFIX_GROUP, PREFIX_MOD, PREFIX_TAG);
 
 
@@ -53,9 +53,9 @@ public class FindCommandParser implements Parser<FindCommand> {
             String[] keywords = argMultimap.getValue(PREFIX_NAME).get().split("\\s+");
             compPreds.addPredicate(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         }
-        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            String[] keywords = argMultimap.getValue(PREFIX_PHONE).get().split("\\s+");
-            compPreds.addPredicate(new PhoneContainsKeywordsPredicate(Arrays.asList(keywords)));
+        if (argMultimap.getValue(PREFIX_STUDENT_NUMBER).isPresent()) {
+            String[] keywords = argMultimap.getValue(PREFIX_STUDENT_NUMBER).get().split("\\s+");
+            compPreds.addPredicate(new StudentNumberContainsKeywordsPredicate(Arrays.asList(keywords)));
 
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {

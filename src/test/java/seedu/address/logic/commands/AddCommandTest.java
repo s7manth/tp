@@ -23,6 +23,8 @@ import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Mod;
 import seedu.address.model.person.Person;
+import seedu.address.model.tasks.ReadOnlyTaskList;
+import seedu.address.model.tasks.Task;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -79,7 +81,7 @@ public class AddCommandTest {
     /**
      * A default model stub that have all of the methods failing.
      */
-    private class ModelStub implements Model {
+    protected static class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -122,6 +124,27 @@ public class AddCommandTest {
 
         @Override
         public ReadOnlyContactList getContactList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getTaskListFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTaskListFilePath(Path taskListFilePath) {
+            throw new AssertionError("This method should not be called.");
+
+        }
+
+        @Override
+        public void setTaskList(ReadOnlyTaskList taskList) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyTaskList getTaskList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -182,14 +205,29 @@ public class AddCommandTest {
         }
         @Override
         public void setDefaultGroup(Mod mod, String value) {
+            throw new AssertionError("This method should not be called.");
+        }
 
+        @Override
+        public boolean hasTask(Task task) {
+            return false;
+        }
+
+        @Override
+        public void deleteTask(Task target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTask(Task task) {
+            throw new AssertionError("This method should not be called.");
         }
     }
 
     /**
      * A Model stub that contains a single person.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    protected static class ModelStubWithPerson extends ModelStub {
         private final Person person;
 
         ModelStubWithPerson(Person person) {
@@ -207,7 +245,7 @@ public class AddCommandTest {
     /**
      * A Model stub that always accept the person being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
+    protected static class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
 
         @Override

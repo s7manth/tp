@@ -110,25 +110,26 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `TailorParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `TailorParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagramV2.png" width="550" />
 
 
 The `Model` component,
 
 * stores the contact list data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the task list data i.e., all `Task` objects (which are contained in a `PriorityTaskList` object).
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects. This diagram is also truncated slightly as it does not show the Task classes.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<img src="images/BetterModelClassDiagram.png" width="550" />
 
 </div>
 
@@ -137,11 +138,11 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagramV2.png" width="550" />
 
 The `Storage` component,
-* can save both contact list data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save contact list data, task list data and user preference data in json format, and read them back into corresponding objects.
+* inherits from `ContactListStorage`, `TaskListStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -153,6 +154,71 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Task Manager feature
+
+#### Implementation
+
+This Task Manager feature is implemented with reference to how AddressBook/ContactList was implemented.
+Below shows the important classes that were created:
+
+Logic:
+* NewTaskCommand (and its parser)
+* RemoveTaskCommand (and its parser)
+
+Model:
+* DuplicateTaskException
+* TaskNotFoundException
+* Deadline
+* Description
+* Task (that uses Deadline and Description like how Person uses Name and Phone)
+* ReadOnlyTaskList
+* PriorityTaskList
+
+Storage:
+* JsonAdaptedTask
+* JsonSerializableTaskList
+* JsonTaskListStorage
+* TaskListStorage
+
+Most of these classes were linked to the respective XYZManager components in a similar way as ContactList.
+For example, LogicManager now tries to save to the storage's contact list and task lists:
+
+```
+            storage.saveContactList(model.getContactList());
+            storage.saveTaskList(model.getTaskList());
+```
+
+The following sequence diagram shows how the newTask operation works:
+
+<img src="images/newTask-SequenceDiagram.png" width="500" />
+
+The current Task List uses a Priority Queue internally to sort/rank the tasks. Hence, the tasks
+are prioritised according to the closeness to the deadline. Ie, a Task with a deadline of 1 March
+will be in front of another Task with deadline of 1 December of the same year.
+
+#### Design Considerations
+
+**Aspect: Extendibility**
+
+* Extendibility was heavily considered when implementing this feature. For Instance,
+  * A ReadOnlyTaskList was done instead of just a single TaskList class, to allow for multiple versions of a Task List being
+    used if desired. Ie perhaps a Task List that is sorted according to a new "Emergency" level instead of just date-time.
+  * Deadline and Description classes were used instead of just a String and a LocalDateTime field to make the codebase more
+    consistent with one another as seen from Person and its corresponding fields. This also would then allow a consolidated
+    parsing and checking via the utilities.
+
+**Aspect: Conformity**
+
+* To allow the entire application to look like it has been coded by one person, the implementation of this task manager
+  feature was implemented in a similar way as to how AddressBook/ContactList is implemented, along with its interactions
+  with the XYZManagers.
+  * An example would be to include a new `TaskListStorage` Interface for the `Storage` Interface to extend from. This
+    hence provides the methods and an interface/facade for other parts of the code to perform task list operations on.
+  * Another example would be how the Description and Deadlines for a `Task` are represented as individual classes instead
+    of a String and a non-wrapped LocalDateTime, respectively. This is similar to how `Person` wraps the individual person
+    attributes like Name and Phone. This also allows the Description and Deadline objects to be created separately and
+    allow for finer control over the codebase.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -395,7 +461,8 @@ Priorities: High (must have), Medium (nice to have), Low (unlikely to have)
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Tutor**: A tutor is a teaching assistant for a particular module in NUS.
-* **Tutorial group**: A group of students managed under a tutor.
+* **Module**: The subject being taught by the tutor.
+* **Group**: A group of students belonging to a particular module managed under a tutor.
 
 --------------------------------------------------------------------------------------------------------------------
 

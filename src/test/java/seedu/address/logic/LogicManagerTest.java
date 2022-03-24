@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.GROUP_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.MOD_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.STUDENT_NUMBER_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.AMY;
 
@@ -29,7 +29,9 @@ import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniqueModuleList;
+import seedu.address.model.tasks.PriorityTaskList;
 import seedu.address.storage.JsonContactListStorage;
+import seedu.address.storage.JsonTaskListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PersonBuilder;
@@ -48,7 +50,9 @@ public class LogicManagerTest {
         JsonContactListStorage contactListStorage =
                 new JsonContactListStorage(temporaryFolder.resolve("data/contactlist.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(contactListStorage, userPrefsStorage);
+        JsonTaskListStorage taskListStorage =
+                new JsonTaskListStorage(temporaryFolder.resolve("data/tasklist.json"));
+        StorageManager storage = new StorageManager(contactListStorage, userPrefsStorage, taskListStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -77,11 +81,13 @@ public class LogicManagerTest {
                 new JsonContactListIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionContactList.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(contactListStorage, userPrefsStorage);
+        JsonTaskListStorage taskListStorage =
+                new JsonTaskListStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
+        StorageManager storage = new StorageManager(contactListStorage, userPrefsStorage, taskListStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + STUDENT_NUMBER_DESC_AMY + EMAIL_DESC_AMY
                 + GROUP_DESC_AMY + MOD_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
@@ -131,7 +137,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getContactList(), new UserPrefs(), new UniqueModuleList());
+        Model expectedModel = new ModelManager(model.getContactList(), new UserPrefs(), new PriorityTaskList());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
