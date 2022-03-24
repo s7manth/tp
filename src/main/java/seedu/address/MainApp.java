@@ -21,12 +21,16 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.tasks.PriorityTaskList;
+import seedu.address.model.tasks.ReadOnlyTaskList;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.ContactListStorage;
 import seedu.address.storage.JsonContactListStorage;
+import seedu.address.storage.JsonTaskListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
+import seedu.address.storage.TaskListStorage;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
@@ -57,7 +61,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         ContactListStorage contactListStorage = new JsonContactListStorage(userPrefs.getContactListFilePath());
-        storage = new StorageManager(contactListStorage, userPrefsStorage);
+        TaskListStorage taskListStorage = new JsonTaskListStorage(userPrefs.getTaskListFilePath());
+        storage = new StorageManager(contactListStorage, userPrefsStorage, taskListStorage);
 
         initLogging(config);
 
@@ -75,22 +80,33 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyContactList> contactListOptional;
-        ReadOnlyContactList initialData;
+        ReadOnlyContactList initialContactList;
+        Optional<ReadOnlyTaskList> taskListOptional;
+        ReadOnlyTaskList initialTaskList;
         try {
             contactListOptional = storage.readContactList();
-            if (!contactListOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample ContactList");
+            if (contactListOptional.isEmpty()) {
+                logger.info("Contact List Data file not found. Will be starting with a sample ContactList");
             }
-            initialData = contactListOptional.orElseGet(SampleDataUtil::getSampleContactList);
+            initialContactList = contactListOptional.orElseGet(SampleDataUtil::getSampleContactList);
+
+            taskListOptional = storage.readTaskList();
+            if (taskListOptional.isEmpty()) {
+                logger.info("Task List data file not found. Will be starting with a sample TaskList");
+            }
+            initialTaskList = taskListOptional.orElseGet(SampleDataUtil::getSampleTaskList);
+
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty ContactList");
-            initialData = new ContactList();
+            initialContactList = new ContactList();
+            initialTaskList = new PriorityTaskList();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty ContactList");
-            initialData = new ContactList();
+            initialContactList = new ContactList();
+            initialTaskList = new PriorityTaskList();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return new ModelManager(initialContactList, userPrefs, initialTaskList);
     }
 
     private void initLogging(Config config) {

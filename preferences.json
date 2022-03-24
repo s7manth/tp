@@ -7,5 +7,6 @@
       "y" : 71
     }
   },
-  "contactListFilePath" : "data/contactlist.json"
+  "contactListFilePath" : "data/contactlist.json",
+  "taskListFilePath" : "data/tasklist.json"
 }

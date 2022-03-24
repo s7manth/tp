@@ -7,6 +7,8 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Mod;
 import seedu.address.model.person.Person;
+import seedu.address.model.tasks.ReadOnlyTaskList;
+import seedu.address.model.tasks.Task;
 
 /**
  * The API of the Model component.
@@ -52,6 +54,24 @@ public interface Model {
 
     /** Returns the ContactList */
     ReadOnlyContactList getContactList();
+
+    /**
+     * Returns the user prefs' task list file path.
+     */
+    Path getTaskListFilePath();
+
+    /**
+     * Sets the user prefs' task list file path.
+     */
+    void setTaskListFilePath(Path taskListFilePath);
+
+    /**
+     * Replaces task list data with the data in {@code taskList}.
+     */
+    void setTaskList(ReadOnlyTaskList taskList);
+
+    /** Returns the task list */
+    ReadOnlyTaskList getTaskList();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the contact list.
@@ -105,6 +125,7 @@ public interface Model {
     void setDefaultGroup(Mod mod, String value);
 
     /**
+<<<<<<< HEAD
      * Reverts the Contact List to a previous version since application initialisation.
      * Contact List remains unchanged if there are no existing previous versions.
      */
@@ -120,4 +141,20 @@ public interface Model {
      * @return versioned contents of the model
      */
     VersionedContentList getVersionedContents();
+    /**
+     * Returns true if a task with the same identity as {@code task} exists in the task manager.
+     */
+    boolean hasTask(Task task);
+
+    /**
+     * Deletes the given task.
+     * The task must exist in the task manager.
+     */
+    void deleteTask(Task target);
+
+    /**
+     * Adds the given task.
+     * {@code task} must not already exist in the task manager.
+     */
+    void addTask(Task task);
 }
