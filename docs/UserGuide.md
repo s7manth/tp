@@ -112,8 +112,8 @@ Format: `edit INDEX [n/NAME] [a/STUDENT_NUMBER] [e/EMAIL] [m/MOD] [g/GROUP] [t/T
 * You can remove all the person’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
-*  `edit 1 a/A1122334X e/johndoe@example.com` Edits the studentNumber and email address of the 1st person to 
-   be `A1122334X` and `johndoe@example.com` respectively.
+*  `edit 1 a/A1122334X e/johndoe@example.com` Edits the studentNumber and email address of the 1st person to be 
+   `A1122334X` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 ### Deleting a person : `delete`
@@ -256,7 +256,7 @@ There is no need to save it manually.
 
 TAilor's data is saved as two JSON files. The first being ContactList's data as `[JAR file location]/data/contactlist.
 json` and the other being Task List's data saved as `[JAR file location]/data/tasklist.json`. 
- Advanced users are welcome to update the data directly by editing those data files.
+Advanced users are welcome to update the data directly by editing those data files.
 
 <div markdown="span" class="alert alert-warning"> :exclamation: **Caution:**
 If your changes to the data file makes its format invalid, TAilor will discard all data and start
