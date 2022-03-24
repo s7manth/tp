@@ -307,8 +307,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 ### Setting a Default Group for a particular Mod
 
 #### Aim of the feature
-This feature helps facilitate a better user experience and aims to follow through on TAilor's primary objective of 
-making administrative tasks less tedious and rudimentary. By setting a default group, the use need not worry 
+This feature helps facilitate a better user experience and aims to follow through on TAilor's primary objective of
+making administrative tasks less tedious and rudimentary. By setting a default group, the use need not worry
 about repeatedly entering the same group value for several students over an extended period of time.
 
 #### Implementation
@@ -323,19 +323,18 @@ Model:
 * DuplicateModuleException
 * ModuleNotFoundException
 
-The core idea behind this implementation is that every Mod object has a `defaultGroup` attribute that initially is 
-unassigned. Once the user enters the command `set-default-group m/MOD g/GROUP`, the `defaultGroup` value for that 
-"MOD" gets set to "GROUP". If the command is entered again, the value get's updated and the user is notified.
+The core idea behind this implementation is that every Mod object has a `defaultGroup` attribute that initially is
+unassigned. Once the user enters the command `set-default-group m/MOD g/GROUP`, the `defaultGroup` value for
+that "MOD" gets set to "GROUP". If the command is entered again, the value gets updated and the user is notified.
 
 #### Design Considerations
 
 **Aspect: Extendibility**
 
-This feature extends into the functionality of the Add and Edit Commands heavily. If the default value has been set, 
-then the group argument is essentially optional for the users and TAilor will update the student's data to include the 
-default group value. If a group argument is provided, however, then TAilor prioritises the field provided by the 
-uer over the previously set default group value. 
-
+This feature extends into the functionality of the Add and Edit Commands heavily. If the default value has been set,
+then the group argument is essentially optional for the users and TAilor will update the student's data to include
+the default group value. If a group argument is provided, however, then TAilor prioritises the field provided by the
+user over the previously set default group value.
 
 
 

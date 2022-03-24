@@ -112,7 +112,7 @@ Format: `edit INDEX [n/NAME] [a/STUDENT_NUMBER] [e/EMAIL] [m/MOD] [g/GROUP] [t/T
 * You can remove all the person’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
-*  `edit 1 a/A1122334X e/johndoe@example.com` Edits the studentNumber and email address of the 1st person to be 
+*  `edit 1 a/A1122334X e/johndoe@example.com` Edits the studentNumber and email address of the 1st person to be
    `A1122334X` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
@@ -132,7 +132,7 @@ Examples:
 
 ### Setting a default group value for a specific mod: `set-default-group`
 
-Sets a default group value for a particular mod that can be updated using the same command several times. Helps 
+Sets a default group value for a particular mod that can be updated using the same command several times. Helps
 prevent users from repeatedly entering the same data.
 
 Format: `set-default-group m/MOD g/GROUP`
@@ -275,10 +275,10 @@ Examples:
 ---
 ### Shortcuts
 
-Button | Result
---------|------------------
-**UP** | Refills command textbox with previous entered command
-**DOWN** | Refills command textbox with the command entered after the current one
+| Button   | Result                                                                 |
+|----------|------------------------------------------------------------------------|
+| **UP**   | Refills command textbox with previous entered command                  |
+| **DOWN** | Refills command textbox with the command entered after the current one |
 
 ### Saving the data
 
@@ -288,7 +288,7 @@ There is no need to save it manually.
 ### Editing the data file
 
 TAilor's data is saved as two JSON files. The first being ContactList's data as `[JAR file location]/data/contactlist.
-json` and the other being Task List's data saved as `[JAR file location]/data/tasklist.json`. 
+json` and the other being Task List's data saved as `[JAR file location]/data/tasklist.json`.
 Advanced users are welcome to update the data directly by editing those data files.
 
 <div markdown="span" class="alert alert-warning"> :exclamation: **Caution:**
