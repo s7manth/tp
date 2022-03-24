@@ -13,7 +13,6 @@ import static seedu.address.testutil.TypicalTasks.ASSIGNMENT;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -110,7 +109,7 @@ public class ModelManagerTest {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
     }
 
-    //=========== VersionedContent tests ================================================================================
+    //=========== VersionedContent tests ==============================================================
 
     @Test
     public void undoContents() {

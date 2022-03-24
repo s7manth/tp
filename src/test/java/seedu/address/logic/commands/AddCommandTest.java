@@ -214,19 +214,29 @@ public class AddCommandTest {
         }
 
         @Override
-        public void undoContents() {throw new AssertionError("This method should not be called.");}
+        public void undoContents() {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
-        public void redoContents() {throw new AssertionError("This method should not be called.");}
+        public void redoContents() {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
-        public boolean canUndo() {throw new AssertionError("This method should not be called.");}
+        public boolean canUndo() {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
-        public boolean canRedo() {throw new AssertionError("This method should not be called.");}
+        public boolean canRedo() {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
-        public void commitContent() {throw new AssertionError("This method should not be called.");}
+        public void commitContent() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

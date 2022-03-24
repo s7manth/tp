@@ -1,10 +1,10 @@
 package seedu.address.model;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.commons.util.StringBuilderUtil;
 import seedu.address.model.tasks.PriorityTaskList;
 import seedu.address.model.tasks.ReadOnlyTaskList;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Wrapper class for contents that are undoable in the Model
@@ -65,8 +65,8 @@ public class Content {
     @Override
     public String toString() {
         final StringBuilderUtil stringBuilderUtil = StringBuilderUtil.getInstance();
-        stringBuilderUtil.appendAll("Contact List: ", contactList.toString()
-                , "\nTask List: ", taskList.toString());
+        stringBuilderUtil.appendAll("Contact List: ", contactList.toString(),
+                "\nTask List: ", taskList.toString());
 
         return stringBuilderUtil.getFormattedOutput();
     }

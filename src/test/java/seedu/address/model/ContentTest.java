@@ -1,7 +1,6 @@
 package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -41,7 +40,9 @@ class ContentTest {
     }
 
     @Test
-    void getTaskList() { assertEquals(typicalContent.getTaskList(), getTypicalTaskList());}
+    void getTaskList() {
+        assertEquals(typicalContent.getTaskList(), getTypicalTaskList());
+    }
 
     @Test
     void testEquals() {

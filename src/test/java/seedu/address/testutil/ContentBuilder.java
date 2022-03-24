@@ -1,11 +1,11 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.TypicalPersons.getTypicalContactList;
+import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
+
 import seedu.address.model.ContactList;
 import seedu.address.model.Content;
 import seedu.address.model.tasks.PriorityTaskList;
-
-import static seedu.address.testutil.TypicalPersons.getTypicalContactList;
-import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
 
 /**
  * A utility class to help with building Content objects
