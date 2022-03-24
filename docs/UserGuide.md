@@ -113,7 +113,7 @@ Format: `edit INDEX [n/NAME] [a/STUDENT_NUMBER] [e/EMAIL] [m/MOD] [g/GROUP] [t/T
 * You can remove all the person’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
-*  `edit 1 a/A1122334X e/johndoe@example.com` Edits the studentNumber and email address of the 1st person to 
+*  `edit 1 a/A1122334X e/johndoe@example.com` Edits the studentNumber and email address of the 1st person to
    be `A1122334X` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
@@ -241,7 +241,25 @@ Format: `deltask INDEX`
 Examples:
 * `delete 2` deletes the 2nd person in the task list.
 
+
+### Undo/redo a command: `undo`/`redo`
+
+Undoes the most recent command that changed the contact list or task list.
+
+Format: `undo`/`redo`
+* `undo`/`redo` will not work on commands that does not change the contact list or task list, eg. mail.
+
+Examples:
+* `delete 1` will delete the first person on the list. `undo` will then revert the contact list to contain the person deleted.
+
+
 ---
+### Shortcuts
+
+Button | Result
+--------|------------------
+**UP** | Refills command textbox with previous entered command
+**DOWN** | Refills command textbox with the command entered after the current one
 
 ### Saving the data
 
@@ -274,17 +292,19 @@ WARNING: This will override the pre-existing data with the new data you entered.
 
 ## Command summary
 
-
-| Action         | Format, Examples                                                                                                                                                |
-|----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**        | `add n/NAME p/PHONE_NUMBER e/EMAIL m/MODULE g/GROUP [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com m/CS2100 g/W12 t/friend t/colleague` |
-| **Clear**      | `clear`                                                                                                                                                         |
-| **Delete**     | `delete INDEX`<br> e.g., `delete 3`                                                                                                                             |
-| **Edit**       | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [m/MODULE] [g/GROUP] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                            |
-| **Exit**       | `exit`                                                                                                                                                          |
-| **Find**       | `find PREFIX/KEYWORD [MORE_KEYWORDS] [PREFIX/KEYWORD [MORE_KEYWORDS]]`<br> e.g., `find n/James Jake`                                                            |
-| **List**       | `list`                                                                                                                                                          |
+Action | Format, Examples
+--------|------------------
+**Add** | `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MODULE g/GROUP [t/TAG]…​` <br> e.g., `add n/James Ho a/A1234567Y e/jamesho@example.com m/CS2100 g/W12 t/friend t/colleague`
+**Clear** | `clear`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Edit** | `edit INDEX [n/NAME] [a/STUDENT_NUMBER] [e/EMAIL] [m/MODULE] [g/GROUP] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Exit** | `exit`
+**Find** | `find PREFIX/KEYWORD [MORE_KEYWORDS] [PREFIX/KEYWORD [MORE_KEYWORDS]]`<br> e.g., `find n/James Jake a/A0217`
+**List** | `list`
 | **Mail Index** | `mail-index`<br> e.g., `mail 2`                                                                                                                                 |
 | **Mail X**     | `mail-x`<br> e.g., `mail e/johndoe@example.com n/Alex`                                                                                                          |
 | **Mail All**   | `mail-all`                                                                                                                                                      |
-| **Help**       | `help`                                                                                                                                                          |
+**Help** | `help`
+**New Task** | `newtask DESCRIPTION by/DEADLINE` <br> e.g., `newtask Do homework by/2022-03-21T12:34`
+**Delete Task** | `deltask INDEX` <br> e.g., `deltask 3`
+**Undo/Redo** | `undo`/`redo`
