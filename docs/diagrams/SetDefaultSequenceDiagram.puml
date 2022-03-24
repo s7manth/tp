@@ -1,0 +1,26 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TAilorParser" as TAilorParser LOGIC_COLOR
+participant ":SetDefaultGroupCommand" as SetDefaultGroup LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":ContactList" as ContactList MODEL_COLOR
+participant ":ModuleList" as ModuleList MODEL_COLOR
+participant ":Person" as Person MODEL_COLOR
+end box
+[-> LogicManager : execute(set-default-group)
+activate LogicManager
+
+LogicManager -> TAilorParser : parseCommand(set-default-group))
+activate TAilorParser
+
+create SetDefaultGroupCommand
+TAilorParser -> SetDefaultGroupCommand
+activate SetDefaultGroupCommand
+
+@enduml
