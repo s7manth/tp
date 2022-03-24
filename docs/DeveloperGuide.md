@@ -327,6 +327,9 @@ The core idea behind this implementation is that every Mod object has a `default
 unassigned. Once the user enters the command `set-default-group m/MOD g/GROUP`, the `defaultGroup` value for
 that "MOD" gets set to "GROUP". If the command is entered again, the value gets updated and the user is notified.
 
+The sequence diagram for the command `set-default-group m/CS2103T g/W12-1` follows:
+<img src="images/SetDefaultSequenceDiagram.png" width="550"/>
+
 #### Design Considerations
 
 **Aspect: Extendibility**
