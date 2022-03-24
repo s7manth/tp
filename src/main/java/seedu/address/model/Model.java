@@ -140,7 +140,7 @@ public interface Model {
      * Returns the VersionedContents of the model
      * @return versioned contents of the model
      */
-    VersionedContentList getVersionedContents();
+    VersionedContents getVersionedContents();
     /**
      * Returns true if a task with the same identity as {@code task} exists in the task manager.
      */

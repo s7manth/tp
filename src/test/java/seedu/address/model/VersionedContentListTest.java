@@ -23,22 +23,22 @@ class VersionedContentListTest {
 
     @Test
     void constructor() {
-        VersionedContentList versionedContentList = new VersionedContentList(emptyContent);
+        VersionedContents versionedContentList = new VersionedContents(emptyContent);
 
-        assertEquals(versionedContentList.getContentVersions(), List.of(emptyContent));
+        assertEquals(versionedContentList.getVersionedContentList(), List.of(emptyContent));
     }
 
     @Test
     void addContentVersion() {
-        VersionedContentList versionedContentList = new VersionedContentList(emptyContent);
+        VersionedContents versionedContentList = new VersionedContents(emptyContent);
         versionedContentList.addContentVersion(typicalContent);
 
-        assertEquals(versionedContentList.getContentVersions(), List.of(emptyContent, typicalContent));
+        assertEquals(versionedContentList.getVersionedContentList(), List.of(emptyContent, typicalContent));
     }
 
     @Test
     void addContentVersion_null_throwsNullPointerException() {
-        VersionedContentList versionedContentList = new VersionedContentList(emptyContent);
+        VersionedContents versionedContentList = new VersionedContents(emptyContent);
         assertThrows(NullPointerException.class, () -> versionedContentList.addContentVersion(null));
     }
 
@@ -48,7 +48,7 @@ class VersionedContentListTest {
         List<Person> newPersons = List.of(ALICE);
         ContactListStub newData = new ContactListStub(newPersons);
         Content content = new Content(newData);
-        VersionedContentList emptyVersionedContents = new VersionedContentList(emptyContent);
+        VersionedContents emptyVersionedContents = new VersionedContents(emptyContent);
 
         emptyVersionedContents.addContentVersion(content);
         Content undoneContent = emptyVersionedContents.undo();
@@ -58,7 +58,7 @@ class VersionedContentListTest {
 
     @Test
     void isEarliestVersion() {
-        VersionedContentList emptyVersionedContents = new VersionedContentList(emptyContent);
+        VersionedContents emptyVersionedContents = new VersionedContents(emptyContent);
         assertTrue(emptyVersionedContents.isEarliestVersion());
 
         emptyVersionedContents.addContentVersion(typicalContent);
@@ -67,9 +67,9 @@ class VersionedContentListTest {
 
     @Test
     void equals() {
-        VersionedContentList emptyVersionedContents = new VersionedContentList(emptyContent);
-        VersionedContentList anotherEmptyVersionedContents = new VersionedContentList(emptyContent);
-        VersionedContentList typicalVersionedContents = new VersionedContentList(typicalContent);
+        VersionedContents emptyVersionedContents = new VersionedContents(emptyContent);
+        VersionedContents anotherEmptyVersionedContents = new VersionedContents(emptyContent);
+        VersionedContents typicalVersionedContents = new VersionedContents(typicalContent);
 
         assertEquals(emptyVersionedContents, anotherEmptyVersionedContents);
         assertNotEquals(emptyVersionedContents, typicalVersionedContents);

@@ -8,16 +8,17 @@ import java.util.List;
 /**
  * Stores previous Content versions since application initialisation
  */
-public class VersionedContentList {
-    private final List<Content> contentVersions;
+public class VersionedContents {
+    private final List<Content> versionedContentList;
 
     /**
      * Constructor for the VersionedContactList object.
      * @param initialContent initial content state of the app
      */
-    public VersionedContentList(Content initialContent) {
-        this.contentVersions = new LinkedList<>();
-        contentVersions.add(initialContent);
+    public VersionedContents(Content initialContent) {
+        requireNonNull(initialContent);
+        this.versionedContentList = new LinkedList<>();
+        versionedContentList.add(initialContent);
     }
 
     /**
@@ -26,14 +27,14 @@ public class VersionedContentList {
      */
     public void addContentVersion(Content newContentVersion) {
         requireNonNull(newContentVersion);
-        contentVersions.add(newContentVersion);
+        versionedContentList.add(newContentVersion);
     }
 
     /**
      * Returns a copy of the content version list
      */
-    public List<Content> getContentVersions() {
-        return List.copyOf(this.contentVersions);
+    public List<Content> getVersionedContentList() {
+        return List.copyOf(this.versionedContentList);
     }
 
     /**
@@ -49,7 +50,7 @@ public class VersionedContentList {
      * Returns true if at the earliest Content version, false otherwise
      */
     public boolean isEarliestVersion() {
-        return contentVersions.size() == 1;
+        return versionedContentList.size() == 1;
     }
 
     /**
@@ -58,7 +59,7 @@ public class VersionedContentList {
     @Override
     public String toString() {
         StringBuilder resString = new StringBuilder();
-        for (Content contentVersion : contentVersions) {
+        for (Content contentVersion : versionedContentList) {
             resString.append(contentVersion.toString() + "\n");
         }
         return resString.toString();
@@ -68,21 +69,21 @@ public class VersionedContentList {
      * Pops the current content version from the content version list
      */
     private void popLastContentVersion() {
-        assert contentVersions.size() >= 1;
+        assert versionedContentList.size() >= 1;
 
-        if (contentVersions.size() == 1) {
+        if (versionedContentList.size() == 1) {
             return;
         }
 
-        int lastIndex = contentVersions.size() - 1;
-        contentVersions.remove(lastIndex);
+        int lastIndex = versionedContentList.size() - 1;
+        versionedContentList.remove(lastIndex);
     }
 
     /**
      * Returns the latest Content Version
      */
     private Content latestContent() {
-        return contentVersions.get(contentVersions.size() - 1);
+        return versionedContentList.get(versionedContentList.size() - 1);
     }
 
     @Override
@@ -93,11 +94,11 @@ public class VersionedContentList {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof VersionedContentList)) {
+        if (!(other instanceof VersionedContents)) {
             return false;
         }
 
-        VersionedContentList otherVersionedContentList = (VersionedContentList) other;
-        return this.contentVersions.equals(((VersionedContentList) other).getContentVersions());
+        VersionedContents otherVersionedContentList = (VersionedContents) other;
+        return this.versionedContentList.equals(((VersionedContents) other).getVersionedContentList());
     }
 }

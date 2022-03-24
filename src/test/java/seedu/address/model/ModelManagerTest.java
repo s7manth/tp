@@ -121,7 +121,7 @@ public class ModelManagerTest {
     @Test
     public void getVersionedContents() {
         Content initialContents = new Content(new ContactList());
-        assertEquals(modelManager.getVersionedContents(), new VersionedContentList(initialContents));
+        assertEquals(modelManager.getVersionedContents(), new VersionedContents(initialContents));
     }
 
     @Test

@@ -20,7 +20,7 @@ import seedu.address.model.ContactList;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.VersionedContentList;
+import seedu.address.model.VersionedContents;
 import seedu.address.model.person.Mod;
 import seedu.address.model.person.Person;
 import seedu.address.model.tasks.ReadOnlyTaskList;
@@ -217,7 +217,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public VersionedContentList getVersionedContents() {
+        public VersionedContents getVersionedContents() {
             return null;
         }
 

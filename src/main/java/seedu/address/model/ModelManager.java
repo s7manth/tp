@@ -31,7 +31,7 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
 
     /** List of versioned contents */
-    private final VersionedContentList versionedContents;
+    private final VersionedContents versionedContents;
 
     /**
      * Initializes a ModelManager with the given contactList, userPrefs and taskList.
@@ -46,7 +46,7 @@ public class ModelManager implements Model {
         this.taskList = new PriorityTaskList(taskList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.contactList.getPersonList());
-        this.versionedContents = new VersionedContentList(new Content(getContactList()));
+        this.versionedContents = new VersionedContents(new Content(getContactList(), getTaskList()));
     }
 
     public ModelManager() {
@@ -125,7 +125,7 @@ public class ModelManager implements Model {
         contactList.removePerson(target);
 
         // adding this command to each method that affects content as temporary solution
-        updateVersionedContent();
+        commitContent();
     }
 
     @Override
@@ -134,7 +134,7 @@ public class ModelManager implements Model {
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         // adding this command to each method that affects content as temporary solution
-        updateVersionedContent();
+        commitContent();
     }
 
     @Override
@@ -144,7 +144,7 @@ public class ModelManager implements Model {
         contactList.setPerson(target, editedPerson);
 
         // adding this command to each method that affects content as temporary solution
-        updateVersionedContent();
+        commitContent();
     }
 
     //=========== VersionedContent ================================================================================
@@ -165,12 +165,12 @@ public class ModelManager implements Model {
         return versionedContents.isEarliestVersion();
     }
 
-    private void updateVersionedContent() {
-        Content newContent = new Content(getContactList());
+    private void commitContent() {
+        Content newContent = new Content(getContactList(), getTaskList());
         versionedContents.addContentVersion(newContent);
     }
 
-    public VersionedContentList getVersionedContents() {
+    public VersionedContents getVersionedContents() {
         return this.versionedContents;
     }
 
