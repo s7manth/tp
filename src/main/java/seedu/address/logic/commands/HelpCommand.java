@@ -58,8 +58,11 @@ public class HelpCommand extends Command {
             case HelpCommand.COMMAND_WORD:
                 return new CommandResult(HelpCommand.MESSAGE_USAGE);
 
-            case MailCommand.COMMAND_WORD:
-                return new CommandResult(MailCommand.MESSAGE_USAGE);
+            case MailIndexCommand.COMMAND_WORD:
+                return new CommandResult(MailIndexCommand.MESSAGE_USAGE);
+
+            case MailXCommand.COMMAND_WORD:
+                return new CommandResult(MailXCommand.MESSAGE_USAGE);
 
             case MailAllCommand.COMMAND_WORD:
                 return new CommandResult(MailAllCommand.MESSAGE_USAGE);
