@@ -2,6 +2,7 @@
 layout: page
 title: User Guide
 ---
+## Table of Contents
 * Table of Contents
 {:toc}
 
@@ -14,6 +15,7 @@ Assistant who can type fast, TAilor can get your contact management tasks done f
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -46,6 +48,7 @@ Assistant who can type fast, TAilor can get your contact management tasks done f
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 <div markdown="block" class="alert alert-info">
 
@@ -72,6 +75,7 @@ Assistant who can type fast, TAilor can get your contact management tasks done f
 </div>
 
 ### Common commands
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 #### Viewing help : `help`
 
@@ -81,13 +85,13 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Exiting the program : `exit`
+#### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Undo/redo a command: `undo`/`redo`
+#### Undo/redo a command: `undo`/`redo`
 
 Undoes the most recent command that changed the contact list or task list.
 
@@ -98,6 +102,7 @@ Examples:
 * `delete 1` will delete the first person on the list. `undo` will then revert the contact list to contain the person deleted.
 
 ### Contact List/Student Roster commands
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 #### Adding a person: `add`
 
@@ -225,6 +230,7 @@ Clears all entries from the student roster.
 Format: `clear`
 
 ### Task List commands
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 #### Adding a new task: `newtask`
 
@@ -261,6 +267,7 @@ Examples:
 
 ---
 ### Shortcuts
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 | Button   | Result                                                                 |
 |----------|------------------------------------------------------------------------|
@@ -268,11 +275,13 @@ Examples:
 | **DOWN** | Refills command textbox with the command entered after the current one |
 
 ### Saving the data
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 TAilor data are saved in the hard disk automatically after any command that changes the data.
 There is no need to save manually.
 
 ### Editing the data file
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 TAilor data are saved as a JSON file `[JAR file location]/data/contactlist.json`.
 Task List data is also saved as a JSON file `[JAR file location]/data/tasklist.json`. Advanced users are
@@ -289,6 +298,7 @@ WARNING: This will override the pre-existing data with the new data you entered.
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the
@@ -297,6 +307,7 @@ WARNING: This will override the pre-existing data with the new data you entered.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 | Action          | Format, Examples                                                                                                                                                   |
 |-----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
