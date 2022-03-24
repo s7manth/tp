@@ -61,7 +61,7 @@ public class CompoundedPredicatesTest {
         ModContainsKeywordsPredicate modPreds = new ModContainsKeywordsPredicate(Arrays.asList("CS2100"));
 
         Person testPerson = new PersonBuilder().withEmail("Alice@google.com.sg").withMod("CS2100").withName("Alice "
-                + "Henderson").withPhone("12345").withTags("friend").build();
+                + "Henderson").withStudentNumber("A0123456L").withTags("friend").build();
 
         // no predicates
         assertTrue(preds.test(testPerson));
@@ -82,7 +82,7 @@ public class CompoundedPredicatesTest {
         ModContainsKeywordsPredicate modPreds = new ModContainsKeywordsPredicate(Arrays.asList("CS2100"));
 
         Person testPerson = new PersonBuilder().withEmail("Alice@example.com").withMod("CS2100").withName("Alice "
-                + "Henderson").withPhone("12345").withTags("friend").build();
+                + "Henderson").withStudentNumber("A0246813G").withTags("friend").build();
 
         // 1 predicate, non-matching predicate
         preds.addPredicate(emailPreds);
