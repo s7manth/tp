@@ -275,10 +275,10 @@ Examples:
 ---
 ### Shortcuts
 
-| Button   | Result                                                                 |
-|----------|------------------------------------------------------------------------|
-| **UP**   | Refills command textbox with previous entered command                  |
-| **DOWN** | Refills command textbox with the command entered after the current one |
+Button | Result
+--------|------------------
+**UP** | Refills command textbox with previous entered command
+**DOWN** | Refills command textbox with the command entered after the current one
 
 ### Saving the data
 
