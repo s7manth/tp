@@ -56,8 +56,8 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (toAdd.getGroup().equals(Group.EMPTY_GROUP)) {
-            if (model.doesModExist(toAdd.getMod()) && model.isDefaultPresent(toAdd.getMod())) {
-                toAdd.setGroup(model.getDefaultGroupModel(toAdd.getMod()));
+            if (model.doesModExistInList(toAdd.getMod()) && model.isDefaultGroupOfModPresent(toAdd.getMod())) {
+                toAdd.setGroup(model.getDefaultGroupOfMod(toAdd.getMod()));
             } else {
                 throw new CommandException(MESSAGE_NO_DEFAULT_GROUP);
             }

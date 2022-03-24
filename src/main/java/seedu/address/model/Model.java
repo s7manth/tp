@@ -95,7 +95,7 @@ public interface Model {
 
     Optional<Mod> getMod(Mod mod);
 
-    String getDefaultGroupModel(Mod mod);
+    String getDefaultGroupOfMod(Mod mod);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
@@ -118,9 +118,9 @@ public interface Model {
      * @param mod the module object meant to be checked
      * @return true
      */
-    boolean isDefaultPresent(Mod mod);
+    boolean isDefaultGroupOfModPresent(Mod mod);
 
-    boolean doesModExist(Mod mod);
+    boolean doesModExistInList(Mod mod);
 
     /**
      * Retrieves the current default group value for a particular module

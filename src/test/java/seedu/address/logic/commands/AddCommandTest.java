@@ -174,12 +174,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean isDefaultPresent(Mod mod) {
+        public boolean isDefaultGroupOfModPresent(Mod mod) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean doesModExist(Mod mod) {
+        public boolean doesModExistInList(Mod mod) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -199,7 +199,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public String getDefaultGroupModel(Mod mod) {
+        public String getDefaultGroupOfMod(Mod mod) {
             throw new AssertionError("This method should not be called.");
 
         }

@@ -41,9 +41,10 @@ public class SetDefaultGroupCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (model.doesModExist(mod)) {
+        if (model.doesModExistInList(mod)) {
             Optional<Mod> matchingMod = model.getMod(mod); //since guaranteed to not be null
-            if (model.isDefaultPresent(matchingMod.get())) {
+            assert matchingMod != null;
+            if (model.isDefaultGroupOfModPresent(matchingMod.get())) {
                 String prevDefault = model.retrievePrevDefault(matchingMod.get());
                 return new CommandResult(String.format(MESSAGE_DEFAULT_UPDATE, mod, prevDefault, defaultValue));
             }

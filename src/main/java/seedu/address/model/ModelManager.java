@@ -165,20 +165,20 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean isDefaultPresent(Mod mod) {
+    public boolean isDefaultGroupOfModPresent(Mod mod) {
         requireNonNull(mod);
         Mod modInList = this.getMod(mod).get();
         return modInList.getDefaultGroup() != null;
     }
 
     @Override
-    public boolean doesModExist(Mod mod) {
+    public boolean doesModExistInList(Mod mod) {
         requireNonNull(mod);
         return moduleList.contains(mod.value);
     }
 
     @Override
-    public String getDefaultGroupModel(Mod mod) {
+    public String getDefaultGroupOfMod(Mod mod) {
         Mod modInList = this.getMod(mod).get();
         return modInList.getDefaultGroup();
 
