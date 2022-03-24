@@ -11,7 +11,7 @@ import seedu.address.model.person.Person;
 
 public class MailAllCommand extends Command {
 
-    public static final String COMMAND_WORD = "mailall";
+    public static final String COMMAND_WORD = "mail-all";
 
     private static final String MESSAGE_SUCCESS = "Opening app for bulk emailing";
 
