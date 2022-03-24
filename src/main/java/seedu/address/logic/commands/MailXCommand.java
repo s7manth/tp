@@ -85,6 +85,31 @@ public class MailXCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         Name name = mailMDescriptor.getName().orElse(null);
+        handleNameAddition(lastShownList, emailList, name);
+
+        Email email = mailMDescriptor.getEmail().orElse(null);
+        handleEmailAddition(lastShownList, emailList, email);
+
+        Mod mod = mailMDescriptor.getMod().orElse(null);
+        handleModAddition(lastShownList, emailList, mod);
+
+        Group group = mailMDescriptor.getGroup().orElse(null);
+        handleGroupAddition(lastShownList, emailList, group);
+
+        Email[] emailListToReturn = new Email[emailList.size()];
+        emailListToReturn = emailList.toArray(emailListToReturn);
+
+        return emailListToReturn;
+    }
+
+    /**
+     * Handles name argument based email addition part to the email list.
+     * @param lastShownList The list of the people as retrieved from the model.
+     * @param emailList The list of the email addresses.
+     * @param name The name of the person as parsed from the arguments, can be null.
+     * @throws CommandException if the command execution goes unexpected.
+     */
+    private void handleNameAddition(List<Person> lastShownList, List<Email> emailList, Name name) throws CommandException {
         if (!isNull(name)) {
             if (lastShownList.stream().anyMatch(person -> person.getName().equals(name))) {
                 emailList.add(lastShownList.stream().filter(person ->
@@ -93,8 +118,16 @@ public class MailXCommand extends Command {
                 throw new CommandException(NAME_NOT_PRESENT);
             }
         }
+    }
 
-        Email email = mailMDescriptor.getEmail().orElse(null);
+    /**
+     * Handles email argument based email addition part to the email list.
+     * @param lastShownList The list of the people as retrieved from the model.
+     * @param emailList The list of the email addresses.
+     * @param email The email of the person as parsed from the arguments, can be null.
+     * @throws CommandException if the command execution goes unexpected.
+     */
+    private void handleEmailAddition(List<Person> lastShownList, List<Email> emailList, Email email) throws CommandException {
         if (!isNull(email)) {
             if (lastShownList.stream().anyMatch(person -> person.getEmail().equals(email))) {
                 Email e = lastShownList.stream().filter(person ->
@@ -107,8 +140,16 @@ public class MailXCommand extends Command {
                 throw new CommandException(EMAIL_NOT_PRESENT);
             }
         }
+    }
 
-        Mod mod = mailMDescriptor.getMod().orElse(null);
+    /**
+     * Handles module argument based email addition part to the email list.
+     * @param lastShownList The list of the people as retrieved from the model.
+     * @param emailList The list of the email addresses.
+     * @param mod The module of the person(s) as parsed from the arguments, can be null.
+     * @throws CommandException if the command execution goes unexpected.
+     */
+    private void handleModAddition(List<Person> lastShownList, List<Email> emailList, Mod mod) throws CommandException {
         if (!isNull(mod)) {
             if (lastShownList.stream().anyMatch(person -> person.getMod().equals(mod))) {
                 List<Person> peopleInModule = lastShownList.stream().filter(person ->
@@ -123,8 +164,16 @@ public class MailXCommand extends Command {
                 throw new CommandException(MOD_NOT_PRESENT);
             }
         }
+    }
 
-        Group group = mailMDescriptor.getGroup().orElse(null);
+    /**
+     * Handles group argument based email addition part to the email list.
+     * @param lastShownList The list of the people as retrieved from the model.
+     * @param emailList The list of the email addresses.
+     * @param group The group of the person(s) as parsed from the arguments, can be null.
+     * @throws CommandException if the command execution goes unexpected.
+     */
+    private void handleGroupAddition(List<Person> lastShownList, List<Email> emailList, Group group) throws CommandException {
         if (!isNull(group)) {
             if (lastShownList.stream().anyMatch(person -> person.getGroup().equals(group))) {
                 List<Person> peopleInGroup = lastShownList.stream().filter(person ->
@@ -139,13 +188,8 @@ public class MailXCommand extends Command {
                 throw new CommandException(GROUP_NOT_PRESENT);
             }
         }
-
-        Email[] emailListToReturn = new Email[emailList.size()];
-        emailListToReturn = emailList.toArray(emailListToReturn);
-
-
-        return emailListToReturn;
     }
+
 
     /**
      * Checks whether two {@code MailXCommand} objects are equal.

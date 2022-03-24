@@ -25,7 +25,7 @@ public class MailIndexCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Opening System Default Mail Application : %1$s";
+    public static final String MESSAGE_MAIL_PERSON_SUCCESS = "Opening System Default Mail Application : %1$s";
 
     private final Index targetIndex;
 
@@ -55,7 +55,7 @@ public class MailIndexCommand extends Command {
         Person personToEmail = lastShownList.get(targetIndex.getZeroBased());
 
         launchMail(personToEmail.getEmail());
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToEmail.getEmail()));
+        return new CommandResult(String.format(MESSAGE_MAIL_PERSON_SUCCESS, personToEmail.getEmail()));
     }
 
     /**
