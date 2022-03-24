@@ -62,7 +62,7 @@ public class MailXCommand extends Command {
     }
 
     /**
-     * Executes the mail-m command.
+     * Executes the mail-x command.
      * @param model {@code Model} which the command should operate on.
      * @return {@code CommandResult} object that contains the result of the execution.
      * @throws CommandException if any noncompliance occurs in the command execution.
