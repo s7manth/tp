@@ -109,7 +109,8 @@ public class MailXCommand extends Command {
      * @param name The name of the person as parsed from the arguments, can be null.
      * @throws CommandException if the command execution goes unexpected.
      */
-    private void handleNameAddition(List<Person> lastShownList, List<Email> emailList, Name name) throws CommandException {
+    private void handleNameAddition(List<Person> lastShownList, List<Email> emailList, Name name)
+            throws CommandException {
         if (!isNull(name)) {
             if (lastShownList.stream().anyMatch(person -> person.getName().equals(name))) {
                 emailList.add(lastShownList.stream().filter(person ->
@@ -127,7 +128,8 @@ public class MailXCommand extends Command {
      * @param email The email of the person as parsed from the arguments, can be null.
      * @throws CommandException if the command execution goes unexpected.
      */
-    private void handleEmailAddition(List<Person> lastShownList, List<Email> emailList, Email email) throws CommandException {
+    private void handleEmailAddition(List<Person> lastShownList, List<Email> emailList, Email email)
+            throws CommandException {
         if (!isNull(email)) {
             if (lastShownList.stream().anyMatch(person -> person.getEmail().equals(email))) {
                 Email e = lastShownList.stream().filter(person ->
@@ -149,7 +151,8 @@ public class MailXCommand extends Command {
      * @param mod The module of the person(s) as parsed from the arguments, can be null.
      * @throws CommandException if the command execution goes unexpected.
      */
-    private void handleModAddition(List<Person> lastShownList, List<Email> emailList, Mod mod) throws CommandException {
+    private void handleModAddition(List<Person> lastShownList, List<Email> emailList, Mod mod)
+            throws CommandException {
         if (!isNull(mod)) {
             if (lastShownList.stream().anyMatch(person -> person.getMod().equals(mod))) {
                 List<Person> peopleInModule = lastShownList.stream().filter(person ->
@@ -173,7 +176,8 @@ public class MailXCommand extends Command {
      * @param group The group of the person(s) as parsed from the arguments, can be null.
      * @throws CommandException if the command execution goes unexpected.
      */
-    private void handleGroupAddition(List<Person> lastShownList, List<Email> emailList, Group group) throws CommandException {
+    private void handleGroupAddition(List<Person> lastShownList, List<Email> emailList, Group group)
+            throws CommandException {
         if (!isNull(group)) {
             if (lastShownList.stream().anyMatch(person -> person.getGroup().equals(group))) {
                 List<Person> peopleInGroup = lastShownList.stream().filter(person ->
