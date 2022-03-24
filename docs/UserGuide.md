@@ -165,7 +165,7 @@ cover multiple students at once in order to mail them simultaneously.
 Format: `mail-x [e/EMAIL] [g/GROUP] [m/MOD] [n/NAME]`
 
 * This opens the default email application on the system with all the mail addresses specified by the arguments.
-* The mail addresses are additively added to the receiver's box.
+* Anyone who matches at least one of the specified arguments will be included in the mailing list.
 * This can be used to specify multiple prefix based arguments to send the same mail in a single go.
 
 Example:
@@ -292,19 +292,19 @@ WARNING: This will override the pre-existing data with the new data you entered.
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MODULE g/GROUP [t/TAG]…​` <br> e.g., `add n/James Ho a/A1234567Y e/jamesho@example.com m/CS2100 g/W12 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [a/STUDENT_NUMBER] [e/EMAIL] [m/MODULE] [g/GROUP] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Exit** | `exit`
-**Find** | `find PREFIX/KEYWORD [MORE_KEYWORDS] [PREFIX/KEYWORD [MORE_KEYWORDS]]`<br> e.g., `find n/James Jake a/A0217`
-**List** | `list`
-| **Mail Index** | `mail-index`<br> e.g., `mail 2`                                                                                                                                 |
-| **Mail X**     | `mail-x`<br> e.g., `mail e/johndoe@example.com n/Alex`                                                                                                          |
-| **Mail All**   | `mail-all`                                                                                                                                                      |
-**Help** | `help`
-**New Task** | `newtask DESCRIPTION by/DEADLINE` <br> e.g., `newtask Do homework by/2022-03-21T12:34`
-**Delete Task** | `deltask INDEX` <br> e.g., `deltask 3`
-**Undo/Redo** | `undo`/`redo`
+| Action          | Format, Examples                                                                                                                                                   |
+|-----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**         | `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MODULE g/GROUP [t/TAG]…​` <br> e.g., `add n/James Ho a/A1234567Y e/jamesho@example.com m/CS2100 g/W12 t/friend t/colleague` |
+| **Clear**       | `clear`                                                                                                                                                            |
+| **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                |
+| **Edit**        | `edit INDEX [n/NAME] [a/STUDENT_NUMBER] [e/EMAIL] [m/MODULE] [g/GROUP] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                             |
+| **Exit**        | `exit`                                                                                                                                                             |
+| **Find**        | `find PREFIX/KEYWORD [MORE_KEYWORDS] [PREFIX/KEYWORD [MORE_KEYWORDS]]`<br> e.g., `find n/James Jake a/A0217`                                                       |
+| **List**        | `list`                                                                                                                                                             |
+| **Mail Index**  | `mail-index`<br> e.g., `mail 2`                                                                                                                                    |
+| **Mail X**      | `mail-x`<br> e.g., `mail e/johndoe@example.com n/Alex`                                                                                                             |
+| **Mail All**    | `mail-all`                                                                                                                                                         |
+| **Help**        | `help`                                                                                                                                                             |
+| **New Task**    | `newtask DESCRIPTION by/DEADLINE` <br> e.g., `newtask Do homework by/2022-03-21T12:34`                                                                             |
+| **Delete Task** | `deltask INDEX` <br> e.g., `deltask 3`                                                                                                                             |
+| **Undo/Redo**   | `undo`/`redo`                                                                                                                                                      |
