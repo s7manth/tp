@@ -18,7 +18,7 @@ public class UndoCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.isEarliestContentVersion()) {
+        if (model.canUndo()) {
             throw new CommandException(MESSAGE_EARLIEST_VERSION);
         }
 

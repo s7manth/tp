@@ -1,7 +1,9 @@
 package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalContents.getTypicalContent;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -24,6 +26,13 @@ class ContentTest {
     void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Content(null, getTypicalTaskList()));
         assertThrows(NullPointerException.class, () -> new Content(getTypicalContactList(), null));
+    }
+
+    @Test
+    void getContentCopy() {
+        Content typicalContentCopy = Content.getContentCopy(typicalContent);
+        assertEquals(typicalContentCopy, typicalContent);
+        assertNotSame(typicalContentCopy, typicalContent);
     }
 
     @Test

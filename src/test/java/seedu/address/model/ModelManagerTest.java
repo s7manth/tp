@@ -113,10 +113,10 @@ public class ModelManagerTest {
 
     @Test
     public void isEarliestContentVersion() {
-        assertTrue(modelManager.isEarliestContentVersion());
+        assertTrue(modelManager.canUndo());
 
         modelManager.addPerson(ALICE);
-        assertFalse(modelManager.isEarliestContentVersion());
+        assertFalse(modelManager.canUndo());
     }
 
     @Test

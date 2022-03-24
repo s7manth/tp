@@ -192,11 +192,6 @@ public class AddCommandTest {
         public void undoContents() {}
 
         @Override
-        public boolean isEarliestContentVersion() {
-            return false;
-        }
-
-        @Override
         public void setDefaultGroup(Mod mod, String value) {
             throw new AssertionError("This method should not be called.");
         }
@@ -221,6 +216,8 @@ public class AddCommandTest {
             return null;
         }
 
+        @Override
+        public boolean canUndo() {throw new AssertionError("This method should not be called.");}
     }
 
     /**

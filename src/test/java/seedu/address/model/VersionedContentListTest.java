@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalContents.getTypicalContent;
 import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalContactList;
 
 import java.util.Collection;
 import java.util.List;
@@ -26,25 +25,38 @@ class VersionedContentListTest {
 
     @Test
     void constructor() {
-        VersionedContents versionedContentList = new VersionedContents(emptyContent);
-
-        assertEquals(versionedContentList.getVersionedContentList(), List.of(emptyContent));
+        VersionedContents versionedContents = new VersionedContents(emptyContent);
+        assertEquals(versionedContents.getContentStateList(), List.of(emptyContent));
     }
 
     @Test
     void addContentVersion() {
-        VersionedContents versionedContentList = new VersionedContents(emptyContent);
-        versionedContentList.addContentVersion(typicalContent);
+        VersionedContents versionedContents = new VersionedContents(emptyContent);
+        versionedContents.addContentVersion(typicalContent);
+        assertEquals(versionedContents.getContentStateList(), List.of(emptyContent, typicalContent));
+    }
 
-        assertEquals(versionedContentList.getVersionedContentList(), List.of(emptyContent, typicalContent));
+    @Test
+    void addContentVersionAfterUndo() {
+        VersionedContents versionedContents = new VersionedContents(emptyContent);
+        versionedContents.addContentVersion(typicalContent);
+        versionedContents.undo();
+        versionedContents.addContentVersion(typicalContent);
+        versionedContents.addContentVersion(emptyContent);
+        assertEquals(versionedContents.getContentStateList(), List.of(emptyContent, typicalContent, emptyContent));
     }
 
     @Test
     void addContentVersion_null_throwsNullPointerException() {
-        VersionedContents versionedContentList = new VersionedContents(emptyContent);
-        assertThrows(NullPointerException.class, () -> versionedContentList.addContentVersion(null));
+        VersionedContents versionedContents = new VersionedContents(emptyContent);
+        assertThrows(NullPointerException.class, () -> versionedContents.addContentVersion(null));
     }
 
+    @Test
+    void getCurrentContent() {
+        VersionedContents versionedContents = new VersionedContents(emptyContent);
+        assertEquals(versionedContents.getCurrentContent(), emptyContent);
+    }
 
     @Test
     void undo() {
@@ -58,14 +70,38 @@ class VersionedContentListTest {
         assertEquals(undoneContent, emptyContent);
     }
 
+    @Test
+    void redo() {
+        List<Person> newPersons = List.of(ALICE);
+        ContactListStub newData = new ContactListStub(newPersons);
+        Content content = new Content(newData, new PriorityTaskList());
+        VersionedContents emptyVersionedContents = new VersionedContents(emptyContent);
+
+        emptyVersionedContents.addContentVersion(content);
+        Content undoneContent = emptyVersionedContents.undo();
+        Content redoneContent = emptyVersionedContents.redo();
+        assertEquals(redoneContent, content);
+    }
 
     @Test
-    void isEarliestVersion() {
+    void testCanUndo() {
         VersionedContents emptyVersionedContents = new VersionedContents(emptyContent);
-        assertTrue(emptyVersionedContents.isEarliestVersion());
+        assertFalse(emptyVersionedContents.canUndo());
 
         emptyVersionedContents.addContentVersion(typicalContent);
-        assertFalse(emptyVersionedContents.isEarliestVersion());
+        assertTrue(emptyVersionedContents.canUndo());
+    }
+
+    @Test
+    void testCanRedo() {
+        VersionedContents emptyVersionedContents = new VersionedContents(emptyContent);
+        assertFalse(emptyVersionedContents.canRedo());
+
+        emptyVersionedContents.addContentVersion(typicalContent);
+        assertFalse(emptyVersionedContents.canRedo());
+
+        emptyVersionedContents.undo();
+        assertTrue(emptyVersionedContents.canRedo());
     }
 
     @Test

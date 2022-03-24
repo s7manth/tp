@@ -161,8 +161,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean isEarliestContentVersion() {
-        return versionedContents.isEarliestVersion();
+    public boolean canUndo() {
+        return versionedContents.canUndo();
     }
 
     private void commitContent() {

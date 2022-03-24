@@ -131,10 +131,7 @@ public interface Model {
      */
     void undoContents();
 
-    /**
-     * Checks if Contact List version is the oldest since application initialisation.
-     */
-    boolean isEarliestContentVersion();
+    boolean canUndo();
 
     /**
      * Returns the VersionedContents of the model

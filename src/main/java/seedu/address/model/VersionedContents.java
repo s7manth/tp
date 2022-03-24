@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Content.getContentCopy;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -9,16 +10,20 @@ import java.util.List;
  * Stores previous Content versions since application initialisation
  */
 public class VersionedContents {
-    private final List<Content> versionedContentList;
+    private final List<Content> contentStateList = new LinkedList<>();
+
+    /** the index pointing to the current content state of TAilor */
+    private int currentStatePointer;
 
     /**
-     * Constructor for the VersionedContactList object.
+     * Constructor for the VersionedContents object.
      * @param initialContent initial content state of the app
      */
     public VersionedContents(Content initialContent) {
         requireNonNull(initialContent);
-        this.versionedContentList = new LinkedList<>();
-        versionedContentList.add(initialContent);
+        contentStateList.add(initialContent);
+
+        currentStatePointer = 0;
     }
 
     /**
@@ -27,63 +32,77 @@ public class VersionedContents {
      */
     public void addContentVersion(Content newContentVersion) {
         requireNonNull(newContentVersion);
-        versionedContentList.add(newContentVersion);
+
+        if (currentStatePointer != newestVersionIndex()) { // remove all trailing versions
+            removeToEnd();
+        }
+
+        contentStateList.add(newContentVersion);
+        currentStatePointer = newestVersionIndex();
+    }
+
+    /**
+     * Returns a copy of current content state of TAilor
+     */
+    public Content getCurrentContent() {
+        return getContentCopy(contentStateList.get(currentStatePointer));
     }
 
     /**
      * Returns a copy of the content version list
      */
-    public List<Content> getVersionedContentList() {
-        return List.copyOf(this.versionedContentList);
+    public List<Content> getContentStateList() {
+        return List.copyOf(this.contentStateList);
     }
 
     /**
-     * Removes the current content version, and returns the content version just before this
-     * @return most recent previous content state
+     * Returns the most recent previous content state
      */
     public Content undo() {
-        popLastContentVersion();
-        return latestContent();
+        assert currentStatePointer > 0;
+
+        currentStatePointer -= 1;
+        return contentStateList.get(currentStatePointer);
+    }
+
+    /**
+     * Returns the content state after the current one
+     */
+    public Content redo() {
+        assert currentStatePointer < newestVersionIndex();
+
+        currentStatePointer += 1;
+        return contentStateList.get(currentStatePointer);
     }
 
     /**
      * Returns true if at the earliest Content version, false otherwise
      */
-    public boolean isEarliestVersion() {
-        return versionedContentList.size() == 1;
+    public boolean canUndo() {
+        return currentStatePointer > 0;
     }
 
     /**
-     * String representation of the versioned contact list.
+     * Returns true if at the latest Content version, false otherwise
      */
-    @Override
-    public String toString() {
-        StringBuilder resString = new StringBuilder();
-        for (Content contentVersion : versionedContentList) {
-            resString.append(contentVersion.toString() + "\n");
-        }
-        return resString.toString();
+    public boolean canRedo() {
+        return currentStatePointer < newestVersionIndex();
     }
 
     /**
-     * Pops the current content version from the content version list
+     * Returns the index of the last version in content state list
      */
-    private void popLastContentVersion() {
-        assert versionedContentList.size() >= 1;
-
-        if (versionedContentList.size() == 1) {
-            return;
-        }
-
-        int lastIndex = versionedContentList.size() - 1;
-        versionedContentList.remove(lastIndex);
+    private int newestVersionIndex() {
+        return contentStateList.size() - 1;
     }
 
     /**
-     * Returns the latest Content Version
+     * Removes all contents after the current state pointer in the content list
      */
-    private Content latestContent() {
-        return versionedContentList.get(versionedContentList.size() - 1);
+    private void removeToEnd() {
+        int startIndexToClear = currentStatePointer + 1;
+        int endIndexToClear = contentStateList.size();
+        contentStateList.subList(startIndexToClear, endIndexToClear).clear();
     }
 
     @Override
@@ -99,6 +118,18 @@ public class VersionedContents {
         }
 
         VersionedContents otherVersionedContentList = (VersionedContents) other;
-        return this.versionedContentList.equals(((VersionedContents) other).getVersionedContentList());
+        return this.contentStateList.equals(((VersionedContents) other).getContentStateList());
+    }
+
+    /**
+     * String representation of the versioned contact list.
+     */
+    @Override
+    public String toString() {
+        StringBuilder resString = new StringBuilder();
+        for (Content contentVersion : contentStateList) {
+            resString.append(contentVersion.toString() + "\n");
+        }
+        return resString.toString();
     }
 }

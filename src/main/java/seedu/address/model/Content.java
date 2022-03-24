@@ -25,6 +25,15 @@ public class Content {
     }
 
     /**
+     * Constructor for Content class that takes in another content.
+     * Used to make copies the content objects
+     * @param otherContent other content to create a copy of
+     */
+    public static Content getContentCopy(Content otherContent) {
+        return new Content(otherContent.getContactList(), otherContent.getTaskList());
+    }
+
+    /**
      * Returns the Contact List.
      */
     public ReadOnlyContactList getContactList() {
