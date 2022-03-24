@@ -235,7 +235,7 @@ public class AddCommandTest {
 
         @Override
         public void commitContent() {
-            throw new AssertionError("This method should not be called.");
+            return; // this method will be called when methods that changes content are called:
         }
     }
 
