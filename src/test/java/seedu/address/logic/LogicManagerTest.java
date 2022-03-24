@@ -28,7 +28,6 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.UniqueModuleList;
 import seedu.address.model.tasks.PriorityTaskList;
 import seedu.address.storage.JsonContactListStorage;
 import seedu.address.storage.JsonTaskListStorage;
