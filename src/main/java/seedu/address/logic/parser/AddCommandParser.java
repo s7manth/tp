@@ -48,7 +48,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Mod mod = ParserUtil.parseMod(argMultimap.getValue(PREFIX_MOD).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Group group = ParserUtil.parseGroup(argMultimap.getValue(PREFIX_GROUP).orElse(NULL_STRING));
+        Group group = ParserUtil.parseGroup(argMultimap.getValue(PREFIX_GROUP).orElse(""));
         Person person = new Person(name, studentNumber, email, mod, group, tagList);
 
         return new AddCommand(person);

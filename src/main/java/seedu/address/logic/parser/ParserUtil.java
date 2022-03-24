@@ -24,7 +24,6 @@ import seedu.address.model.tasks.Description;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    private static final String NULL_STRING = "null_string";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -93,8 +92,8 @@ public class ParserUtil {
      */
     public static Group parseGroup(String group) throws ParseException {
         requireNonNull(group);
-        if (group == NULL_STRING) {
-            return new Group();
+        if (group == "") {
+            return Group.EMPTY_GROUP;
         }
         //if(isNull(group))
         String trimmedGroupId = group.trim();

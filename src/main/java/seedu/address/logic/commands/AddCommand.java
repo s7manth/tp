@@ -55,7 +55,7 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (toAdd.getGroup().equals(new Group())) {
+        if (toAdd.getGroup().equals(Group.EMPTY_GROUP)) {
             if (model.doesModExist(toAdd.getMod()) && model.isDefaultPresent(toAdd.getMod())) {
                 toAdd.setGroup(model.getDefaultGroupModel(toAdd.getMod()));
             } else {
