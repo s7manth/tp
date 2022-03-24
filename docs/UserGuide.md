@@ -2,6 +2,9 @@
 layout: page
 title: User Guide
 ---
+* Table of Contents
+{:toc}
+
 
 TAilor is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI)
 while still having the benefits of a Graphical User Interface (GUI). If you are a Computer Science Teaching
@@ -68,7 +71,9 @@ Assistant who can type fast, TAilor can get your contact management tasks done f
 
 </div>
 
-### Viewing help : `help`
+### Common commands
+
+#### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
@@ -76,8 +81,25 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+### Exiting the program : `exit`
 
-### Adding a person: `add`
+Exits the program.
+
+Format: `exit`
+
+### Undo/redo a command: `undo`/`redo`
+
+Undoes the most recent command that changed the contact list or task list.
+
+Format: `undo`/`redo`
+* `undo`/`redo` will not work on commands that does not change the contact list or task list, eg. mail.
+
+Examples:
+* `delete 1` will delete the first person on the list. `undo` will then revert the contact list to contain the person deleted.
+
+### Contact List/Student Roster commands
+
+#### Adding a person: `add`
 
 Adds a person to the student roster.
 
@@ -94,13 +116,13 @@ Examples:
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com m/CS2100 g/T1 p/1234567 t/criminal`
 
 
-### Listing all persons : `list`
+#### Listing all persons : `list`
 
 Shows a list of all persons in the student roster.
 
 Format: `list`
 
-### Editing a person : `edit`
+#### Editing a person : `edit`
 
 Edits an existing person in the student roster.
 
@@ -117,7 +139,7 @@ Examples:
    be `A1122334X` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+#### Locating persons by name: `find`
 
 Finds persons whose details contain any of the given keywords.
 
@@ -144,7 +166,7 @@ Examples:
 * `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find n/alex david'](images/findAlexDavidResult.png)
 
-### Mailing a particular student based on index : `mail-index`
+#### Mailing a particular student based on index : `mail-index`
 
 Mails a person from the student roster based on the index number shown in the application.
 
@@ -157,7 +179,7 @@ Example:
 * `mail-index 2` would open the default mail on the system with the "to" box filled with the
   specified mail. Now, the email is ready to be sent to the person with the index 2 as shown on the application.
 
-### Mailing student subset based on arguments : `mail-x`
+#### Mailing student subset based on arguments : `mail-x`
 
 Mails a subset of students from the contact list. This is a broader version of mail functionality as it can
 cover multiple students at once in order to mail them simultaneously.
@@ -173,7 +195,7 @@ Example:
   all the mail addresses covered by the arguments specified. Now, the email is ready to be sent to `johndoe@example.com`
   and Alex.
 
-### Bulk Emails to everyone on the database : `mail-all`
+#### Bulk Emails to everyone on the database : `mail-all`
 
 Mails everybody in the student roster.
 
@@ -182,7 +204,7 @@ Format: `mail-all`
 * Opens the default email application on the system with all email addresses pre-filled in the receiver's
   field.
 
-### Deleting a person : `delete`
+#### Deleting a person : `delete`
 
 Deletes the specified person from the student roster.
 
@@ -196,19 +218,15 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the student roster.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Clearing all entries : `clear`
+#### Clearing all entries : `clear`
 
 Clears all entries from the student roster.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+### Task List commands
 
-Exits the program.
-
-Format: `exit`
-
-### Adding a new task: `newtask`
+#### Adding a new task: `newtask`
 
 Adds a new Task with a given description and deadline.
 
@@ -228,7 +246,7 @@ Format: `newtask DESCRIPTION by/DATETIME`
 Examples:
 * `newtask Do Homework by/2022-03-21T23:59` creates a task with description of "Do Homework" and is due on 21 March 2022, 11:59pm.
 
-### Deleting an existing task: `deltask`
+#### Deleting an existing task: `deltask`
 
 Deletes the specified person from the task list.
 
@@ -241,25 +259,13 @@ Format: `deltask INDEX`
 Examples:
 * `delete 2` deletes the 2nd person in the task list.
 
-
-### Undo/redo a command: `undo`/`redo`
-
-Undoes the most recent command that changed the contact list or task list.
-
-Format: `undo`/`redo`
-* `undo`/`redo` will not work on commands that does not change the contact list or task list, eg. mail.
-
-Examples:
-* `delete 1` will delete the first person on the list. `undo` will then revert the contact list to contain the person deleted.
-
-
 ---
 ### Shortcuts
 
-Button | Result
---------|------------------
-**UP** | Refills command textbox with previous entered command
-**DOWN** | Refills command textbox with the command entered after the current one
+| Button   | Result                                                                 |
+|----------|------------------------------------------------------------------------|
+| **UP**   | Refills command textbox with previous entered command                  |
+| **DOWN** | Refills command textbox with the command entered after the current one |
 
 ### Saving the data
 
