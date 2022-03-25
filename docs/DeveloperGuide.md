@@ -2,24 +2,28 @@
 layout: page
 title: Developer Guide
 ---
+## Table of Contents
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 <div markdown="span" class="alert alert-primary">
 
@@ -27,6 +31,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 </div>
 
 ### Architecture
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -68,6 +73,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 The sections below give more details of each component.
 
 ### UI component
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
@@ -85,6 +91,7 @@ The `UI` component,
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
 ### Logic component
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 **API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
@@ -110,85 +117,164 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `TailorParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `TailorParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
+
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagramV3.png" width="550" />
 
 
 The `Model` component,
 
-* stores the contact list data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the content data i.e., all `Person` and `Task` objects (which are contained in a `UniquePersonList` and `PriorityTaskList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the task list data i.e., all `Task` objects (which are contained in a `PriorityTaskList` object).
+* stores a `VersionedContents` object that stores the previous states of content data (to support `undo`/`redo`)
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+`VersionedContents` stores versions of the `Content` object, which in turn stores a `ContactList` and `PriorityTaskList` object. The class diagram for VersionedContents can be found below.
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<img src="images/VersionedContentsClassDiagram.png" width="250" />
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects. This diagram is also truncated slightly as it does not show the Task classes.<br>
+
+<img src="images/BetterModelClassDiagram.png" width="550" />
 
 </div>
 
 
 ### Storage component
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagramV2.png" width="550" />
 
 The `Storage` component,
-* can save both contact list data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save contact list data, task list data and user preference data in json format, and read them back into corresponding objects.
+* inherits from `ContactListStorage`, `TaskListStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Task Manager feature
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+This Task Manager feature is implemented similarly to how commands interact with the XYZManagers,
+as seen in the [architecture](#architecture).
+Below shows the important classes that were created:
 
-* `VersionedAddressBook#commit()` — Saves the current contact list state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous contact list state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone contact list state from its history.
+Logic:
+* NewTaskCommand (and its parser)
+* RemoveTaskCommand (and its parser)
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+Model:
+* DuplicateTaskException
+* TaskNotFoundException
+* Deadline
+* Description
+* Task (that uses Deadline and Description like how Person uses Name and Phone)
+* ReadOnlyTaskList
+* PriorityTaskList
+
+Storage:
+* JsonAdaptedTask
+* JsonSerializableTaskList
+* JsonTaskListStorage
+* TaskListStorage
+
+Most of these classes were linked to the respective XYZManager components.
+For example, LogicManager now tries to save to the storage's contact list and task lists:
+
+```
+            storage.saveContactList(model.getContactList());
+            storage.saveTaskList(model.getTaskList());
+```
+
+The following sequence diagram also shows how the newTask operation works in more detail:
+
+<img src="images/newTask-SequenceDiagram.png" width="1000" />
+
+The current Task List uses a Priority Queue internally to sort/rank the tasks. Hence, the tasks
+are prioritised according to the closeness to the deadline. Ie, a Task with a deadline of 1 March
+will be in front of another Task with deadline of 1 December of the same year.
+
+#### Design Considerations
+
+**Aspect: Extendibility**
+
+* Extendibility was heavily considered when implementing this feature. For Instance,
+  * A ReadOnlyTaskList was done instead of just a single TaskList class, to allow for multiple versions of a Task List being
+    used if desired. Ie perhaps a Task List that is sorted according to a new "Emergency" level instead of just date-time.
+  * Deadline and Description classes were used instead of just a String and a LocalDateTime field to make the codebase more
+    consistent with one another as seen from Person and its corresponding fields. This also would then allow a consolidated
+    parsing and checking via the utilities.
+
+**Aspect: Conformity**
+
+* To allow the entire application to look like it has been coded by one person, the implementation of this task manager
+  feature was implemented in a similar way as to how AddressBook/ContactList is implemented, along with its interactions
+  with the XYZManagers.
+  * An example would be to include a new `TaskListStorage` Interface for the `Storage` Interface to extend from. This
+    hence provides the methods and an interface/facade for other parts of the code to perform task list operations on.
+  * Another example would be how the Description and Deadlines for a `Task` are represented as individual classes instead
+    of a String and a non-wrapped LocalDateTime, respectively. This is similar to how `Person` wraps the individual person
+    attributes like Name and Phone. This also allows the Description and Deadline objects to be created separately and
+    allow for finer control over the codebase.
+
+### Undo/redo feature
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
+
+#### Implementation
+
+The undo/redo mechanism is facilitated by `VersionedContents`. It extends `Content` with an undo/redo history, stored internally as an `contentStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+
+* `VersionedContents#commitContent()` — Saves the current content state in its history.
+* `VersionedContents#undoContents()` — Restores the previous content state from its history.
+* `VersionedContents#redoContents()` — Restores a previously undone content state from its history.
+
+These operations are exposed in the `Model` interface as `Model#commitContent()`, `Model#undoContents()` and `Model#redoContents()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial contact list state, and the `currentStatePointer` pointing to that single contact list state.
+Step 1. The user launches the application for the first time. The `VersionedContents` will be initialized with the initial content state, and the `currentStatePointer` pointing to that single content state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the contact list. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the contact list after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted contact list state.
+Step 2. The user executes `delete 5` command to delete the 5th person in the contact list. The `delete` command calls `Model#commitContent()`, causing the modified state of the content after the `delete 5` command executes to be saved in the `contentStateList`, and the `currentStatePointer` is shifted to the newly inserted content state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified contact list state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitContent()`, causing another modified content state to be saved into the `contentStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the contact list state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitContent()`, so the content state will not be saved into the `contentStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous contact list state, and restores the contact list to that state.
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoContents()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous content state, and restores the content to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial content state, then there are no previous content states to restore. The `undo` command uses `Model#canUndoContent()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -201,17 +287,17 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the contact list to that state.
+The `redo` command does the opposite — it calls `Model#redoContents()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the content to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest contact list state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `contentStateList.size() - 1`, pointing to the latest contact list state, then there are no undone content states to restore. The `redo` command uses `Model#canRedoContent()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the contact list, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the content, such as `list`, will usually not call `Model#commitContent()`, `Model#undoContents()` or `Model#redoContents()`. Thus, the `contentStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all contact list states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitContent()`. Since the `currentStatePointer` is not pointing at the end of the `contentStateList`, all content states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -223,7 +309,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire contact list.
+* **Alternative 1 (current choice):** Saves the entire content.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
@@ -232,16 +318,10 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -252,8 +332,10 @@ _{Explain here how the data archiving feature will be implemented}_
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Requirements**
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 ### Product scope
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 **Target user profile**:
 
@@ -268,6 +350,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 
 ### User stories
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 Priorities: High (must have), Medium (nice to have), Low (unlikely to have)
 
@@ -308,6 +391,7 @@ Priorities: High (must have), Medium (nice to have), Low (unlikely to have)
 
 
 ### Use cases
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 (For all use cases below, the **System** is `TAilor` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -381,6 +465,7 @@ Priorities: High (must have), Medium (nice to have), Low (unlikely to have)
 *{More to be added}*
 
 ### Non-Functional Requirements
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
@@ -391,15 +476,18 @@ Priorities: High (must have), Medium (nice to have), Low (unlikely to have)
 *{More to be added}*
 
 ### Glossary
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Tutor**: A tutor is a teaching assistant for a particular module in NUS.
-* **Tutorial group**: A group of students managed under a tutor.
+* **Module**: The subject being taught by the tutor.
+* **Group**: A group of students belonging to a particular module managed under a tutor.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 Given below are instructions to test the app manually.
 
@@ -409,6 +497,7 @@ testers are expected to do more *exploratory* testing.
 </div>
 
 ### Launch and shutdown
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 1. Initial launch
 
@@ -426,6 +515,7 @@ testers are expected to do more *exploratory* testing.
 1. _{ more test cases …​ }_
 
 ### Deleting a person
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 1. Deleting a person while all persons are being shown
 
@@ -443,6 +533,7 @@ testers are expected to do more *exploratory* testing.
 1. _{ more test cases …​ }_
 
 ### Saving data
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 1. Dealing with missing/corrupted data files
 

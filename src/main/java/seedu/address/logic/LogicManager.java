@@ -47,6 +47,7 @@ public class LogicManager implements Logic {
 
         try {
             storage.saveContactList(model.getContactList());
+            storage.saveTaskList(model.getTaskList());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }

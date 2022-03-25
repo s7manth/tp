@@ -16,6 +16,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path contactListFilePath = Paths.get("data" , "contactlist.json");
+    private Path taskListFilePath = Paths.get("data", "tasklist.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -37,6 +38,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setContactListFilePath(newUserPrefs.getContactListFilePath());
+        setTaskListFilePath(newUserPrefs.getTaskListFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -57,6 +59,15 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.contactListFilePath = contactListFilePath;
     }
 
+    public Path getTaskListFilePath() {
+        return taskListFilePath;
+    }
+
+    public void setTaskListFilePath(Path taskListFilePath) {
+        requireNonNull(taskListFilePath);
+        this.taskListFilePath = taskListFilePath;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -69,7 +80,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && contactListFilePath.equals(o.contactListFilePath);
+                && contactListFilePath.equals(o.contactListFilePath)
+                && taskListFilePath.equals(o.taskListFilePath);
     }
 
     @Override
@@ -81,7 +93,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public String toString() {
         StringBuilderUtil stringBuilderUtil = StringBuilderUtil.getInstance();
         stringBuilderUtil.appendAll("Gui Settings : ", guiSettings,
-                "\nLocal data file location : ", contactListFilePath);
+                "\nLocal contactlist file location : ", contactListFilePath,
+                "\nLocal tasklist file location : ", taskListFilePath);
         return stringBuilderUtil.getFormattedOutput();
     }
 

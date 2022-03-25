@@ -7,6 +7,8 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Mod;
 import seedu.address.model.person.Person;
+import seedu.address.model.tasks.ReadOnlyTaskList;
+import seedu.address.model.tasks.Task;
 
 /**
  * The API of the Model component.
@@ -52,6 +54,24 @@ public interface Model {
 
     /** Returns the ContactList */
     ReadOnlyContactList getContactList();
+
+    /**
+     * Returns the user prefs' task list file path.
+     */
+    Path getTaskListFilePath();
+
+    /**
+     * Sets the user prefs' task list file path.
+     */
+    void setTaskListFilePath(Path taskListFilePath);
+
+    /**
+     * Replaces task list data with the data in {@code taskList}.
+     */
+    void setTaskList(ReadOnlyTaskList taskList);
+
+    /** Returns the task list */
+    ReadOnlyTaskList getTaskList();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the contact list.
@@ -103,4 +123,51 @@ public interface Model {
     String retrievePrevDefault(Mod mod);
 
     void setDefaultGroup(Mod mod, String value);
+
+    /**
+     * Reverts the Contents to a previous version since application initialisation.
+     */
+    void undoContents();
+
+    /**
+     * Reverts the Contents to a version after the current one since application initialisation.
+     */
+    void redoContents();
+
+    /**
+     * Commits the new content state to the history
+     */
+    void commitContent();
+
+    /**
+     * Checks if the model has a content state before the current one
+     */
+    boolean canUndo();
+
+    /**
+     * Checks if the model has a content state after the current one
+     */
+    boolean canRedo();
+
+    /**
+     * Returns the VersionedContents of the model
+     * @return versioned contents of the model
+     */
+    VersionedContents getVersionedContents();
+    /**
+     * Returns true if a task with the same identity as {@code task} exists in the task manager.
+     */
+    boolean hasTask(Task task);
+
+    /**
+     * Deletes the given task.
+     * The task must exist in the task manager.
+     */
+    void deleteTask(Task target);
+
+    /**
+     * Adds the given task.
+     * {@code task} must not already exist in the task manager.
+     */
+    void addTask(Task task);
 }

@@ -1,45 +1,45 @@
 {
   "persons" : [ {
     "name" : "Alex Yeoh",
-    "phone" : "87438807",
     "email" : "alexyeoh@example.com",
     "mod" : "CS2100",
     "group" : "W13",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "friends" ],
+    "studentNumber" : "A1234567B"
   }, {
     "name" : "Bernice Yu",
-    "phone" : "99272758",
     "email" : "berniceyu@example.com",
     "mod" : "CS2100",
     "group" : "W12",
-    "tagged" : [ "colleagues", "friends" ]
+    "tagged" : [ "colleagues", "friends" ],
+    "studentNumber" : "A1111111X"
   }, {
     "name" : "Charlotte Oliveiro",
-    "phone" : "93210283",
     "email" : "charlotte@example.com",
     "mod" : "CS1101S",
     "group" : "T06",
-    "tagged" : [ "neighbours" ]
+    "tagged" : [ "neighbours" ],
+    "studentNumber" : "A2222222Y"
   }, {
     "name" : "David Li",
-    "phone" : "91031282",
     "email" : "lidavid@example.com",
     "mod" : "PLS2001",
     "group" : "T07",
-    "tagged" : [ "family" ]
+    "tagged" : [ "family" ],
+    "studentNumber" : "A3333333W"
   }, {
     "name" : "Irfan Ibrahim",
-    "phone" : "92492021",
     "email" : "irfan@example.com",
     "mod" : "MA1101R",
     "group" : "T08",
-    "tagged" : [ "classmates" ]
+    "tagged" : [ "classmates" ],
+    "studentNumber" : "A4444444H"
   }, {
     "name" : "Roy Balakrishnan",
-    "phone" : "92624417",
     "email" : "royb@example.com",
     "mod" : "GER1000",
     "group" : "T09",
-    "tagged" : [ "colleagues" ]
+    "tagged" : [ "colleagues" ],
+    "studentNumber" : "A5555555Z"
   } ]
 }

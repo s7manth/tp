@@ -11,8 +11,13 @@ import seedu.address.model.person.Group;
 import seedu.address.model.person.Mod;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.StudentNumber;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tasks.Deadline;
+import seedu.address.model.tasks.Description;
+import seedu.address.model.tasks.PriorityTaskList;
+import seedu.address.model.tasks.ReadOnlyTaskList;
+import seedu.address.model.tasks.Task;
 
 /**
  * Contains utility methods for populating {@code ContactList} with sample data.
@@ -20,22 +25,22 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
-            new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
+            new Person(new Name("Alex Yeoh"), new StudentNumber("A8743880A"), new Email("alexyeoh@example.com"),
             new Mod("CS2030S"), new Group("T01"),
                 getTagSet("friends")),
-            new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
+            new Person(new Name("Bernice Yu"), new StudentNumber("A9927275B"), new Email("berniceyu@example.com"),
                 new Mod("CS2030S"), new Group("T01"),
                 getTagSet("colleagues", "friends")),
-            new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Mod("CS2030S"), new Group("T02"),
+            new Person(new Name("Charlotte Oliveiro"), new StudentNumber("A9321028C"),
+                    new Email("charlotte@example.com"), new Mod("CS2030S"), new Group("T02"),
                 getTagSet("neighbours")),
-            new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
+            new Person(new Name("David Li"), new StudentNumber("A9103128D"), new Email("lidavid@example.com"),
                 new Mod("CS2030S"), new Group("T03"),
                 getTagSet("family")),
-            new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
+            new Person(new Name("Irfan Ibrahim"), new StudentNumber("A9249202E"), new Email("irfan@example.com"),
                 new Mod("CS2030S"), new Group("T02"),
                 getTagSet("classmates")),
-            new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
+            new Person(new Name("Roy Balakrishnan"), new StudentNumber("A9262441F"), new Email("royb@example.com"),
                 new Mod("CS2030S"), new Group("T01"),
                 getTagSet("colleagues"))
         };
@@ -58,4 +63,18 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    public static Task[] getSampleTasks() {
+        return new Task[] {
+            new Task(new Description("Check CS2100 Assignment 1 submissions"), new Deadline("2022-03-21T18:16")),
+            new Task(new Description("Mark CS2030S Lab 6"), new Deadline("2022-03-27T23:59"))
+        };
+    }
+
+    public static ReadOnlyTaskList getSampleTaskList() {
+        PriorityTaskList sampleAb = new PriorityTaskList();
+        for (Task task : getSampleTasks()) {
+            sampleAb.add(task);
+        }
+        return sampleAb;
+    }
 }
