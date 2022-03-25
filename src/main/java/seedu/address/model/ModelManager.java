@@ -133,9 +133,6 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         contactList.setPerson(target, editedPerson);
-
-        // adding this command to each method that affects content as temporary solution
-        commitContent();
     }
 
     //=========== VersionedContent ================================================================================
