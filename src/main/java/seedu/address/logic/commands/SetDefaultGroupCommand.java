@@ -4,19 +4,20 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD;
 
+import java.util.logging.Logger;
+
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Mod;
 import seedu.address.model.person.UniqueModuleList;
-import seedu.address.ui.HelpWindow;
 
-import java.util.logging.Logger;
+
+
 
 public class SetDefaultGroupCommand extends Command {
 
     public static final String COMMAND_WORD = "set-default-group";
-    private static final Logger logger = LogsCenter.getLogger(SetDefaultGroupCommand.class);
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets a default value for group in the given Mod. "
             + "Parameters: "
@@ -28,6 +29,8 @@ public class SetDefaultGroupCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Default value for %1$s Module has been set to %2$s successfully!";
     public static final String MESSAGE_DEFAULT_UPDATE = "Default value for %1$s has been updated from %2$s to %3$s.";
+
+    private static final Logger logger = LogsCenter.getLogger(SetDefaultGroupCommand.class);
 
     private final Mod mod;
     private final String defaultValue;
