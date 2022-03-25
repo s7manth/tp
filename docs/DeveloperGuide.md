@@ -324,25 +324,31 @@ Commons:
 MailUtil class contains the interaction of TAior with the desktop. All the commands
 call a method in this class to accomplish their respective functionalities.
 
-The following sequence diagram shows how the `mail-index` operation works:
+[//]: # (The following sequence diagram shows how the `mail-index` operation works:)
 
-<img />
+[//]: # ()
+[//]: # (<img />)
 
-The following sequence diagram shows how the `mail-x` operation works:
+[//]: # ()
+[//]: # (The following sequence diagram shows how the `mail-x` operation works:)
 
-<img />
+[//]: # ()
+[//]: # (<img />)
 
 The following sequence diagram shows how the `mail-all` operation works:
 
-<img />
+<img src="images/MailAllSequenceDiagram.png" />
 
 
-#### Design Considerations
+[//]: # (#### Design Considerations)
 
-**Aspect: Extendibility**
+[//]: # ()
+[//]: # (**Aspect: Extendibility**)
 
+[//]: # ()
+[//]: # ()
+[//]: # (**Aspect: Conformity**)
 
-**Aspect: Conformity**
 
 
 
