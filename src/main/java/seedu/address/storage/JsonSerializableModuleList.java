@@ -13,7 +13,7 @@ import seedu.address.model.person.Mod;
 import seedu.address.model.person.UniqueModuleList;
 
 /**
- * An Immutable TaskList that is serializable to JSON format.
+ * An Immutable ModuleList that is serializable to JSON format.
  */
 @JsonRootName(value = "modulelist")
 class JsonSerializableModuleList {
@@ -23,7 +23,7 @@ class JsonSerializableModuleList {
     private final List<JsonAdaptedModule> moduleList = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableTaskList} with the given tasks.
+     * Constructs a {@code JsonSerializableModuleList} with the given tasks.
      */
     @JsonCreator
     public JsonSerializableModuleList(@JsonProperty("moduleList") List<JsonAdaptedModule> modules) {
@@ -31,16 +31,16 @@ class JsonSerializableModuleList {
     }
 
     /**
-     * Converts a given {@code ReadOnlyContactList} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyModuleList} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableContactList}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableModuleList}.
      */
     public JsonSerializableModuleList(UniqueModuleList source) {
         moduleList.addAll(source.getInternalList().stream().map(JsonAdaptedModule::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this task list into the model's {@code PriorityTaskList} object.
+     * Converts this module list into the model's {@code UniqueModuleList} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

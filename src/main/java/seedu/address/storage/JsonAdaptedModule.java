@@ -17,7 +17,7 @@ class JsonAdaptedModule {
     private final String defaultGroup;
 
     /**
-     * Constructs a {@code JsonAdaptedTask} with the given task details.
+     * Constructs a {@code JsonAdaptedModule} with the given task details.
      */
     @JsonCreator
     public JsonAdaptedModule(@JsonProperty("module") String module,
@@ -27,7 +27,7 @@ class JsonAdaptedModule {
     }
 
     /**
-     * Converts a given {@code Task} into this class for Jackson use.
+     * Converts a given {@code Mod} into this class for Jackson use.
      */
     public JsonAdaptedModule(Mod source) {
         this.module = source.getMod();
@@ -35,9 +35,9 @@ class JsonAdaptedModule {
     }
 
     /**
-     * Converts this Jackson-friendly adapted task object into the model's {@code Task} object.
+     * Converts this Jackson-friendly adapted mod object into the model's {@code Mod} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted task.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted mod.
      */
     public Mod toModelType() throws IllegalValueException {
 

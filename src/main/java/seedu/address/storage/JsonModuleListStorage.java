@@ -64,7 +64,7 @@ public class JsonModuleListStorage implements ModuleListStorage {
     }
 
     /**
-     * Similar to {@link #saveTaskList(ReadOnlyTaskList)}.
+     * Similar to {@link #saveModuleList(UniqueModuleList)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
