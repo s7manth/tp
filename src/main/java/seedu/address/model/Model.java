@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Mod;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniqueModuleList;
 import seedu.address.model.tasks.ReadOnlyTaskList;
 import seedu.address.model.tasks.Task;
 
@@ -130,6 +131,8 @@ public interface Model {
     String retrievePrevDefault(Mod mod);
 
     void setDefaultGroup(Mod mod, String value);
+
+    UniqueModuleList getModuleList();
 
     /**
      * Returns true if a task with the same identity as {@code task} exists in the task manager.

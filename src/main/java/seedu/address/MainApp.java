@@ -21,13 +21,16 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.UniqueModuleList;
 import seedu.address.model.tasks.PriorityTaskList;
 import seedu.address.model.tasks.ReadOnlyTaskList;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.ContactListStorage;
 import seedu.address.storage.JsonContactListStorage;
+import seedu.address.storage.JsonModuleListStorage;
 import seedu.address.storage.JsonTaskListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.ModuleListStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.TaskListStorage;
@@ -62,7 +65,8 @@ public class MainApp extends Application {
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         ContactListStorage contactListStorage = new JsonContactListStorage(userPrefs.getContactListFilePath());
         TaskListStorage taskListStorage = new JsonTaskListStorage(userPrefs.getTaskListFilePath());
-        storage = new StorageManager(contactListStorage, userPrefsStorage, taskListStorage);
+        ModuleListStorage moduleListStorage = new JsonModuleListStorage(userPrefs.getModuleListFilePath());
+        storage = new StorageManager(contactListStorage, userPrefsStorage, taskListStorage, moduleListStorage);
 
         initLogging(config);
 
@@ -83,6 +87,8 @@ public class MainApp extends Application {
         ReadOnlyContactList initialContactList;
         Optional<ReadOnlyTaskList> taskListOptional;
         ReadOnlyTaskList initialTaskList;
+        Optional<UniqueModuleList> moduleListOptional;
+        UniqueModuleList initialModuleList;
         try {
             contactListOptional = storage.readContactList();
             if (contactListOptional.isEmpty()) {
@@ -96,17 +102,25 @@ public class MainApp extends Application {
             }
             initialTaskList = taskListOptional.orElseGet(SampleDataUtil::getSampleTaskList);
 
+            moduleListOptional = storage.readModuleList();
+            if (moduleListOptional.isEmpty()) {
+                logger.info("Module List data file not found. Will be starting with a sample ModuleList");
+            }
+            initialModuleList = moduleListOptional.orElseGet(SampleDataUtil::getSampleModuleList);
+
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty ContactList");
             initialContactList = new ContactList();
             initialTaskList = new PriorityTaskList();
+            initialModuleList = new UniqueModuleList();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty ContactList");
             initialContactList = new ContactList();
             initialTaskList = new PriorityTaskList();
+            initialModuleList = new UniqueModuleList();
         }
 
-        return new ModelManager(initialContactList, userPrefs, initialTaskList);
+        return new ModelManager(initialContactList, userPrefs, initialTaskList, initialModuleList);
     }
 
     private void initLogging(Config config) {

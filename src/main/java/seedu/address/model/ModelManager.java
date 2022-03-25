@@ -61,6 +61,21 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.contactList.getPersonList());
     }
 
+    /**
+     * Initializes a ModelManager with the given contactList, userPrefs , taskList and an empty moduleList.
+     */
+    public ModelManager(ReadOnlyContactList contactList, ReadOnlyUserPrefs userPrefs, ReadOnlyTaskList taskList, UniqueModuleList moduleList) {
+        requireAllNonNull(contactList, userPrefs, taskList);
+
+        logger.fine("Initializing with contact list: " + contactList + ", user prefs " + userPrefs
+                + " and task manager: " + taskList);
+
+        this.contactList = new ContactList(contactList);
+        this.taskList = new PriorityTaskList(taskList);
+        this.userPrefs = new UserPrefs(userPrefs);
+        this.moduleList = moduleList;
+        filteredPersons = new FilteredList<>(this.contactList.getPersonList());
+    }
     public ModelManager() {
         this(new ContactList(), new UserPrefs(), new PriorityTaskList());
     }
@@ -164,6 +179,7 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== ModuleList ================================================================================
     @Override
     public boolean isDefaultGroupOfModPresent(Mod mod) {
         requireNonNull(mod);
@@ -174,7 +190,7 @@ public class ModelManager implements Model {
     @Override
     public boolean doesModExistInList(Mod mod) {
         requireNonNull(mod);
-        return moduleList.contains(mod.value);
+        return moduleList.contains(mod);
     }
 
     @Override
@@ -202,6 +218,11 @@ public class ModelManager implements Model {
     @Override
     public void setDefaultGroup(Mod mod, String value) {
         mod.setDefaultGroup(value);
+    }
+
+    @Override
+    public UniqueModuleList getModuleList() {
+        return this.moduleList;
     }
 
     //=========== Task Manager =============================================================

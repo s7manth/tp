@@ -10,6 +10,7 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.UniqueModuleList;
 import seedu.address.model.tasks.ReadOnlyTaskList;
 
 /**
@@ -21,16 +22,18 @@ public class StorageManager implements Storage {
     private ContactListStorage contactListStorage;
     private UserPrefsStorage userPrefsStorage;
     private TaskListStorage taskListStorage;
+    private ModuleListStorage moduleListStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code ContactListStorage}, {@code UserPrefStorage} and {@code
      * taskListStorage}
      */
     public StorageManager(ContactListStorage contactListStorage, UserPrefsStorage userPrefsStorage,
-                          TaskListStorage taskListStorage) {
+                          TaskListStorage taskListStorage, ModuleListStorage moduleListStorage) {
         this.contactListStorage = contactListStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.taskListStorage = taskListStorage;
+        this.moduleListStorage = moduleListStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -107,5 +110,34 @@ public class StorageManager implements Storage {
     public void saveTaskList(ReadOnlyTaskList taskList, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         taskListStorage.saveTaskList(taskList, filePath);
+    }
+
+    // ================ ModuleList methods ==============================
+
+    @Override
+    public Path getModuleListFilePath() {
+        return taskListStorage.getTaskListFilePath();
+    }
+
+    @Override
+    public Optional<UniqueModuleList> readModuleList() throws DataConversionException, IOException {
+        return readModuleList(moduleListStorage.getModuleListFilePath());
+    }
+
+    @Override
+    public Optional<UniqueModuleList> readModuleList(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return moduleListStorage.readModuleList(filePath);
+    }
+
+    @Override
+    public void saveModuleList(UniqueModuleList moduleList) throws IOException {
+        this.saveModuleList(moduleList, moduleListStorage.getModuleListFilePath());
+    }
+
+    @Override
+    public void saveModuleList(UniqueModuleList taskList, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        moduleListStorage.saveModuleList(taskList, filePath);
     }
 }

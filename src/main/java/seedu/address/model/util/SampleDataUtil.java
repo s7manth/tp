@@ -12,6 +12,7 @@ import seedu.address.model.person.Mod;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.StudentNumber;
+import seedu.address.model.person.UniqueModuleList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tasks.Deadline;
 import seedu.address.model.tasks.Description;
@@ -52,6 +53,22 @@ public class SampleDataUtil {
             sampleAb.addPerson(samplePerson);
         }
         return sampleAb;
+    }
+
+    public static Mod[] getSampleModules() {
+        return new Mod[] {
+            new Mod("CS2108", "W12"),
+            new Mod("CS2109S", "W14"),
+            new Mod("CS2100", "W16"),
+        };
+    }
+
+    public static UniqueModuleList getSampleModuleList() {
+        UniqueModuleList moduleList = new UniqueModuleList();
+        for (Mod mod : getSampleModules()) {
+            moduleList.add(mod);
+        }
+        return moduleList;
     }
 
     /**
