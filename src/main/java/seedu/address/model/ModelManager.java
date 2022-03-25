@@ -30,6 +30,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final UniqueModuleList moduleList;
+    /** List of versioned contents */
+    private final VersionedContents versionedContents;
 
     /**
      * Initializes a ModelManager with the given contactList, userPrefs and a moduleList.
@@ -43,11 +45,10 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.moduleList = moduleList;
         this.taskList = new PriorityTaskList();
-        filteredPersons = new FilteredList<>(this.contactList.getPersonList());
+        this.filteredPersons = new FilteredList<>(this.contactList.getPersonList());
+        this.versionedContents = new VersionedContents(new Content(getContactList(), getTaskList()));
     }
 
-    /** List of versioned contents */
-    private final VersionedContents versionedContents;
 
     /**
      * Initializes a ModelManager with the given contactList, userPrefs , taskList and an empty moduleList.
@@ -81,6 +82,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.moduleList = moduleList;
         filteredPersons = new FilteredList<>(this.contactList.getPersonList());
+        this.versionedContents = new VersionedContents(new Content(getContactList(), getTaskList()));
     }
     public ModelManager() {
         this(new ContactList(), new UserPrefs(), new PriorityTaskList());
