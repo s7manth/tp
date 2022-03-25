@@ -2,24 +2,28 @@
 layout: page
 title: Developer Guide
 ---
+## Table of Contents
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 <div markdown="span" class="alert alert-primary">
 
@@ -27,6 +31,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 </div>
 
 ### Architecture
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -68,6 +73,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 The sections below give more details of each component.
 
 ### UI component
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
@@ -85,6 +91,7 @@ The `UI` component,
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
 ### Logic component
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 **API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
@@ -114,6 +121,8 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
+
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagramV3.png" width="550" />
@@ -124,7 +133,7 @@ The `Model` component,
 * stores the content data i.e., all `Person` and `Task` objects (which are contained in a `UniquePersonList` and `PriorityTaskList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores the task list data i.e., all `Task` objects (which are contained in a `PriorityTaskList` object).
-* stores a `VersionedContentList` object that stores the previous states of content data (to support `undo`/`redo`)
+* stores a `VersionedContents` object that stores the previous states of content data (to support `undo`/`redo`)
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -140,6 +149,7 @@ The `Model` component,
 
 
 ### Storage component
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -151,20 +161,24 @@ The `Storage` component,
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 This section describes some noteworthy details on how certain features are implemented.
 
 ### Task Manager feature
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 #### Implementation
 
-This Task Manager feature is implemented with reference to how AddressBook/ContactList was implemented.
+This Task Manager feature is implemented similarly to how commands interact with the XYZManagers,
+as seen in the [architecture](#architecture).
 Below shows the important classes that were created:
 
 Logic:
@@ -186,7 +200,7 @@ Storage:
 * JsonTaskListStorage
 * TaskListStorage
 
-Most of these classes were linked to the respective XYZManager components in a similar way as ContactList.
+Most of these classes were linked to the respective XYZManager components.
 For example, LogicManager now tries to save to the storage's contact list and task lists:
 
 ```
@@ -194,9 +208,9 @@ For example, LogicManager now tries to save to the storage's contact list and ta
             storage.saveTaskList(model.getTaskList());
 ```
 
-The following sequence diagram shows how the newTask operation works:
+The following sequence diagram also shows how the newTask operation works in more detail:
 
-<img src="images/newTask-SequenceDiagram.png" width="500" />
+<img src="images/newTask-SequenceDiagram.png" width="1000" />
 
 The current Task List uses a Priority Queue internally to sort/rank the tasks. Hence, the tasks
 are prioritised according to the closeness to the deadline. Ie, a Task with a deadline of 1 March
@@ -226,16 +240,17 @@ will be in front of another Task with deadline of 1 December of the same year.
     allow for finer control over the codebase.
 
 ### Undo/redo feature
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 #### Implementation
 
 The undo/redo mechanism is facilitated by `VersionedContents`. It extends `Content` with an undo/redo history, stored internally as an `contentStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedContents#commit()` — Saves the current content state in its history.
-* `VersionedContents#undo()` — Restores the previous content state from its history.
-* `VersionedContents#redo()` — Restores a previously undone content state from its history.
+* `VersionedContents#commitContent()` — Saves the current content state in its history.
+* `VersionedContents#undoContents()` — Restores the previous content state from its history.
+* `VersionedContents#redoContents()` — Restores a previously undone content state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitContent()`, `Model#undoContent()` and `Model#redoContent()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitContent()`, `Model#undoContents()` and `Model#redoContents()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
@@ -255,7 +270,7 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoContent()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous content state, and restores the content to that state.
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoContents()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous content state, and restores the content to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -272,13 +287,13 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoContent()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the content to that state.
+The `redo` command does the opposite — it calls `Model#redoContents()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the content to that state.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `contentStateList.size() - 1`, pointing to the latest contact list state, then there are no undone content states to restore. The `redo` command uses `Model#canRedoContent()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the content, such as `list`, will usually not call `Model#commitContent()`, `Model#undoContent()` or `Model#redoContent()`. Thus, the `contentStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the content, such as `list`, will usually not call `Model#commitContent()`, `Model#undoContents()` or `Model#redoContents()`. Thus, the `contentStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
@@ -306,6 +321,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -316,8 +332,10 @@ The following activity diagram summarizes what happens when a user executes a ne
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Requirements**
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 ### Product scope
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 **Target user profile**:
 
@@ -332,6 +350,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 
 ### User stories
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 Priorities: High (must have), Medium (nice to have), Low (unlikely to have)
 
@@ -372,6 +391,7 @@ Priorities: High (must have), Medium (nice to have), Low (unlikely to have)
 
 
 ### Use cases
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 (For all use cases below, the **System** is `TAilor` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -445,6 +465,7 @@ Priorities: High (must have), Medium (nice to have), Low (unlikely to have)
 *{More to be added}*
 
 ### Non-Functional Requirements
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
@@ -455,6 +476,7 @@ Priorities: High (must have), Medium (nice to have), Low (unlikely to have)
 *{More to be added}*
 
 ### Glossary
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
@@ -465,6 +487,7 @@ Priorities: High (must have), Medium (nice to have), Low (unlikely to have)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 Given below are instructions to test the app manually.
 
@@ -474,6 +497,7 @@ testers are expected to do more *exploratory* testing.
 </div>
 
 ### Launch and shutdown
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 1. Initial launch
 
@@ -491,6 +515,7 @@ testers are expected to do more *exploratory* testing.
 1. _{ more test cases …​ }_
 
 ### Deleting a person
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 1. Deleting a person while all persons are being shown
 
@@ -508,6 +533,7 @@ testers are expected to do more *exploratory* testing.
 1. _{ more test cases …​ }_
 
 ### Saving data
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 1. Dealing with missing/corrupted data files
 

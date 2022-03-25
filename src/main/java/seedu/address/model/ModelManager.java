@@ -19,6 +19,7 @@ import seedu.address.model.tasks.PriorityTaskList;
 import seedu.address.model.tasks.ReadOnlyTaskList;
 import seedu.address.model.tasks.Task;
 
+
 /**
  * Represents the in-memory model of the contact list and task list data.
  */
@@ -45,6 +46,9 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.contactList.getPersonList());
     }
 
+    /** List of versioned contents */
+    private final VersionedContents versionedContents;
+
     /**
      * Initializes a ModelManager with the given contactList, userPrefs , taskList and an empty moduleList.
      */
@@ -59,6 +63,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.moduleList = new UniqueModuleList();
         filteredPersons = new FilteredList<>(this.contactList.getPersonList());
+        this.versionedContents = new VersionedContents(new Content(getContactList(), getTaskList()));
     }
 
     /**
@@ -130,8 +135,8 @@ public class ModelManager implements Model {
     //=========== ContactList ================================================================================
 
     @Override
-    public void setContactList(ReadOnlyContactList contactList) {
-        this.contactList.resetData(contactList);
+    public void setContactList(ReadOnlyContactList newContactList) {
+        this.contactList.resetData(newContactList);
     }
 
     @Override
@@ -161,6 +166,67 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         contactList.setPerson(target, editedPerson);
+    }
+
+    //=========== VersionedContent ================================================================================
+
+    /**
+     * Changes the content state of the app to the version just before the current
+     */
+    @Override
+    public void undoContents() {
+        Content newContent = versionedContents.undo();
+        updateContent(newContent);
+    }
+
+    /**
+     * Changes the content state of TAilor to the version just after the current
+     */
+    @Override
+    public void redoContents() {
+        Content newContent = versionedContents.redo();
+        updateContent(newContent);
+    }
+
+    /**
+     * Returns the current history of versioned contents
+     */
+    public VersionedContents getVersionedContents() {
+        return this.versionedContents;
+    }
+
+    /**
+     * Returns the current content state
+     */
+    public Content getCurrentContent() {
+        return this.versionedContents.getCurrentContent();
+    }
+
+    /**
+     * Commits the current content state to versionedContents
+     */
+    @Override
+    public void commitContent() {
+        Content newContent = new Content(getContactList(), getTaskList());
+        versionedContents.addContentVersion(newContent);
+    }
+
+    @Override
+    public boolean canUndo() {
+        return versionedContents.canUndo();
+    }
+
+    @Override
+    public boolean canRedo() {
+        return versionedContents.canRedo();
+    }
+
+    private void updateContent(Content newContent) {
+        ReadOnlyContactList newContactList = newContent.getContactList();
+        ReadOnlyTaskList newTaskList = newContent.getTaskList();
+
+        this.contactList.resetData(new ContactList(newContactList));
+        this.taskList.resetData(new PriorityTaskList(newTaskList));
     }
 
     //=========== Filtered Person List Accessors =============================================================
