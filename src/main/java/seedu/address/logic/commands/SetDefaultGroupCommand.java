@@ -4,14 +4,19 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Mod;
 import seedu.address.model.person.UniqueModuleList;
+import seedu.address.ui.HelpWindow;
+
+import java.util.logging.Logger;
 
 public class SetDefaultGroupCommand extends Command {
 
-    public static final String COMMAND_WORD = "setDefaultGroup";
+    public static final String COMMAND_WORD = "set-default-group";
+    private static final Logger logger = LogsCenter.getLogger(SetDefaultGroupCommand.class);
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets a default value for group in the given Mod. "
             + "Parameters: "
@@ -47,9 +52,12 @@ public class SetDefaultGroupCommand extends Command {
                 String prevDefault = model.retrievePrevDefault(matchingMod);
                 return new CommandResult(String.format(MESSAGE_DEFAULT_UPDATE, mod, prevDefault, defaultValue));
             }
+            logger.fine("Attempting to set default value for Mod");
             model.setDefaultGroup(matchingMod, defaultValue);
         } else {
+            logger.info("Attempting to add new Mod to TAilor's UniqueModuleList");
             moduleList.add(mod);
+            logger.fine("Attempting to set default value for newly instantiated Mod");
             model.setDefaultGroup(mod, defaultValue);
         }
 

@@ -3,10 +3,10 @@
     "windowWidth" : 1000.0,
     "windowHeight" : 640.0,
     "windowCoordinates" : {
-      "x" : 206,
-      "y" : 71
+      "x" : 239,
+      "y" : 23
     }
   },
-  "contactListFilePath" : "data/contactlist.json",
-  "taskListFilePath" : "data/tasklist.json"
+  "contactListFilePath" : "data\\contactlist.json",
+  "taskListFilePath" : "data\\tasklist.json"
 }
