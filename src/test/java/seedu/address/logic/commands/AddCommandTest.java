@@ -23,6 +23,7 @@ import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Mod;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniqueModuleList;
 import seedu.address.model.tasks.ReadOnlyTaskList;
 import seedu.address.model.tasks.Task;
 import seedu.address.testutil.PersonBuilder;
@@ -155,6 +156,11 @@ public class AddCommandTest {
 
         @Override
         public void deletePerson(Person target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public UniqueModuleList getModuleList() {
             throw new AssertionError("This method should not be called.");
         }
 

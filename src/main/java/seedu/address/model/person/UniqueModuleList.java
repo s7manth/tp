@@ -14,8 +14,6 @@ public class UniqueModuleList implements Iterable<Mod> {
 
 
     private static final ObservableList<Mod> internalList = FXCollections.observableArrayList();
-    //private final ObservableList<Mod> internalUnmodifiableList =
-            //FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains a module with the same code as the given argument.

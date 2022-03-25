@@ -26,7 +26,7 @@ class JsonSerializableModuleList {
      * Constructs a {@code JsonSerializableTaskList} with the given tasks.
      */
     @JsonCreator
-    public JsonSerializableModuleList(@JsonProperty("modulelist") List<JsonAdaptedModule> modules) {
+    public JsonSerializableModuleList(@JsonProperty("moduleList") List<JsonAdaptedModule> modules) {
         this.moduleList.addAll(modules);
     }
 
@@ -36,7 +36,6 @@ class JsonSerializableModuleList {
      * @param source future changes to this will not affect the created {@code JsonSerializableContactList}.
      */
     public JsonSerializableModuleList(UniqueModuleList source) {
-        //Collection<Task> srcCollection = source.getInternalList();
         moduleList.addAll(source.getInternalList().stream().map(JsonAdaptedModule::new).collect(Collectors.toList()));
     }
 

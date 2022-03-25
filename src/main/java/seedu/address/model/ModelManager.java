@@ -64,7 +64,8 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given contactList, userPrefs , taskList and an empty moduleList.
      */
-    public ModelManager(ReadOnlyContactList contactList, ReadOnlyUserPrefs userPrefs, ReadOnlyTaskList taskList, UniqueModuleList moduleList) {
+    public ModelManager(ReadOnlyContactList contactList, ReadOnlyUserPrefs userPrefs,
+            ReadOnlyTaskList taskList, UniqueModuleList moduleList) {
         requireAllNonNull(contactList, userPrefs, taskList);
 
         logger.fine("Initializing with contact list: " + contactList + ", user prefs " + userPrefs
@@ -217,6 +218,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setDefaultGroup(Mod mod, String value) {
+        //System.out.println();
         mod.setDefaultGroup(value);
     }
 

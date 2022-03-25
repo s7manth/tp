@@ -42,13 +42,13 @@ public class SetDefaultGroupCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (model.doesModExistInList(mod)) {
-            Optional<Mod> matchingMod = model.getMod(mod); //since guaranteed to not be null
+            Optional<Mod> matchingMod = model.getMod(mod);
             assert matchingMod != null;
             if (model.isDefaultGroupOfModPresent(matchingMod.get())) {
                 String prevDefault = model.retrievePrevDefault(matchingMod.get());
+                model.setDefaultGroup(matchingMod.get(), defaultValue);
                 return new CommandResult(String.format(MESSAGE_DEFAULT_UPDATE, mod, prevDefault, defaultValue));
             }
-            model.setDefaultGroup(matchingMod.get(), defaultValue);
         } else {
             model.addMod(mod);
             model.setDefaultGroup(mod, defaultValue);

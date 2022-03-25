@@ -54,7 +54,8 @@ public class LogicManagerTest {
                 new JsonTaskListStorage(temporaryFolder.resolve("data/tasklist.json"));
         JsonModuleListStorage moduleListStorage =
                 new JsonModuleListStorage(temporaryFolder.resolve("data/modulelist.json"));
-        StorageManager storage = new StorageManager(contactListStorage, userPrefsStorage, taskListStorage, moduleListStorage);
+        StorageManager storage = new StorageManager(contactListStorage, userPrefsStorage,
+                taskListStorage, moduleListStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -87,7 +88,8 @@ public class LogicManagerTest {
                 new JsonTaskListStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         JsonModuleListStorage moduleListStorage =
                 new JsonModuleListStorage(temporaryFolder.resolve("data/modulelist.json"));
-        StorageManager storage = new StorageManager(contactListStorage, userPrefsStorage, taskListStorage, moduleListStorage);
+        StorageManager storage = new StorageManager(contactListStorage, userPrefsStorage,
+                taskListStorage, moduleListStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command

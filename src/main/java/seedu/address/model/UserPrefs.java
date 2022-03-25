@@ -99,7 +99,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         StringBuilderUtil stringBuilderUtil = StringBuilderUtil.getInstance();
         stringBuilderUtil.appendAll("Gui Settings : ", guiSettings,
                 "\nLocal contactlist file location : ", contactListFilePath,
-                "\nLocal tasklist file location : ", taskListFilePath, "\nLocal modulelist file location : ", moduleListFilePath);
+                "\nLocal tasklist file location : ", taskListFilePath,
+                "\nLocal modulelist file location : ", moduleListFilePath);
         return stringBuilderUtil.getFormattedOutput();
     }
 
