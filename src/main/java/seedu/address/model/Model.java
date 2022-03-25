@@ -125,6 +125,36 @@ public interface Model {
     void setDefaultGroup(Mod mod, String value);
 
     /**
+     * Reverts the Contents to a previous version since application initialisation.
+     */
+    void undoContents();
+
+    /**
+     * Reverts the Contents to a version after the current one since application initialisation.
+     */
+    void redoContents();
+
+    /**
+     * Commits the new content state to the history
+     */
+    void commitContent();
+
+    /**
+     * Checks if the model has a content state before the current one
+     */
+    boolean canUndo();
+
+    /**
+     * Checks if the model has a content state after the current one
+     */
+    boolean canRedo();
+
+    /**
+     * Returns the VersionedContents of the model
+     * @return versioned contents of the model
+     */
+    VersionedContents getVersionedContents();
+    /**
      * Returns true if a task with the same identity as {@code task} exists in the task manager.
      */
     boolean hasTask(Task task);
@@ -140,5 +170,4 @@ public interface Model {
      * {@code task} must not already exist in the task manager.
      */
     void addTask(Task task);
-
 }
