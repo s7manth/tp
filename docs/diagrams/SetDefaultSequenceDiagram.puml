@@ -28,7 +28,7 @@ activate SetDefaultGroupCommandParser
 SetDefaultGroupCommandParser --> TailorParser
 deactivate SetDefaultGroupCommandParser
 
-TailorParser -> SetDefaultGroupCommandParser : parse("m/CS2103T g/W12-1")
+TailorParser -> SetDefaultGroupCommandParser : parse()
 activate SetDefaultGroupCommandParser
 
 create SetDefaultGroupCommand
@@ -38,26 +38,29 @@ activate SetDefaultGroupCommand
 SetDefaultGroupCommand --> SetDefaultGroupCommandParser : s
 deactivate SetDefaultGroupCommand
 
-SetDefaultGroupCommandParser --> TailorParser : s
+SetDefaultGroupCommandParser --> TailorParser
 deactivate SetDefaultGroupCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 SetDefaultGroupCommandParser -[hidden]-> TailorParser
 destroy SetDefaultGroupCommandParser
 
-TailorParser --> LogicManager : s
+TailorParser --> LogicManager
 deactivate TailorParser
 
 LogicManager -> SetDefaultGroupCommand : execute()
 activate SetDefaultGroupCommand
 
-alt does the module exist
-    SetDefaultGroupCommand -> Model : doesModExist("CS2103T")
-    activate Model
+SetDefaultGroupCommand -> Model : doesModExist("CS2103T")
+activate Model
 
-    SetDefaultGroupCommand -> ModuleList : retrieveMod("CS2103T")
+Model --> SetDefaultGroupCommand :
+deactivate Model
+
+alt module exists
+    SetDefaultGroupCommand -> ModuleList : getMod("CS2103T")
     activate ModuleList
 
-    ModuleList --> SetDefaultGroupCommand : cs2103t
+    ModuleList --> SetDefaultGroupCommand :
     deactivate ModuleList
 
     SetDefaultGroupCommand -> Model : setDefaultGroup("CS2103T", "W12-1")
@@ -72,7 +75,7 @@ alt does the module exist
     Model --> SetDefaultGroupCommand
     deactivate Model
 
-else mod does not exist
+else else
     SetDefaultGroupCommand -> ModuleList : add("CS2103T")
     activate ModuleList
 

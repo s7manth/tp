@@ -347,9 +347,9 @@ The sequence diagram for the command `set-default-group m/CS2103T g/W12-1` follo
 
 #### Design Considerations
 
-**Aspect: Extendibility**
+**Aspect: Conformity**
 
-This feature extends into the functionality of the Add and Edit Commands heavily. If the default value has been set,
+This feature merges with the functionality of the Add and Edit Commands seamlessly. If the default value has been set,
 then the group argument is essentially optional for the users and TAilor will update the student's data to include
 the default group value. If a group argument is provided, however, then TAilor prioritises the field provided by the
 user over the previously set default group value.

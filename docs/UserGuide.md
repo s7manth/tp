@@ -25,7 +25,7 @@ Assistant who can type fast, TAilor can get tedious contact management tasks don
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note
    how the app contains some sample data.<br>
-   ![Ui](images/GUI.png)
+   ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter
    will open the help window.<br>
@@ -85,7 +85,7 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Listing all persons : `list`
+#### Listing all persons : `list`
 
 Shows a list of all persons in the student roster.
 
@@ -128,7 +128,7 @@ Examples:
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 
-### Deleting a person : `delete`
+#### Deleting a person : `delete`
 
 Deletes the specified person from the student roster.
 
@@ -142,7 +142,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the student roster.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Setting a default group value for a specific mod: `set-default-group`
+#### Setting a default group value for a specific mod: `set-default-group`
 
 Sets a default group value for a particular mod that can be updated using the same command several times. Helps
 prevent users from repeatedly entering the same data.
@@ -161,7 +161,7 @@ Examples:
 
   ![result for updating default group of m/CS2101](images/set_default_ex2.png)
 
-### Locating persons by name: `find`
+#### Locating persons by name: `find`
 
 
 Finds persons whose details contain any of the given keywords.
@@ -228,12 +228,6 @@ Format: `mail-all`
   field.
 
 
-#### Clearing all entries : `clear`
-
-Clears all entries from the student roster.
-
-Format: `clear`
-
 ### Task List commands
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
@@ -269,6 +263,21 @@ Format: `deltask INDEX`
 
 Examples:
 * `delete 2` deletes the 2nd person in the task list.
+
+
+### Closing Commands
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
+
+#### Exiting TAilor: `exit`
+
+Simply type exit to close the application. All of your data will be stored if no unforseen error is encountered!
+
+
+#### Clearing all entries : `clear`
+
+Clears all entries from the student roster.
+
+Format: `clear`
 
 ---
 ### Shortcuts
