@@ -27,7 +27,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2122S2-CS2103T-W12-1/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -41,7 +41,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2122S2-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2122S2-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -75,7 +75,7 @@ The sections below give more details of each component.
 ### UI component
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2122S2-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -93,14 +93,14 @@ The `UI` component,
 ### Logic component
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2122S2-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `TailorParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -123,7 +123,8 @@ How the parsing works:
 ### Model component
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2122S2-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+
 
 <img src="images/ModelClassDiagramV3.png" width="550" />
 
@@ -151,7 +152,7 @@ The `Model` component,
 ### Storage component
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2122S2-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagramV2.png" width="550" />
 
@@ -317,6 +318,45 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
+
+
+### Setting a Default Group for a particular Mod
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
+
+#### Aim of the feature
+This feature helps facilitate a better user experience and aims to follow through on TAilor's primary objective of
+making administrative tasks less tedious and rudimentary. By setting a default group, the use need not worry
+about repeatedly entering the same group value for several students over an extended period of time.
+
+#### Implementation
+The following classes were created in the process of implementing the `set-default-group` command:
+
+Logic:
+* SetDefaultGroupCommand (and its parser)
+
+Model:
+* ModuleList
+* UniqueModuleList
+* DuplicateModuleException
+* ModuleNotFoundException
+
+The core idea behind this implementation is that every Mod object has a `defaultGroup` attribute that initially is
+unassigned. Once the user enters the command `set-default-group m/MOD g/GROUP`, the `defaultGroup` value for
+that "MOD" gets set to "GROUP". If the command is entered again, the value gets updated and the user is notified.
+
+The sequence diagram for the command `set-default-group m/CS2103T g/W12-1` follows:
+<img src="images/SetDefaultSequenceDiagram.png" width="1000"/>
+
+#### Design Considerations
+
+**Aspect: Conformity**
+
+* This feature merges with the functionality of the Add and Edit Commands seamlessly. If the default value has been set,
+then the group argument is essentially optional for the users and TAilor will update the student's data to include
+the default group value. If a group argument is provided, however, then TAilor prioritises the field provided by the
+user over the previously set default group value.
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
