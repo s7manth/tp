@@ -121,6 +121,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 **API** : [`Model.java`](https://github.com/AY2122S2-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
@@ -320,6 +321,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 
 ### Setting a Default Group for a particular Mod
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 #### Aim of the feature
 This feature helps facilitate a better user experience and aims to follow through on TAilor's primary objective of
@@ -343,13 +345,13 @@ unassigned. Once the user enters the command `set-default-group m/MOD g/GROUP`, 
 that "MOD" gets set to "GROUP". If the command is entered again, the value gets updated and the user is notified.
 
 The sequence diagram for the command `set-default-group m/CS2103T g/W12-1` follows:
-<img src="images/SetDefaultSequenceDiagram.png" width="550"/>
+<img src="images/SetDefaultSequenceDiagram.png" width="1000"/>
 
 #### Design Considerations
 
 **Aspect: Conformity**
 
-This feature merges with the functionality of the Add and Edit Commands seamlessly. If the default value has been set,
+* This feature merges with the functionality of the Add and Edit Commands seamlessly. If the default value has been set,
 then the group argument is essentially optional for the users and TAilor will update the student's data to include
 the default group value. If a group argument is provided, however, then TAilor prioritises the field provided by the
 user over the previously set default group value.
@@ -433,7 +435,7 @@ Priorities: High (must have), Medium (nice to have), Low (unlikely to have)
 
 (For all use cases below, the **System** is `TAilor` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case 1 (UC1): Importing an existing database** *(proposed)*
+**Use case 1 (UC1): Importing an existing database**
 
 **MSS**
 
