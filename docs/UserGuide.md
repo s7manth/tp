@@ -328,8 +328,9 @@ There is no need to save it manually.
 ### Editing the data file
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-TAilor's data is saved as two JSON files. The first being ContactList's data as `[JAR file location]/data/contactlist.
-json` and the other being Task List's data saved as `[JAR file location]/data/tasklist.json`.
+TAilor's data is saved as three JSON files. The first being ContactList's data as `[JAR file location]/data/contactlist.
+json` and the second being Task List's data saved as `[JAR file location]/data/tasklist.json`. And finally, 
+ModuleList's data being saved as `[JAR file location]/data/modulelist.json`
 Advanced users are welcome to update the data directly by editing those data files.
 
 <div markdown="span" class="alert alert-warning"> :exclamation: **Caution:**
