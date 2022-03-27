@@ -8,7 +8,7 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.person.UniqueModuleList;
 
 /**
- * Represents a storage for {@link PriorityTaskList}.
+ * Represents a storage for {@link UniqueModuleList}.
  */
 public interface ModuleListStorage {
     /**
@@ -17,7 +17,7 @@ public interface ModuleListStorage {
     Path getModuleListFilePath();
 
     /**
-     * Returns Task list data as a {@link ReadOnlyTaskList}.
+     * Returns Task list data as a {@link Optional<UniqueModuleList>}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
@@ -25,19 +25,19 @@ public interface ModuleListStorage {
     Optional<UniqueModuleList> readModuleList() throws DataConversionException, IOException;
 
     /**
-     * @see #getTaskListFilePath()
+     * @see #readModuleList()
      */
     Optional<UniqueModuleList> readModuleList(Path filePath) throws DataConversionException, IOException;
 
     /**
-     * Saves the given {@link ReadOnlyTaskList} to the storage.
+     * Saves the given {@link UniqueModuleList} to the storage.
      * @param contactList cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
     void saveModuleList(UniqueModuleList contactList) throws IOException;
 
     /**
-     * @see #saveTaskList(ReadOnlyTaskList)
+     * @see #saveModuleList(UniqueModuleList)
      */
     void saveModuleList(UniqueModuleList contactList, Path filePath) throws IOException;
 
