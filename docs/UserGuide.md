@@ -96,7 +96,9 @@ Format: `list`
 
 Adds a person to the student roster.
 
-Format: `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MOD g/GROUP [t/TAG]…​`
+Format:
+* `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MOD g/GROUP [t/TAG]` or
+* `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MOD [g/GROUP] [t/TAG]` if there exists a default group for the mod already.
 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -352,20 +354,21 @@ WARNING: This will override the pre-existing data with the new data you entered.
 ## Command summary
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-| Action                | Format, Examples                                                                                                                                                     |
-|-----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**              | `help`                                                                                                                                                               |
-| **List**              | `list`                                                                                                                                                               |
-| **Add**               | `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MODULE g/GROUP [t/TAG]…​` <br> e.g., `add n/James Ho a/A1234567Y e/jamesho@example.com m/CS2100 g/W12 t/friend t/colleague`   |                                                                                                                                                         |
-| **Edit**              | `edit INDEX [n/NAME] [a/STUDENT_NUMBER] [e/EMAIL] [m/MODULE] [g/GROUP] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                               |
-| **Delete**            | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                  |
-| **Set Default Group** | `set-default-group m/MOD g/GROUP` <br> e.g., `set-default-group m/CS2103T g/W12-1`                                                                                   |
-| **Find**              | `find PREFIX/KEYWORD [MORE_KEYWORDS] [PREFIX/KEYWORD [MORE_KEYWORDS]]`<br> e.g., `find n/James Jake a/A0217`                                                         |
-| **Mail Index**        | `mail-index`<br> e.g., `mail 2`                                                                                                                                      |
-| **Mail X**            | `mail-x`<br> e.g., `mail e/johndoe@example.com n/Alex`                                                                                                               |
-| **Mail All**          | `mail-all`                                                                                                                                                           |
-| **New Task**          | `newtask DESCRIPTION by/DEADLINE` <br> e.g., `newtask Do homework by/2022-03-21T12:34`                                                                               |
-| **Delete Task**       | `deltask INDEX` <br> e.g., `deltask 3`                                                                                                                               |
-| **Undo/Redo**         | `undo`/`redo`                                                                                                                                                        |
-| **Clear**             | `clear`                                                                                                                                                              |
-| **Exit**              | `exit`                                                                                                                                                               |
+| Action                | Format, Examples                                                                                                                                                                                                                         |
+|-----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**              | `help`                                                                                                                                                                                                                                   |
+| **List**              | `list`                                                                                                                                                                                                                                   |
+| **Add**               | `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MODULE g/GROUP [t/TAG]…​` or `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MODULE [g/GROUP] [t/TAG]…​` <br> e.g., `add n/James Ho a/A1234567Y e/jamesho@example.com m/CS2100 g/W12 t/friend t/colleague` |
+| **Import csv**        | `import-csv [PATH_TO_CSV_FILE]`                                                                                                                                                                                                          |                                                                                                                                                         |
+| **Edit**              | `edit INDEX [n/NAME] [a/STUDENT_NUMBER] [e/EMAIL] [m/MODULE] [g/GROUP] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                   |
+| **Delete**            | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                      |
+| **Set Default Group** | `set-default-group m/MOD g/GROUP` <br> e.g., `set-default-group m/CS2103T g/W12-1`                                                                                                                                                       |
+| **Find**              | `find PREFIX/KEYWORD [MORE_KEYWORDS] [PREFIX/KEYWORD [MORE_KEYWORDS]]`<br> e.g., `find n/James Jake a/A0217`                                                                                                                             |
+| **Mail Index**        | `mail-index`<br> e.g., `mail 2`                                                                                                                                                                                                          |
+| **Mail X**            | `mail-x`<br> e.g., `mail e/johndoe@example.com n/Alex`                                                                                                                                                                                   |
+| **Mail All**          | `mail-all`                                                                                                                                                                                                                               |
+| **New Task**          | `newtask DESCRIPTION by/DEADLINE` <br> e.g., `newtask Do homework by/2022-03-21T12:34`                                                                                                                                                   |
+| **Delete Task**       | `deltask INDEX` <br> e.g., `deltask 3`                                                                                                                                                                                                   |
+| **Undo/Redo**         | `undo`/`redo`                                                                                                                                                                                                                            |
+| **Clear**             | `clear`                                                                                                                                                                                                                                  |
+| **Exit**              | `exit`                                                                                                                                                                                                                                   |
