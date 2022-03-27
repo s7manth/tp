@@ -85,6 +85,15 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+In addition to this, `help` command can be used to show usage instructions
+for specific commands.
+
+Format: `help [COMMAND_WORD]`
+
+Examples :
+* `help undo` will show the usage instructions for the `undo` command.
+* `help mail-x` will show the usage instructions for the `mail-x` command.
+
 #### Listing all persons : `list`
 
 Shows a list of all persons in the student roster.
@@ -113,7 +122,7 @@ Examples:
 #### Importing a csv file to automatically add people: `import-csv`
 
 Can create your student roster by directly importing a csv file and forgoing the hassle of manually adding students.
-This feature is tailor-made for NUS School of Computing teaching assistants who can export relevant class data from 
+This feature is tailor-made for NUS School of Computing teaching assistants who can export relevant class data from
 LumiNUS.
 
 Format: `import-csv [PATH-TO-FILE]`
@@ -122,18 +131,18 @@ To prepare your csv files, the following directions must be followed:
 
 1. Export your student list from LumiNUS Classes and Groups.
 2. Be sure to select and export the following headers only as you choose the format of your file:
-   1. Name, 
-   2. Student Number, 
-   3. Email, and 
+   1. Name,
+   2. Student Number,
+   3. Email, and
    4. Group
-3. Once exported, convert the file to CSV format. This can be accomplished using any modern day spreadsheet 
-   visualization software. Please follow this step through thoroughly.  
+3. Once exported, convert the file to CSV format. This can be accomplished using any modern day spreadsheet
+   visualization software. Please follow this step through thoroughly.
 4. Copy the file's path and import the file into TAilor with the above command!
 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
-The file format, including choice of headers, will need to be adhered to for TAilor to function smoothly and provide 
-a good user experience. As such, please be mindful to not corrupt your csv file before importing- something that can 
+The file format, including choice of headers, will need to be adhered to for TAilor to function smoothly and provide
+a good user experience. As such, please be mindful to not corrupt your csv file before importing- something that can
 result from writing anything or adding information that does not abide by the standard format in the file.
 </div>
 
@@ -329,7 +338,7 @@ There is no need to save it manually.
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 TAilor's data is saved as three JSON files. The first being ContactList's data as `[JAR file location]/data/contactlist.
-json` and the second being Task List's data saved as `[JAR file location]/data/tasklist.json`. And finally, 
+json` and the second being Task List's data saved as `[JAR file location]/data/tasklist.json`. And finally,
 ModuleList's data being saved as `[JAR file location]/data/modulelist.json`
 Advanced users are welcome to update the data directly by editing those data files.
 
