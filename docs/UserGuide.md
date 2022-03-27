@@ -108,7 +108,32 @@ Examples:
 * `add n/John Doe a/A1234567L e/johnd@example.com m/CS2030S g/B12G`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com m/CS2100 g/T1 a/a0123456x t/stable`
 
+#### Importing a csv file to automatically add people: `import-csv`
 
+Can create your student roster by directly importing a csv file and forgoing the hassle of manually adding students.
+This feature is tailor-made for NUS School of Computing teaching assistants who can export relevant class data from 
+LumiNUS.
+
+Format: `import-csv [PATH-TO-FILE]`
+
+To prepare your csv files, the following directions must be followed:
+
+1. Export your student list from LumiNUS Classes and Groups.
+2. Be sure to select and export the following headers only as you choose the format of your file:
+   1. Name, 
+   2. Student Number, 
+   3. Email, and 
+   4. Group
+3. Once exported, convert the file to CSV format. This can be accomplished using any modern day spreadsheet 
+   visualization software. Please follow this step through thoroughly.  
+4. Copy the file's path and import the file into TAilor with the above command!
+
+
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+The file format, including choice of headers, will need to be adhered to for TAilor to function smoothly and provide 
+a good user experience. As such, please be mindful to not corrupt your csv file before importing- something that can 
+result from writing anything or adding information that does not abide by the standard format in the file.
+</div>
 
 #### Editing a person : `edit`
 
@@ -212,6 +237,10 @@ Format: `mail-x [e/EMAIL] [g/GROUP] [m/MOD] [n/NAME]`
 * This opens the default email application on the system with all the mail addresses specified by the arguments.
 * Anyone who matches at least one of the specified arguments will be included in the mailing list.
 * This can be used to specify multiple prefix based arguments to send the same mail in a single go.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+mail-x must have at least one prefix based argument passed.
+</div>
 
 Example:
 * `mail-x e/johndoe@example.com n/Alex` would open the default mail on the system with the "to" box filled with the
