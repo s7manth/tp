@@ -37,9 +37,9 @@ public class ModelManager implements Model {
      * Initializes a ModelManager with the given contactList, userPrefs and a moduleList.
      */
     public ModelManager(ReadOnlyContactList contactList, ReadOnlyUserPrefs userPrefs, UniqueModuleList moduleList) {
-        requireAllNonNull(contactList, userPrefs);
+        requireAllNonNull(contactList, userPrefs, moduleList);
 
-        logger.fine("Initializing with contact list: " + contactList + " and user prefs " + userPrefs);
+        logger.fine("Initializing with contact list: " + contactList + ", user prefs " + userPrefs + " and moduleList " + moduleList);
 
         this.contactList = new ContactList(contactList);
         this.userPrefs = new UserPrefs(userPrefs);
@@ -72,10 +72,10 @@ public class ModelManager implements Model {
      */
     public ModelManager(ReadOnlyContactList contactList, ReadOnlyUserPrefs userPrefs,
             ReadOnlyTaskList taskList, UniqueModuleList moduleList) {
-        requireAllNonNull(contactList, userPrefs, taskList);
+        requireAllNonNull(contactList, userPrefs, taskList, moduleList);
 
         logger.fine("Initializing with contact list: " + contactList + ", user prefs " + userPrefs
-                + " and task manager: " + taskList);
+                + " and task manager: " + taskList + " and module list " + moduleList);
 
         this.contactList = new ContactList(contactList);
         this.taskList = new PriorityTaskList(taskList);
@@ -264,6 +264,7 @@ public class ModelManager implements Model {
 
     @Override
     public String getDefaultGroupOfMod(Mod mod) {
+        requireNonNull(mod);
         Mod modInList = this.getMod(mod).get();
         return modInList.getDefaultGroup();
 
@@ -271,22 +272,25 @@ public class ModelManager implements Model {
 
     @Override
     public void addMod(Mod mod) {
+        requireNonNull(mod);
         moduleList.add(mod);
     }
 
     @Override
     public Optional<Mod> getMod(Mod mod) {
+        requireNonNull(mod);
         return moduleList.retrieveMod(mod);
     }
 
     @Override
     public String retrievePrevDefault(Mod mod) {
+        requireNonNull(mod);
         return mod.getDefaultGroup();
     }
 
     @Override
     public void setDefaultGroup(Mod mod, String value) {
-        //System.out.println();
+        requireNonNull(mod);
         mod.setDefaultGroup(value);
     }
 
