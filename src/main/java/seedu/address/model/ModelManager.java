@@ -39,7 +39,8 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyContactList contactList, ReadOnlyUserPrefs userPrefs, UniqueModuleList moduleList) {
         requireAllNonNull(contactList, userPrefs, moduleList);
 
-        logger.fine("Initializing with contact list: " + contactList + ", user prefs " + userPrefs + " and moduleList " + moduleList);
+        logger.fine("Initializing with contact list: " + contactList + ", user prefs " + userPrefs
+                + " and moduleList " + moduleList);
 
         this.contactList = new ContactList(contactList);
         this.userPrefs = new UserPrefs(userPrefs);
