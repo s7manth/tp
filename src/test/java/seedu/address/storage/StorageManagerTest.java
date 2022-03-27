@@ -30,7 +30,8 @@ public class StorageManagerTest {
         JsonContactListStorage contactListStorage = new JsonContactListStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         JsonTaskListStorage taskListStorage = new JsonTaskListStorage(getTempFilePath("tl"));
-        storageManager = new StorageManager(contactListStorage, userPrefsStorage, taskListStorage);
+        JsonModuleListStorage moduleListStorage = new JsonModuleListStorage(getTempFilePath("ms"));
+        storageManager = new StorageManager(contactListStorage, userPrefsStorage, taskListStorage, moduleListStorage);
     }
 
     private Path getTempFilePath(String fileName) {

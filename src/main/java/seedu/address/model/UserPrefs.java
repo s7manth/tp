@@ -17,6 +17,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private GuiSettings guiSettings = new GuiSettings();
     private Path contactListFilePath = Paths.get("data" , "contactlist.json");
     private Path taskListFilePath = Paths.get("data", "tasklist.json");
+    private Path moduleListFilePath = Paths.get("data", "modulelist.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -52,6 +53,10 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     public Path getContactListFilePath() {
         return contactListFilePath;
+    }
+
+    public Path getModuleListFilePath() {
+        return moduleListFilePath;
     }
 
     public void setContactListFilePath(Path contactListFilePath) {
@@ -94,7 +99,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         StringBuilderUtil stringBuilderUtil = StringBuilderUtil.getInstance();
         stringBuilderUtil.appendAll("Gui Settings : ", guiSettings,
                 "\nLocal contactlist file location : ", contactListFilePath,
-                "\nLocal tasklist file location : ", taskListFilePath);
+                "\nLocal tasklist file location : ", taskListFilePath,
+                "\nLocal modulelist file location : ", moduleListFilePath);
         return stringBuilderUtil.getFormattedOutput();
     }
 

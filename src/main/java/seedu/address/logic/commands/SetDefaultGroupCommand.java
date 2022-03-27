@@ -4,13 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD;
 
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Mod;
-import seedu.address.model.person.UniqueModuleList;
 
 
 
@@ -48,19 +48,16 @@ public class SetDefaultGroupCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        UniqueModuleList moduleList = new UniqueModuleList();
-        if (model.doesModExist(mod)) {
-            Mod matchingMod = moduleList.retrieveMod(mod).get(); //since guaranteed to not be null
-            if (model.isDefaultPresent(matchingMod)) {
-                String prevDefault = model.retrievePrevDefault(matchingMod);
+        if (model.doesModExistInList(mod)) {
+            Optional<Mod> matchingMod = model.getMod(mod);
+            assert matchingMod != null;
+            if (model.isDefaultGroupOfModPresent(matchingMod.get())) {
+                String prevDefault = model.retrievePrevDefault(matchingMod.get());
+                model.setDefaultGroup(matchingMod.get(), defaultValue);
                 return new CommandResult(String.format(MESSAGE_DEFAULT_UPDATE, mod, prevDefault, defaultValue));
             }
-            logger.fine("Attempting to set default value for Mod");
-            model.setDefaultGroup(matchingMod, defaultValue);
         } else {
-            logger.info("Attempting to add new Mod to TAilor's UniqueModuleList");
-            moduleList.add(mod);
-            logger.fine("Attempting to set default value for newly instantiated Mod");
+            model.addMod(mod);
             model.setDefaultGroup(mod, defaultValue);
         }
 

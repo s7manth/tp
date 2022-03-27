@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -23,6 +24,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.VersionedContents;
 import seedu.address.model.person.Mod;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniqueModuleList;
 import seedu.address.model.tasks.ReadOnlyTaskList;
 import seedu.address.model.tasks.Task;
 import seedu.address.testutil.PersonBuilder;
@@ -159,6 +161,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public UniqueModuleList getModuleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
@@ -174,20 +181,35 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean isDefaultPresent(Mod mod) {
-            return false;
+        public boolean isDefaultGroupOfModPresent(Mod mod) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean doesModExist(Mod mod) {
-            return false;
+        public boolean doesModExistInList(Mod mod) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public String retrievePrevDefault(Mod mod) {
-            return null;
+            throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public void addMod(Mod mod) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<Mod> getMod(Mod mod) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String getDefaultGroupOfMod(Mod mod) {
+            throw new AssertionError("This method should not be called.");
+
+        }
         @Override
         public void setDefaultGroup(Mod mod, String value) {
             throw new AssertionError("This method should not be called.");

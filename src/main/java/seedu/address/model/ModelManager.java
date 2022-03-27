@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -24,17 +25,34 @@ import seedu.address.model.tasks.Task;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-
     private final ContactList contactList;
     private final PriorityTaskList taskList;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-
+    private final UniqueModuleList moduleList;
     /** List of versioned contents */
     private final VersionedContents versionedContents;
 
     /**
-     * Initializes a ModelManager with the given contactList, userPrefs and taskList.
+     * Initializes a ModelManager with the given contactList, userPrefs and a moduleList.
+     */
+    public ModelManager(ReadOnlyContactList contactList, ReadOnlyUserPrefs userPrefs, UniqueModuleList moduleList) {
+        requireAllNonNull(contactList, userPrefs, moduleList);
+
+        logger.fine("Initializing with contact list: " + contactList + ", user prefs " + userPrefs
+                + " and moduleList " + moduleList);
+
+        this.contactList = new ContactList(contactList);
+        this.userPrefs = new UserPrefs(userPrefs);
+        this.moduleList = moduleList;
+        this.taskList = new PriorityTaskList();
+        this.filteredPersons = new FilteredList<>(this.contactList.getPersonList());
+        this.versionedContents = new VersionedContents(new Content(getContactList(), getTaskList()));
+    }
+
+
+    /**
+     * Initializes a ModelManager with the given contactList, userPrefs , taskList and an empty moduleList.
      */
     public ModelManager(ReadOnlyContactList contactList, ReadOnlyUserPrefs userPrefs, ReadOnlyTaskList taskList) {
         requireAllNonNull(contactList, userPrefs, taskList);
@@ -45,10 +63,28 @@ public class ModelManager implements Model {
         this.contactList = new ContactList(contactList);
         this.taskList = new PriorityTaskList(taskList);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.moduleList = new UniqueModuleList();
         filteredPersons = new FilteredList<>(this.contactList.getPersonList());
         this.versionedContents = new VersionedContents(new Content(getContactList(), getTaskList()));
     }
 
+    /**
+     * Initializes a ModelManager with the given contactList, userPrefs , taskList and an empty moduleList.
+     */
+    public ModelManager(ReadOnlyContactList contactList, ReadOnlyUserPrefs userPrefs,
+            ReadOnlyTaskList taskList, UniqueModuleList moduleList) {
+        requireAllNonNull(contactList, userPrefs, taskList, moduleList);
+
+        logger.fine("Initializing with contact list: " + contactList + ", user prefs " + userPrefs
+                + " and task manager: " + taskList + " and module list " + moduleList);
+
+        this.contactList = new ContactList(contactList);
+        this.taskList = new PriorityTaskList(taskList);
+        this.userPrefs = new UserPrefs(userPrefs);
+        this.moduleList = moduleList;
+        filteredPersons = new FilteredList<>(this.contactList.getPersonList());
+        this.versionedContents = new VersionedContents(new Content(getContactList(), getTaskList()));
+    }
     public ModelManager() {
         this(new ContactList(), new UserPrefs(), new PriorityTaskList());
     }
@@ -213,26 +249,55 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== ModuleList ================================================================================
     @Override
-    public boolean isDefaultPresent(Mod mod) {
+    public boolean isDefaultGroupOfModPresent(Mod mod) {
         requireNonNull(mod);
-        return mod.getDefaultGroup() != null;
+        Mod modInList = this.getMod(mod).get();
+        return modInList.getDefaultGroup() != null;
     }
 
     @Override
-    public boolean doesModExist(Mod mod) {
+    public boolean doesModExistInList(Mod mod) {
         requireNonNull(mod);
-        return new UniqueModuleList().contains(mod.value);
+        return moduleList.contains(mod);
+    }
+
+    @Override
+    public String getDefaultGroupOfMod(Mod mod) {
+        requireNonNull(mod);
+        Mod modInList = this.getMod(mod).get();
+        return modInList.getDefaultGroup();
+
+    }
+
+    @Override
+    public void addMod(Mod mod) {
+        requireNonNull(mod);
+        moduleList.add(mod);
+    }
+
+    @Override
+    public Optional<Mod> getMod(Mod mod) {
+        requireNonNull(mod);
+        return moduleList.retrieveMod(mod);
     }
 
     @Override
     public String retrievePrevDefault(Mod mod) {
+        requireNonNull(mod);
         return mod.getDefaultGroup();
     }
 
     @Override
     public void setDefaultGroup(Mod mod, String value) {
+        requireNonNull(mod);
         mod.setDefaultGroup(value);
+    }
+
+    @Override
+    public UniqueModuleList getModuleList() {
+        return this.moduleList;
     }
 
     //=========== Task Manager =============================================================
