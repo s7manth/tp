@@ -20,6 +20,7 @@ import seedu.address.model.ContactList;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.VersionedContents;
 import seedu.address.model.person.Mod;
 import seedu.address.model.person.Person;
 import seedu.address.model.tasks.ReadOnlyTaskList;
@@ -205,6 +206,36 @@ public class AddCommandTest {
         @Override
         public void addTask(Task task) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public VersionedContents getVersionedContents() {
+            return null;
+        }
+
+        @Override
+        public void undoContents() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redoContents() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean canUndo() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean canRedo() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void commitContent() {
+            return; // this method will be called when methods that changes content are called:
         }
     }
 
