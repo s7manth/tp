@@ -1,12 +1,13 @@
 {
   "guiSettings" : {
-    "windowWidth" : 1000.0,
-    "windowHeight" : 640.0,
+    "windowWidth" : 840.0,
+    "windowHeight" : 600.0,
     "windowCoordinates" : {
-      "x" : 239,
-      "y" : 23
+      "x" : 61,
+      "y" : 17
     }
   },
-  "contactListFilePath" : "data/contactlist.json",
-  "taskListFilePath" : "data/tasklist.json"
+  "contactListFilePath" : "data\\contactlist.json",
+  "taskListFilePath" : "data\\tasklist.json",
+  "moduleListFilePath" : "data\\modulelist.json"
 }
