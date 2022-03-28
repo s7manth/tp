@@ -292,14 +292,18 @@ Adds a new Task with a given description and deadline.
 Format: `newtask DESCRIPTION by/DATETIME`
 
 * Description must be non-empty. Ie, it cannot consist of all spaces.
-* DATETIME has to be in the format of : `YYYY-MM-DDThh:mm` , where
-  * YYYY represents a 4-digit year
-  * MM represents a 2-digit month (so March will be 03, November 11)
-  * DD represents a 2-digit day (1st day of the month will be 01)
-  * hh represents the hour, as in 24-hour (ie 3am is 0300, 3pm is 1500)
-  * mm represents the minute.
-  * The dashes `-`, colons `:` and the `T` must be in the corresponding positions.
-  * The Time and Date being input must be valid. Ie, it is not possible to input a task
+* DATETIME has to be in the format of : `YYYY-MM-DDThh:mm`. The format for this is shown below:
+
+| Symbol        | What it represents    | Example                                                              |
+|---------------|-----------------------|----------------------------------------------------------------------|
+| YYYY          | 4-digit year          | 1999 <br> 2020                                                       |
+| MM            | 2-digit month         | March - 03 <br> November - 11                                        |
+| DD            | 2-digit day           | First day - 01 <br> Twelfth day - 12                                 |
+| hh            | 2-digit 24hour format | 3am - 0300 <br> 3pm - 1500                                           |
+| mm            | 2-digit minute        | On the hour - 00 <br> Last minute - 59                               |
+| `-`, `:`, `T` | Separators            | Do not change these! They need to be in the corresponding positions! | 
+
+  * Note that the Time and Date being input must be valid. Ie, it is not possible to input a task
     with a deadline of 31st February.
 
 Examples:
