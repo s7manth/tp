@@ -34,5 +34,12 @@
     "group" : "T08",
     "tagged" : [ "classmates" ],
     "studentNumber" : "A4444444H"
+  }, {
+    "name" : "Roy Balakrishnan",
+    "email" : "royb@example.com",
+    "mod" : "GER1000",
+    "group" : "T09",
+    "tagged" : [ "colleagues" ],
+    "studentNumber" : "A5555555Z"
   } ]
 }
