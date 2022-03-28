@@ -2,44 +2,44 @@
   "persons" : [ {
     "name" : "Alex Yeoh",
     "email" : "alexyeoh@example.com",
-    "mod" : "CS2100",
-    "group" : "W13",
+    "mod" : "CS2030S",
+    "group" : "T01",
     "tagged" : [ "friends" ],
-    "studentNumber" : "A1234567B"
+    "studentNumber" : "A8743880A"
   }, {
     "name" : "Bernice Yu",
     "email" : "berniceyu@example.com",
     "mod" : "CS2100",
-    "group" : "W12",
+    "group" : "T01",
     "tagged" : [ "colleagues", "friends" ],
-    "studentNumber" : "A1111111X"
+    "studentNumber" : "A9927275B"
   }, {
     "name" : "Charlotte Oliveiro",
     "email" : "charlotte@example.com",
-    "mod" : "CS1101S",
-    "group" : "T06",
+    "mod" : "CS2030S",
+    "group" : "T02",
     "tagged" : [ "neighbours" ],
-    "studentNumber" : "A2222222Y"
+    "studentNumber" : "A9321028C"
   }, {
     "name" : "David Li",
     "email" : "lidavid@example.com",
-    "mod" : "PLS2001",
-    "group" : "T07",
+    "mod" : "CS2030S",
+    "group" : "T03",
     "tagged" : [ "family" ],
-    "studentNumber" : "A3333333W"
+    "studentNumber" : "A9103128D"
   }, {
     "name" : "Irfan Ibrahim",
     "email" : "irfan@example.com",
-    "mod" : "MA1101R",
-    "group" : "T08",
+    "mod" : "CS2030S",
+    "group" : "T02",
     "tagged" : [ "classmates" ],
-    "studentNumber" : "A4444444H"
+    "studentNumber" : "A9249202E"
   }, {
     "name" : "Roy Balakrishnan",
     "email" : "royb@example.com",
-    "mod" : "GER1000",
-    "group" : "T09",
+    "mod" : "CS2030S",
+    "group" : "T01",
     "tagged" : [ "colleagues" ],
-    "studentNumber" : "A5555555Z"
+    "studentNumber" : "A9262441F"
   } ]
 }

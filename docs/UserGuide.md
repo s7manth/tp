@@ -205,25 +205,39 @@ Finds persons whose details contain any of the given keywords.
 Format: `find PREFIX/KEYWORD [KEYWORD] [PREFIX/KEYWORD [KEYWORD]]…​`
 
 * The prefixes used are the same as other commands:
-  * `n/` for name
-  * `a/` for studentNumber
-  * `e/` for email
-  * `m/` for module
-  * `g/` for group
-  * `t/` for tags
+
+| Prefix | What it stands for |
+|--------|--------------------|
+| n/     | Name               |
+| a/     | Student Number     |
+| e/     | Email              |
+| m/     | Module             |
+| g/     | Group              |
+| t/     | Tags               |
+
+Note:
 * Multiple keywords can be given for each tag.
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * The search is case-insensitive. e.g `hans` will match `Hans`
-* Only the specified prefix will be searched
-* For names, only full words will be matched e.g. `Han` will not match `Hans`
-* For the rest, partial words will be matched e.g. `exam` will match `abc@example.com`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Only the specified prefixes will be searched
 
-Examples:
-* `find n/John` returns `john` and `John Doe`
-* `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find n/alex david'](images/findAlexDavidResult.png)
+
+* For names, only full words will be matched e.g. `n/Han` will not match `Hans`
+* For the rest, partial words will be matched e.g. `e/exam` will match `abc@example.com`
+* Persons matching at least one keyword will be returned e.g. `n\Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+
+* If multiple prefixes are specified, Persons matching ALL prefixes will be returned.
+
+Example:
+
+Let the initial state of the list contain these 3 people: Alex, Bernice, Charlotte.
+![Initial State](images/findcommandUG/initialstate.png)
+
+* `find n/alex bernice` returns `Alex` and `Bernice`.
+![result for `find n/alex bernice`](images/findcommandUG/find-alex-bernice.png)
+* `find n/alex charlotte m/CS g/t01` returns `Alex`
+![result for `find n/alex charlotte m/CS g/t01`](images/findcommandUG/find-alex-charlotte.png)
 
 #### Mailing a particular student based on index : `mail-index`
 

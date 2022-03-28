@@ -1,24 +1,12 @@
 {
   "tasks" : [ {
-    "description" : "charlie3",
-    "deadline" : "2000-02-29T00:00"
+    "description" : "test",
+    "deadline" : "2022-02-02T00:00"
   }, {
-    "description" : "charlie1",
-    "deadline" : "2022-12-31T00:00"
+    "description" : "Mark CS2030S Lab 6",
+    "deadline" : "2022-03-27T23:59"
   }, {
-    "description" : "charlie4",
-    "deadline" : "2002-02-28T00:00"
-  }, {
-    "description" : "test4",
-    "deadline" : "5000-12-30T23:59"
-  }, {
-    "description" : "test3",
-    "deadline" : "4000-01-01T00:00"
-  }, {
-    "description" : "test5",
-    "deadline" : "6000-12-30T23:59"
-  }, {
-    "description" : "test1",
-    "deadline" : "2022-03-21T00:00"
+    "description" : "Check CS2100 Assignment 1 submissions",
+    "deadline" : "2022-03-21T18:16"
   } ]
 }
