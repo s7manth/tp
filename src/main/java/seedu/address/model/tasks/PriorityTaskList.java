@@ -13,8 +13,7 @@ import seedu.address.model.tasks.exceptions.TaskNotFoundException;
  */
 public class PriorityTaskList implements ReadOnlyTaskList {
 
-    /** The internal representation of the task list is a PQ.*/
-    //private PriorityQueue<Task> pq = new PriorityQueue<>();
+    /** The internal representation of the task list is an ObservableList.*/
     private final ObservableList<Task> internalList = FXCollections.observableArrayList();
 
     /**
@@ -33,8 +32,6 @@ public class PriorityTaskList implements ReadOnlyTaskList {
 
     /**
      * Constructs a PriorityTaskList with a given ReadOnlyTaskList to copy from.
-     * Note that Since only PriorityTaskList implements ReadOnlyTaskList, PriorityTaskList
-     * is the only class that fits the requirements, and hence only one instanceof check is done.
      *
      * @param other the ReadOnlyTaskList to copy from.
      */
@@ -53,6 +50,12 @@ public class PriorityTaskList implements ReadOnlyTaskList {
         this.internalList.addAll(newData.getInternalList());
     }
 
+    /**
+     * Adds a task using priority considerations. Priority is based on the task's deadlines.
+     *
+     * @param task the task to add.
+     * @return true if the addition was successful.
+     */
     @Override
     public boolean add(Task task) {
         requireNonNull(task);
