@@ -1,12 +1,14 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Mod;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniqueModuleList;
 import seedu.address.model.tasks.ReadOnlyTaskList;
 import seedu.address.model.tasks.Task;
 
@@ -90,6 +92,12 @@ public interface Model {
      */
     void addPerson(Person person);
 
+    void addMod(Mod mod);
+
+    Optional<Mod> getMod(Mod mod);
+
+    String getDefaultGroupOfMod(Mod mod);
+
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the contact list.
@@ -111,9 +119,9 @@ public interface Model {
      * @param mod the module object meant to be checked
      * @return true
      */
-    boolean isDefaultPresent(Mod mod);
+    boolean isDefaultGroupOfModPresent(Mod mod);
 
-    boolean doesModExist(Mod mod);
+    boolean doesModExistInList(Mod mod);
 
     /**
      * Retrieves the current default group value for a particular module
@@ -124,6 +132,38 @@ public interface Model {
 
     void setDefaultGroup(Mod mod, String value);
 
+    UniqueModuleList getModuleList();
+
+    /**
+     * Reverts the Contents to a previous version since application initialisation.
+     */
+    void undoContents();
+
+    /**
+     * Reverts the Contents to a version after the current one since application initialisation.
+     */
+    void redoContents();
+
+    /**
+     * Commits the new content state to the history
+     */
+    void commitContent();
+
+    /**
+     * Checks if the model has a content state before the current one
+     */
+    boolean canUndo();
+
+    /**
+     * Checks if the model has a content state after the current one
+     */
+    boolean canRedo();
+
+    /**
+     * Returns the VersionedContents of the model
+     * @return versioned contents of the model
+     */
+    VersionedContents getVersionedContents();
     /**
      * Returns true if a task with the same identity as {@code task} exists in the task manager.
      */
@@ -140,5 +180,4 @@ public interface Model {
      * {@code task} must not already exist in the task manager.
      */
     void addTask(Task task);
-
 }

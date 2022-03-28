@@ -26,16 +26,19 @@ import seedu.address.model.tag.Tag;
  */
 public class AddCommandParser implements Parser<AddCommand> {
 
+    private static final String NULL_STRING = "null_string";
+
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
+
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_STUDENT_NUMBER, PREFIX_EMAIL, PREFIX_MOD,
                         PREFIX_GROUP, PREFIX_TAG);
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MOD, PREFIX_STUDENT_NUMBER, PREFIX_EMAIL, PREFIX_GROUP)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MOD, PREFIX_STUDENT_NUMBER, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -44,9 +47,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         StudentNumber studentNumber = ParserUtil.parseStudentNumber(argMultimap.getValue(PREFIX_STUDENT_NUMBER).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Mod mod = ParserUtil.parseMod(argMultimap.getValue(PREFIX_MOD).get());
-        Group group = ParserUtil.parseGroup(argMultimap.getValue(PREFIX_GROUP).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-
+        Group group = ParserUtil.parseGroup(argMultimap.getValue(PREFIX_GROUP).orElse(""));
         Person person = new Person(name, studentNumber, email, mod, group, tagList);
 
         return new AddCommand(person);

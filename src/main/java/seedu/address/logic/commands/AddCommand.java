@@ -10,7 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Mod;
+import seedu.address.model.person.Group;
 import seedu.address.model.person.Person;
 
 /**
@@ -39,6 +39,7 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the class group";
+    public static final String MESSAGE_NO_DEFAULT_GROUP = "This module doesn't have a default group set";
 
     private final Person toAdd;
 
@@ -54,17 +55,20 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        if (toAdd.getGroup().equals(Group.EMPTY_GROUP)) {
+            if (model.doesModExistInList(toAdd.getMod()) && model.isDefaultGroupOfModPresent(toAdd.getMod())) {
+                toAdd.setGroup(model.getDefaultGroupOfMod(toAdd.getMod()));
+            } else {
+                throw new CommandException(MESSAGE_NO_DEFAULT_GROUP);
+            }
+        }
+
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        Mod currentMod = toAdd.getMod();
-        String defaultValue = currentMod.getDefaultGroup();
-        if (defaultValue != null) {
-            toAdd.setGroup(defaultValue);
-        }
-
         model.addPerson(toAdd);
+        model.commitContent();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

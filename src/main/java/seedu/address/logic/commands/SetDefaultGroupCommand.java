@@ -4,10 +4,16 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD;
 
+import java.util.Optional;
+import java.util.logging.Logger;
+
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Mod;
-import seedu.address.model.person.UniqueModuleList;
+
+
+
 
 public class SetDefaultGroupCommand extends Command {
 
@@ -23,6 +29,8 @@ public class SetDefaultGroupCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Default value for %1$s Module has been set to %2$s successfully!";
     public static final String MESSAGE_DEFAULT_UPDATE = "Default value for %1$s has been updated from %2$s to %3$s.";
+
+    private static final Logger logger = LogsCenter.getLogger(SetDefaultGroupCommand.class);
 
     private final Mod mod;
     private final String defaultValue;
@@ -40,16 +48,16 @@ public class SetDefaultGroupCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        UniqueModuleList moduleList = new UniqueModuleList();
-        if (model.doesModExist(mod)) {
-            Mod matchingMod = moduleList.retrieveMod(mod).get(); //since guaranteed to not be null
-            if (model.isDefaultPresent(matchingMod)) {
-                String prevDefault = model.retrievePrevDefault(matchingMod);
+        if (model.doesModExistInList(mod)) {
+            Optional<Mod> matchingMod = model.getMod(mod);
+            assert matchingMod != null;
+            if (model.isDefaultGroupOfModPresent(matchingMod.get())) {
+                String prevDefault = model.retrievePrevDefault(matchingMod.get());
+                model.setDefaultGroup(matchingMod.get(), defaultValue);
                 return new CommandResult(String.format(MESSAGE_DEFAULT_UPDATE, mod, prevDefault, defaultValue));
             }
-            model.setDefaultGroup(matchingMod, defaultValue);
         } else {
-            moduleList.add(mod);
+            model.addMod(mod);
             model.setDefaultGroup(mod, defaultValue);
         }
 
