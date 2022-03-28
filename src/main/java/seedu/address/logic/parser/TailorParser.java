@@ -6,21 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.MailAllCommand;
-import seedu.address.logic.commands.MailIndexCommand;
-import seedu.address.logic.commands.MailXCommand;
-import seedu.address.logic.commands.NewTaskCommand;
-import seedu.address.logic.commands.RemoveTaskCommand;
-import seedu.address.logic.commands.SetDefaultGroupCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -91,6 +77,9 @@ public class TailorParser {
 
         case RemoveTaskCommand.COMMAND_WORD:
             return new RemoveTaskCommandParser().parse(arguments);
+
+        case ImportCsvCommand.COMMAND_WORD:
+            return new ImportCsvCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
