@@ -17,7 +17,7 @@ created with JavaFX. It is written in Java, and has about 10 kLoC.
       - aid in the implementation of the setDefaultCommand
       - add storage for the modules and the defaultGroups
     - Bug: Editing groups
-      - fixed a bug where
+      - fixed a bug where editing groups was throwing errors
 
 
 - **Contribution to the User Guide:**
