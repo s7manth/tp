@@ -9,6 +9,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.person.Person;
+import seedu.address.model.tasks.ReadOnlyTaskList;
+import seedu.address.model.tasks.Task;
 
 /**
  * API of the Logic component
@@ -47,4 +49,15 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+
+    /**
+     * Returns the task list.
+     *
+     * @see seedu.address.model.Model#getTaskList()
+     */
+    ReadOnlyTaskList getTaskList();
+
+    /** Returns an unmodifiable view of the task list */
+    ObservableList<Task> getUnmodifiableTaskList();
 }
