@@ -80,6 +80,8 @@ public interface Model {
      */
     boolean hasPerson(Person person);
 
+    boolean hasPersonIgnoreTags(Person person);
+
     /**
      * Deletes the given person.
      * The person must exist in the contact list.

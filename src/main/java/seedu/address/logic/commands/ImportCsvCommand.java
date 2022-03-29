@@ -10,12 +10,12 @@ import seedu.address.model.person.Mod;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.StudentNumber;
+import seedu.address.model.tag.Tag;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -26,21 +26,29 @@ public class ImportCsvCommand extends Command {
 
     private static final String MESSAGE_SUCCESS = "Opening app for bulk emailing";
 
-    private static final String MESSAGE_USAGE = "";
+    private static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds people, from a csv file, to the roster. "
+            + "Parameters: "
+            + "FILE_PATH " + "\n"
+            + "Example: " + COMMAND_WORD + " "
+            + "data/sample-tutorial-group-data.csv";
 
-    public static final String IMPORT_SUCCESSFUL = "Import of the student list successful";
+    public static final String IMPORT_SUCCESSFUL = "Data from csv file imported successfully!";
 
     public static final String EXPECTED_HEADERS = "Name,Student Number,Email,Group";
 
-    public static final String EXPECTED_HEADERS_MISSING = "";
+    public static final String EXPECTED_HEADERS_MISSING = "The file does not follow required format - some header(s) " +
+            "are missing. \n"
+            + "The expected headers are: ";
 
-    public static final String FILE_DOES_NOT_EXIST = "";
+    public static final String FILE_DOES_NOT_EXIST = "TAilor was unable to find a file at the stated path.";
 
-    public static final String NOT_A_CSV_FILE = "";
+    public static final String NOT_A_CSV_FILE = "This file is not in CSV format. Please convert to .csv before " +
+            "importing.";
 
-    public static final String UNEXPECTED_ERROR = "";
+    public static final String UNEXPECTED_ERROR = "TAilor ran into an unexpected error. Please try again.";
 
-    public static final String NOTHING_NEW_TO_IMPORT = "";
+    public static final String NOTHING_NEW_TO_IMPORT = "The current roster is in sync with data in the csv file.\n " +
+            "Nothing new to import!";
 
     private final Path path;
 
@@ -72,8 +80,10 @@ public class ImportCsvCommand extends Command {
                 List<Mod> modList = new ArrayList<>();
                 List<Group> groupList = new ArrayList<>();
 
-                nameList = CsvUtil.extractColumn("Name", this.path).stream().map(Name::new)
-                                .collect(Collectors.toList());
+                nameList = CsvUtil.extractColumn("Name", this.path).stream().map(x -> {
+                            x = x.replaceAll("[^a-zA-Z0-9\\s+]", "");
+                            return new Name(x);
+                        }).collect(Collectors.toList());
 
                 studentNumberList = CsvUtil.extractColumn("Student Number", this.path).stream()
                                 .map(StudentNumber::new).collect(Collectors.toList());
@@ -94,11 +104,11 @@ public class ImportCsvCommand extends Command {
                 assert nameList.size() == modList.size();
                 assert nameList.size() == groupList.size();
 
-                List<Person> toReturn = IntStream.range(0, emailList.size())
+                List<Person> toReturn = IntStream.range(0, emailList.size() - 1)
                         .mapToObj(i -> new Person(nameList.get(i), studentNumberList.get(i),
-                                emailList.get(i), modList.get(i), groupList.get(i), null)).collect(Collectors.toList());
+                                emailList.get(i), modList.get(i), groupList.get(i), new HashSet<Tag>())).collect(Collectors.toList());
 
-                return toReturn.stream().filter(person -> !model.hasPerson(person)).collect(Collectors.toList());
+                return toReturn.stream().filter(person -> !model.hasPersonIgnoreTags(person)).collect(Collectors.toList());
 
             } catch (FileNotFoundException e) {
                 throw new CommandException(FILE_DOES_NOT_EXIST);
@@ -127,7 +137,7 @@ public class ImportCsvCommand extends Command {
         }
 
         if (!fileConforms) {
-            throw new CommandException(EXPECTED_HEADERS_MISSING);
+            throw new CommandException(EXPECTED_HEADERS_MISSING + EXPECTED_HEADERS);
         }
 
         return true;

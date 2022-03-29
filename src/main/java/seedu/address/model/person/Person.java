@@ -88,6 +88,13 @@ public class Person {
                 && otherPerson.getName().equals(getName());
     }
 
+    public boolean isSamePersonAgnosticToTags(Person p) {
+        return p.getStudentNumber().equals(this.getStudentNumber()) &&
+                p.getEmail().equals(this.getEmail()) &&
+                p.getGroup().equals(this.getGroup()) &&
+                p.getMod().equals(this.getMod());
+    }
+
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.

@@ -42,7 +42,7 @@ public class CsvUtil {
 
         String[] line;
         while ((line = csvReader.readNext()) != null) {
-            toReturn.add(line[positionOfHeader]);
+            toReturn.add(line[positionOfHeader].trim());
         }
 
         return toReturn;

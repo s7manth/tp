@@ -66,6 +66,17 @@ public class ContactList implements ReadOnlyContactList {
         return persons.contains(person);
     }
 
+    public boolean hasPersonAgnosticToTags(Person person) {
+        requireNonNull(person);
+        for (Person p : persons) {
+            if (p.isSamePersonAgnosticToTags(person)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
