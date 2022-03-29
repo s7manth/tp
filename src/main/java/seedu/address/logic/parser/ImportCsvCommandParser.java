@@ -1,15 +1,12 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.ImportCsvCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Group;
-import seedu.address.model.person.Mod;
+import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import seedu.address.logic.commands.ImportCsvCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 public class ImportCsvCommandParser implements Parser<ImportCsvCommand> {
 

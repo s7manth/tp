@@ -66,6 +66,11 @@ public class ContactList implements ReadOnlyContactList {
         return persons.contains(person);
     }
 
+    /**
+     * Checks if the contact list has a contact that matches the person while ignoring the tags.
+     * @param person The person being searched for.
+     * @return the boolean value associated with whether an identical person is found or not.
+     */
     public boolean hasPersonAgnosticToTags(Person person) {
         requireNonNull(person);
         for (Person p : persons) {
