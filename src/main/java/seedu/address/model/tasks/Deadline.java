@@ -149,6 +149,10 @@ public class Deadline implements Comparable<Deadline> {
         return deadline.matches(VALIDATION_REGEX);
     }
 
+    public String toStringNiceFormat() {
+        return String.format("by: %s, %s", deadline.toLocalDate(), deadline.toLocalTime());
+    }
+
 
     @Override
     public String toString() {

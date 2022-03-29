@@ -75,6 +75,9 @@ public interface Model {
     /** Returns the task list */
     ReadOnlyTaskList getTaskList();
 
+    /** Returns an unmodifiable view of the task list */
+    ObservableList<Task> getUnmodifiableTaskList();
+
     /**
      * Returns true if a person with the same identity as {@code person} exists in the contact list.
      */

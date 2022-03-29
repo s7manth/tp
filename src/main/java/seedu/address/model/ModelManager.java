@@ -333,6 +333,14 @@ public class ModelManager implements Model {
         return this.taskList;
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Task}
+     */
+    @Override
+    public ObservableList<Task> getUnmodifiableTaskList() {
+        return taskList.getInternalList();
+    }
+
     //=========== OTHERS =============================================================
 
     @Override
