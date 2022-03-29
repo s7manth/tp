@@ -14,6 +14,8 @@ import java.util.PriorityQueue;
 
 import org.junit.jupiter.api.Test;
 
+import com.sun.javafx.collections.ObservableListWrapper;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.tasks.exceptions.DuplicateTaskException;
@@ -26,7 +28,7 @@ public class PriorityTaskListTest {
 
     @Test
     public void constructor() {
-        assertEquals(PriorityQueue.class, taskList.getInternalList().getClass());
+        assertEquals(ObservableListWrapper.class, taskList.getInternalList().getClass());
     }
 
     @Test
@@ -122,11 +124,6 @@ public class PriorityTaskListTest {
         }
 
         @Override
-        public boolean remove(int index) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public boolean contains(Task task) {
             throw new AssertionError("This method should not be called.");
         }
@@ -142,7 +139,7 @@ public class PriorityTaskListTest {
         }
 
         @Override
-        public Collection<Task> getInternalList() {
+        public ObservableList<Task> getInternalList() {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -101,6 +101,7 @@ public class MainApp extends Application {
                 logger.info("Task List data file not found. Will be starting with a sample TaskList");
             }
             initialTaskList = taskListOptional.orElseGet(SampleDataUtil::getSampleTaskList);
+            storage.saveTaskList(initialTaskList);
 
             moduleListOptional = storage.readModuleList();
             if (moduleListOptional.isEmpty()) {
