@@ -25,7 +25,7 @@ import seedu.address.model.tasks.ReadOnlyTaskList;
 import seedu.address.model.tasks.Task;
 import seedu.address.testutil.ModuleBuilder;
 
-public class SetDefaultGroupTest {
+public class SetDefaultGroupCommandTest {
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
