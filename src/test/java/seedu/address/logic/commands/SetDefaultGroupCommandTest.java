@@ -89,6 +89,10 @@ public class SetDefaultGroupCommandTest {
      */
     protected static class ModelStub implements Model {
         @Override
+        public ObservableList<Task> getUnmodifiableTaskList() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
         }
@@ -263,6 +267,8 @@ public class SetDefaultGroupCommandTest {
         public void commitContent() {
             return; // this method will be called when methods that changes content are called:
         }
+
+
     }
 
     /**
