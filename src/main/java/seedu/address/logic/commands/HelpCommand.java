@@ -25,6 +25,12 @@ public class HelpCommand extends Command {
         this.commandWordArg = commandWordArg;
     }
 
+    /**
+     * Executes the help command.
+     * @param model {@code Model} which the command should operate on.
+     * @return A {@code CommandResult} object specifying the success message.
+     * @throws CommandException if the command execution goes unexpected.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandWordArg.trim().isEmpty()) {
@@ -73,6 +79,11 @@ public class HelpCommand extends Command {
         }
     }
 
+    /**
+     * Checks whether two {@code HelpCommand} objects are equal or not.
+     * @param o The other object against which comparison takes place.
+     * @return A boolean value specifying whether the objects are equal or not.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
