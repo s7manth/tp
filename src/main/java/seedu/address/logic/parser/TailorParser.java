@@ -77,7 +77,7 @@ public class TailorParser {
             return new SetDefaultGroupCommandParser().parse(arguments);
 
         case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+            return new HelpCommand(arguments);
 
         case MailXCommand.COMMAND_WORD:
             return new MailXCommandParser().parse(arguments);
