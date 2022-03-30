@@ -10,6 +10,12 @@ public class MailUtil {
 
     public static final String MAIL_TO = "mailto:";
 
+    private static final String OS = System.getProperty("os.name").toLowerCase();
+
+    public static final boolean IS_WINDOWS = OS.contains("win");
+    public static final boolean IS_MAC = OS.contains("mac");
+    public static final boolean IS_UNIX = OS.contains("nix") || OS.contains("nux") || OS.indexOf("aix") > 0;
+
     /**
      * Launches the system default email application.
      * @param emailList The list of receiver's email addresses.
@@ -18,12 +24,17 @@ public class MailUtil {
      */
     public static void launchMail(String... emailList) throws IOException, URISyntaxException {
         if (isDesktopCompatible()) {
-            Desktop desktop;
-            desktop = Desktop.getDesktop();
-            String uri = preprocessEmailAddresses(emailList);
-            URI mailto = new URI(uri);
+            if (IS_UNIX) {
+                String cmd = "xdg-open " + preprocessEmailAddresses(emailList);
+                Runtime.getRuntime().exec(cmd);
+            } else {
+                Desktop desktop;
+                desktop = Desktop.getDesktop();
+                String uri = preprocessEmailAddresses(emailList);
+                URI mailto = new URI(uri);
 
-            desktop.mail(mailto);
+                desktop.mail(mailto);
+            }
         } else {
             throw new IOException();
         }
@@ -51,7 +62,11 @@ public class MailUtil {
             stringBuilderUtil.append(emailList[i]);
 
             if (i + 1 < emailList.length) {
-                stringBuilderUtil.append(",");
+                if (IS_WINDOWS) {
+                    stringBuilderUtil.append(";");
+                } else {
+                    stringBuilderUtil.append(",");
+                }
             }
         }
         return stringBuilderUtil.getFormattedOutput();
