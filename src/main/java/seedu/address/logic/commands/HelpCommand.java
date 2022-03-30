@@ -73,6 +73,18 @@ public class HelpCommand extends Command {
             case MailAllCommand.COMMAND_WORD:
                 return new CommandResult(MailAllCommand.MESSAGE_USAGE);
 
+            case NewTaskCommand.COMMAND_WORD:
+                return new CommandResult(NewTaskCommand.MESSAGE_USAGE);
+
+            case RemoveTaskCommand.COMMAND_WORD:
+                return new CommandResult(RemoveTaskCommand.MESSAGE_USAGE);
+
+            case RedoCommand.COMMAND_WORD:
+                return new CommandResult(RedoCommand.MESSAGE_USAGE);
+
+            case UndoCommand.COMMAND_WORD:
+                return new CommandResult(UndoCommand.MESSAGE_USAGE);
+
             default:
                 throw new CommandException(INVALID_COMMAND_USAGE);
             }

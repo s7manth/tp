@@ -10,6 +10,7 @@ import seedu.address.model.Model;
  */
 public class UndoCommand extends Command {
     public static final String COMMAND_WORD = "undo";
+    public static final String MESSAGE_USAGE = "undo";
 
     public static final String MESSAGE_EARLIEST_VERSION = "There are no versions before this";
     public static final String MESSAGE_SUCCESS = "Contents have been changed to previous version";

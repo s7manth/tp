@@ -7,6 +7,7 @@ import seedu.address.model.Model;
 
 public class RedoCommand extends Command {
     public static final String COMMAND_WORD = "redo";
+    public static final String MESSAGE_USAGE = "redo";
 
     public static final String MESSAGE_LATEST_VERSION = "This is the latest version";
     public static final String MESSAGE_SUCCESS = "Contents have been changed to the next version";
