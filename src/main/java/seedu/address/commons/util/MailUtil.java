@@ -34,7 +34,7 @@ public class MailUtil {
      * @param uri The URI to be checked.
      * @return The boolean value associated with the validity of the URI.
      */
-    public static boolean isValidURI(String uri) {
+    public static boolean isValidUri(String uri) {
         return uri.startsWith(MAIL_TO);
     }
 

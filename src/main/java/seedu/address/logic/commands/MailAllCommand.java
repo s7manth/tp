@@ -19,13 +19,13 @@ public class MailAllCommand extends Command {
 
     public static final String COMMAND_WORD = "mail-all";
 
-    private static final String MESSAGE_SUCCESS = "Opening app for bulk emailing";
-
-    public static final String URI_SYNTAX_ERROR_MESSAGE = "The URI syntax used is incorrect";
-
     public static final String DESKTOP_NOT_SUPPORTED_MESSAGE = "The desktop you are using is not supported";
 
     public static final String NO_EMAILS_SPECIFIED = "No email addresses specified.";
+
+    public static final String URI_SYNTAX_ERROR_MESSAGE = "The URI syntax used is incorrect";
+
+    private static final String MESSAGE_SUCCESS = "Opening app for bulk emailing";
 
     /**
      * Executes the mail-all command.
@@ -48,6 +48,12 @@ public class MailAllCommand extends Command {
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
+    /**
+     * Retrieves list of email strings.
+     * @param model {@code Model} which the command should operate on.
+     * @return The email string list.
+     * @throws CommandException if the command execution goes unexpected.
+     */
     public String[] retrieveEmailStrings(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
         List<String> emails = lastShownList.stream()

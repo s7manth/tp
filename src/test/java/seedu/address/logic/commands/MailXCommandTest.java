@@ -1,19 +1,5 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Group;
-import seedu.address.model.person.Mod;
-import seedu.address.model.person.Person;
-import seedu.address.model.tasks.PriorityTaskList;
-import seedu.address.testutil.MailXDescriptorBuilder;
-
-import java.util.List;
-import java.util.stream.Collectors;
-
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -23,6 +9,21 @@ import static seedu.address.logic.commands.CommandTestUtil.MAIL_X_DESC_AMY;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.address.testutil.TypicalPersons.getTypicalContactList;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Group;
+import seedu.address.model.person.Mod;
+import seedu.address.model.person.Person;
+import seedu.address.model.tasks.PriorityTaskList;
+import seedu.address.testutil.MailXDescriptorBuilder;
 
 public class MailXCommandTest {
     private Model model = new ModelManager(getTypicalContactList(), new UserPrefs(), new PriorityTaskList());
@@ -85,7 +86,8 @@ public class MailXCommandTest {
         Person p = model.getFilteredPersonList().get(INDEX_FIRST.getOneBased());
 
         assertArrayEquals(mailXCommand
-                        .createEmailList(new MailXDescriptorBuilder().withEmail(p.getEmail().toString()).build(), model),
+                        .createEmailList(new MailXDescriptorBuilder().withEmail(p.getEmail().toString())
+                                .build(), model),
                 new String[] { p.getEmail().toString() });
     }
 

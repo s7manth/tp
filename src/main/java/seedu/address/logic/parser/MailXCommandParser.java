@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_NUMBER;
 
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.MailXCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -26,7 +25,8 @@ public class MailXCommandParser implements Parser<MailXCommand> {
     public MailXCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_EMAIL, PREFIX_MOD, PREFIX_GROUP, PREFIX_STUDENT_NUMBER);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_EMAIL,
+                        PREFIX_MOD, PREFIX_GROUP, PREFIX_STUDENT_NUMBER);
 
         System.out.println(argMultimap.getPreamble());
 
@@ -56,7 +56,8 @@ public class MailXCommandParser implements Parser<MailXCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_STUDENT_NUMBER).isPresent()) {
-            mailXDescriptor.setStudentNumber(ParserUtil.parseStudentNumber(argMultimap.getValue(PREFIX_STUDENT_NUMBER).get()));
+            mailXDescriptor.setStudentNumber(ParserUtil.parseStudentNumber(argMultimap
+                    .getValue(PREFIX_STUDENT_NUMBER).get()));
         }
 
         return new MailXCommand(mailXDescriptor);

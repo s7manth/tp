@@ -1,13 +1,5 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.MailXCommand;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Mod;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.StudentNumber;
-import seedu.address.testutil.MailXDescriptorBuilder;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
@@ -29,6 +21,16 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENT_NUMBER_
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENT_NUMBER_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.MailXCommand;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Mod;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.StudentNumber;
+import seedu.address.testutil.MailXDescriptorBuilder;
+
 
 public class MailXCommandParserTest {
 
@@ -101,7 +103,8 @@ public class MailXCommandParserTest {
     public void parse_someFieldsSpecified_success() {
         String userInput = STUDENT_NUMBER_DESC_BOB + EMAIL_DESC_AMY;
 
-        MailXCommand.MailXDescriptor descriptor = new MailXDescriptorBuilder().withStudentNumber(VALID_STUDENT_NUMBER_BOB)
+        MailXCommand.MailXDescriptor descriptor = new MailXDescriptorBuilder()
+                .withStudentNumber(VALID_STUDENT_NUMBER_BOB)
                 .withEmail(VALID_EMAIL_AMY).build();
         MailXCommand expectedCommand = new MailXCommand(descriptor);
 
@@ -141,7 +144,8 @@ public class MailXCommandParserTest {
                 + STUDENT_NUMBER_DESC_AMY + MOD_DESC_AMY + EMAIL_DESC_AMY
                 + STUDENT_NUMBER_DESC_BOB + MOD_DESC_BOB + EMAIL_DESC_BOB;
 
-        MailXCommand.MailXDescriptor descriptor = new MailXDescriptorBuilder().withStudentNumber(VALID_STUDENT_NUMBER_BOB)
+        MailXCommand.MailXDescriptor descriptor = new MailXDescriptorBuilder()
+                .withStudentNumber(VALID_STUDENT_NUMBER_BOB)
                 .withEmail(VALID_EMAIL_BOB).withMod(VALID_MOD_BOB)
                 .build();
         MailXCommand expectedCommand = new MailXCommand(descriptor);
