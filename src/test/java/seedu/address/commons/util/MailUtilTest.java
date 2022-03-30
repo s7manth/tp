@@ -27,11 +27,6 @@ public class MailUtilTest {
     }
 
     @Test
-    public void desktopCompatibilityTest_noExceptionThrown() {
-        assertTrue(isDesktopCompatible());
-    }
-
-    @Test
     public void uriSyntaxCheck_noExceptionThrown() {
         assertFalse(isValidUri(sampleEmails[0]));
 
