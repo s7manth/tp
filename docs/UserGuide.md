@@ -308,6 +308,9 @@ Format: `newtask DESCRIPTION by/DATETIME`
 
 Examples:
 * `newtask Do Homework by/2022-03-21T23:59` creates a task with description of "Do Homework" and is due on 21 March 2022, 11:59pm.
+* `newtask Check Alex's lab 4 by/2022-03-31T23:59` creates a task with description "Check Alex's lab 4" and is due on 31 March 2022, 11:59pm
+![result for `newtask Check Alex's lab 4 by/2022-03-31T23:59`](images/newTask-okay.png)
+
 
 #### Deleting an existing task: `deltask`
 
