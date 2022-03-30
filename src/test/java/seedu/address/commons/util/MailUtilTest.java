@@ -2,9 +2,7 @@ package seedu.address.commons.util;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.util.MailUtil.MAIL_TO;
-import static seedu.address.commons.util.MailUtil.isDesktopCompatible;
 import static seedu.address.commons.util.MailUtil.isValidUri;
 import static seedu.address.commons.util.MailUtil.preprocessEmailAddresses;
 
