@@ -62,6 +62,8 @@ dependencies {
 
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jUnitVersion
 
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.6.1'
+
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
 }
 
