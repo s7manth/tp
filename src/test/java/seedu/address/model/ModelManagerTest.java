@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -19,6 +20,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.address.model.tasks.PriorityTaskList;
 import seedu.address.testutil.ContactListBuilder;
+import seedu.address.testutil.ContentBuilder;
 
 public class ModelManagerTest {
 
@@ -107,6 +109,76 @@ public class ModelManagerTest {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
     }
 
+    //=========== VersionedContent tests ==============================================================
+
+    @Test
+    public void undoContents() {
+        modelManager.addPerson(ALICE);
+        modelManager.commitContent();
+        modelManager.undoContents();
+
+        assertEquals(modelManager.getCurrentContent(), new Content(new ContactList(), new PriorityTaskList()));
+    }
+
+    @Test
+    public void redoContents() {
+        modelManager.addPerson(ALICE);
+        modelManager.commitContent();
+        modelManager.undoContents();
+        modelManager.redoContents();
+
+        ContactList contactListWithAlice = new ContactListBuilder().withPerson(ALICE).build();
+        assertEquals(modelManager.getCurrentContent(), new Content(contactListWithAlice, new PriorityTaskList()));
+    }
+
+    @Test
+    public void getVersionedContents() {
+        Content initialContents = new ContentBuilder().build();
+        assertEquals(modelManager.getVersionedContents(), new VersionedContents(initialContents));
+    }
+
+    @Test
+    public void getCurrentContent() {
+        assertEquals(modelManager.getCurrentContent(), new Content(new ContactList(), new PriorityTaskList()));
+    }
+
+    @Test
+    public void commitContent() {
+        VersionedContents initVersionedContents = new VersionedContents(modelManager.getVersionedContents());
+        modelManager.addPerson(ALICE);
+        modelManager.commitContent();
+        VersionedContents newVersionedContents = new VersionedContents(modelManager.getVersionedContents());
+
+        assertNotEquals(initVersionedContents, newVersionedContents);
+        Content newContent = newVersionedContents.getCurrentContent();
+        initVersionedContents.addContentVersion(newContent);
+        assertEquals(initVersionedContents, newVersionedContents);
+    }
+
+    @Test
+    public void canUndo() {
+        assertFalse(modelManager.canUndo());
+
+        modelManager.addPerson(ALICE);
+        modelManager.commitContent();
+        assertTrue(modelManager.canUndo());
+    }
+
+    @Test
+    public void canRedo() {
+        assertFalse(modelManager.canRedo());
+
+        modelManager.addPerson(ALICE);
+        modelManager.commitContent();
+        assertFalse(modelManager.canRedo());
+
+        modelManager.undoContents();
+        assertTrue(modelManager.canRedo());
+    }
+
+
+    //=========== Other tests ================================================================================
+
     @Test
     public void equals() {
         ContactList contactList = new ContactListBuilder().withPerson(ALICE).withPerson(BENSON).build();
@@ -149,4 +221,5 @@ public class ModelManagerTest {
         diffTaskList.add(ASSIGNMENT);
         assertFalse(modelManager.equals(new ModelManager(contactList, userPrefs, diffTaskList)));
     }
+
 }

@@ -12,6 +12,7 @@ import seedu.address.model.person.Mod;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.StudentNumber;
+import seedu.address.model.person.UniqueModuleList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tasks.Deadline;
 import seedu.address.model.tasks.Description;
@@ -54,6 +55,22 @@ public class SampleDataUtil {
         return sampleAb;
     }
 
+    public static Mod[] getSampleModules() {
+        return new Mod[] {
+            new Mod("CS2108", "W12"),
+            new Mod("CS2109S", "W14"),
+            new Mod("CS2100", "W16"),
+        };
+    }
+
+    public static UniqueModuleList getSampleModuleList() {
+        UniqueModuleList moduleList = new UniqueModuleList();
+        for (Mod mod : getSampleModules()) {
+            moduleList.add(mod);
+        }
+        return moduleList;
+    }
+
     /**
      * Returns a tag set containing the list of strings given.
      */
@@ -65,8 +82,8 @@ public class SampleDataUtil {
 
     public static Task[] getSampleTasks() {
         return new Task[] {
-            new Task(new Description("Check CS2100 Assignment 1 submissions"), new Deadline("2022-03-21 18:16")),
-            new Task(new Description("Mark CS2030S Lab 6"), new Deadline("2022-03-27 23:59"))
+            new Task(new Description("Check CS2100 Assignment 1 submissions"), new Deadline("2022-03-21T18:16")),
+            new Task(new Description("Mark CS2030S Lab 6"), new Deadline("2022-03-27T23:59"))
         };
     }
 

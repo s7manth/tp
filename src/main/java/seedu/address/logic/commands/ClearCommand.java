@@ -22,6 +22,7 @@ public class ClearCommand extends Command {
         requireNonNull(model);
         model.setContactList(new ContactList());
         // TODO : module list and task list needs to be cleared as well
+        model.commitContent();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

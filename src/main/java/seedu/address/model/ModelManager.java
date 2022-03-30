@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -18,19 +19,40 @@ import seedu.address.model.tasks.PriorityTaskList;
 import seedu.address.model.tasks.ReadOnlyTaskList;
 import seedu.address.model.tasks.Task;
 
+
 /**
  * Represents the in-memory model of the contact list and task list data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-
     private final ContactList contactList;
     private final PriorityTaskList taskList;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final UniqueModuleList moduleList;
+    /** List of versioned contents */
+    private final VersionedContents versionedContents;
 
     /**
-     * Initializes a ModelManager with the given contactList, userPrefs and taskList.
+     * Initializes a ModelManager with the given contactList, userPrefs and a moduleList.
+     */
+    public ModelManager(ReadOnlyContactList contactList, ReadOnlyUserPrefs userPrefs, UniqueModuleList moduleList) {
+        requireAllNonNull(contactList, userPrefs, moduleList);
+
+        logger.fine("Initializing with contact list: " + contactList + ", user prefs " + userPrefs
+                + " and moduleList " + moduleList);
+
+        this.contactList = new ContactList(contactList);
+        this.userPrefs = new UserPrefs(userPrefs);
+        this.moduleList = moduleList;
+        this.taskList = new PriorityTaskList();
+        this.filteredPersons = new FilteredList<>(this.contactList.getPersonList());
+        this.versionedContents = new VersionedContents(new Content(getContactList(), getTaskList()));
+    }
+
+
+    /**
+     * Initializes a ModelManager with the given contactList, userPrefs , taskList and an empty moduleList.
      */
     public ModelManager(ReadOnlyContactList contactList, ReadOnlyUserPrefs userPrefs, ReadOnlyTaskList taskList) {
         requireAllNonNull(contactList, userPrefs, taskList);
@@ -41,9 +63,28 @@ public class ModelManager implements Model {
         this.contactList = new ContactList(contactList);
         this.taskList = new PriorityTaskList(taskList);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.moduleList = new UniqueModuleList();
         filteredPersons = new FilteredList<>(this.contactList.getPersonList());
+        this.versionedContents = new VersionedContents(new Content(getContactList(), getTaskList()));
     }
 
+    /**
+     * Initializes a ModelManager with the given contactList, userPrefs , taskList and an empty moduleList.
+     */
+    public ModelManager(ReadOnlyContactList contactList, ReadOnlyUserPrefs userPrefs,
+            ReadOnlyTaskList taskList, UniqueModuleList moduleList) {
+        requireAllNonNull(contactList, userPrefs, taskList, moduleList);
+
+        logger.fine("Initializing with contact list: " + contactList + ", user prefs " + userPrefs
+                + " and task manager: " + taskList + " and module list " + moduleList);
+
+        this.contactList = new ContactList(contactList);
+        this.taskList = new PriorityTaskList(taskList);
+        this.userPrefs = new UserPrefs(userPrefs);
+        this.moduleList = moduleList;
+        filteredPersons = new FilteredList<>(this.contactList.getPersonList());
+        this.versionedContents = new VersionedContents(new Content(getContactList(), getTaskList()));
+    }
     public ModelManager() {
         this(new ContactList(), new UserPrefs(), new PriorityTaskList());
     }
@@ -97,8 +138,8 @@ public class ModelManager implements Model {
     //=========== ContactList ================================================================================
 
     @Override
-    public void setContactList(ReadOnlyContactList contactList) {
-        this.contactList.resetData(contactList);
+    public void setContactList(ReadOnlyContactList newContactList) {
+        this.contactList.resetData(newContactList);
     }
 
     @Override
@@ -130,6 +171,67 @@ public class ModelManager implements Model {
         contactList.setPerson(target, editedPerson);
     }
 
+    //=========== VersionedContent ================================================================================
+
+    /**
+     * Changes the content state of the app to the version just before the current
+     */
+    @Override
+    public void undoContents() {
+        Content newContent = versionedContents.undo();
+        updateContent(newContent);
+    }
+
+    /**
+     * Changes the content state of TAilor to the version just after the current
+     */
+    @Override
+    public void redoContents() {
+        Content newContent = versionedContents.redo();
+        updateContent(newContent);
+    }
+
+    /**
+     * Returns the current history of versioned contents
+     */
+    public VersionedContents getVersionedContents() {
+        return this.versionedContents;
+    }
+
+    /**
+     * Returns the current content state
+     */
+    public Content getCurrentContent() {
+        return this.versionedContents.getCurrentContent();
+    }
+
+    /**
+     * Commits the current content state to versionedContents
+     */
+    @Override
+    public void commitContent() {
+        Content newContent = new Content(getContactList(), getTaskList());
+        versionedContents.addContentVersion(newContent);
+    }
+
+    @Override
+    public boolean canUndo() {
+        return versionedContents.canUndo();
+    }
+
+    @Override
+    public boolean canRedo() {
+        return versionedContents.canRedo();
+    }
+
+    private void updateContent(Content newContent) {
+        ReadOnlyContactList newContactList = newContent.getContactList();
+        ReadOnlyTaskList newTaskList = newContent.getTaskList();
+
+        this.contactList.resetData(new ContactList(newContactList));
+        this.taskList.resetData(new PriorityTaskList(newTaskList));
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -147,26 +249,55 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== ModuleList ================================================================================
     @Override
-    public boolean isDefaultPresent(Mod mod) {
+    public boolean isDefaultGroupOfModPresent(Mod mod) {
         requireNonNull(mod);
-        return mod.getDefaultGroup() != null;
+        Mod modInList = this.getMod(mod).get();
+        return modInList.getDefaultGroup() != null;
     }
 
     @Override
-    public boolean doesModExist(Mod mod) {
+    public boolean doesModExistInList(Mod mod) {
         requireNonNull(mod);
-        return new UniqueModuleList().contains(mod.value);
+        return moduleList.contains(mod);
+    }
+
+    @Override
+    public String getDefaultGroupOfMod(Mod mod) {
+        requireNonNull(mod);
+        Mod modInList = this.getMod(mod).get();
+        return modInList.getDefaultGroup();
+
+    }
+
+    @Override
+    public void addMod(Mod mod) {
+        requireNonNull(mod);
+        moduleList.add(mod);
+    }
+
+    @Override
+    public Optional<Mod> getMod(Mod mod) {
+        requireNonNull(mod);
+        return moduleList.retrieveMod(mod);
     }
 
     @Override
     public String retrievePrevDefault(Mod mod) {
+        requireNonNull(mod);
         return mod.getDefaultGroup();
     }
 
     @Override
     public void setDefaultGroup(Mod mod, String value) {
+        requireNonNull(mod);
         mod.setDefaultGroup(value);
+    }
+
+    @Override
+    public UniqueModuleList getModuleList() {
+        return this.moduleList;
     }
 
     //=========== Task Manager =============================================================
@@ -200,6 +331,14 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyTaskList getTaskList() {
         return this.taskList;
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Task}
+     */
+    @Override
+    public ObservableList<Task> getUnmodifiableTaskList() {
+        return taskList.getInternalList();
     }
 
     //=========== OTHERS =============================================================

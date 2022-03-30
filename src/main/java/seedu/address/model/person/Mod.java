@@ -35,7 +35,7 @@ public class Mod {
     public Mod(String mod) {
         requireNonNull(mod);
         checkArgument(isValidMod(mod), MESSAGE_CONSTRAINTS);
-        value = mod;
+        this.value = mod;
         this.defaultGroup = null;
     }
 
@@ -67,6 +67,9 @@ public class Mod {
         return defaultGroup;
     }
 
+    public String getMod() {
+        return this.value;
+    }
 
     public void setDefaultGroup(String defaultGroup) {
         this.defaultGroup = defaultGroup;

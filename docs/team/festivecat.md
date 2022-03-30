@@ -45,7 +45,7 @@ Given below are my contributions to the project.
       This feature can also be extended to be linked to students or Mods or Groups. It can also be extended to use
       different priority systems to rank the Tasks.
     * Time spent on this (estimate):
-      600mins
+      900mins
 
 * **Enhancements to existing features**:
   * Add Mod class/field (Pull request [\#70]())
