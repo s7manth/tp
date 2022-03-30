@@ -42,6 +42,7 @@ public class NewTaskCommand extends Command {
         }
 
         model.addTask(toAdd);
+        model.commitContent();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

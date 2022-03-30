@@ -10,6 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Group {
 
     public static final String MESSAGE_CONSTRAINTS = "Groups can take any values, and it should not be blank";
+    public static final Group EMPTY_GROUP = new Group();
 
     /*
      * The first character of the Group must not be a whitespace,
@@ -28,6 +29,10 @@ public class Group {
         requireNonNull(group);
         checkArgument(isValidAddress(group), MESSAGE_CONSTRAINTS);
         this.value = group;
+    }
+
+    public Group() {
+        this.value = "";
     }
 
     /**

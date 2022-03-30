@@ -1,6 +1,6 @@
 package seedu.address.model.tasks;
 
-import java.util.Collection;
+import javafx.collections.ObservableList;
 
 /**
  * Unmodifiable view of a task list
@@ -21,14 +21,6 @@ public interface ReadOnlyTaskList {
      * @return true if removed successfully.
      */
     boolean remove(Task task);
-
-    /**
-     * Removes an item at the specified {@code index}.
-     *
-     * @param index the index, 0 based.
-     * @return true if removed successfully.
-     */
-    boolean remove(int index);
 
     /**
      * Checks if the current tasklist contains the specified task. Note that this method
@@ -54,7 +46,7 @@ public interface ReadOnlyTaskList {
      * Returns an unmodifiable view of the task list.
      * This list will not contain any duplicate persons.
      */
-    Collection<Task> getInternalList();
+    ObservableList<Task> getInternalList();
 
     /**
      * Returns the number of tasks in the task list.

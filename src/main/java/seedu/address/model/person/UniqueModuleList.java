@@ -2,24 +2,25 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Optional;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.ModuleNotFoundException;
 
 public class UniqueModuleList implements Iterable<Mod> {
 
 
-    private static final ArrayList<Mod> internalList = new ArrayList<>();
+    private static final ObservableList<Mod> internalList = FXCollections.observableArrayList();
 
     /**
      * Returns true if the list contains a module with the same code as the given argument.
      */
-    public boolean contains(String moduleCode) {
-        requireNonNull(moduleCode);
-        return internalList.stream().anyMatch(x -> x.value.equalsIgnoreCase(moduleCode));
+    public boolean contains(Mod mod) {
+        requireNonNull(mod);
+        return internalList.stream().anyMatch(x -> x.value.equalsIgnoreCase(mod.value));
     }
 
     /**
@@ -39,7 +40,7 @@ public class UniqueModuleList implements Iterable<Mod> {
      */
     public void add(Mod mod) {
         requireNonNull(mod);
-        if (contains(mod.value)) {
+        if (contains(mod)) {
             throw new DuplicatePersonException();
         }
         internalList.add(mod);
@@ -72,7 +73,7 @@ public class UniqueModuleList implements Iterable<Mod> {
         return internalList.hashCode();
     }
 
-    public ArrayList<Mod> getList() {
+    public ObservableList<Mod> getInternalList() {
         return internalList;
     }
 }

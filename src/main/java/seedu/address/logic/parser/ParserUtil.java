@@ -92,6 +92,10 @@ public class ParserUtil {
      */
     public static Group parseGroup(String group) throws ParseException {
         requireNonNull(group);
+        if (group == "") {
+            return Group.EMPTY_GROUP;
+        }
+        //if(isNull(group))
         String trimmedGroupId = group.trim();
         if (!Group.isValidAddress(trimmedGroupId)) {
             throw new ParseException(Group.MESSAGE_CONSTRAINTS);

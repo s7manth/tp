@@ -49,8 +49,8 @@ public class CommandBox extends UiPart<Region> {
         }
 
         // gets the last user input, then fills the text field with it
-        String prevUserInput = inputHistory.getNextUserInput();
-        commandTextField.setText(prevUserInput);
+        String nextUserInput = inputHistory.getNextUserInput();
+        commandTextField.setText(nextUserInput);
 
         // consumes the up keypress event
         keyEvent.consume();

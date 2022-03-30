@@ -2,15 +2,20 @@
 layout: page
 title: User Guide
 ---
+## Table of Contents
+* Table of Contents
+{:toc}
 
-TAilor is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI)
+
+TAilor is a **desktop app for managing contacts, optimized for use via a Command Line Interface (CLI)**
 while still having the benefits of a Graphical User Interface (GUI). If you are a Computer Science Teaching
-Assistant who can type fast, TAilor can get your contact management tasks done faster than traditional GUI apps.
+Assistant who can type fast, TAilor can get tedious contact management tasks done faster than traditional GUI apps!
 
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -43,6 +48,7 @@ Assistant who can type fast, TAilor can get your contact management tasks done f
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 <div markdown="block" class="alert alert-info">
 
@@ -52,10 +58,10 @@ Assistant who can type fast, TAilor can get your contact management tasks done f
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/consultation` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/dropped`, `t/makeup t/consultation` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME a/STUDENT_NUMBER`, `a/STUDENT_NUMBER n/NAME` is also acceptable.
@@ -68,7 +74,10 @@ Assistant who can type fast, TAilor can get your contact management tasks done f
 
 </div>
 
-### Viewing help : `help`
+### Common commands
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
+
+#### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
@@ -76,12 +85,29 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+In addition to this, `help` command can be used to show usage instructions
+for specific commands.
 
-### Adding a person: `add`
+Format: `help [COMMAND_WORD]`
+
+Examples :
+* `help undo` will show the usage instructions for the `undo` command.
+* `help mail-x` will show the usage instructions for the `mail-x` command.
+
+#### Listing all persons : `list`
+
+Shows a list of all persons in the student roster.
+
+Format: `list`
+
+
+#### Adding a person: `add`
 
 Adds a person to the student roster.
 
-Format: `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MOD g/GROUP [t/TAG]…​`
+Format:
+* `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MOD g/GROUP [t/TAG]` or
+* `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MOD [g/GROUP] [t/TAG]` if there exists a default group for the mod already.
 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -91,16 +117,36 @@ A person can have any number of tags (including 0)
 Examples:
 
 * `add n/John Doe a/A1234567L e/johnd@example.com m/CS2030S g/B12G`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com m/CS2100 g/T1 p/1234567 t/criminal`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com m/CS2100 g/T1 a/a0123456x t/stable`
+
+#### Importing a csv file to automatically add people: `import-csv`
+
+Can create your student roster by directly importing a csv file and forgoing the hassle of manually adding students.
+This feature is tailor-made for NUS School of Computing teaching assistants who can export relevant class data from
+LumiNUS.
+
+Format: `import-csv [PATH-TO-FILE]`
+
+To prepare your csv files, the following directions must be followed:
+
+1. Export your student list from LumiNUS Classes and Groups.
+2. Be sure to select and export the following headers only as you choose the format of your file:
+   1. Name,
+   2. Student Number,
+   3. Email, and
+   4. Group
+3. Once exported, convert the file to CSV format. This can be accomplished using any modern day spreadsheet
+   visualization software. Please follow this step through thoroughly.
+4. Copy the file's path and import the file into TAilor with the above command!
 
 
-### Listing all persons : `list`
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+The file format, including choice of headers, will need to be adhered to for TAilor to function smoothly and provide
+a good user experience. As such, please be mindful to not corrupt your csv file before importing- something that can
+result from writing anything or adding information that does not abide by the standard format in the file.
+</div>
 
-Shows a list of all persons in the student roster.
-
-Format: `list`
-
-### Editing a person : `edit`
+#### Editing a person : `edit`
 
 Edits an existing person in the student roster.
 
@@ -113,11 +159,46 @@ Format: `edit INDEX [n/NAME] [a/STUDENT_NUMBER] [e/EMAIL] [m/MOD] [g/GROUP] [t/T
 * You can remove all the person’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
-*  `edit 1 a/A1122334X e/johndoe@example.com` Edits the studentNumber and email address of the 1st person to
-   be `A1122334X` and `johndoe@example.com` respectively.
+*  `edit 1 a/A1122334X e/johndoe@example.com` Edits the studentNumber and email address of the 1st person to be
+   `A1122334X` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+
+#### Deleting a person : `delete`
+
+Deletes the specified person from the student roster.
+
+Format: `delete INDEX`
+
+* Deletes the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd person in the student roster.
+* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+#### Setting a default group value for a specific mod: `set-default-group`
+
+Sets a default group value for a particular mod that can be updated using the same command several times. Helps
+prevent users from repeatedly entering the same data.
+
+Format: `set-default-group m/MOD g/GROUP`
+
+* MOD may or may not be an existing mod in TAilor's local database
+* GROUP can be set any number of times for the same Mod
+
+Examples:
+* `set-default-group m/CS2101 g/G02`
+  ![result for 'set-default-group m/CS2101 g/G02'](images/set_default_ex1.png)
+
+
+* followed by `set-default-group m/CS2101 g/G02-MonThur4-6`
+
+  ![result for updating default group of m/CS2101](images/set_default_ex2.png)
+
+#### Locating persons by name: `find`
+
 
 Finds persons whose details contain any of the given keywords.
 
@@ -144,7 +225,7 @@ Examples:
 * `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find n/alex david'](images/findAlexDavidResult.png)
 
-### Mailing a particular student based on index : `mail-index`
+#### Mailing a particular student based on index : `mail-index`
 
 Mails a person from the student roster based on the index number shown in the application.
 
@@ -157,7 +238,7 @@ Example:
 * `mail-index 2` would open the default mail on the system with the "to" box filled with the
   specified mail. Now, the email is ready to be sent to the person with the index 2 as shown on the application.
 
-### Mailing student subset based on arguments : `mail-x`
+#### Mailing student subset based on arguments : `mail-x`
 
 Mails a subset of students from the contact list. This is a broader version of mail functionality as it can
 cover multiple students at once in order to mail them simultaneously.
@@ -168,12 +249,16 @@ Format: `mail-x [e/EMAIL] [g/GROUP] [m/MOD] [n/NAME]`
 * Anyone who matches at least one of the specified arguments will be included in the mailing list.
 * This can be used to specify multiple prefix based arguments to send the same mail in a single go.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+mail-x must have at least one prefix based argument passed.
+</div>
+
 Example:
 * `mail-x e/johndoe@example.com n/Alex` would open the default mail on the system with the "to" box filled with the
   all the mail addresses covered by the arguments specified. Now, the email is ready to be sent to `johndoe@example.com`
   and Alex.
 
-### Bulk Emails to everyone on the database : `mail-all`
+#### Bulk Emails to everyone on the database : `mail-all`
 
 Mails everybody in the student roster.
 
@@ -182,33 +267,11 @@ Format: `mail-all`
 * Opens the default email application on the system with all email addresses pre-filled in the receiver's
   field.
 
-### Deleting a person : `delete`
 
-Deletes the specified person from the student roster.
+### Task List commands
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the student roster.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
-### Clearing all entries : `clear`
-
-Clears all entries from the student roster.
-
-Format: `clear`
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-### Adding a new task: `newtask`
+#### Adding a new task: `newtask`
 
 Adds a new Task with a given description and deadline.
 
@@ -228,7 +291,7 @@ Format: `newtask DESCRIPTION by/DATETIME`
 Examples:
 * `newtask Do Homework by/2022-03-21T23:59` creates a task with description of "Do Homework" and is due on 21 March 2022, 11:59pm.
 
-### Deleting an existing task: `deltask`
+#### Deleting an existing task: `deltask`
 
 Deletes the specified person from the task list.
 
@@ -242,35 +305,42 @@ Examples:
 * `delete 2` deletes the 2nd person in the task list.
 
 
-### Undo/redo a command: `undo`/`redo`
+### Closing Commands
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-Undoes the most recent command that changed the contact list or task list.
+#### Exiting TAilor: `exit`
 
-Format: `undo`/`redo`
-* `undo`/`redo` will not work on commands that does not change the contact list or task list, eg. mail.
+Simply type exit to close the application. All of your data will be stored if no unforseen error is encountered!
 
-Examples:
-* `delete 1` will delete the first person on the list. `undo` will then revert the contact list to contain the person deleted.
 
+#### Clearing all entries : `clear`
+
+Clears all entries from the student roster.
+
+Format: `clear`
 
 ---
 ### Shortcuts
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-Button | Result
---------|------------------
-**UP** | Refills command textbox with previous entered command
-**DOWN** | Refills command textbox with the command entered after the current one
+| Button   | Result                                                                 |
+|----------|------------------------------------------------------------------------|
+| **UP**   | Refills command textbox with previous entered command                  |
+| **DOWN** | Refills command textbox with the command entered after the current one |
 
 ### Saving the data
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-TAilor data are saved in the hard disk automatically after any command that changes the data.
-There is no need to save manually.
+TAilor's data is saved in the hard disk automatically after any command that changes the data.
+There is no need to save it manually.
 
 ### Editing the data file
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-TAilor data are saved as a JSON file `[JAR file location]/data/contactlist.json`.
-Task List data is also saved as a JSON file `[JAR file location]/data/tasklist.json`. Advanced users are
-welcome to update the data directly by editing those data files.
+TAilor's data is saved as three JSON files. The first being ContactList's data as `[JAR file location]/data/contactlist.
+json` and the second being Task List's data saved as `[JAR file location]/data/tasklist.json`. And finally,
+ModuleList's data being saved as `[JAR file location]/data/modulelist.json`
+Advanced users are welcome to update the data directly by editing those data files.
 
 <div markdown="span" class="alert alert-warning"> :exclamation: **Caution:**
 If your changes to the data file makes its format invalid, TAilor will discard all data and start
@@ -283,28 +353,32 @@ WARNING: This will override the pre-existing data with the new data you entered.
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the
-       file that contains the data of your previous TAilor home folder.
+       file that contains the data of your previous TAilor home folder!
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-| Action          | Format, Examples                                                                                                                                                   |
-|-----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**         | `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MODULE g/GROUP [t/TAG]…​` <br> e.g., `add n/James Ho a/A1234567Y e/jamesho@example.com m/CS2100 g/W12 t/friend t/colleague` |
-| **Clear**       | `clear`                                                                                                                                                            |
-| **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                |
-| **Edit**        | `edit INDEX [n/NAME] [a/STUDENT_NUMBER] [e/EMAIL] [m/MODULE] [g/GROUP] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                             |
-| **Exit**        | `exit`                                                                                                                                                             |
-| **Find**        | `find PREFIX/KEYWORD [MORE_KEYWORDS] [PREFIX/KEYWORD [MORE_KEYWORDS]]`<br> e.g., `find n/James Jake a/A0217`                                                       |
-| **List**        | `list`                                                                                                                                                             |
-| **Mail Index**  | `mail-index`<br> e.g., `mail 2`                                                                                                                                    |
-| **Mail X**      | `mail-x`<br> e.g., `mail e/johndoe@example.com n/Alex`                                                                                                             |
-| **Mail All**    | `mail-all`                                                                                                                                                         |
-| **Help**        | `help`                                                                                                                                                             |
-| **New Task**    | `newtask DESCRIPTION by/DEADLINE` <br> e.g., `newtask Do homework by/2022-03-21T12:34`                                                                             |
-| **Delete Task** | `deltask INDEX` <br> e.g., `deltask 3`                                                                                                                             |
-| **Undo/Redo**   | `undo`/`redo`                                                                                                                                                      |
+| Action                | Format, Examples                                                                                                                                                                                                                         |
+|-----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**              | `help`                                                                                                                                                                                                                                   |
+| **List**              | `list`                                                                                                                                                                                                                                   |
+| **Add**               | `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MODULE g/GROUP [t/TAG]…​` or `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MODULE [g/GROUP] [t/TAG]…​` <br> e.g., `add n/James Ho a/A1234567Y e/jamesho@example.com m/CS2100 g/W12 t/friend t/colleague` |
+| **Import csv**        | `import-csv [PATH_TO_CSV_FILE]`                                                                                                                                                                                                          |                                                                                                                                                         |
+| **Edit**              | `edit INDEX [n/NAME] [a/STUDENT_NUMBER] [e/EMAIL] [m/MODULE] [g/GROUP] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                   |
+| **Delete**            | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                      |
+| **Set Default Group** | `set-default-group m/MOD g/GROUP` <br> e.g., `set-default-group m/CS2103T g/W12-1`                                                                                                                                                       |
+| **Find**              | `find PREFIX/KEYWORD [MORE_KEYWORDS] [PREFIX/KEYWORD [MORE_KEYWORDS]]`<br> e.g., `find n/James Jake a/A0217`                                                                                                                             |
+| **Mail Index**        | `mail-index`<br> e.g., `mail 2`                                                                                                                                                                                                          |
+| **Mail X**            | `mail-x`<br> e.g., `mail e/johndoe@example.com n/Alex`                                                                                                                                                                                   |
+| **Mail All**          | `mail-all`                                                                                                                                                                                                                               |
+| **New Task**          | `newtask DESCRIPTION by/DEADLINE` <br> e.g., `newtask Do homework by/2022-03-21T12:34`                                                                                                                                                   |
+| **Delete Task**       | `deltask INDEX` <br> e.g., `deltask 3`                                                                                                                                                                                                   |
+| **Undo/Redo**         | `undo`/`redo`                                                                                                                                                                                                                            |
+| **Clear**             | `clear`                                                                                                                                                                                                                                  |
+| **Exit**              | `exit`                                                                                                                                                                                                                                   |
