@@ -111,7 +111,7 @@ class JsonAdaptedPerson {
         if (group == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Group.class.getSimpleName()));
         }
-        if (!Group.isValidAddress(group)) {
+        if (!Group.isValidGroup(group)) {
             throw new IllegalValueException(Group.MESSAGE_CONSTRAINTS);
         }
 

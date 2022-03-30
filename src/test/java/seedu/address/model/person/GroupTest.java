@@ -10,30 +10,30 @@ public class GroupTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Name(null));
+        assertThrows(NullPointerException.class, () -> new Group(null));
     }
 
     @Test
     public void constructor_invalidName_throwsIllegalArgumentException() {
         String invalidName = "";
-        assertThrows(IllegalArgumentException.class, () -> new Name(invalidName));
+        assertThrows(IllegalArgumentException.class, () -> new Group(invalidName));
     }
 
     @Test
-    public void isValidName() {
+    public void isValidGroup() {
         // null name
-        assertThrows(NullPointerException.class, () -> Name.isValidName(null));
+        assertThrows(NullPointerException.class, () -> Group.isValidGroup(null));
 
         // invalid name
-        assertFalse(Name.isValidName("")); // empty string
-        assertFalse(Name.isValidName(" ")); // spaces only
+        assertFalse(Group.isValidGroup("")); // empty string
+        assertFalse(Group.isValidGroup(" ")); // spaces only
 
         // valid name
-        assertTrue(Name.isValidName("peter jack")); // alphabets only
-        assertTrue(Name.isValidName("12345")); // numbers only
-        assertTrue(Name.isValidName("peter the 2nd")); // alphanumeric characters
-        assertTrue(Name.isValidName("tal Tan")); // with capital letters
-        assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
+        assertTrue(Group.isValidGroup("peter jack")); // alphabets only
+        assertTrue(Group.isValidGroup("12345")); // numbers only
+        assertTrue(Group.isValidGroup("peter the 2nd")); // alphanumeric characters
+        assertTrue(Group.isValidGroup("tal Tan")); // with capital letters
+        assertTrue(Group.isValidGroup("David Roger Jackson Ray Jr 2nd")); // long names
     }
 }
 
