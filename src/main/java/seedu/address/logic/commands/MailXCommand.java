@@ -8,6 +8,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +22,7 @@ import seedu.address.model.person.Group;
 import seedu.address.model.person.Mod;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.StudentNumber;
 
 /**
  * Opens the system default mail app with people
@@ -49,16 +52,20 @@ public class MailXCommand extends Command {
 
     public static final String GROUP_NOT_PRESENT = "Group not present in the contact list";
 
-    private final MailMDescriptor mailMDescriptor;
+    public static final String URI_SYNTAX_ERROR_MESSAGE = "The URI syntax used is incorrect";
+
+    public static final String DESKTOP_NOT_SUPPORTED_MESSAGE = "The desktop you are using is not supported";
+
+    private final MailXDescriptor mailXDescriptor;
 
     /**
      * Constructor for the MailXCommand class.
-     * @param mailMDescriptor The {@code MailMDescriptor} object which collates all the email addresses to mail to.
+     * @param mailXDescriptor The {@code MailXDescriptor} object which collates all the email addresses to mail to.
      */
-    public MailXCommand(MailMDescriptor mailMDescriptor) {
-        requireNonNull(mailMDescriptor);
+    public MailXCommand(MailXDescriptor mailXDescriptor) {
+        requireNonNull(mailXDescriptor);
 
-        this.mailMDescriptor = mailMDescriptor;
+        this.mailXDescriptor = mailXDescriptor;
     }
 
     /**
@@ -69,34 +76,40 @@ public class MailXCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        launchMail(createEmailList(this.mailMDescriptor, model));
+        try {
+            launchMail(createEmailList(this.mailXDescriptor, model));
+        } catch (URISyntaxException uriSyntaxException) {
+            throw new CommandException(URI_SYNTAX_ERROR_MESSAGE);
+        } catch (IOException ioException) {
+            throw new CommandException(DESKTOP_NOT_SUPPORTED_MESSAGE);
+        }
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
     /**
      * Creates the email list as specified the arguments passed by the user.
-     * @param mailMDescriptor The {@code MailMDescriptor} object which collates all the email addresses to mail to.
+     * @param mailXDescriptor The {@code MailXDescriptor} object which collates all the email addresses to mail to.
      * @param model {@code Model} which the command should operate on.
      * @return The list of email addresses to whom the mail is directed towards.
      * @throws CommandException if the command execution goes unexpected.
      */
-    private Email[] createEmailList(MailMDescriptor mailMDescriptor, Model model) throws CommandException {
-        List<Email> emailList = new ArrayList<>();
+    public String[] createEmailList(MailXDescriptor mailXDescriptor, Model model) throws CommandException {
+        List<String> emailList = new ArrayList<>();
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        Name name = mailMDescriptor.getName().orElse(null);
+        Name name = mailXDescriptor.getName().orElse(null);
         handleNameAddition(lastShownList, emailList, name);
 
-        Email email = mailMDescriptor.getEmail().orElse(null);
+        Email email = mailXDescriptor.getEmail().orElse(null);
         handleEmailAddition(lastShownList, emailList, email);
 
-        Mod mod = mailMDescriptor.getMod().orElse(null);
+        Mod mod = mailXDescriptor.getMod().orElse(null);
         handleModAddition(lastShownList, emailList, mod);
 
-        Group group = mailMDescriptor.getGroup().orElse(null);
+        Group group = mailXDescriptor.getGroup().orElse(null);
         handleGroupAddition(lastShownList, emailList, group);
 
-        Email[] emailListToReturn = new Email[emailList.size()];
+        String[] emailListToReturn = new String[emailList.size()];
         emailListToReturn = emailList.toArray(emailListToReturn);
 
         return emailListToReturn;
@@ -109,12 +122,12 @@ public class MailXCommand extends Command {
      * @param name The name of the person as parsed from the arguments, can be null.
      * @throws CommandException if the command execution goes unexpected.
      */
-    private void handleNameAddition(List<Person> lastShownList, List<Email> emailList, Name name)
+    private void handleNameAddition(List<Person> lastShownList, List<String> emailList, Name name)
             throws CommandException {
         if (!isNull(name)) {
             if (lastShownList.stream().anyMatch(person -> person.getName().equals(name))) {
                 emailList.add(lastShownList.stream().filter(person ->
-                        person.getName().equals(name)).findFirst().get().getEmail());
+                        person.getName().equals(name)).findFirst().get().getEmail().toString());
             } else {
                 throw new CommandException(NAME_NOT_PRESENT);
             }
@@ -128,12 +141,12 @@ public class MailXCommand extends Command {
      * @param email The email of the person as parsed from the arguments, can be null.
      * @throws CommandException if the command execution goes unexpected.
      */
-    private void handleEmailAddition(List<Person> lastShownList, List<Email> emailList, Email email)
+    private void handleEmailAddition(List<Person> lastShownList, List<String> emailList, Email email)
             throws CommandException {
         if (!isNull(email)) {
             if (lastShownList.stream().anyMatch(person -> person.getEmail().equals(email))) {
-                Email e = lastShownList.stream().filter(person ->
-                        person.getEmail().equals(email)).findFirst().get().getEmail();
+                String e = lastShownList.stream().filter(person ->
+                        person.getEmail().equals(email)).findFirst().get().getEmail().toString();
 
                 if (!emailList.contains(e)) {
                     emailList.add(e);
@@ -151,14 +164,14 @@ public class MailXCommand extends Command {
      * @param mod The module of the person(s) as parsed from the arguments, can be null.
      * @throws CommandException if the command execution goes unexpected.
      */
-    private void handleModAddition(List<Person> lastShownList, List<Email> emailList, Mod mod)
+    private void handleModAddition(List<Person> lastShownList, List<String> emailList, Mod mod)
             throws CommandException {
         if (!isNull(mod)) {
             if (lastShownList.stream().anyMatch(person -> person.getMod().equals(mod))) {
                 List<Person> peopleInModule = lastShownList.stream().filter(person ->
                         person.getMod().equals(mod)).collect(Collectors.toList());
                 for (Person p : peopleInModule) {
-                    Email e = p.getEmail();
+                    String e = p.getEmail().toString();
                     if (!emailList.contains(e)) {
                         emailList.add(e);
                     }
@@ -176,14 +189,14 @@ public class MailXCommand extends Command {
      * @param group The group of the person(s) as parsed from the arguments, can be null.
      * @throws CommandException if the command execution goes unexpected.
      */
-    private void handleGroupAddition(List<Person> lastShownList, List<Email> emailList, Group group)
+    private void handleGroupAddition(List<Person> lastShownList, List<String> emailList, Group group)
             throws CommandException {
         if (!isNull(group)) {
             if (lastShownList.stream().anyMatch(person -> person.getGroup().equals(group))) {
                 List<Person> peopleInGroup = lastShownList.stream().filter(person ->
                         person.getGroup().equals(group)).collect(Collectors.toList());
                 for (Person p : peopleInGroup) {
-                    Email e = p.getEmail();
+                    String e = p.getEmail().toString();
                     if (!emailList.contains(e)) {
                         emailList.add(e);
                     }
@@ -208,35 +221,37 @@ public class MailXCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof MailXCommand)) {
             return false;
         }
 
         // state check
         MailXCommand m = (MailXCommand) other;
-        return mailMDescriptor.equals(m.mailMDescriptor);
+        return mailXDescriptor.equals(m.mailXDescriptor);
     }
 
-    public static class MailMDescriptor {
+    public static class MailXDescriptor {
         private Name name;
         private Email email;
         private Mod mod;
         private Group group;
+        private StudentNumber studentNumber;
 
-        public MailMDescriptor() {}
+        public MailXDescriptor() {}
 
         /**
          * Copy constructor with set values.
          */
-        public MailMDescriptor(MailMDescriptor toCopy) {
+        public MailXDescriptor(MailXDescriptor toCopy) {
             setName(toCopy.name);
             setEmail(toCopy.email);
             setGroup(toCopy.group);
             setMod(toCopy.mod);
+            setStudentNumber(toCopy.studentNumber);
         }
 
         /**
-         * Sets the name field for the {@code MailMDescriptor} object.
+         * Sets the name field for the {@code MailXDescriptor} object.
          * @param name The name to be set.
          */
         public void setName(Name name) {
@@ -244,7 +259,7 @@ public class MailXCommand extends Command {
         }
 
         /**
-         * Obtains the name field for the {@code MailMDescriptor} object.
+         * Obtains the name field for the {@code MailXDescriptor} object.
          * @return The {@code Optional} object containing the name.
          */
         public Optional<Name> getName() {
@@ -252,7 +267,23 @@ public class MailXCommand extends Command {
         }
 
         /**
-         * Sets the email field for the {@code MailMDescriptor} object.
+         * Sets the student number field for the {@code MailXDescriptor} object.
+         * @param studentNumber The student number to be set.
+         */
+        public void setStudentNumber(StudentNumber studentNumber) {
+            this.studentNumber = studentNumber;
+        }
+
+        /**
+         * Obtains the student number field for the {@code MailXDescriptor} object.
+         * @return The {@code Optional} object containing the student number.
+         */
+        public Optional<StudentNumber> getStudentNumber() {
+            return Optional.ofNullable(studentNumber);
+        }
+
+        /**
+         * Sets the email field for the {@code MailXDescriptor} object.
          * @param email The email to be set.
          */
         public void setEmail(Email email) {
@@ -260,7 +291,7 @@ public class MailXCommand extends Command {
         }
 
         /**
-         * Obtains the email field for the {@code MailMDescriptor} object.
+         * Obtains the email field for the {@code MailXDescriptor} object.
          * @return The {@code Optional} object containing the email.
          */
         public Optional<Email> getEmail() {
@@ -268,7 +299,7 @@ public class MailXCommand extends Command {
         }
 
         /**
-         * Sets the mod field for the {@code MailMDescriptor} object.
+         * Sets the mod field for the {@code MailXDescriptor} object.
          * @param mod The mod to be set.
          */
         public void setMod(Mod mod) {
@@ -276,7 +307,7 @@ public class MailXCommand extends Command {
         }
 
         /**
-         * Obtains the mod field for the {@code MailMDescriptor} object.
+         * Obtains the mod field for the {@code MailXDescriptor} object.
          * @return The {@code Optional} object containing the mod.
          */
         public Optional<Mod> getMod() {
@@ -284,7 +315,7 @@ public class MailXCommand extends Command {
         }
 
         /**
-         * Sets the group field for the {@code MailMDescriptor} object.
+         * Sets the group field for the {@code MailXDescriptor} object.
          * @param group The group to be set.
          */
         public void setGroup(Group group) {
@@ -292,7 +323,7 @@ public class MailXCommand extends Command {
         }
 
         /**
-         * Obtains the group field for the {@code MailMDescriptor} object.
+         * Obtains the group field for the {@code MailXDescriptor} object.
          * @return The {@code Optional} object containing the group.
          */
         public Optional<Group> getGroup() {
@@ -300,8 +331,8 @@ public class MailXCommand extends Command {
         }
 
         /**
-         * Checks whether two {@code MailMDescriptor} objects are equal or not.
-         * @param other The {@code MailMDescriptor} to check equality against.
+         * Checks whether two {@code MailXDescriptor} objects are equal or not.
+         * @param other The {@code MailXDescriptor} to check equality against.
          * @return The boolean value specifying whether the two objects are equal or not.
          */
         @Override
@@ -312,16 +343,17 @@ public class MailXCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof MailMDescriptor)) {
+            if (!(other instanceof MailXDescriptor)) {
                 return false;
             }
 
             // state check
-            MailMDescriptor e = (MailMDescriptor) other;
+            MailXDescriptor e = (MailXDescriptor) other;
 
             return getName().equals(e.getName())
                     && getEmail().equals(e.getEmail())
-                    && getMod().equals(e.getMod());
+                    && getMod().equals(e.getMod())
+                    && getStudentNumber().equals(e.getStudentNumber());
         }
     }
 }

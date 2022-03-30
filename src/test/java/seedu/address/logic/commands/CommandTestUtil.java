@@ -22,6 +22,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.MailXDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -67,6 +68,9 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
+    public static final MailXCommand.MailXDescriptor MAIL_X_DESC_AMY;
+    public static final MailXCommand.MailXDescriptor MAIL_X_DESC_BOB;
+
     public static final String VALID_DESCRIPTION_HOMEWORK = "Do homework";
     public static final String VALID_DESCRIPTION_ASSIGNMENT = "Check assignment submissions";
     public static final String VALID_DEADLINE_HOMEWORK = "2022-03-21T21:24";
@@ -84,6 +88,14 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withStudentNumber(VALID_STUDENT_NUMBER_BOB).withEmail(VALID_EMAIL_BOB).withMod(VALID_MOD_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+
+        MAIL_X_DESC_AMY = new MailXDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withStudentNumber(VALID_STUDENT_NUMBER_AMY).withEmail(VALID_EMAIL_AMY).withMod(VALID_MOD_AMY)
+                .build();
+
+        MAIL_X_DESC_BOB = new MailXDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withStudentNumber(VALID_STUDENT_NUMBER_BOB).withEmail(VALID_EMAIL_BOB).withMod(VALID_MOD_BOB)
+                .build();
     }
 
     /**

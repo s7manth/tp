@@ -5,49 +5,64 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.person.Email;
 
 public class MailUtil {
 
     public static final String MAIL_TO = "mailto:";
 
-    public static final String URI_SYNTAX_ERROR_MESSAGE = "The URI syntax used is incorrect";
-
-    public static final String DESKTOP_NOT_SUPPORTED_MESSAGE = "The desktop you are using is not supported";
-
-    public static final String INTERNAL_DESKTOP_ERROR = "Internal desktop error";
-
     /**
      * Launches the system default email application.
      * @param emailList The list of receiver's email addresses.
-     * @throws CommandException if any errors occur while launching the mail application.
+     * @throws IOException if there are desktop related errors.
+     * @throws URISyntaxException if the syntax of the uri is incorrect.
      */
-    public static void launchMail(Email... emailList) throws CommandException {
-        Desktop desktop;
-        StringBuilderUtil stringBuilderUtil = StringBuilderUtil.getInstance();
+    public static void launchMail(String... emailList) throws IOException, URISyntaxException {
+        if (isDesktopCompatible()) {
+            Desktop desktop;
+            desktop = Desktop.getDesktop();
+            String uri = preprocessEmailAddresses(emailList);
+            URI mailto = new URI(uri);
 
-        try {
-            if (Desktop.isDesktopSupported() && (desktop = Desktop.getDesktop()).isSupported(Desktop.Action.MAIL)) {
-                stringBuilderUtil.append(MAIL_TO);
-
-                for (int i = 0; i < emailList.length; ++i) {
-                    stringBuilderUtil.append(emailList[i]);
-
-                    if (i + 1 < emailList.length) {
-                        stringBuilderUtil.append(",");
-                    }
-                }
-
-                URI mailto = new URI(stringBuilderUtil.getFormattedOutput());
-                desktop.mail(mailto);
-            } else {
-                throw new CommandException(DESKTOP_NOT_SUPPORTED_MESSAGE);
-            }
-        } catch (URISyntaxException uriSyntaxException) {
-            throw new CommandException(URI_SYNTAX_ERROR_MESSAGE);
-        } catch (IOException ioException) {
-            throw new CommandException(INTERNAL_DESKTOP_ERROR);
+            desktop.mail(mailto);
+        } else {
+            throw new IOException();
         }
+    }
+
+    /**
+     * Checks whether the URI is in the correct format.
+     * @param uri The URI to be checked.
+     * @return The boolean value associated with the validity of the URI.
+     */
+    public static boolean isValidURI(String uri) {
+        return uri.startsWith(MAIL_TO);
+    }
+
+    /**
+     * Processes an array of email strings to the appropriate URI.
+     * @param emailList The array of email strings.
+     * @return The required URI string.
+     */
+    public static String preprocessEmailAddresses(String[] emailList) {
+        StringBuilderUtil stringBuilderUtil = StringBuilderUtil.getInstance();
+        stringBuilderUtil.append(MAIL_TO);
+
+        for (int i = 0; i < emailList.length; ++i) {
+            stringBuilderUtil.append(emailList[i]);
+
+            if (i + 1 < emailList.length) {
+                stringBuilderUtil.append(",");
+            }
+        }
+        return stringBuilderUtil.getFormattedOutput();
+    }
+
+    /**
+     * Checks whether the desktop used is supported for the mail functionality.
+     * @return The boolean value associated with whether the desktop is compatible.
+     */
+    public static boolean isDesktopCompatible() {
+        return Desktop.isDesktopSupported()
+                && (Desktop.getDesktop()).isSupported(Desktop.Action.MAIL);
     }
 }
