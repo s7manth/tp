@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.HelpCommand.SHOWING_HELP_MESSAGE;
 
@@ -114,5 +115,9 @@ public class HelpCommandTest {
         assertCommandSuccess(new HelpCommand("deltask"), model, expectedCommandResult, expectedModel);
     }
 
+    @Test
+    public void execute_helpUnknownCommand_commandExceptionThrown() {
+        assertCommandFailure(new HelpCommand("unknoowwssdf"), model, HelpCommand.INVALID_COMMAND_USAGE);
+    }
 
 }

@@ -17,7 +17,7 @@ public class HelpCommand extends Command {
 
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
 
-    private static final String INVALID_COMMAND_USAGE = "Invalid command usage";
+    public static final String INVALID_COMMAND_USAGE = "Invalid command usage";
 
     private final String commandWordArg;
 
