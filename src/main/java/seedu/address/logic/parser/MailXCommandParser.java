@@ -28,12 +28,7 @@ public class MailXCommandParser implements Parser<MailXCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_EMAIL,
                         PREFIX_MOD, PREFIX_GROUP, PREFIX_STUDENT_NUMBER);
 
-        System.out.println(argMultimap.getPreamble());
-
-        if ((argMultimap.getPreamble().trim().isEmpty() && argMultimap.isEmpty())
-                || !argMultimap.getPreamble().trim().isEmpty()
-                || argMultimap.isEmpty()
-                || args.trim().isEmpty()) {
+        if (argumentChecks(args, argMultimap)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MailXCommand.MESSAGE_USAGE));
         }
 
@@ -61,5 +56,18 @@ public class MailXCommandParser implements Parser<MailXCommand> {
         }
 
         return new MailXCommand(mailXDescriptor);
+    }
+
+    /**
+     * Performs checks on the arguments received.
+     * @param args The arguments.
+     * @param argMultimap The tokenized argument map.
+     * @return The boolean value associated with whether the arguments pass the checks or not.
+     */
+    public boolean argumentChecks(String args, ArgumentMultimap argMultimap) {
+        return (argMultimap.getPreamble().trim().isEmpty() && argMultimap.isEmpty())
+                || !argMultimap.getPreamble().trim().isEmpty()
+                || argMultimap.isEmpty()
+                || args.trim().isEmpty();
     }
 }
