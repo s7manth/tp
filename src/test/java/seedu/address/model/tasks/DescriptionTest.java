@@ -27,10 +27,10 @@ public class DescriptionTest {
         // invalid description
         assertFalse(Description.isValidDesc("")); // empty string
         assertFalse(Description.isValidDesc(" ")); // spaces only
-        assertFalse(Description.isValidDesc("^")); // only non-alphanumeric characters
-        assertFalse(Description.isValidDesc("homework*")); // contains non-alphanumeric characters
 
         // valid description
+        assertTrue(Description.isValidDesc("^")); // only non-alphanumeric characters
+        assertTrue(Description.isValidDesc("homework*")); // contains non-alphanumeric characters
         assertTrue(Description.isValidDesc("do homework")); // alphabets only
         assertTrue(Description.isValidDesc("12345")); // numbers only
         assertTrue(Description.isValidDesc("do homework the 2nd")); // alphanumeric characters
