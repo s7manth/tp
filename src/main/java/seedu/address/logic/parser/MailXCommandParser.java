@@ -1,13 +1,14 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_NUMBER;
 
 import seedu.address.logic.commands.MailXCommand;
-import seedu.address.logic.commands.MailXCommand.MailMDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 
@@ -24,26 +25,49 @@ public class MailXCommandParser implements Parser<MailXCommand> {
     public MailXCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_EMAIL, PREFIX_MOD, PREFIX_GROUP);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_EMAIL,
+                        PREFIX_MOD, PREFIX_GROUP, PREFIX_STUDENT_NUMBER);
 
-        MailMDescriptor mailMDescriptor = new MailMDescriptor();
+        if (argumentChecks(args, argMultimap)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MailXCommand.MESSAGE_USAGE));
+        }
+
+        MailXCommand.MailXDescriptor mailXDescriptor = new MailXCommand.MailXDescriptor();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            mailMDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            mailXDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
 
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            mailMDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+            mailXDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
 
         if (argMultimap.getValue(PREFIX_GROUP).isPresent()) {
-            mailMDescriptor.setGroup(ParserUtil.parseGroup(argMultimap.getValue(PREFIX_GROUP).get()));
+            mailXDescriptor.setGroup(ParserUtil.parseGroup(argMultimap.getValue(PREFIX_GROUP).get()));
         }
 
         if (argMultimap.getValue(PREFIX_MOD).isPresent()) {
-            mailMDescriptor.setMod(ParserUtil.parseMod(argMultimap.getValue(PREFIX_MOD).get()));
+            mailXDescriptor.setMod(ParserUtil.parseMod(argMultimap.getValue(PREFIX_MOD).get()));
         }
 
-        return new MailXCommand(mailMDescriptor);
+        if (argMultimap.getValue(PREFIX_STUDENT_NUMBER).isPresent()) {
+            mailXDescriptor.setStudentNumber(ParserUtil.parseStudentNumber(argMultimap
+                    .getValue(PREFIX_STUDENT_NUMBER).get()));
+        }
+
+        return new MailXCommand(mailXDescriptor);
+    }
+
+    /**
+     * Performs checks on the arguments received.
+     * @param args The arguments.
+     * @param argMultimap The tokenized argument map.
+     * @return The boolean value associated with whether the arguments pass the checks or not.
+     */
+    public boolean argumentChecks(String args, ArgumentMultimap argMultimap) {
+        return (argMultimap.getPreamble().trim().isEmpty() && argMultimap.isEmpty())
+                || !argMultimap.getPreamble().trim().isEmpty()
+                || argMultimap.isEmpty()
+                || args.trim().isEmpty();
     }
 }

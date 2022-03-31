@@ -3,6 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.MailUtil.launchMail;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -26,6 +28,10 @@ public class MailIndexCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_MAIL_PERSON_SUCCESS = "Opening System Default Mail Application : %1$s";
+
+    public static final String URI_SYNTAX_ERROR_MESSAGE = "The URI syntax used is incorrect";
+
+    public static final String DESKTOP_NOT_SUPPORTED_MESSAGE = "The desktop you are using is not supported";
 
     private final Index targetIndex;
 
@@ -54,7 +60,14 @@ public class MailIndexCommand extends Command {
 
         Person personToEmail = lastShownList.get(targetIndex.getZeroBased());
 
-        launchMail(personToEmail.getEmail());
+        try {
+            launchMail(personToEmail.getEmail().toString());
+        } catch (URISyntaxException uriSyntaxException) {
+            throw new CommandException(URI_SYNTAX_ERROR_MESSAGE);
+        } catch (IOException ioException) {
+            throw new CommandException(DESKTOP_NOT_SUPPORTED_MESSAGE);
+        }
+
         return new CommandResult(String.format(MESSAGE_MAIL_PERSON_SUCCESS, personToEmail.getEmail()));
     }
 
