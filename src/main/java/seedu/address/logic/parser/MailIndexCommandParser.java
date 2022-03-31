@@ -6,7 +6,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.MailIndexCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-public class MailIndexCommandParser {
+public class MailIndexCommandParser implements Parser<MailIndexCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the MailIndexCommand
      * and returns a MailIndexCommand object for execution.

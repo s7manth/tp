@@ -182,24 +182,16 @@ This Task Manager feature is implemented similarly to how commands interact with
 as seen in the [architecture](#architecture).
 Below shows the important classes that were created:
 
-Logic:
-* NewTaskCommand (and its parser)
-* RemoveTaskCommand (and its parser)
+| Logic                   | Model                  | Storage                  | UI            |
+|-------------------------|------------------------|--------------------------|---------------|
+| NewTaskCommand          | DuplicateTaskException | TaskListStorage          | TaskCard      |
+| NewTaskCommandParser    | TaskNotFoundException  | JsonTaskListStorage      | TaskListPanel |
+| RemoveTaskCommand       | Description            | JsonSerializableTaskList |               |
+| RemoveTaskCommandParser | Deadline               | JsonAdaptedTask          |               |
+|                         | Task                   |                          |               | |
+|                         | ReadOnlyTaskList       |
+|                         | PriorityTaskList       |
 
-Model:
-* DuplicateTaskException
-* TaskNotFoundException
-* Deadline
-* Description
-* Task (that uses Deadline and Description like how Person uses Name and Phone)
-* ReadOnlyTaskList
-* PriorityTaskList
-
-Storage:
-* JsonAdaptedTask
-* JsonSerializableTaskList
-* JsonTaskListStorage
-* TaskListStorage
 
 Most of these classes were linked to the respective XYZManager components.
 For example, LogicManager now tries to save to the storage's contact list and task lists:
@@ -213,9 +205,13 @@ The following sequence diagram also shows how the newTask operation works in mor
 
 <img src="images/newTask-SequenceDiagram.png" width="1000" />
 
-The current Task List uses a Priority Queue internally to sort/rank the tasks. Hence, the tasks
-are prioritised according to the closeness to the deadline. Ie, a Task with a deadline of 1 March
-will be in front of another Task with deadline of 1 December of the same year.
+The current Task List uses a manually implemented priority system internally to sort/rank the tasks.
+
+* The tasks are prioritised according to the closeness to the deadline. Ie, a Task with a deadline of
+1 March will be in front of another Task with deadline of 1 December of the same year.
+* The tasks are compared to each other using the `compareTo` method from the `Comparable` java interface
+
+
 
 #### Design Considerations
 

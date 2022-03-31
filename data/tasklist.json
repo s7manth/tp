@@ -1,24 +1,15 @@
 {
   "tasks" : [ {
-    "description" : "charlie3",
-    "deadline" : "2000-02-29T00:00"
+    "description" : "interview for project",
+    "deadline" : "2022-02-25T12:00"
   }, {
-    "description" : "charlie1",
-    "deadline" : "2022-12-31T00:00"
+    "description" : "meeting with professor",
+    "deadline" : "2022-02-28T09:00"
   }, {
-    "description" : "charlie4",
-    "deadline" : "2002-02-28T00:00"
+    "description" : "prepare slides for first tutorial",
+    "deadline" : "2022-03-01T23:59"
   }, {
-    "description" : "test4",
-    "deadline" : "5000-12-30T23:59"
-  }, {
-    "description" : "test3",
-    "deadline" : "4000-01-01T00:00"
-  }, {
-    "description" : "test5",
-    "deadline" : "6000-12-30T23:59"
-  }, {
-    "description" : "test1",
-    "deadline" : "2022-03-21T00:00"
+    "description" : "carry out tech run",
+    "deadline" : "2022-03-02T12:30"
   } ]
 }

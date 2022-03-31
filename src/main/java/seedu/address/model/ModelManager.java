@@ -154,6 +154,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasPersonIgnoreTags(Person person) {
+        return contactList.hasPersonAgnosticToTags(person);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         contactList.removePerson(target);
     }
@@ -331,6 +336,14 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyTaskList getTaskList() {
         return this.taskList;
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Task}
+     */
+    @Override
+    public ObservableList<Task> getUnmodifiableTaskList() {
+        return taskList.getInternalList();
     }
 
     //=========== OTHERS =============================================================
