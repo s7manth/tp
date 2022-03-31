@@ -110,6 +110,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasPersonIgnoreTags(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setContactListFilePath(Path contactListFilePath) {
             throw new AssertionError("This method should not be called.");
         }

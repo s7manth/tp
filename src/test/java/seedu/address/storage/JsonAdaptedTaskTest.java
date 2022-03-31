@@ -13,7 +13,7 @@ import seedu.address.model.tasks.Deadline;
 import seedu.address.model.tasks.Description;
 
 public class JsonAdaptedTaskTest {
-    private static final String INVALID_DESC = "i am de@d";
+    private static final String INVALID_DESC = " ";
     private static final String INVALID_DEADLINE = "i am dead";
 
     @Test

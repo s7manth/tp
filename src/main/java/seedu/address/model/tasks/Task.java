@@ -49,6 +49,6 @@ public class Task implements Comparable<Task> {
 
     @Override
     public String toString() {
-        return String.format("%s, by %s", description, deadline);
+        return String.format("%s, %s", description, deadline.toStringNiceFormat());
     }
 }

@@ -14,6 +14,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ImportCsvCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MailAllCommand;
 import seedu.address.logic.commands.MailIndexCommand;
@@ -77,7 +78,7 @@ public class TailorParser {
             return new SetDefaultGroupCommandParser().parse(arguments);
 
         case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+            return new HelpCommand(arguments);
 
         case MailXCommand.COMMAND_WORD:
             return new MailXCommandParser().parse(arguments);
@@ -99,6 +100,9 @@ public class TailorParser {
 
         case RemoveTaskCommand.COMMAND_WORD:
             return new RemoveTaskCommandParser().parse(arguments);
+
+        case ImportCsvCommand.COMMAND_WORD:
+            return new ImportCsvCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
