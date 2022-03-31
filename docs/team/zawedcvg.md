@@ -10,13 +10,13 @@ created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 - **Code contributed:** [RepoSense Link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=zawedcvg&breakdown=true)
 - **Enhancements Implemented:**
-    - Feature: Aid in implementing Groups #77 #123
+    - Feature: Aid in implementing Groups
       - What it does: Adds another attribute named groups to the contactlist.
       - Justification: This feature allows us to define tutorial groups which is a fundamental feature for our app TAilor.
       - Highlights: The implementation of this feature included extensive testing for the command.
       - Time spent: 150 mins
 
-    - Feature: Aid in implementing setDefaultCommand #97 #123
+    - Feature: Aid in implementing setDefaultCommand
       - What it does: Allows to enter a default group for a particular mod.
       - Justification: A tutor predominantly teaches one group for a particular mod, which makes adding users always include
         the redundant group, which wastes a lot of time for the user.
@@ -24,7 +24,7 @@ created with JavaFX. It is written in Java, and has about 10 kLoC.
       and required the addition of several new checks. This included testing as well.
       - Time spent: 250 mins
 
-    - Feature: Implement the storage for the modulelist #97
+    - Feature: Implement the storage for the modulelist
       - What it does: Makes the default groups for modules persistent.
       - Justification: This allows to store the default group information across sessions, removing redundancies for the user.
       - Highlights: This feature required the understanding of the storage component and add various classes to facilitate the
@@ -34,7 +34,7 @@ created with JavaFX. It is written in Java, and has about 10 kLoC.
     - Bug: Editing groups
       - fixed a bug where editing groups was throwing errors
 
-    - Bug: Groups not visible in the UI #81
+    - Bug: Groups not visible in the UI
       - fixed a bug where groups was not being rendered in the UI
 
 
