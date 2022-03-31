@@ -89,6 +89,18 @@ public class Person {
     }
 
     /**
+     * Checks if the current person is identical to person, p - while ignoring any tags.
+     * @param p the person being compared to.
+     * @return the boolean value, true if persons are identical.
+     */
+    public boolean isSamePersonAgnosticToTags(Person p) {
+        return p.getStudentNumber().equals(this.getStudentNumber())
+                && p.getEmail().equals(this.getEmail())
+                && p.getGroup().equals(this.getGroup())
+                && p.getMod().equals(this.getMod());
+    }
+
+    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */

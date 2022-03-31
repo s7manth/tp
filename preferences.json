@@ -8,5 +8,6 @@
     }
   },
   "contactListFilePath" : "data/contactlist.json",
-  "taskListFilePath" : "data/tasklist.json"
+  "taskListFilePath" : "data/tasklist.json",
+  "moduleListFilePath" : "data/modulelist.json"
 }

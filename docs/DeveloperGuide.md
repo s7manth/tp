@@ -205,9 +205,9 @@ The following sequence diagram also shows how the newTask operation works in mor
 
 <img src="images/newTask-SequenceDiagram.png" width="1000" />
 
-The current Task List uses a manually implemented priority system internally to sort/rank the tasks. 
+The current Task List uses a manually implemented priority system internally to sort/rank the tasks.
 
-* The tasks are prioritised according to the closeness to the deadline. Ie, a Task with a deadline of 
+* The tasks are prioritised according to the closeness to the deadline. Ie, a Task with a deadline of
 1 March will be in front of another Task with deadline of 1 December of the same year.
 * The tasks are compared to each other using the `compareTo` method from the `Comparable` java interface
 

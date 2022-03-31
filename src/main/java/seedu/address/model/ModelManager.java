@@ -154,6 +154,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasPersonIgnoreTags(Person person) {
+        return contactList.hasPersonAgnosticToTags(person);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         contactList.removePerson(target);
     }

@@ -67,6 +67,22 @@ public class ContactList implements ReadOnlyContactList {
     }
 
     /**
+     * Checks if the contact list has a contact that matches the person while ignoring the tags.
+     * @param person The person being searched for.
+     * @return the boolean value associated with whether an identical person is found or not.
+     */
+    public boolean hasPersonAgnosticToTags(Person person) {
+        requireNonNull(person);
+        for (Person p : persons) {
+            if (p.isSamePersonAgnosticToTags(person)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
