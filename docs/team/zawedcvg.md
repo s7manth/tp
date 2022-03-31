@@ -10,19 +10,37 @@ created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 - **Code contributed:** [RepoSense Link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=zawedcvg&breakdown=true)
 - **Enhancements Implemented:**
-    - Feature: Groups
-      - aid in the implementation of an extra parameter "group"
-      - add testing for the feature group
-    - Feature: setDefaultCommand
-      - aid in the implementation of the setDefaultCommand
-      - add storage for the modules and the defaultGroups
+    - Feature: Aid in implementing Groups #77 #123
+      - What it does: Adds another attribute named groups to the contactlist.
+      - Justification: This feature allows us to define tutorial groups which is a fundamental feature for our app TAilor.
+      - Highlights: The implementation of this feature included extensive testing for the command.
+      - Time spent: 150 mins
+
+    - Feature: Aid in implementing setDefaultCommand #97 #123
+      - What it does: Allows to enter a default group for a particular mod.
+      - Justification: A tutor predominantly teaches one group for a particular mod, which makes adding users always include
+        the redundant group, which wastes a lot of time for the user.
+      - Highlights: The implementation of this feature required making the group attribute optional. This required changes in a couple of classes
+      and required the addition of several new checks. This included testing as well.
+      - Time spent: 250 mins
+
+    - Feature: Implement the storage for the modulelist #97
+      - What it does: Makes the default groups for modules persistent.
+      - Justification: This allows to store the default group information across sessions, removing redundancies for the user.
+      - Highlights: This feature required the understanding of the storage component and add various classes to facilitate the
+        storage of the modulelist
+      - Time spent: 300 mins
+
     - Bug: Editing groups
       - fixed a bug where editing groups was throwing errors
+
+    - Bug: Groups not visible in the UI #81
+      - fixed a bug where groups was not being rendered in the UI
 
 
 - **Contribution to the User Guide:**
     - Fix user guide to account for the new parameter group
-    - Add use case for the add command where group is optional
+    - Add scenario for the add command where group is optional
 
 - **Contribution to the Developer Guide:**
     - Non-Functional requirements
@@ -32,9 +50,7 @@ created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 - **Contributions to team-based tasks:**
     - suggested and reinforced the git workflow for the team to follow
-    - more to be added soon
 
 - **Community Contribution:**
     - PRs reviewed: to be added
-    - Technical Leadership (through forum contributions): to be added soon
     - bugs reported: to be added soon
