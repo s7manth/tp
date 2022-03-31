@@ -21,19 +21,19 @@ public class GroupTest {
 
     @Test
     public void isValidGroup() {
-        // null name
+        // null group
         assertThrows(NullPointerException.class, () -> Group.isValidGroup(null));
 
-        // invalid name
+        // invalid group
         assertFalse(Group.isValidGroup("")); // empty string
-        assertFalse(Group.isValidGroup(" ")); // spaces only
+        assertFalse(Group.isValidGroup(" CS3243")); // spaces only
 
-        // valid name
-        assertTrue(Group.isValidGroup("peter jack")); // alphabets only
-        assertTrue(Group.isValidGroup("12345")); // numbers only
-        assertTrue(Group.isValidGroup("peter the 2nd")); // alphanumeric characters
-        assertTrue(Group.isValidGroup("tal Tan")); // with capital letters
-        assertTrue(Group.isValidGroup("David Roger Jackson Ray Jr 2nd")); // long names
+        // valid group
+        assertTrue(Group.isValidGroup("T01"));
+        assertTrue(Group.isValidGroup("S12"));
+        assertTrue(Group.isValidGroup("W12"));
+        assertTrue(Group.isValidGroup("T12"));
+        assertTrue(Group.isValidGroup("T12"));
     }
 }
 
