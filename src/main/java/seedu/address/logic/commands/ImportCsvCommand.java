@@ -27,8 +27,6 @@ import seedu.address.model.tag.Tag;
 public class ImportCsvCommand extends Command {
     public static final String COMMAND_WORD = "import-csv";
 
-    public static final String IMPORT_SUCCESSFUL = "Data from csv file imported successfully!";
-
     public static final String EXPECTED_HEADERS = "Name,Student Number,Email,Group";
 
     public static final String EXPECTED_HEADERS_MISSING = "The file does not follow required format - some header(s) "
@@ -45,7 +43,7 @@ public class ImportCsvCommand extends Command {
     public static final String NOTHING_NEW_TO_IMPORT = "The current roster is in sync with data in the csv file.\n "
             + "Nothing new to import!";
 
-    public static final String MESSAGE_SUCCESS = "Opening app for bulk emailing";
+    public static final String MESSAGE_SUCCESS = "Successfully imported data from the csv file!";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds people, from a csv file, to the roster. "
             + "Parameters: "
@@ -69,7 +67,7 @@ public class ImportCsvCommand extends Command {
 
         listToAddToModel.forEach(model::addPerson);
 
-        return new CommandResult(IMPORT_SUCCESSFUL);
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 
     private List<Person> extractUniquePersonList(Model model) throws CommandException {
