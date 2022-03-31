@@ -89,6 +89,8 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* keeps a reference to the `InputHistory` component, because the `CommandBox` relies on it to obtain previously entered commands by the user
+
 
 ### Logic component
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -351,6 +353,16 @@ The sequence diagram for the command `set-default-group m/CS2103T g/W12-1` follo
 then the group argument is essentially optional for the users and TAilor will update the student's data to include
 the default group value. If a group argument is provided, however, then TAilor prioritises the field provided by the
 user over the previously set default group value.
+
+
+### Refill previously typed command feature
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
+
+#### Aim of the feature
+As quick typers, it is inevitable for us to make typos once in a while. In those cases, it is very convenient if we
+could quickly refill the command box with the mistyped command, and correct the mistake there. This features serves to
+meet that need!
+
 
 
 
