@@ -205,25 +205,39 @@ Finds persons whose details contain any of the given keywords.
 Format: `find PREFIX/KEYWORD [KEYWORD] [PREFIX/KEYWORD [KEYWORD]]…​`
 
 * The prefixes used are the same as other commands:
-  * `n/` for name
-  * `a/` for studentNumber
-  * `e/` for email
-  * `m/` for module
-  * `g/` for group
-  * `t/` for tags
+
+| Prefix | What it stands for |
+|--------|--------------------|
+| n/     | Name               |
+| a/     | Student Number     |
+| e/     | Email              |
+| m/     | Module             |
+| g/     | Group              |
+| t/     | Tags               |
+
+Note:
 * Multiple keywords can be given for each tag.
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * The search is case-insensitive. e.g `hans` will match `Hans`
-* Only the specified prefix will be searched
-* For names, only full words will be matched e.g. `Han` will not match `Hans`
-* For the rest, partial words will be matched e.g. `exam` will match `abc@example.com`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Only the specified prefixes will be searched
 
-Examples:
-* `find n/John` returns `john` and `John Doe`
-* `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find n/alex david'](images/findAlexDavidResult.png)
+
+* For names, only full words will be matched e.g. `n/Han` will not match `Hans`
+* For the rest, partial words will be matched e.g. `e/exam` will match `abc@example.com`
+* Persons matching at least one keyword will be returned e.g. `n\Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+
+* If multiple prefixes are specified, Persons matching ALL prefixes will be returned.
+
+Example:
+
+Let the initial state of the list contain these 3 people: Alex, Bernice, Charlotte.
+![Initial State](images/findcommandUG/initialstate.png)
+
+* `find n/alex bernice` returns `Alex` and `Bernice`.
+![result for `find n/alex bernice`](images/findcommandUG/find-alex-bernice.png)
+* `find n/alex charlotte m/CS g/t01` returns `Alex`
+![result for `find n/alex charlotte m/CS g/t01`](images/findcommandUG/find-alex-charlotte.png)
 
 #### Mailing a particular student based on index : `mail-index`
 
@@ -278,18 +292,25 @@ Adds a new Task with a given description and deadline.
 Format: `newtask DESCRIPTION by/DATETIME`
 
 * Description must be non-empty. Ie, it cannot consist of all spaces.
-* DATETIME has to be in the format of : `YYYY-MM-DDThh:mm` , where
-  * YYYY represents a 4-digit year
-  * MM represents a 2-digit month (so March will be 03, November 11)
-  * DD represents a 2-digit day (1st day of the month will be 01)
-  * hh represents the hour, as in 24-hour (ie 3am is 0300, 3pm is 1500)
-  * mm represents the minute.
-  * The dashes `-`, colons `:` and the `T` must be in the corresponding positions.
-  * The Time and Date being input must be valid. Ie, it is not possible to input a task
+* DATETIME has to be in the format of : `YYYY-MM-DDThh:mm`. The format for this is shown below:
+
+| Symbol        | What it represents    | Example                                                              |
+|---------------|-----------------------|----------------------------------------------------------------------|
+| YYYY          | 4-digit year          | 1999 <br> 2020                                                       |
+| MM            | 2-digit month         | March - 03 <br> November - 11                                        |
+| DD            | 2-digit day           | First day - 01 <br> Twelfth day - 12                                 |
+| hh            | 2-digit 24hour format | 3am - 0300 <br> 3pm - 1500                                           |
+| mm            | 2-digit minute        | On the hour - 00 <br> Last minute - 59                               |
+| `-`, `:`, `T` | Separators            | Do not change these! They need to be in the corresponding positions! | 
+
+  * Note that the Time and Date being input must be valid. Ie, it is not possible to input a task
     with a deadline of 31st February.
 
 Examples:
 * `newtask Do Homework by/2022-03-21T23:59` creates a task with description of "Do Homework" and is due on 21 March 2022, 11:59pm.
+* `newtask Check Alex's lab 4 by/2022-03-31T23:59` creates a task with description "Check Alex's lab 4" and is due on 31 March 2022, 11:59pm
+![result for `newtask Check Alex's lab 4 by/2022-03-31T23:59`](images/newTask-okay.png)
+
 
 #### Deleting an existing task: `deltask`
 
