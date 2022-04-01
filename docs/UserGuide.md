@@ -19,6 +19,13 @@ Assistant who can type fast, TAilor can get tedious contact management tasks don
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
+<div markdown="span" class="alert alert-warning"> :exclamation: **Caution:**
+If you are a Mac User, it may be possible that some incompatibilities may surface in the form of garbled/unreadable 
+text in the GUI. It is advised to switch to Azul build of OpenJDK 11 to solve this issue. 
+Please refer to this [link](https://nus-cs2103-ay2122s2.github.io/website/admin/programmingLanguages.html#programming-language)
+for more information:)
+</div>
+
 2. Download the latest `TAilor.jar` from [here](https://github.com/AY2122S2-CS2103T-W12-1/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your TAilor Application.
