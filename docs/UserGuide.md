@@ -239,6 +239,29 @@ Let the initial state of the list contain these 3 people: Alex, Bernice, Charlot
 * `find n/alex charlotte m/CS g/t01` returns `Alex`
 ![result for `find n/alex charlotte m/CS g/t01`](images/findcommandUG/find-alex-charlotte.png)
 
+#### Undo or Redo a previous command : `undo/redo`
+
+Undoes or redoes a previously entered command that changed a person or task.
+
+Format: `undo` or `redo`
+
+* `undo` can only undo the effects of an `add`, `delete`, `edit`, `clear`, `newtask` and `deltask` commands.
+* Once you undo and enter a new `add`, `delete`, `edit`, `clear`, `newtask` or `deltask` command, the state that was undone will not be accessible via `redo` anymore.
+
+Example:
+
+Let the initial state of the list contain these 3 people: Alex, Bernice, Charlotte.
+![Initial State](images/undocommandUG/initial_state.png)
+
+After `delete 1`, we will delete Alex and the list will not have Alex anymore.
+![Before Undo](images/undocommandUG/before_undo.png)
+
+After `undo`, the list will return to having Alex in it
+![Initial State](images/undocommandUG/initial_state.png)
+
+After a `redo`, the list will return to the state where Alex was deleted
+![Before Undo](images/undocommandUG/before_undo.png)
+
 #### Mailing a particular student based on index : `mail-index`
 
 Mails a person from the student roster based on the index number shown in the application.
