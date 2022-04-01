@@ -20,8 +20,6 @@ public class ImportCsvCommandParser implements Parser<ImportCsvCommand> {
 
         String preamble = argMultimap.getPreamble().trim();
 
-        System.out.println(preamble);
-
         if (preamble.isEmpty()) {
             throw new ParseException(NO_PATH_MENTIONED);
         }

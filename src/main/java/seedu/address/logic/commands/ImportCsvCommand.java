@@ -75,37 +75,20 @@ public class ImportCsvCommand extends Command {
 
         if (passingChecks) {
             try {
-                List<Name> nameList;
-                List<StudentNumber> studentNumberList;
-                List<Email> emailList;
+                List<Name> nameList = obtainNameList();
+                List<StudentNumber> studentNumberList = obtainStudentNumberList();
+                List<Email> emailList = obtainEmailList();
+
                 List<Mod> modList = new ArrayList<>();
                 List<Group> groupList = new ArrayList<>();
-
-                nameList = CsvUtil.extractColumn("Name", this.path).stream().map(x -> {
-                    x = x.replaceAll("[^a-zA-Z0-9\\s+]", "");
-                    return new Name(x);
-                }).collect(Collectors.toList());
-
-                studentNumberList = CsvUtil.extractColumn("Student Number", this.path).stream()
-                                .map(StudentNumber::new).collect(Collectors.toList());
-
-                emailList = CsvUtil.extractColumn("Email", this.path).stream()
-                                .map(Email::new).collect(Collectors.toList());
-
-                CsvUtil.extractColumn("Group", this.path).forEach(s -> {
-                    String[] splitModAndGroup = s.split(" ");
-                    String group = splitModAndGroup[0].trim();
-                    groupList.add(new Group(group));
-                    String mod = splitModAndGroup[1].trim().substring(1).replace(")", "");
-                    modList.add(new Mod(mod));
-                });
+                setModAndGroupList(modList, groupList);
 
                 assert nameList.size() == studentNumberList.size();
                 assert nameList.size() == emailList.size();
                 assert nameList.size() == modList.size();
                 assert nameList.size() == groupList.size();
 
-                List<Person> toReturn = IntStream.range(0, emailList.size() - 1)
+                List<Person> toReturn = IntStream.range(0, emailList.size())
                         .mapToObj(i -> new Person(nameList.get(i), studentNumberList.get(i),
                                 emailList.get(i), modList.get(i), groupList.get(i), new HashSet<Tag>()))
                         .collect(Collectors.toList());
@@ -124,6 +107,34 @@ public class ImportCsvCommand extends Command {
         }
 
         return null;
+    }
+
+    private void setModAndGroupList(List<Mod> modList, List<Group> groupList) throws CsvValidationException,
+            IOException {
+        CsvUtil.extractColumn("Group", this.path).forEach(s -> {
+            String[] splitModAndGroup = s.split(" ");
+            String group = splitModAndGroup[0].trim();
+            groupList.add(new Group(group));
+            String mod = splitModAndGroup[1].trim().substring(1).replace(")", "");
+            modList.add(new Mod(mod));
+        });
+    }
+
+    private List<Email> obtainEmailList() throws CsvValidationException, IOException {
+        return CsvUtil.extractColumn("Email", this.path).stream()
+                .map(Email::new).collect(Collectors.toList());
+    }
+
+    private List<StudentNumber> obtainStudentNumberList() throws CsvValidationException, IOException {
+        return CsvUtil.extractColumn("Student Number", this.path).stream()
+                .map(StudentNumber::new).collect(Collectors.toList());
+    }
+
+    private List<Name> obtainNameList() throws CsvValidationException, IOException {
+        return CsvUtil.extractColumn("Name", this.path).stream().map(x -> {
+            x = x.replaceAll("[^a-zA-Z0-9\\s+]", "");
+            return new Name(x);
+        }).collect(Collectors.toList());
     }
 
 
@@ -145,6 +156,20 @@ public class ImportCsvCommand extends Command {
         }
 
         return true;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof ImportCsvCommand)) {
+            return false;
+        }
+
+        return this.path.toString().equals(((ImportCsvCommand) other).path.toString());
     }
 
 }
