@@ -105,7 +105,7 @@ How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `TailorParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -160,7 +160,7 @@ The `Model` component,
 
 The `Storage` component,
 * can save contact list data, task list data and user preference data in json format, and read them back into corresponding objects.
-* inherits from `ContactListStorage`, `TaskListStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from `ContactListStorage`, `TaskListStorage`, `UserPrefStorage` and `ModuleListStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -317,6 +317,30 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
+### Mailing feature: mail-all
+
+#### Implementation
+
+This Mailing feature enables the user to initiate the system
+default mail application (if present). In order to achieve this,
+Java AWT (Abstract Window Toolkit) API is used.
+Below shows the important classes that were created:
+
+Logic:
+* MailIndexCommand (and its parser)
+* MailXCommand (and its parser)
+* MailAllCommand
+
+Commons:
+* MailUtil
+
+MailUtil class contains the interaction of TAior with the desktop. All the commands
+call a method in this class to accomplish their respective functionalities.
+
+The following sequence diagram shows how the `mail-all` operation works:
+
+ <img src="images/MailAllSequenceDiagram.png" />
+
 
 ### Setting a Default Group for a particular Mod
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -338,9 +362,26 @@ Model:
 * DuplicateModuleException
 * ModuleNotFoundException
 
-The core idea behind this implementation is that every Mod object has a `defaultGroup` attribute that initially is
-unassigned. Once the user enters the command `set-default-group m/MOD g/GROUP`, the `defaultGroup` value for
-that "MOD" gets set to "GROUP". If the command is entered again, the value gets updated and the user is notified.
+Storage:
+* JsonAdaptedModule
+* JsonModuleListStorage
+* JsonSerializableModuleList
+* ModuleListStorage
+
+The core idea behind this implementation is that there exists an empty `UniqueModuleList` which is a list of `Mod`.
+Every Mod object has a `defaultGroup` attribute that initially is unassigned. Once the user enters the command
+`set-default-group m/MOD g/GROUP`, the `defaultGroup` value for that `MOD` gets set to `GROUP` and that `MOD` gets added to the `UniqueModuleList`.
+If the command is entered again, the value of the `MOD` gets updated in the `UniqueModuleList` and the user is notified.
+
+Now when a user adds a new student, if he doesn't pass a group argument and there exists the given `MOD` in the `UniqueModuleList`, it places
+the `defaultGroup` as the group for the student, else it returns an error message to the user.
+
+Similar to the TaskList implementation most of these classes are linked to the respective XYZManager components.
+For example, LogicManager now tries to save to the storage's moduleList as well:
+
+```
+            storage.saveModuleList(model.getModuleList());
+```
 
 The sequence diagram for the command `set-default-group m/CS2103T g/W12-1` follows:
 <img src="images/SetDefaultSequenceDiagram.png" width="1000"/>
@@ -353,6 +394,11 @@ The sequence diagram for the command `set-default-group m/CS2103T g/W12-1` follo
 then the group argument is essentially optional for the users and TAilor will update the student's data to include
 the default group value. If a group argument is provided, however, then TAilor prioritises the field provided by the
 user over the previously set default group value.
+
+* The implementation of the UniqueModuleList is extremely similar to how the ContactList and TaskList is implemented, with the
+interactions with the XYZManagers the same.
+  * An example would be to include a new `ModuleListStorage` Interface for the `Storage` Interface to extend from. This
+    hence provides the methods and an interface/facade for other parts of the code to perform module list operations on.
 
 
 ### Refill previously typed command feature

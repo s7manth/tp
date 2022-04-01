@@ -97,7 +97,7 @@ public class ParserUtil {
         }
         //if(isNull(group))
         String trimmedGroupId = group.trim();
-        if (!Group.isValidAddress(trimmedGroupId)) {
+        if (!Group.isValidGroup(trimmedGroupId)) {
             throw new ParseException(Group.MESSAGE_CONSTRAINTS);
         }
         return new Group(trimmedGroupId);

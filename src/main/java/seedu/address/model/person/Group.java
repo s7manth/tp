@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's tutorial group in the class.
- * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidGroup(String)}
  */
 public class Group {
 
@@ -27,7 +27,7 @@ public class Group {
      */
     public Group(String group) {
         requireNonNull(group);
-        checkArgument(isValidAddress(group), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidGroup(group), MESSAGE_CONSTRAINTS);
         this.value = group;
     }
 
@@ -38,7 +38,7 @@ public class Group {
     /**
      * Returns true if a given string is a valid email.
      */
-    public static boolean isValidAddress(String test) {
+    public static boolean isValidGroup(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
