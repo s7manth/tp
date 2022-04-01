@@ -103,7 +103,7 @@ How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `TailorParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -316,6 +316,51 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 
+### Mailing feature: mail-all
+
+#### Implementation
+
+This Mailing feature enables the user to initiate the system
+default mail application (if present). In order to achieve this,
+Java AWT (Abstract Window Toolkit) API is used.
+Below shows the important classes that were created:
+
+Logic:
+* MailIndexCommand (and its parser)
+* MailXCommand (and its parser)
+* MailAllCommand
+
+Commons:
+* MailUtil
+
+MailUtil class contains the interaction of TAior with the desktop. All the commands
+call a method in this class to accomplish their respective functionalities.
+
+[//]: # (The following sequence diagram shows how the `mail-index` operation works:)
+
+[//]: # ()
+[//]: # (<img />)
+
+[//]: # ()
+[//]: # (The following sequence diagram shows how the `mail-x` operation works:)
+
+[//]: # ()
+[//]: # (<img />)
+
+The following sequence diagram shows how the `mail-all` operation works:
+
+<img src="images/MailAllSequenceDiagram.png" />
+
+
+[//]: # (#### Design Considerations)
+
+[//]: # ()
+[//]: # (**Aspect: Extendibility**)
+
+[//]: # ()
+[//]: # ()
+[//]: # (**Aspect: Conformity**)
+
 ### Setting a Default Group for a particular Mod
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
@@ -373,7 +418,6 @@ user over the previously set default group value.
 interactions with the XYZManagers the same.
   * An example would be to include a new `ModuleListStorage` Interface for the `Storage` Interface to extend from. This
     hence provides the methods and an interface/facade for other parts of the code to perform module list operations on.
-
 
 
 --------------------------------------------------------------------------------------------------------------------
