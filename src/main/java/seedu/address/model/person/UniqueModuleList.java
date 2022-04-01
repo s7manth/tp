@@ -13,7 +13,7 @@ import seedu.address.model.person.exceptions.ModuleNotFoundException;
 public class UniqueModuleList implements Iterable<Mod> {
 
 
-    private static final ObservableList<Mod> internalList = FXCollections.observableArrayList();
+    private ObservableList<Mod> internalList = FXCollections.observableArrayList();
 
     /**
      * Returns true if the list contains a module with the same code as the given argument.
@@ -64,7 +64,6 @@ public class UniqueModuleList implements Iterable<Mod> {
 
     @Override
     public boolean equals(Object other) {
-        // short circuit if same object
         return (other instanceof UniqueModuleList); // instanceof handles nulls
     }
 

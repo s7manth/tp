@@ -29,8 +29,10 @@ public class SetDefaultGroupCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Default value for %1$s Module has been set to %2$s successfully!";
     public static final String MESSAGE_DEFAULT_UPDATE = "Default value for %1$s has been updated from %2$s to %3$s.";
+    private static final String DEFAULT_GROUP = "T01";
 
     private static final Logger logger = LogsCenter.getLogger(SetDefaultGroupCommand.class);
+
 
     private final Mod mod;
     private final String defaultValue;
@@ -43,6 +45,16 @@ public class SetDefaultGroupCommand extends Command {
     public SetDefaultGroupCommand(Mod mod, String defaultValue) {
         this.mod = mod;
         this.defaultValue = defaultValue;
+    }
+
+    /**
+     * Constructor for {@code SetDefaultGroupCommand}.
+     * @param mod The module whose default has to be set.
+     */
+    public SetDefaultGroupCommand(Mod mod) {
+        requireNonNull(mod);
+        this.mod = mod;
+        this.defaultValue = DEFAULT_GROUP;
     }
 
     @Override
@@ -64,5 +76,12 @@ public class SetDefaultGroupCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, mod, defaultValue));
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SetDefaultGroupCommand) // instanceof handles nulls
+                && mod.equals(((SetDefaultGroupCommand) other).mod)
+                && defaultValue.equals(((SetDefaultGroupCommand) other).defaultValue);
+    }
 }
 

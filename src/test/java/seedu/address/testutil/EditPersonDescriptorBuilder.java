@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Group;
 import seedu.address.model.person.Mod;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -68,6 +69,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withMod(String address) {
         descriptor.setMod(new Mod(address));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Group} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withGroup(String group) {
+        descriptor.setGroup(new Group(group));
         return this;
     }
 

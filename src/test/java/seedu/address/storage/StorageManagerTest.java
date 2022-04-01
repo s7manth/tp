@@ -3,6 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.testutil.TypicalPersons.getTypicalContactList;
+import static seedu.address.testutil.TypicalPersons.getTypicalModuleList;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
 
 import java.nio.file.Path;
@@ -15,6 +16,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.ContactList;
 import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.UniqueModuleList;
 import seedu.address.model.tasks.PriorityTaskList;
 import seedu.address.model.tasks.ReadOnlyTaskList;
 
@@ -27,6 +29,7 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
+        //System.out.println(getTempFilePath("ab"));
         JsonContactListStorage contactListStorage = new JsonContactListStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         JsonTaskListStorage taskListStorage = new JsonTaskListStorage(getTempFilePath("tl"));
@@ -76,6 +79,18 @@ public class StorageManagerTest {
         storageManager.saveTaskList(original);
         ReadOnlyTaskList retrieved = storageManager.readTaskList().get();
         assertEquals(original, new PriorityTaskList(retrieved));
+    }
+
+    @Test
+    public void moduleListReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonModuleListStorage} class.
+         */
+        UniqueModuleList original = getTypicalModuleList();
+        storageManager.saveModuleList(original);
+        UniqueModuleList retrieved = storageManager.readModuleList().get();
+        assertEquals(original, retrieved);
     }
 
     @Test
