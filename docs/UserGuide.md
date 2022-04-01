@@ -21,11 +21,11 @@ Assistant who can type fast, TAilor can get tedious contact management tasks don
 1. Ensure you have Java `11` or above installed in your Computer.
 
 <div markdown="span" class="alert alert-warning"> :exclamation: **Caution:**
-If you are a Mac User, it may be possible that some incompatibilities may surface in the form of garbled/unreadable
-text in the GUI. It is advised to switch to Azul build of OpenJDK 11 to solve this issue.
+If you are a Mac User, it may be possible that some incompatibilities may surface in the form of garbled/unreadable 
+text in the GUI. It is advised to switch to Azul build of OpenJDK 11 to solve this issue. 
 Please refer to this <a href="https://nus-cs2103-ay2122s2.github.io/website/admin/programmingLanguages.html#programming-language">link</a>
 for more information:)
-
+ 
 </div>
 
 2. Download the latest `TAilor.jar` from [here](https://github.com/AY2122S2-CS2103T-W12-1/tp/releases).
@@ -333,7 +333,7 @@ Format: `newtask DESCRIPTION by/DATETIME`
 | DD            | 2-digit day           | First day - 01 <br> Twelfth day - 12                                 |
 | hh            | 2-digit 24hour format | 3am - 0300 <br> 3pm - 1500                                           |
 | mm            | 2-digit minute        | On the hour - 00 <br> Last minute - 59                               |
-| `-`, `:`, `T` | Separators            | Do not change these! They need to be in the corresponding positions! |
+| `-`, `:`, `T` | Separators            | Do not change these! They need to be in the corresponding positions! | 
 
   * Note that the Time and Date being input must be valid. Ie, it is not possible to input a task
     with a deadline of 31st February.
@@ -419,7 +419,7 @@ WARNING: This will override the pre-existing data with the new data you entered.
 
 | Action                | Format, Examples                                                                                                                                                                                                                         |
 |-----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**              | `help`, `help list`, `help mail-x`                                                                                                                                                                                                       |
+| **Help**              | `help`                                                                                                                                                                                                                                   |
 | **List**              | `list`                                                                                                                                                                                                                                   |
 | **Add**               | `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MODULE g/GROUP [t/TAG]…​` or `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MODULE [g/GROUP] [t/TAG]…​` <br> e.g., `add n/James Ho a/A1234567Y e/jamesho@example.com m/CS2100 g/W12 t/friend t/colleague` |
 | **Import csv**        | `import-csv [PATH_TO_CSV_FILE]`                                                                                                                                                                                                          |                                                                                                                                                         |
