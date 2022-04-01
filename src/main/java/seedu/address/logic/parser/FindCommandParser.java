@@ -45,36 +45,39 @@ public class FindCommandParser implements Parser<FindCommand> {
                 ArgumentTokenizer.tokenize(" " + trimmedArgs, PREFIX_NAME, PREFIX_STUDENT_NUMBER, PREFIX_EMAIL,
                         PREFIX_GROUP, PREFIX_MOD, PREFIX_TAG);
 
-
-
-
         CompoundedPredicates compPreds = new CompoundedPredicates();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             String[] keywords = argMultimap.getValue(PREFIX_NAME).get().split("\\s+");
+            checkKeywords(keywords);
             compPreds.addPredicate(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         }
         if (argMultimap.getValue(PREFIX_STUDENT_NUMBER).isPresent()) {
             String[] keywords = argMultimap.getValue(PREFIX_STUDENT_NUMBER).get().split("\\s+");
+            checkKeywords(keywords);
             compPreds.addPredicate(new StudentNumberContainsKeywordsPredicate(Arrays.asList(keywords)));
 
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             String[] keywords = argMultimap.getValue(PREFIX_EMAIL).get().split("\\s+");
+            checkKeywords(keywords);
             compPreds.addPredicate(new EmailContainsKeywordsPredicate(Arrays.asList(keywords)));
 
         }
         if (argMultimap.getValue(PREFIX_MOD).isPresent()) { // to be changed to MOD
             String[] keywords = argMultimap.getValue(PREFIX_MOD).get().split("\\s+");
+            checkKeywords(keywords);
             compPreds.addPredicate(new ModContainsKeywordsPredicate(Arrays.asList(keywords)));
 
         }
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             String[] keywords = argMultimap.getValue(PREFIX_TAG).get().split("\\s+");
+            checkKeywords(keywords);
             compPreds.addPredicate(new TagsContainsKeywordsPredicate(Arrays.asList(keywords)));
         }
 
         if (argMultimap.getValue(PREFIX_GROUP).isPresent()) {
             String[] keywords = argMultimap.getValue(PREFIX_GROUP).get().split("\\s+");
+            checkKeywords(keywords);
             compPreds.addPredicate(new GroupContainsKeywordsPredicate(Arrays.asList(keywords)));
         }
 
@@ -85,4 +88,19 @@ public class FindCommandParser implements Parser<FindCommand> {
         return new FindCommand(compPreds);
     }
 
+
+    /**
+     * Checks if any keyword given is empty. If so, throw an exception.
+     * @param keywords the keywords to check.
+     * @return true when no empty keywords are found.
+     * @throws ParseException when an empty keyword is given, ie find n/ a/
+     */
+    private boolean checkKeywords(String[] keywords) throws ParseException {
+        for (String s : keywords) {
+            if (s.trim().length() == 0) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            }
+        }
+        return true;
+    }
 }

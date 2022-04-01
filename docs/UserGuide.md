@@ -228,6 +228,7 @@ Note:
 * Multiple keywords can be given for each tag.
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * The search is case-insensitive. e.g `hans` will match `Hans`
+* Keywords cannot be empty. e.g. `find n/` is wrong
 * Only the specified prefixes will be searched
 
 
