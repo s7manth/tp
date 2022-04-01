@@ -7,6 +7,7 @@ title: User Guide
 {:toc}
 
 
+## Introduction
 TAilor is a **desktop app for managing contacts, optimized for use via a Command Line Interface (CLI)**
 while still having the benefits of a Graphical User Interface (GUI). If you are a Computer Science Teaching
 Assistant who can type fast, TAilor can get tedious contact management tasks done faster than traditional GUI apps!
@@ -22,8 +23,9 @@ Assistant who can type fast, TAilor can get tedious contact management tasks don
 <div markdown="span" class="alert alert-warning"> :exclamation: **Caution:**
 If you are a Mac User, it may be possible that some incompatibilities may surface in the form of garbled/unreadable 
 text in the GUI. It is advised to switch to Azul build of OpenJDK 11 to solve this issue. 
-Please refer to this [link](https://nus-cs2103-ay2122s2.github.io/website/admin/programmingLanguages.html#programming-language)
+Please refer to this <a href="https://nus-cs2103-ay2122s2.github.io/website/admin/programmingLanguages.html#programming-language">link</a>
 for more information:)
+ 
 </div>
 
 2. Download the latest `TAilor.jar` from [here](https://github.com/AY2122S2-CS2103T-W12-1/tp/releases).
