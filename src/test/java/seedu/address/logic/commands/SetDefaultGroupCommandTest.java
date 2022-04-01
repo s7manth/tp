@@ -7,8 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -16,8 +14,6 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.ContactList;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.ReadOnlyUserPrefs;
@@ -27,63 +23,80 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.UniqueModuleList;
 import seedu.address.model.tasks.ReadOnlyTaskList;
 import seedu.address.model.tasks.Task;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.ModuleBuilder;
 
-public class AddCommandTest {
+public class SetDefaultGroupCommandTest {
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new SetDefaultGroupCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    public void execute_moduleAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingModAdded modelStub = new ModelStubAcceptingModAdded();
+        Mod validmod = new ModuleBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new SetDefaultGroupCommand(validmod).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
-    }
+        assertEquals(String.format(SetDefaultGroupCommand.MESSAGE_SUCCESS, validmod.value,
+                    validmod.getDefaultGroup()), commandResult.getFeedbackToUser());
 
-    @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+        UniqueModuleList tester = new UniqueModuleList();
+        tester.add(validmod);
+        assertEquals(tester, modelStub.moduleList);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        validmod.setDefaultGroup("T21");
+        CommandResult commandResult1 = new SetDefaultGroupCommand(validmod).execute(modelStub);
+        assertEquals(String.format(SetDefaultGroupCommand.MESSAGE_DEFAULT_UPDATE, validmod.value, "T21",
+                    validmod.getDefaultGroup()), commandResult1.getFeedbackToUser());
+        UniqueModuleList tester1 = new UniqueModuleList();
+        tester1.add(validmod);
+        assertEquals(tester1, modelStub.moduleList);
+
+        Mod validmod2 = new Mod("CS3232");
+        CommandResult commandResult2 = new SetDefaultGroupCommand(validmod2, "T12").execute(modelStub);
+        assertEquals(String.format(SetDefaultGroupCommand.MESSAGE_SUCCESS, validmod2.value,
+                    validmod2.getDefaultGroup()), commandResult2.getFeedbackToUser());
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Mod aliceMod = new ModuleBuilder().withMod("CS2100").withGroup("T01").build();
+        Mod bobMod = new ModuleBuilder().withMod("CS2108").withGroup("T02").build();
+        SetDefaultGroupCommand addAliceDefaultGroup = new SetDefaultGroupCommand(aliceMod);
+        SetDefaultGroupCommand addBobDefaultGroup = new SetDefaultGroupCommand(bobMod);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addAliceDefaultGroup.equals(addAliceDefaultGroup));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        SetDefaultGroupCommand addAliceCommandCopy = new SetDefaultGroupCommand(aliceMod);
+        assertTrue(addAliceDefaultGroup.equals(addAliceCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addAliceDefaultGroup.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addAliceDefaultGroup.equals(null));
 
         // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addAliceDefaultGroup.equals(addBobDefaultGroup));
     }
 
     /**
      * A default model stub that have all of the methods failing.
      */
     protected static class ModelStub implements Model {
+        @Override
+        public ObservableList<Task> getUnmodifiableTaskList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasPersonIgnoreTags(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -106,11 +119,6 @@ public class AddCommandTest {
 
         @Override
         public Path getContactListFilePath() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasPersonIgnoreTags(Person person) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -152,11 +160,6 @@ public class AddCommandTest {
 
         @Override
         public ReadOnlyTaskList getTaskList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Task> getUnmodifiableTaskList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -269,48 +272,50 @@ public class AddCommandTest {
         public void commitContent() {
             return; // this method will be called when methods that changes content are called:
         }
+
+
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that always accept the mod being added.
      */
-    protected static class ModelStubWithPerson extends ModelStub {
-        private final Person person;
-
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+    protected static class ModelStubAcceptingModAdded extends ModelStub {
+        final UniqueModuleList moduleList = new UniqueModuleList();
+        @Override
+        public boolean doesModExistInList(Mod mod) {
+            requireNonNull(mod);
+            return moduleList.contains(mod);
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public void addMod(Mod mod) {
+            requireNonNull(mod);
+            moduleList.add(mod);
         }
-    }
-
-    /**
-     * A Model stub that always accept the person being added.
-     */
-    protected static class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
-
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public void setDefaultGroup(Mod mod, String value) {
+            requireNonNull(mod);
+            mod.setDefaultGroup(value);
+        }
+        @Override
+        public Optional<Mod> getMod(Mod mod) {
+            requireNonNull(mod);
+            return moduleList.retrieveMod(mod);
+        }
+        @Override
+        public boolean isDefaultGroupOfModPresent(Mod mod) {
+            requireNonNull(mod);
+            Mod modInList = this.getMod(mod).get();
+            return modInList.getDefaultGroup() != null;
+        }
+        @Override
+        public String retrievePrevDefault(Mod mod) {
+            requireNonNull(mod);
+            return mod.getDefaultGroup();
         }
 
-        @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
-        }
 
-        @Override
-        public ReadOnlyContactList getContactList() {
-            return new ContactList();
-        }
     }
 
 }
+

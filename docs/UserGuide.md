@@ -7,6 +7,7 @@ title: User Guide
 {:toc}
 
 
+## Introduction
 TAilor is a **desktop app for managing contacts, optimized for use via a Command Line Interface (CLI)**
 while still having the benefits of a Graphical User Interface (GUI). If you are a Computer Science Teaching
 Assistant who can type fast, TAilor can get tedious contact management tasks done faster than traditional GUI apps!
@@ -18,6 +19,14 @@ Assistant who can type fast, TAilor can get tedious contact management tasks don
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 1. Ensure you have Java `11` or above installed in your Computer.
+
+<div markdown="span" class="alert alert-warning"> :exclamation: **Caution:**
+If you are a Mac User, it may be possible that some incompatibilities may surface in the form of garbled/unreadable 
+text in the GUI. It is advised to switch to Azul build of OpenJDK 11 to solve this issue. 
+Please refer to this <a href="https://nus-cs2103-ay2122s2.github.io/website/admin/programmingLanguages.html#programming-language">link</a>
+for more information:)
+ 
+</div>
 
 2. Download the latest `TAilor.jar` from [here](https://github.com/AY2122S2-CS2103T-W12-1/tp/releases).
 
@@ -136,13 +145,13 @@ To prepare your csv files, the following directions must be followed:
    3. Email, and
    4. Group
 3. Once exported, convert the file to CSV format. This can be accomplished using any modern day spreadsheet
-   visualization software. Please follow this step through thoroughly.
+   visualization software. Please follow this step through thoroughly. This <a href="https://support.microsoft.com/en-us/office/save-a-workbook-to-text-format-txt-or-csv-3e9a9d6c-70da-4255-aa28-fcacf1f081e6">link</a> can be referred to if guidance is required.
 4. Copy the file's path and import the file into TAilor with the above command!
 
 
-<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+<div markdown="span" class="alert alert-primary">:exclamation: **Note:**
 The file format, including choice of headers, will need to be adhered to for TAilor to function smoothly and provide
-a good user experience. As such, please be mindful to not corrupt your csv file before importing- something that can
+a good user experience. Excel sheets downloaded from LumiNUS have 2 rows preceed the row containing column headers- this would be a requirement as well if you choose to draft your own file from scratch. As such, please be mindful to not corrupt your csv file before importing to TAilor- something that can
 result from writing anything or adding information that does not abide by the standard format in the file.
 </div>
 
@@ -238,6 +247,29 @@ Let the initial state of the list contain these 3 people: Alex, Bernice, Charlot
 ![result for `find n/alex bernice`](images/findcommandUG/find-alex-bernice.png)
 * `find n/alex charlotte m/CS g/t01` returns `Alex`
 ![result for `find n/alex charlotte m/CS g/t01`](images/findcommandUG/find-alex-charlotte.png)
+
+#### Undo or Redo a previous command : `undo/redo`
+
+Undoes or redoes a previously entered command that changed a person or task.
+
+Format: `undo` or `redo`
+
+* `undo` can only undo the effects of an `add`, `delete`, `edit`, `clear`, `newtask` and `deltask` commands.
+* Once you undo and enter a new `add`, `delete`, `edit`, `clear`, `newtask` or `deltask` command, the state that was undone will not be accessible via `redo` anymore.
+
+Example:
+
+Let the initial state of the list contain these 3 people: Alex, Bernice, Charlotte.
+![Initial State](images/undocommandUG/initial_state.png)
+
+After `delete 1`, we will delete Alex and the list will not have Alex anymore.
+![Before Undo](images/undocommandUG/before_undo.png)
+
+After `undo`, the list will return to having Alex in it
+![Initial State](images/undocommandUG/initial_state.png)
+
+After a `redo`, the list will return to the state where Alex was deleted
+![Before Undo](images/undocommandUG/before_undo.png)
 
 #### Mailing a particular student based on index : `mail-index`
 

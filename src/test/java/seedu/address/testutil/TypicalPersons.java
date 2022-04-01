@@ -18,7 +18,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.ContactList;
+import seedu.address.model.person.Mod;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniqueModuleList;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -74,6 +76,21 @@ public class TypicalPersons {
             ab.addPerson(person);
         }
         return ab;
+    }
+    public static Mod[] getTypicalModules() {
+        return new Mod[] {
+            new Mod("CS2108", "W12"),
+            new Mod("CS2109S", "W14"),
+            new Mod("CS2100", "W16"),
+        };
+    }
+
+    public static UniqueModuleList getTypicalModuleList() {
+        UniqueModuleList moduleList = new UniqueModuleList();
+        for (Mod mod : getTypicalModules()) {
+            moduleList.add(mod);
+        }
+        return moduleList;
     }
 
     public static List<Person> getTypicalPersons() {
