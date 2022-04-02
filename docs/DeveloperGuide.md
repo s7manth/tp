@@ -405,7 +405,7 @@ interactions with the XYZManagers the same.
 
 #### Aim of the feature
 As quick typers, it is inevitable for us to make typos once in a while. In those cases, it is very convenient if we
-could quickly refill the `CommandBox` with the mistyped command, and correct the mistake there. This features serves to
+could quickly refill the `CommandBox` with the mistyped input, and correct the mistake there. This features serves to
 meet that need.
 
 #### Implementation
@@ -419,12 +419,54 @@ user commands internally as a `previousInputs` and `indexPointer`. `InputHistory
 Given below is an example usage scenario and how the mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `InputHistory` will be initialized with an empty
-`previousInputs`, and the `indexPointer` pointing to `0`.
-<img src="images/PreviousInputState0.png" width="500"/>
+`previousInputs`, and the `indexPointer` pointing to `0`. The `CommandBox` is empty upon initialization as well.
+<br>
+![PreviousInputState0](images/PreviousInputState0.png)
 
 Step 2. The user enters the command `delete 1`. The `CommandBox` will call `storeInput("delete 1")` on `InputHistory`.
-The `indexPointer` will increment by 1, pointing to `1`.
-<img src="images/PreviousInputState1.png" width="500"/>
+The `indexPointer` will increment by 1, pointing to `1`. The `CommandBox` clears itself upon entering the command.
+<br>
+![PreviousInputState1](images/PreviousInputState1.png)
+
+Step 3. The user enters the command `delet 1`. The `CommandBox` will call `storeInput("delet 1")`. The `indexPointer` 
+will increment by 1, pointing to `2`. However, as the input command is invalid, the `CommandBox` does not clear itself 
+upon entering the command.
+<br>
+![PreviousInputState2](images/PreviousInputState2.png)
+
+Step 4. When the user presses the &uarr; button, the `CommandBox` will call `getPreviousUserInput()`, which decrements
+the pointer by 1, pointing it to `"delet 1"`. The text in `CommandBox` will still remain as "delet 1".
+<br>
+![PreviousInputState3](images/PreviousInputState3.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `indexPointer` is at index 0, where 
+`previousInputs` is empty, then there are no previous inputs to refill. The `getPreviousUserInput()` command will simply
+return an empty string.
+
+</div>
+
+The following sequence diagram demonstrates how the refill previous input works
+<br>
+![PreviousInputSequenceDiagram]
+
+Step 5. When the user presses the &uarr; button, the `CommandBox` will call `getPreviousUserInput()`, which decrements
+the pointer by 1, pointing it to `"delete 1"`. The text in `CommandBox` will change to "delete 1".
+<br>
+![PreviousInputState4](images/PreviousInputState4.png)
+
+Step 6. When the user presses the &darr; button, the `CommandBox` will call `getNextUserInput()`, which increments the 
+pointer by 1, pointing it to "delet 1". The text in the `CommandBox` will update to "delet 1".
+![PreviousInputState3](images/PreviousInputState3.png)
+
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `indexPointer` is at index 
+`previousInputs.size() - 1`, then there are no previous inputs to restore. The `getNextUserInput()` will then return the 
+latest entered input by the user. If the `indexPointer` is at 
+
+</div>
+
+Finally, the user decides to enter a new command, `undo`. The `CommandBox` will call `storeInput("undo")`. The 
+`indexPointer` will increment to the 
 
 --------------------------------------------------------------------------------------------------------------------
 

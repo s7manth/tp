@@ -36,8 +36,10 @@ public class InputHistoryManager implements InputHistory {
     @Override
     public String getPreviousUserInput() {
         // Return the first input provided by the user at app launch.
-        if (indexPointer == INIT_INPUT_INDEX_VALUE) {
+        if (indexPointer == INIT_INPUT_INDEX_VALUE && !previousInputs.isEmpty()) {
             return previousInputs.get(0);
+        } else if (indexPointer == INIT_INPUT_INDEX_VALUE) { // no inputs yet, and up button is pressed.
+            return "";
         }
 
         indexPointer--;
@@ -50,7 +52,7 @@ public class InputHistoryManager implements InputHistory {
     @Override
     public String getNextUserInput() {
         // Return the most recent input provided by the user.
-        if (indexPointer == maxInputIndex()) {
+        if (indexPointer == maxInputIndex() && !previousInputs.isEmpty()) {
             return previousInputs.get(indexPointer);
         }
 

@@ -11,6 +11,10 @@ package previousInputs {
     class Input2 as "__input2:String__"
     class Input3 as "__input3:String__"
 }
+
+package CommandBox{
+}
+
 Input0 -[hidden]right-> Input1
 Input1 -[hidden]right-> Input2
 Input2 -[hidden]right-> Input3
