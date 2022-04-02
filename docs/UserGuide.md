@@ -42,7 +42,7 @@ for more information:)
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe a/A0123456P e/johnd@example.com m/CS2103T g/W12` : Adds a student
+   * **`add`**` n/John Doe a/A0123456P e/johnd@example.com m/CS2103T g/W12` : Adds a student
 
      named `John Doe` to the Contact List.
 
@@ -115,8 +115,8 @@ Format: `list`
 Adds a person to the student roster.
 
 Format:
-* `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MOD g/GROUP [t/TAG]` or
-* `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MOD [g/GROUP] [t/TAG]` if there exists a default group for the mod already.
+* `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MOD g/GROUP [t/TAG]…​` or
+* `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MOD [g/GROUP] [t/TAG]…​` if there exists a default group for the mod already.
 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -209,9 +209,9 @@ Examples:
 #### Locating persons by name: `find`
 
 
-Finds persons whose details contain any of the given keywords.
+Finds students whose details matches all of the search parameters.
 
-Format: `find PREFIX/KEYWORD [KEYWORD] [PREFIX/KEYWORD [KEYWORD]]…​`
+Format: `find PREFIX/KEYWORD [ADDITIONAL KEYWORD]…​ [PREFIX/KEYWORD ...]…​`
 
 * The prefixes used are the same as other commands:
 
@@ -225,10 +225,10 @@ Format: `find PREFIX/KEYWORD [KEYWORD] [PREFIX/KEYWORD [KEYWORD]]…​`
 | t/     | Tags               |
 
 Note:
-* Multiple keywords can be given for each tag.
+* Multiple keywords can be given for each prefix.
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * The search is case-insensitive. e.g `hans` will match `Hans`
-* Keywords cannot be empty. e.g. `find n/` is wrong
+* Keywords cannot be empty. e.g. `find n/` will return an error
 * Only the specified prefixes will be searched
 
 
@@ -242,11 +242,17 @@ Note:
 Example:
 
 Let the initial state of the list contain these 3 people: Alex, Bernice, Charlotte.
+
 ![Initial State](images/findcommandUG/initialstate.png)
 
-* `find n/alex bernice` returns `Alex` and `Bernice`.
+* `find n/alex bernice` returns `Alex` and `Bernice`, because `Alex` and `Bernice` fit into the search arguments for the prefix `name`.
+
 ![result for `find n/alex bernice`](images/findcommandUG/find-alex-bernice.png)
-* `find n/alex charlotte m/CS g/t01` returns `Alex`
+* `find n/alex charlotte m/CS g/t01` returns `Alex`, because:
+  * `Alex` and `Charlotte` fit within the search arguments for the prefix `name` and `module`,
+  * but only `Alex` has a group of `T01`.
+  * Hence, only `Alex` meets the search requirements of ALL search arguments provided, and is shown.
+
 ![result for `find n/alex charlotte m/CS g/t01`](images/findcommandUG/find-alex-charlotte.png)
 
 #### Undo or Redo a previous command : `undo/redo`
@@ -332,12 +338,20 @@ Format: `newtask DESCRIPTION by/DATETIME`
 | YYYY          | 4-digit year          | 1999 <br> 2020                                                       |
 | MM            | 2-digit month         | March - 03 <br> November - 11                                        |
 | DD            | 2-digit day           | First day - 01 <br> Twelfth day - 12                                 |
-| hh            | 2-digit 24hour format | 3am - 0300 <br> 3pm - 1500                                           |
+| hh            | 2-digit 24hour format | 3am - 03 <br> 3pm - 15                                               |
 | mm            | 2-digit minute        | On the hour - 00 <br> Last minute - 59                               |
 | `-`, `:`, `T` | Separators            | Do not change these! They need to be in the corresponding positions! | 
 
-  * Note that the Time and Date being input must be valid. Ie, it is not possible to input a task
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+* The Time and Date being input must be valid. Ie, it is not possible to input a task
     with a deadline of 31st February.
+* It is possible to create tasks that have a deadline before the current time, for task-tracking purposes! 
+</div>
+
+Note:
+* There is no maximum length for the description, but using a long description may hinder usability and make it hard to see your tasks!
+  * For your best experience, please describe your tasks with a (soft) limit of 40 characters, including spaces!
+  * This will be improved in the future versions.
 
 Examples:
 * `newtask Do Homework by/2022-03-21T23:59` creates a task with description of "Do Homework" and is due on 21 March 2022, 11:59pm.
@@ -347,16 +361,19 @@ Examples:
 
 #### Deleting an existing task: `deltask`
 
-Deletes the specified person from the task list.
+Deletes the specified task from the task list.
 
 Format: `deltask INDEX`
 
 * Deletes the task at the specified `INDEX`.
 * The index refers to the index number shown in the displayed task list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** (ie 1, 2, 3, …​) and should be any one of the indexes displayed! Negative examples include:
+  * `delete 0` produces an error, as 0 is not a positive integer
+  * `delete 300` for a task list with less than 300 tasks, will produce an error as there is no 300<sup>th</sup> task 
 
-Examples:
-* `delete 2` deletes the 2nd person in the task list.
+(Positive) Examples:
+* `delete 2` with a task list of at least 2 tasks, deletes the 2nd task in the task list.
+
 
 
 ### Closing Commands

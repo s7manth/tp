@@ -18,7 +18,7 @@ public class FindCommand extends Command {
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers. "
             + "The specified keywords cannot be empty.\n"
             + "Parameters: PREFIX/KEYWORD [MORE_KEYWORDS] [MORE PREFIX]/[KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + "n/alice bob charlie p/9123 e/example.com";
+            + "Example: " + COMMAND_WORD + " n/alice bob charlie p/9123 e/example.com";
 
     private final PersonContainsKeywordsPredicate predicate;
 
