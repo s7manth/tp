@@ -190,7 +190,7 @@ Below shows the important classes that were created:
 | NewTaskCommandParser    | TaskNotFoundException  | JsonTaskListStorage      | TaskListPanel |
 | RemoveTaskCommand       | Description            | JsonSerializableTaskList |               |
 | RemoveTaskCommandParser | Deadline               | JsonAdaptedTask          |               |
-|                         | Task                   |                          |               | |
+|                         | Task                   |                          |               |
 |                         | ReadOnlyTaskList       |
 |                         | PriorityTaskList       |
 
@@ -399,18 +399,32 @@ user over the previously set default group value.
 interactions with the XYZManagers the same.
   * An example would be to include a new `ModuleListStorage` Interface for the `Storage` Interface to extend from. This
     hence provides the methods and an interface/facade for other parts of the code to perform module list operations on.
-
-
+  
 ### Refill previously typed command feature
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 #### Aim of the feature
 As quick typers, it is inevitable for us to make typos once in a while. In those cases, it is very convenient if we
-could quickly refill the command box with the mistyped command, and correct the mistake there. This features serves to
-meet that need!
+could quickly refill the `CommandBox` with the mistyped command, and correct the mistake there. This features serves to
+meet that need.
 
+#### Implementation
+This feature is facilitated by `InputHistoryManager`. It implements `InputHistory`, and stores the previously entered 
+user commands internally as a `previousInputs` and `indexPointer`. `InputHistoryManager` also implements:
 
+* `InputHistoryManager#storeInput(input)` — Stores the entered input in the `InputHistoryManager`.
+* `InputHistoryManager#getPreviousUserInput()` — Returns the previously entered input.
+* `InputHistoryManager#getNextUserInput()` — Returns the next entered input.
 
+Given below is an example usage scenario and how the mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `InputHistory` will be initialized with an empty
+`previousInputs`, and the `indexPointer` pointing to `0`.
+<img src="images/PreviousInputState0.png" width="500"/>
+
+Step 2. The user enters the command `delete 1`. The `CommandBox` will call `storeInput("delete 1")` on `InputHistory`.
+The `indexPointer` will increment by 1, pointing to `1`.
+<img src="images/PreviousInputState1.png" width="500"/>
 
 --------------------------------------------------------------------------------------------------------------------
 
