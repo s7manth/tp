@@ -213,6 +213,12 @@ Finds students whose details matches all of the search parameters.
 
 Format: `find PREFIX/KEYWORD [MORE_KEYWORDS]…​    [PREFIX/KEYWORD [MORE_KEYWORDS]…​]…​`
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The format may seem daunting, but remember that Everything in `[]` are optional!
+
+A simple find command can be in the form of `find n/alex`. Try it out!
+</div>
+
 * The prefixes used are the same as other commands:
 
 | Prefix | What it stands for |
@@ -232,7 +238,7 @@ Note:
 * Only the specified prefixes will be searched
 
 
-* For names, only full words will be matched e.g. `n/Han` will not match `Hans`
+* For names and tags, only full words will be matched e.g. `n/Han` will not match `Hans`
 * For the rest, partial words will be matched e.g. `e/exam` will match `abc@example.com`
 * Persons matching at least one keyword will be returned e.g. `n/Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
