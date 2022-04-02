@@ -185,7 +185,7 @@ Format: `delete INDEX`
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the student roster.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `find n/Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 #### Setting a default group value for a specific mod: `set-default-group`
 
@@ -211,7 +211,7 @@ Examples:
 
 Finds students whose details matches all of the search parameters.
 
-Format: `find PREFIX/KEYWORD [ADDITIONAL KEYWORD]…​ [PREFIX/KEYWORD ...]…​`
+Format: `find PREFIX/KEYWORD [MORE_KEYWORDS]…​    [PREFIX/KEYWORD [MORE_KEYWORDS]…​]…​`
 
 * The prefixes used are the same as other commands:
 
@@ -234,7 +234,7 @@ Note:
 
 * For names, only full words will be matched e.g. `n/Han` will not match `Hans`
 * For the rest, partial words will be matched e.g. `e/exam` will match `abc@example.com`
-* Persons matching at least one keyword will be returned e.g. `n\Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Persons matching at least one keyword will be returned e.g. `n/Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 
 * If multiple prefixes are specified, Persons matching ALL prefixes will be returned.
@@ -444,7 +444,7 @@ WARNING: This will override the pre-existing data with the new data you entered.
 | **Edit**              | `edit INDEX [n/NAME] [a/STUDENT_NUMBER] [e/EMAIL] [m/MODULE] [g/GROUP] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                   |
 | **Delete**            | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                      |
 | **Set Default Group** | `set-default-group m/MOD g/GROUP` <br> e.g., `set-default-group m/CS2103T g/W12-1`                                                                                                                                                       |
-| **Find**              | `find PREFIX/KEYWORD [MORE_KEYWORDS] [PREFIX/KEYWORD [MORE_KEYWORDS]]`<br> e.g., `find n/James Jake a/A0217`                                                                                                                             |
+| **Find**              | `find PREFIX/KEYWORD [MORE_KEYWORDS]…​ [PREFIX/KEYWORD [MORE_KEYWORDS]…​]…​`<br> e.g., `find n/James Jake a/A0217`                                                                                                                       |
 | **Mail Index**        | `mail-index`<br> e.g., `mail 2`                                                                                                                                                                                                          |
 | **Mail X**            | `mail-x`<br> e.g., `mail e/johndoe@example.com n/Alex`                                                                                                                                                                                   |
 | **Mail All**          | `mail-all`                                                                                                                                                                                                                               |
