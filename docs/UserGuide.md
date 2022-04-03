@@ -269,6 +269,7 @@ Format: `undo` or `redo`
 
 * `undo` can only undo the effects of an `add`, `delete`, `edit`, `clear`, `newtask` and `deltask` commands.
 * Once you undo and enter a new `add`, `delete`, `edit`, `clear`, `newtask` or `deltask` command, the state that was undone will not be accessible via `redo` anymore.
+* Note the `undo` command will **not** be able to undo the effects of TAilor clearing all of its data due to manual editing of data.
 
 Example:
 
@@ -426,8 +427,9 @@ ModuleList's data being saved as `[JAR file location]/data/modulelist.json`
 Advanced users are welcome to update the data directly by editing those data files.
 
 <div markdown="span" class="alert alert-warning"> :exclamation: **Caution:**
-If your changes to the data file makes its format invalid, TAilor will discard all data and start
-with an empty data file at the next run.
+If your changes to the data file makes its format invalid, TAilor will discard data in all 3 files and start
+with no data at the next run. It is suggested that users manually backup copies of these files before directly editing
+any of these files.
 
 To reset the files, perform any command that changes the contact list or task list (ie add new task, add new contact).
 WARNING: This will override the pre-existing data with the new data you entered.
