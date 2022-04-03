@@ -387,7 +387,7 @@ Format: `deltask INDEX`
 
 #### Exiting TAilor: `exit`
 
-Simply type exit to close the application. All of your data will be stored if no unforseen error is encountered!
+Simply type exit to close the application. All of your data will be stored if no unforeseen errors have occurred!
 
 
 #### Clearing all entries : `clear`
