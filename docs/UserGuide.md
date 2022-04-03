@@ -15,8 +15,10 @@ while still having the benefits of a Graphical User Interface (GUI). If you are 
 Assistant who can type fast, TAilor can get tedious contact management tasks done faster than traditional GUI apps!
 
 This application is designed for Teaching Assistants of normal modules in NUS School of Computing. As such, only
-normal module codes are supported (ie CS2103T, CS2101, MA1101R) and matriculation/student numbers must be in the
-NUS format of `A0123456X`. DYOM modules are also not explicitly supported by this application.
+normal module codes are supported (ie CS2103T, CS2101, MA1101R) and matriculation / student numbers must be in the
+NUS format of `A0123456X`. 
+
+DYOM modules are also not explicitly supported by this application.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -80,10 +82,12 @@ In **green**, is the feedback box given for your command.
 An invalid or wrong command entered will display some error messages for you:
 ![invalid add command result](images/UIexplanation/invalid-add.png)
 
+<br>
+
 A correct command will produce feedback to you about what has been done. In this case, the command `delete 3` was done:
 ![valid delete command result](images/UIexplanation/valid-delete.png)
 
-<br><br>
+<br>
 
 #### Student List
 
@@ -110,7 +114,7 @@ Shown here is:
 Note that the group of the student can be set to anything you want, so the meaning of it is derived upon 
 your own usage. The example given, `T02`, is intended to imply that the student belongs to Tutorial Group 2
 
-<br><br>
+<br>
 
 #### Task List
 
@@ -130,6 +134,7 @@ Shown here is:
 | **Description** of the task                     | interview for project |
 | **Deadline** of the task                        | 2022-02-25, 12:00     |
 
+<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -145,11 +150,13 @@ The typical workflow for a Teaching Assistant is provided as follows:
     1. Edit students if necessary via the [edit command](#editing-a-student-edit).
 
 
+
 3. Perform any of the actions below whenever necessary:
     1. Find students via the [find command](#locating-students-find).
     2. Mail students via the [various](#mailing-a-particular-student-based-on-index-mail-index).
        [mail](#mailing-student-subset-based-on-arguments-mail-x) [commands](#bulk-emails-to-everyone-on-the-database-mail-all).
     3. Manage tasks for yourself via the [new task](#adding-a-new-task-newtask) and [delete task](#deleting-an-existing-task-deltask) commands.
+
 
 
 4. Repeat steps 2 and 3 when necessary.
@@ -549,15 +556,15 @@ file that contains the data of your previous TAilor home folder!
 ## Prefix usage table
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-| Prefix | What it means  | Usage requirements                                                                                                                                                                                                                                           | Example Usages                               | Notes                                                |
-|--------|----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|------------------------------------------------------|
-| n/     | Name           | Can only contain alphanumeric characters or spaces, and cannot be blank                                                                                                                                                                                      | n/Alex Yeoh <br> n/Bob Wee                   |                                                      |
-| a/     | Student Number | Must start with an `a`, followed by 7 digits and ending with one letter                                                                                                                                                                                      | a/A0123456N <br> a/a0102034x                 | The capitalisation of the letters do not matter      |
-| e/     | Email          | Has 2 parts separated by a mandatory `@`. <br>Before the `@`: Can contain alphanumeric characters or these special characters: `+``-``_``.`, but cannot end with the special characters.<br>After the `@`: At least 2 alphanumeric characters (SUMANTH TODO) | e/johndoe@test.org <br> e/sample@example.com |                                                      |
-| m/     | Module Code    | Must start with 2 or 3 capital letters, followed by 4 digits, and an optional last letter                                                                                                                                                                    | m/CS2030S <br> m/GER1000                     | The letters must be capitalised                      | 
-| g/     | Group Number   | No restrictions on characters, but cannot be blank                                                                                                                                                                                                           | g/group1 <br> g/tuesday 12pm                 |                                                      |
-| t/     | Tags           | Must be alphanumeric, with no spaces                                                                                                                                                                                                                         | t/friend <br> t/foe                          | To add multiple tags, specify multiple `t/` prefixes |
-| by/    | Deadline       | Must be in the format of YYYY-MM-DDThh:mm, more details are under the [`newtask` command](#adding-a-new-task-newtask)                                                                                                                                        | by/2022-03-21T15:21 <br> by/2011-12-01T03:17 |                                                      |
+| Prefix | What it means  | Usage requirements                                                                                                                                                                                                                            | Example Usages                               |
+|--------|----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
+| n/     | Name           | Can only contain alphanumeric characters or spaces, and cannot be blank.                                                                                                                                                                      | n/Alex Yeoh <br> n/Bob Wee                   |
+| a/     | Student Number | Must start with an `a`, followed by 7 digits and ending with one letter.                                                                                                                                                                      | a/A0123456N <br> a/a0102034x                 |
+| e/     | Email          | Has 2 parts separated by a mandatory `@`. <br><br>Before the `@`: Can contain alphanumeric characters or these special characters: `+``-``_``.`, but cannot end with the special characters.<br><br>After the `@`: At least 2 alphanumeric characters | e/johndoe@test.org <br> e/Alex@example.com   |
+| m/     | Module Code    | Must start with 2 or 3 **capital** letters, followed by 4 digits, and an optional last letter that is also **capitalised**.                                                                                                                   | m/CS2030S <br> m/GER1000                     |
+| g/     | Group Number   | No restrictions on characters, but cannot be blank.                                                                                                                                                                                           | g/group1 <br> g/tuesday 12pm                 |
+| t/     | Tags           | Must be alphanumeric, with no spaces. To add multiple tags, specify multiple `t/` prefixes.                                                                                                                                                   | t/friend <br> t/foe                          |
+| by/    | Deadline       | Must be in the format of YYYY-MM-DDThh:mm, more details are under the [`newtask` command](#adding-a-new-task-newtask).                                                                                                                        | by/2022-03-21T15:21 <br> by/2011-12-01T03:17 | 
 
 ---
 ## Command summary
