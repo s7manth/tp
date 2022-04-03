@@ -103,16 +103,16 @@ Examples :
 * `help undo` will show the usage instructions for the `undo` command.
 * `help mail-x` will show the usage instructions for the `mail-x` command.
 
-#### Listing all persons : `list`
+#### Listing all students : `list`
 
-Shows a list of all persons in the student roster.
+Shows a list of all students in the student roster.
 
 Format: `list`
 
 
-#### Adding a person: `add`
+#### Adding a student: `add`
 
-Adds a person to the student roster.
+Adds a student to the student roster.
 
 Format:
 * `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MOD g/GROUP [t/TAG]…​` or
@@ -120,7 +120,7 @@ Format:
 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A student can have any number of tags (including 0)
 </div>
 
 Examples:
@@ -128,7 +128,7 @@ Examples:
 * `add n/John Doe a/A1234567L e/johnd@example.com m/CS2030S g/B12G`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com m/CS2100 g/T1 a/a0123456x t/stable`
 
-#### Importing a csv file to automatically add people: `import-csv`
+#### Importing a csv file to automatically add students: `import-csv`
 
 Can create your student roster by directly importing a csv file and forgoing the hassle of manually adding students.
 This feature is tailor-made for NUS School of Computing teaching assistants who can export relevant class data from
@@ -155,37 +155,37 @@ a good user experience. Excel sheets downloaded from LumiNUS have 2 rows preceed
 result from writing anything or adding information that does not abide by the standard format in the file.
 </div>
 
-#### Editing a person : `edit`
+#### Editing a student : `edit`
 
-Edits an existing person in the student roster.
+Edits an existing student in the student roster.
 
 Format: `edit INDEX [n/NAME] [a/STUDENT_NUMBER] [e/EMAIL] [m/MOD] [g/GROUP] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+* When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
+* You can remove all the student’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
-*  `edit 1 a/A1122334X e/johndoe@example.com` Edits the studentNumber and email address of the 1st person to be
+*  `edit 1 a/A1122334X e/johndoe@example.com` Edits the studentNumber and email address of the 1st student to be
    `A1122334X` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
 
 
-#### Deleting a person : `delete`
+#### Deleting a student : `delete`
 
-Deletes the specified person from the student roster.
+Deletes the specified student from the student roster.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the student at the specified `INDEX`.
+* The index refers to the index number shown in the displayed student list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the student roster.
-* `find n/Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd student in the student roster.
+* `find n/Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
 #### Setting a default group value for a specific mod: `set-default-group`
 
@@ -206,7 +206,7 @@ Examples:
 
   ![result for updating default group of m/CS2101](images/set_default_ex2.png)
 
-#### Locating persons by name: `find`
+#### Locating students by name: `find`
 
 
 Finds students whose details matches all of the search parameters.
@@ -240,14 +240,14 @@ Note:
 
 * For names and tags, only full words will be matched e.g. `n/Han` will not match `Hans`
 * For the rest, partial words will be matched e.g. `e/exam` will match `abc@example.com`
-* Persons matching at least one keyword will be returned e.g. `n/Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Students matching at least one keyword will be returned e.g. `n/Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 
-* If multiple prefixes are specified, Persons matching ALL prefixes will be returned.
+* If multiple prefixes are specified, students matching ALL prefixes will be returned.
 
 Example:
 
-Let the initial state of the list contain these 3 people: Alex, Bernice, Charlotte.
+Let the initial state of the list contain these 3 students: Alex, Bernice, Charlotte.
 
 ![Initial State](images/findcommandUG/initialstate.png)
 
@@ -263,7 +263,7 @@ Let the initial state of the list contain these 3 people: Alex, Bernice, Charlot
 
 #### Undo or Redo a previous command : `undo/redo`
 
-Undoes or redoes a previously entered command that changed a person or task.
+Undoes or redoes a previously entered command that changed a student or task.
 
 Format: `undo` or `redo`
 
@@ -272,7 +272,7 @@ Format: `undo` or `redo`
 
 Example:
 
-Let the initial state of the list contain these 3 people: Alex, Bernice, Charlotte.
+Let the initial state of the list contain these 3 students: Alex, Bernice, Charlotte.
 ![Initial State](images/undocommandUG/initial_state.png)
 
 After `delete 1`, we will delete Alex and the list will not have Alex anymore.
@@ -286,7 +286,7 @@ After a `redo`, the list will return to the state where Alex was deleted
 
 #### Mailing a particular student based on index : `mail-index`
 
-Mails a person from the student roster based on the index number shown in the application.
+Mails a student from the student roster based on the index number shown in the application.
 
 Format: `mail-index INDEX`
 
@@ -295,7 +295,7 @@ Format: `mail-index INDEX`
 
 Example:
 * `mail-index 2` would open the default mail on the system with the "to" box filled with the
-  specified mail. Now, the email is ready to be sent to the person with the index 2 as shown on the application.
+  specified mail. Now, the email is ready to be sent to the student with the index 2 as shown on the application.
 
 #### Mailing student subset based on arguments : `mail-x`
 
