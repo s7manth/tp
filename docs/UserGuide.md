@@ -400,10 +400,16 @@ Format: `clear`
 ### Shortcuts
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-| Button   | Result                                                                 |
-|----------|------------------------------------------------------------------------|
-| **UP**   | Refills command textbox with previous entered command                  |
-| **DOWN** | Refills command textbox with the command entered after the current one |
+| Button    | Result                                                               |
+|-----------|----------------------------------------------------------------------|
+| &uparrow; | Refills command textbox with previous entered command                |
+| &downarrow; | Refills command textbox with the command entered after the current one |
+
+Example:
+1. Commands `delete 1` `find n/Bob` `list` are entered in the app.
+2. Pressing &uparrow; will fill the command box with `list`.
+3. Pressing &uparrow; again will fill the command box with `find n/Bob`.
+4. Pressing &downarrow; will then fill the command box with `list` again.
 
 ### Saving the data
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
