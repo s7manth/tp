@@ -112,7 +112,14 @@ Shown here is:
 | **Email** of the student                        | charlotte@example.com |
 
 Note that the group of the student can be set to anything you want, so the meaning of it is derived upon 
-your own usage. The example given, `T02`, is intended to imply that the student belongs to Tutorial Group 2
+your own usage. The example given, `T02`, is intended to imply that the student belongs to Tutorial Group 2.
+
+You can choose to follow module conventions for the naming of the groups or make groupings of your own. 
+Some additional examples are shown below:
+
+* CS2103T groups can be `W12-1` to represent the Wednesday 12PM time slot, group 1.
+* CS2101 groups can be `G02` to represent the tutorial group 2 according to EduRec/NUSmods
+* If you are handling only one group, a simple `lab` or `tutorial` can suffice.
 
 <br>
 
@@ -182,12 +189,11 @@ The typical workflow for a Teaching Assistant is provided as follows:
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/dropped`, `t/makeup t/consultation` etc.
 
-* Parameters given from prefixes can be in any order.<br>
+* Prefix-based arguments can be in any order.<br>
   e.g. if the command specifies `n/NAME a/STUDENT_NUMBER`, `a/STUDENT_NUMBER n/NAME` is also acceptable.<br>
 
-* Parameters given from indexes must be before all other prefixes and parameters.<br>
-  e.g. if the command specifies `INDEX n/NAME`, `n/NAME INDEX` is not acceptable, as `INDEX` must be before all prefixes and parameters.
-
+* Index arguments must be before all prefix-based arguments.<br>
+  e.g. if the command specifies `INDEX n/NAME`, `n/NAME INDEX` is not acceptable, as `INDEX` must be before all prefix-based arguments.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `a/A0123456H a/A1111111H`, only `a/A1111111H` will be taken.
