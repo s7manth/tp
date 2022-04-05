@@ -25,6 +25,10 @@ package Logic <<Rectangle>> {
 Class HiddenLogic #FFFFFF
 }
 
+package InputHistory <<Rectangle>> {
+Class HiddenInputHistory #FFFFFF
+}
+
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Ui
 
@@ -50,10 +54,11 @@ HelpWindow --|> UiPart
 PersonCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
+CommandBox -right-> InputHistory
 
-PersonListPanel -[hidden]left- HelpWindow
-HelpWindow -[hidden]left- CommandBox
-CommandBox -[hidden]left- ResultDisplay
+PersonListPanel -[hidden]left- CommandBox
+CommandBox -[hidden]left- HelpWindow
+HelpWindow -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
 
 MainWindow -[hidden]-|> UiPart

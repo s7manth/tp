@@ -30,7 +30,7 @@ public class CommandBox extends UiPart<Region> {
 
     // Define the up key event filter and its behaviour.
     private final EventHandler<KeyEvent> upFilter = keyEvent -> {
-        if (keyEvent.getCode() != KeyCode.UP) {
+        if (keyEvent.getCode() != KeyCode.UP || !inputHistory.canGetPrevInput()) {
             return;
         }
 
@@ -44,7 +44,7 @@ public class CommandBox extends UiPart<Region> {
 
     // Define the down key event filter and its behaviour.
     private final EventHandler<KeyEvent> downFilter = keyEvent -> {
-        if (keyEvent.getCode() != KeyCode.DOWN) {
+        if (keyEvent.getCode() != KeyCode.DOWN || !inputHistory.canGetNextInput()) {
             return;
         }
 

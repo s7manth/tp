@@ -89,6 +89,8 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* keeps a reference to the `InputHistory` component, because the `CommandBox` relies on it to obtain previously entered commands by the user
+
 
 ### Logic component
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -188,7 +190,7 @@ Below shows the important classes that were created:
 | NewTaskCommandParser    | TaskNotFoundException  | JsonTaskListStorage      | TaskListPanel |
 | RemoveTaskCommand       | Description            | JsonSerializableTaskList |               |
 | RemoveTaskCommandParser | Deadline               | JsonAdaptedTask          |               |
-|                         | Task                   |                          |               | |
+|                         | Task                   |                          |               |
 |                         | ReadOnlyTaskList       |
 |                         | PriorityTaskList       |
 
@@ -286,7 +288,10 @@ The following sequence diagram shows how the undo operation works:
 
 The `redo` command does the opposite — it calls `Model#redoContents()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the content to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `contentStateList.size() - 1`, pointing to the latest contact list state, then there are no undone content states to restore. The `redo` command uses `Model#canRedoContent()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 
+`contentStateList.size() - 1`, pointing to the latest contact list state, then there are no undone content states to 
+restore. The `redo` command uses `Model#canRedoContent()` to check if this is the case. If so, it will return an error 
+to the user rather than attempting to perform the redo.
 
 </div>
 
@@ -314,6 +319,15 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
+
+We decided to go with alternative 1 as the memory usage expected of TAilor is not high, since users are not expected to 
+enter many content committing comments. The expected memory usage is not high as well, as the PersonList and TaskList 
+are generally not space intensive.
+
+Another drawback for alternative 2 was undoing a command by doing its reverse implementation might not return it to the 
+same state. For example, after `delete 1`, we might save the person just deleted, and set `add "person"` as the `undo` 
+functionality. However, if we do `add "person"`, the person will be added to the end of the list, which does not exactly 
+`undo` the effect of the original `delete 1`.
 
 ### Mailing feature: mail-all
 
@@ -397,8 +411,78 @@ user over the previously set default group value.
 interactions with the XYZManagers the same.
   * An example would be to include a new `ModuleListStorage` Interface for the `Storage` Interface to extend from. This
     hence provides the methods and an interface/facade for other parts of the code to perform module list operations on.
+  
+### Refill previously typed command feature
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
+
+#### Aim of the feature
+As quick typers, it is inevitable for us to make typos once in a while. In those cases, it is very convenient if we
+could quickly refill the `CommandBox` with the mistyped input, and correct the mistake there. This features serves to
+meet that need.
+
+#### Implementation
+This feature is facilitated by `InputHistoryManager`. It implements `InputHistory`, and stores the previously entered 
+user commands internally as a `previousInputs` and `indexPointer`. `InputHistoryManager` also implements:
+
+* `InputHistoryManager#storeInput(input)` — Stores the entered input in the `InputHistoryManager`.
+* `InputHistoryManager#getPreviousUserInput()` — Returns the previously entered input.
+* `InputHistoryManager#getNextUserInput()` — Returns the next entered input.
+
+Given below is an example usage scenario and how the mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `InputHistory` will be initialized with an empty
+`previousInputs`, and the `indexPointer` pointing to `0`. The `CommandBox` is empty upon initialization as well.
+<br>
+![PreviousInputState0](images/PreviousInputState0.png)
+
+Step 2. The user enters the command `delete 1`. The `CommandBox` will call `storeInput("delete 1")` on `InputHistory`.
+The `indexPointer` will increment by 1, pointing to `1`. The `CommandBox` clears itself upon entering the command.
+<br>
+![PreviousInputState1](images/PreviousInputState1.png)
+
+Step 3. The user enters the command `delet 1`. The `CommandBox` will call `storeInput("delet 1")`. The `indexPointer` 
+will increment by 1, pointing to `2`. However, as the input command is invalid, the `CommandBox` does not clear itself 
+upon entering the command.
+<br>
+![PreviousInputState2](images/PreviousInputState2.png)
+  
+Step 4. When the user presses the &uarr; button, the `CommandBox` will call `getPreviousUserInput()`, which decrements
+the pointer by 1, pointing it to `"delet 1"`. The text in `CommandBox` will still remain as "delet 1".
+<br>
+![PreviousInputState3](images/PreviousInputState3.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `indexPointer` is at index 0, where 
+`previousInputs` is empty, then there are no previous inputs to refill. The `CommandBox` will call 
+`InputHistoryManager#canGetPrevInput()` to check if theres any previous inputs. If not, the `CommandBox` will simply not
+be updated.
+
+</div>
+
+The following sequence diagram demonstrates how the refill previous input works
+<br>
+![PreviousInputSequenceDiagram](images/PreviousInputSequenceDiagram.png)
+
+Step 5. When the user presses the &uarr; button, the `CommandBox` will call `getPreviousUserInput()`, which decrements
+the pointer by 1, pointing it to `"delete 1"`. The text in `CommandBox` will change to "delete 1".
+<br>
+![PreviousInputState4](images/PreviousInputState4.png)
+
+Step 6. When the user presses the &darr; button, the `CommandBox` will call `getNextUserInput()`, which increments the 
+pointer by 1, pointing it to "delet 1". The text in the `CommandBox` will update to "delet 1".
+![PreviousInputState3](images/PreviousInputState3.png)
 
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `indexPointer` is at index 
+`previousInputs.size() - 1`, then there are no previous inputs to restore. The `CommandBox` will call 
+`InputHistoryManager#canGetNextInput()` to check if there's any next inputs. If not, the `CommandBox` will simply not
+be updated.
+
+</div>
+
+Finally, the user decides to enter a new command, `undo`. The `CommandBox` will call `storeInput("undo")`. The 
+`indexPointer` will update to point to `3`. The `CommandBox` clears itself upon entering the command.
+<br>
+![PreviousInputState5](images/PreviousInputState5.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
