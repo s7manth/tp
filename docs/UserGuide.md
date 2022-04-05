@@ -554,9 +554,9 @@ Format: `clear`
 
 Example:
 1. Commands `delete 1` `find n/Bob` `list` are entered in the app.
-2. Pressing &uparrow; will fill the command box with `list`.
-3. Pressing &uparrow; again will fill the command box with `find n/Bob`.
-4. Pressing &downarrow; will then fill the command box with `list` again.
+2. Pressing &#8593; will fill the command box with `list`.
+3. Pressing &#8593; again will fill the command box with `find n/Bob`.
+4. Pressing &#8595; will then fill the command box with `list` again.
 
 ### Saving the data
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
