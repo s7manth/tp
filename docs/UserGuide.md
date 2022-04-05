@@ -408,7 +408,7 @@ Format: `clear`
 
 | Button    | Result                                                               |
 |-----------|----------------------------------------------------------------------|
-| &uparrow; | Refills command textbox with previous entered command                |
+| &#8593; | Refills command textbox with previous entered command                |
 | &downarrow; | Refills command textbox with the command entered after the current one |
 
 Example:
