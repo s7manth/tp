@@ -231,16 +231,19 @@ Examples :
 * `help undo` will show the usage instructions for the `undo` command.
 * `help mail-x` will show the usage instructions for the `mail-x` command.
 
-#### Showing all students : `list`
 
-Displays all students in the student list.
+#### Listing all students : `list`
+
+Shows a list of all students in the student roster.
 
 Format: `list`
 
 
 #### Adding a student: `add`
 
-Adds a person to the student list.
+
+Adds a student to the student roster.
+
 
 Format:
 * `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MOD g/GROUP [t/TAG]…​` or
@@ -283,16 +286,20 @@ a good user experience. Excel sheets downloaded from LumiNUS have 2 rows preceed
 result from writing anything or adding information that does not abide by the standard format in the file.
 </div>
 
-#### Editing a student: `edit`
 
-Edits an existing student in the student list.
+#### Editing a student : `edit`
+
+Edits an existing student in the student roster.
 
 Format: `edit INDEX [n/NAME] [a/STUDENT_NUMBER] [e/EMAIL] [m/MOD] [g/GROUP] [t/TAG]…​`
 
-* Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. 
+The index **must be a positive integer** 1, 2, 3, …​ and should be any one of the indexes displayed! Negative examples include:
+    * `delete 0` produces an error, as 0 is not a positive integer
+    * `delete 300` for a student list with less than 300 students, will produce an error as there is no 300<sup>th</sup> student
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
 * You can remove all the student’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
@@ -303,16 +310,21 @@ Examples:
 
 #### Deleting a student : `delete`
 
+
 Deletes the specified student from the student list.
+
 
 Format: `delete INDEX`
 
 * Deletes the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed student list.
-* The index **must be a positive integer** 1, 2, 3, …​
+
+* The index **must be a positive integer** 1, 2, 3, …​ and should be any one of the indexes displayed! Negative examples include:
+    * `delete 0` produces an error, as 0 is not a positive integer
+    * `delete 300` for a student list with less than 300 students, will produce an error as there is no 300<sup>th</sup> student
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd student in the student list.
+* `list` followed by `delete 2` deletes the 2nd student in the student roster.
 * `find n/Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
 #### Setting a default group value for a mod: `set-default-group`
@@ -334,7 +346,9 @@ Examples:
 
   ![result for updating default group of m/CS2101](images/set_default_ex2.png)
 
+
 #### Locating students: `find`
+
 
 Finds students whose details matches all of the search parameters.
 
@@ -370,11 +384,11 @@ Note:
 * Persons matching at least one keyword will be returned e.g. `n/Hans Bo` will return `Hans Gruber`, `Bo Yang`
 <br>
 
-* If multiple prefixes are specified, Persons matching ALL prefixes will be returned.
+* If multiple prefixes are specified, students matching ALL prefixes will be returned.
 
 Example:
 
-Let the initial state of the list contain these 3 people: Alex, Bernice, Charlotte.
+Let the initial state of the list contain these 3 students: Alex, Bernice, Charlotte.
 
 ![Initial State](images/findcommandUG/initialstate.png)
 
@@ -396,10 +410,11 @@ Format: `undo` or `redo`
 
 * `undo` can only undo the effects of an `add`, `delete`, `edit`, `clear`, `newtask` and `deltask` commands.
 * Once you undo and enter a new `add`, `delete`, `edit`, `clear`, `newtask` or `deltask` command, the state that was undone will not be accessible via `redo` anymore.
+* Note the `undo` command will **not** be able to undo the effects of TAilor clearing all of its data due to manual editing of data.
 
 Example:
 
-Let the initial state of the list contain these 3 people: Alex, Bernice, Charlotte.
+Let the initial state of the list contain these 3 students: Alex, Bernice, Charlotte.
 ![Initial State](images/undocommandUG/initial_state.png)
 
 After `delete 1`, we will delete Alex and the list will not have Alex anymore.
@@ -519,7 +534,7 @@ Format: `deltask INDEX`
 
 #### Exiting TAilor: `exit`
 
-Simply type exit to close the application. All of your data will be stored if no unforseen error is encountered!
+Simply type exit to close the application. All of your data will be stored if no unforeseen errors have occurred!
 
 #### Clearing all entries: `clear`
 
@@ -532,10 +547,16 @@ Format: `clear`
 ### Shortcuts
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-| Button   | Result                                                                 |
-|----------|------------------------------------------------------------------------|
-| **UP**   | Refills command textbox with previous entered command                  |
-| **DOWN** | Refills command textbox with the command entered after the current one |
+| Button    | Result                                                               |
+|-----------|----------------------------------------------------------------------|
+| &uparrow; | Refills command textbox with previous entered command                |
+| &downarrow; | Refills command textbox with the command entered after the current one |
+
+Example:
+1. Commands `delete 1` `find n/Bob` `list` are entered in the app.
+2. Pressing &uparrow; will fill the command box with `list`.
+3. Pressing &uparrow; again will fill the command box with `find n/Bob`.
+4. Pressing &downarrow; will then fill the command box with `list` again.
 
 ### Saving the data
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -552,8 +573,9 @@ ModuleList's data being saved as `[JAR file location]/data/modulelist.json`
 Advanced users are welcome to update the data directly by editing those data files.
 
 <div markdown="span" class="alert alert-warning"> :exclamation: **Caution:**
-If your changes to the data file makes its format invalid, TAilor will discard all data and start
-with an empty data file at the next run.
+If your changes to the data file makes its format invalid (e.g., deleting the field of a task), TAilor will discard data in all 3 files and start
+with no data at the next run. It is suggested that users manually backup copies of these files before directly editing
+any of these files.
 
 To reset the files, perform any command that changes the contact list or task list (ie add new task, add new contact).
 WARNING: This will override the pre-existing data with the new data you entered.
