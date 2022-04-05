@@ -161,7 +161,10 @@ Edits an existing student in the student roster.
 
 Format: `edit INDEX [n/NAME] [a/STUDENT_NUMBER] [e/EMAIL] [m/MOD] [g/GROUP] [t/TAG]…​`
 
-* Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. 
+The index **must be a positive integer** 1, 2, 3, …​ and should be any one of the indexes displayed! Negative examples include:
+    * `delete 0` produces an error, as 0 is not a positive integer
+    * `delete 300` for a student list with less than 300 students, will produce an error as there is no 300<sup>th</sup> student
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
@@ -181,7 +184,7 @@ Format: `delete INDEX`
 
 * Deletes the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed student list.
-* The index **must be a positive integer** 1, 2, 3, …​and should be any one of the indexes displayed! Negative examples include:
+* The index **must be a positive integer** 1, 2, 3, …​ and should be any one of the indexes displayed! Negative examples include:
     * `delete 0` produces an error, as 0 is not a positive integer
     * `delete 300` for a student list with less than 300 students, will produce an error as there is no 300<sup>th</sup> student
 
