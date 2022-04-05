@@ -409,7 +409,7 @@ Format: `clear`
 | Button    | Result                                                               |
 |-----------|----------------------------------------------------------------------|
 | &#8593; | Refills command textbox with previous entered command                |
-| &downarrow; | Refills command textbox with the command entered after the current one |
+| &#8595; | Refills command textbox with the command entered after the current one |
 
 Example:
 1. Commands `delete 1` `find n/Bob` `list` are entered in the app.
