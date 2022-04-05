@@ -119,7 +119,7 @@ Some additional examples are shown below:
 
 * CS2103T groups can be `W12-1` to represent the Wednesday 12PM time slot, group 1.
 * CS2101 groups can be `G02` to represent the tutorial group 2 according to EduRec/NUSmods
-* If you are handling only one group, a simple `lab` or `tutorial` can suffice.
+* If you are handling only one group, a simple description like `lab` or `tutorial` can suffice.
 
 <br>
 
@@ -160,8 +160,7 @@ The typical workflow for a Teaching Assistant is provided as follows:
 
 3. Perform any of the actions below whenever necessary:
     1. Find students via the [find command](#locating-students-find).
-    2. Mail students via the [various](#mailing-a-particular-student-based-on-index-mail-index).
-       [mail](#mailing-student-subset-based-on-arguments-mail-x) [commands](#bulk-emails-to-everyone-on-the-database-mail-all).
+    2. Mail students via the [various mail commands](#mail-commands).
     3. Manage tasks for yourself via the [new task](#adding-a-new-task-newtask) and [delete task](#deleting-an-existing-task-deltask) commands.
 
 
@@ -404,6 +403,9 @@ After `undo`, the list will return to having Alex in it
 
 After a `redo`, the list will return to the state where Alex was deleted
 ![Before Undo](images/undocommandUG/before_undo.png)
+
+### Mail commands
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 #### Mailing a particular student based on index: `mail-index`
 
