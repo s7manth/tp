@@ -19,9 +19,10 @@ faster than traditional GUI apps!
 
 ### Things to note before you begin
 
-Currently, TAilor supports only typical modules offered to students from the School of Computing, such as MA1101R and CS2103T.
-There is no support for DYOM modules at the moment as they do not conform to module naming conventions followed at by most NUS
-faculties. There is only support for students whose home university is NUS currently as well, so their matriculation 
+* Currently, TAilor supports only typical modules offered to students from the School of Computing, such as MA1101R and CS2103T.
+* There is no support for DYOM modules at the moment as they do not conform to module naming conventions followed by most NUS
+faculties. 
+* There is only support for students whose home university is NUS currently as well, so their matriculation 
 numbers should be in the form of "A0123456X" as according to NUS.
 
 If the intended usage above does not fit you, don't worry, you still can use our application. The only downside is that features 
