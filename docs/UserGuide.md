@@ -11,14 +11,22 @@ title: User Guide
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 TAilor is a **desktop app for managing contacts, optimized for use via a Command Line Interface (CLI)**
-while still having the benefits of a Graphical User Interface (GUI). If you are a Computer Science Teaching
-Assistant who can type fast, TAilor can get tedious contact management tasks done faster than traditional GUI apps!
+while still having the benefits of a Graphical User Interface (GUI). If you belong to the home faculty of the School of
+Computing, are a Teaching Assistant in NUS and can type fast, TAilor can get tedious contact management tasks done 
+faster than traditional GUI apps!
 
-This application is designed for Teaching Assistants of normal modules in NUS School of Computing. As such, only
-normal module codes are supported (ie CS2103T, CS2101, MA1101R) and matriculation / student numbers must be in the
-NUS format of `A0123456X`. 
+<br>
 
-DYOM modules are also not explicitly supported by this application.
+### Things to note before you begin
+
+Currently, TAilor supports only typical modules offered to students from the School of Computing, such as MA1101R and CS2103T.
+There is no support for DYOM modules at the moment as they do not conform to module naming conventions followed at by most NUS
+faculties. There is only support for students whose home university is NUS currently as well, so their matriculation 
+numbers should be in the form of "A0123456X" as according to NUS.
+
+If the intended usage above does not fit you, don't worry, you still can use our application. The only downside is that features 
+may seem a little odd to you, or you may need to do some manual adjustments. Fret not, we are currently working to produce a 
+version of TAilor that can be used by a wider range of users, so stay tuned!
 
 --------------------------------------------------------------------------------------------------------------------
 
