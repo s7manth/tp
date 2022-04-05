@@ -8,10 +8,26 @@ title: User Guide
 
 
 ## Introduction
-TAilor is a **desktop app for managing contacts, optimized for use via a Command Line Interface (CLI)**
-while still having the benefits of a Graphical User Interface (GUI). If you are a Computer Science Teaching
-Assistant who can type fast, TAilor can get tedious contact management tasks done faster than traditional GUI apps!
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
+TAilor is a **desktop app for managing contacts, optimized for use via a Command Line Interface (CLI)**
+while still having the benefits of a Graphical User Interface (GUI). If you belong to the home faculty of the School of
+Computing, are a Teaching Assistant in NUS and can type fast, TAilor can get tedious contact management tasks done
+faster than traditional GUI apps!
+
+<br>
+
+### Things to note before you begin
+
+* Currently, TAilor supports only typical modules offered to students from the School of Computing, such as MA1101R and CS2103T.
+* There is no support for DYOM modules at the moment as they do not conform to module naming conventions followed by most NUS
+faculties.
+* There is only support for students whose home university is NUS currently as well, so their matriculation
+numbers should be in the form of "A0123456X" as according to NUS.
+
+If the intended usage above does not fit you, don't worry, you still can use our application. The only downside is that features
+may seem a little odd to you, or you may need to do some manual adjustments. Fret not, we are currently working to produce a
+version of TAilor that can be used by a wider range of users, so stay tuned!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -40,21 +56,128 @@ for more information:)
    will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+    * **`list`** : Lists all contacts.
 
-   * **`add`**` n/John Doe a/A0123456P e/johnd@example.com m/CS2103T g/W12` : Adds a student
+    * **`add`**` n/John Doe a/A0123456P e/johnd@example.com m/CS2103T g/W12` : Adds a student
 
-     named `John Doe` to the Contact List.
+    * **`delete`**` 3` : Deletes the 3rd student shown in the current student list.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+    * **`clear`** : Deletes all students in the student list.
 
-   * **`clear`** : Deletes all contacts.
+    * **`exit`** : Exits the app.
 
-   * **`exit`** : Exits the app.
+6. Refer to the [Features](#features) below for details of each command.
 
-7. Refer to the [Features](#features) below for details of each command.
+### What you can see from TAilor
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
+
+As seen in the above picture, there are several components of notice for TAilor:
+
+* Input box
+* Feedback box
+* Student List
+* Task List
+
+The following sections will guide you through them one by one:
+
+#### Input box and Feedback box
+
+![input feedback box](images/UIexplanation/input-feedback-box.png)
+
+In **red**, is the input box for you to enter in your commands. Simply click on the box and type away!
+
+In **green**, is the feedback box given for your command.
+
+An invalid or wrong command entered will display some error messages for you:
+![invalid add command result](images/UIexplanation/invalid-add.png)
+
+<br>
+
+A correct command will produce feedback to you about what has been done. In this case, the command `delete 3` was done:
+![valid delete command result](images/UIexplanation/valid-delete.png)
+
+<br>
+
+#### Student List
+
+This is where you will see the students that are currently added into the application.
+
+![student list](images/UIexplanation/studentlist.png)
+
+Let's take a closer look at one of the entries in the list:
+
+![one entry in the student list](images/UIexplanation/personcard.png)
+
+Shown here is:
+
+| Description                                     | From picture above    |
+|-------------------------------------------------|-----------------------|
+| **Index** of the student in the student list    | Index of 2            |
+| **Name** of the student                         | Charlotte Oliverio    |
+| **Tags** given to the student                   | One tag, `neighbours` |
+| **Matriculation/Student number** of the student | A9321028C             |
+| **Module** that the student is taking           | CS2030S               |
+| **Group** that the student is under             | T02                   |
+| **Email** of the student                        | charlotte@example.com |
+
+Note that the group of the student can be set to anything you want, so the meaning of it is derived upon
+your own usage. The example given, `T02`, is intended to imply that the student belongs to Tutorial Group 2.
+
+You can choose to follow module conventions for the naming of the groups or make groupings of your own.
+Some additional examples are shown below:
+
+* CS2103T groups can be `W12-1` to represent the Wednesday 12PM time slot, group 1.
+* CS2101 groups can be `G02` to represent the tutorial group 2 according to EduRec/NUSmods
+* If you are handling only one group, a simple description like `lab` or `tutorial` can suffice.
+
+<br>
+
+#### Task List
+
+This is where you can see the tasks you have created.
+
+![task list](images/UIexplanation/tasklist.png)
+
+Taking a closer look at one of them:
+
+![one entry in the task list](images/UIexplanation/taskcard.png)
+
+Shown here is:
+
+| Description                                     | From picture above    |
+|-------------------------------------------------|-----------------------|
+| **Index** of the task in the task list          | Index of 1            |
+| **Description** of the task                     | interview for project |
+| **Deadline** of the task                        | 2022-02-25, 12:00     |
+
+<br>
 
 --------------------------------------------------------------------------------------------------------------------
+
+## Typical workflow
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
+
+The typical workflow for a Teaching Assistant is provided as follows:
+
+1. Launch the application.
+
+
+2. Add students to the student list via the [add command](#adding-a-student-add) or the [import command](#importing-a-csv-file-to-automatically-add-students-import-csv).
+   * Edit students if necessary via the [edit command](#editing-a-student-edit).<br>
+
+
+3. Perform any of the actions below whenever necessary:
+   * Find students via the [find command](#locating-students-find).
+   * Mail students via the [various mail commands](#mail-commands).
+   * Manage tasks for yourself via the [new task](#adding-a-new-task-newtask) and [delete task](#deleting-an-existing-task-deltask) commands.<br>
+
+
+4. Repeat steps 2 and 3 when necessary.
+
+
+5. Exit the application via the [exit command](#exiting-tailor-exit) or by pressing the close button for the application.
+
+---
 
 ## Features
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -72,14 +195,19 @@ for more information:)
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/dropped`, `t/makeup t/consultation` etc.
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME a/STUDENT_NUMBER`, `a/STUDENT_NUMBER n/NAME` is also acceptable.
+* Prefix-based arguments can be in any order.<br>
+  e.g. if the command specifies `n/NAME a/STUDENT_NUMBER`, `a/STUDENT_NUMBER n/NAME` is also acceptable.<br>
+
+* Index arguments must be before all prefix-based arguments.<br>
+  e.g. if the command specifies `INDEX n/NAME`, `n/NAME INDEX` is not acceptable, as `INDEX` must be before all prefix-based arguments.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `a/A0123456H a/A1111111H`, only `a/A1111111H` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+* Refer to our [prefix usage table](#prefix-usage-table) for more details on the requirements for each prefix.
 
 </div>
 
@@ -116,7 +244,7 @@ Adds a student to the student roster.
 
 Format:
 * `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MOD g/GROUP [t/TAG]…​` or
-* `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MOD [g/GROUP] [t/TAG]…​` if there exists a default group for the mod already.
+* `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MOD [g/GROUP] [t/TAG]…​` if there is already a default group for the mod.
 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -127,11 +255,11 @@ A student can have any number of tags (including 0)
 Examples:
 
 * `add n/John Doe a/A1234567L e/johnd@example.com m/CS2030S g/B12G`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com m/CS2100 g/T1 a/a0123456x t/stable`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com m/CS2100 g/T1 a/a0123456x t/needs help`
 
-#### Importing a csv file to automatically add people: `import-csv`
+#### Importing a csv file to automatically add students: `import-csv`
 
-Can create your student roster by directly importing a csv file and forgoing the hassle of manually adding students.
+You can create your student list by directly importing a csv file and forgoing the hassle of manually adding students.
 This feature is tailor-made for NUS School of Computing teaching assistants who can export relevant class data from
 LumiNUS.
 
@@ -141,10 +269,10 @@ To prepare your csv files, the following directions must be followed:
 
 1. Export your student list from LumiNUS Classes and Groups.
 2. Be sure to select and export the following headers only as you choose the format of your file:
-   1. Name,
-   2. Student Number,
-   3. Email, and
-   4. Group
+    1. Name,
+    2. Student Number,
+    3. Email, and
+    4. Group
 3. Once exported, convert the file to CSV format. This can be accomplished using any modern day spreadsheet
    visualization software. Please follow this step through thoroughly. This <a href="https://support.microsoft.com/en-us/office/save-a-workbook-to-text-format-txt-or-csv-3e9a9d6c-70da-4255-aa28-fcacf1f081e6">link</a> can be referred to if guidance is required.
 4. Copy the file's path and import the file into TAilor with the above command!
@@ -162,7 +290,10 @@ Edits an existing student in the student roster.
 
 Format: `edit INDEX [n/NAME] [a/STUDENT_NUMBER] [e/EMAIL] [m/MOD] [g/GROUP] [t/TAG]…​`
 
-* Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list.
+The index **must be a positive integer** 1, 2, 3, …​ and should be any one of the indexes displayed! Negative examples include:
+    * `delete 0` produces an error, as 0 is not a positive integer
+    * `delete 300` for a student list with less than 300 students, will produce an error as there is no 300<sup>th</sup> student
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
@@ -176,19 +307,24 @@ Examples:
 
 #### Deleting a student : `delete`
 
-Deletes the specified student from the student roster.
+
+Deletes the specified student from the student list.
+
 
 Format: `delete INDEX`
 
 * Deletes the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed student list.
-* The index **must be a positive integer** 1, 2, 3, …​
+
+* The index **must be a positive integer** 1, 2, 3, …​ and should be any one of the indexes displayed! Negative examples include:
+    * `delete 0` produces an error, as 0 is not a positive integer
+    * `delete 300` for a student list with less than 300 students, will produce an error as there is no 300<sup>th</sup> student
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the student roster.
 * `find n/Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
-#### Setting a default group value for a specific mod: `set-default-group`
+#### Setting a default group value for a mod: `set-default-group`
 
 Sets a default group value for a particular mod that can be updated using the set-default command several times. Helps
 reduce redundancies when adding a student using the add command.
@@ -207,7 +343,8 @@ Examples:
 
   ![result for updating default group of m/CS2101](images/set_default_ex2.png)
 
-#### Locating students by name: `find`
+
+#### Locating students: `find`
 
 
 Finds students whose details matches all of the search parameters.
@@ -220,7 +357,7 @@ The format may seem daunting, but remember that Everything in `[]` are optional!
 A simple find command can be in the form of `find n/alex`. Try it out!
 </div>
 
-* The prefixes used are the same as other commands:
+* The [prefixes](#prefix-usage-table) used are the same as other commands:
 
 | Prefix | What it stands for |
 |--------|--------------------|
@@ -244,11 +381,11 @@ Note:
 * Students matching at least one keyword will be returned e.g. `n/Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 
-* If multiple prefixes are specified, Students matching ALL prefixes will be returned.
+* If multiple prefixes are specified, students matching ALL prefixes will be returned.
 
 Example:
 
-Let the initial state of the list contain these 3 people: Alex, Bernice, Charlotte.
+Let the initial state of the list contain these 3 students: Alex, Bernice, Charlotte.
 
 ![Initial State](images/findcommandUG/initialstate.png)
 
@@ -256,9 +393,9 @@ Let the initial state of the list contain these 3 people: Alex, Bernice, Charlot
 
 ![result for `find n/alex bernice`](images/findcommandUG/find-alex-bernice.png)
 * `find n/alex charlotte m/CS g/t01` returns `Alex`, because:
-  * `Alex` and `Charlotte` fit within the search arguments for the prefix `name` and `module`,
-  * but only `Alex` has a group of `T01`.
-  * Hence, only `Alex` meets the search requirements of ALL search arguments provided, and is shown.
+    * `Alex` and `Charlotte` fit within the search arguments for the prefix `name` and `module`,
+    * but only `Alex` has a group of `T01`.
+    * Hence, only `Alex` meets the search requirements of ALL search arguments provided, and is shown.
 
 ![result for `find n/alex charlotte m/CS g/t01`](images/findcommandUG/find-alex-charlotte.png)
 
@@ -270,10 +407,11 @@ Format: `undo` or `redo`
 
 * `undo` can only undo the effects of an `add`, `delete`, `edit`, `clear`, `newtask` and `deltask` commands.
 * Once you undo and enter a new `add`, `delete`, `edit`, `clear`, `newtask` or `deltask` command, the state that was undone will not be accessible via `redo` anymore.
+* Note the `undo` command will **not** be able to undo the effects of TAilor clearing all of its data due to manual editing of data.
 
 Example:
 
-Let the initial state of the list contain these 3 people: Alex, Bernice, Charlotte.
+Let the initial state of the list contain these 3 students: Alex, Bernice, Charlotte.
 ![Initial State](images/undocommandUG/initial_state.png)
 
 After `delete 1`, we will delete Alex and the list will not have Alex anymore.
@@ -285,9 +423,10 @@ After `undo`, the list will return to having Alex in it
 After a `redo`, the list will return to the state where Alex was deleted
 ![Before Undo](images/undocommandUG/before_undo.png)
 
-#### Mailing a particular student based on index : `mail-index`
+### Mail commands
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-Mails a student from the student roster based on the index number shown in the application.
+Mails a student from the student list based on the index number shown in the application.
 
 Format: `mail-index INDEX`
 
@@ -298,7 +437,7 @@ Example:
 * `mail-index 2` would open the default mail on the system with the "to" box filled with the
   specified mail. Now, the email is ready to be sent to the student with the index 2 as shown on the application.
 
-#### Mailing student subset based on arguments : `mail-x`
+#### Mailing students based on arguments: `mail-x`
 
 Mails a subset of students from the contact list. This is a broader version of mail functionality as it can
 cover multiple students at once in order to mail them simultaneously.
@@ -318,9 +457,9 @@ Example:
   all the mail addresses covered by the arguments specified. Now, the email is ready to be sent to `johndoe@example.com`
   and Alex.
 
-#### Bulk Emails to everyone on the database : `mail-all`
+#### Email everyone in the student list: `mail-all`
 
-Mails everybody in the student roster.
+Mails everybody in the student list.
 
 Format: `mail-all`
 
@@ -350,20 +489,22 @@ Format: `newtask DESCRIPTION by/DATETIME`
 | `-`, `:`, `T` | Separators            | Do not change these! They need to be in the corresponding positions! |
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+
 * The Time and Date being input must be valid. Ie, it is not possible to input a task
     with a deadline of 31st February.
 * It is possible to create tasks that have a deadline before the current time, for task-tracking purposes!
+
 </div>
 
 Note:
 * There is no maximum length for the description, but using a long description may hinder usability and make it hard to see your tasks!
-  * For your best experience, please describe your tasks with a (soft) limit of 40 characters, including spaces!
-  * This will be improved in the future versions.
+    * For your best experience, please describe your tasks with a (soft) limit of 40 characters, including spaces!
+    * This will be improved in the future versions.
 
 Examples:
 * `newtask Do Homework by/2022-03-21T23:59` creates a task with description of "Do Homework" and is due on 21 March 2022, 11:59pm.
 * `newtask Check Alex's lab 4 by/2022-03-31T23:59` creates a task with description "Check Alex's lab 4" and is due on 31 March 2022, 11:59pm
-![result for `newtask Check Alex's lab 4 by/2022-03-31T23:59`](images/newTask-okay.png)
+  ![result for `newtask Check Alex's lab 4 by/2022-03-31T23:59`](images/newTask-okay.png)
 
 
 #### Deleting an existing task: `deltask`
@@ -375,8 +516,8 @@ Format: `deltask INDEX`
 * Deletes the task at the specified `INDEX`.
 * The index refers to the index number shown in the displayed task list.
 * The index **must be a positive integer** (ie 1, 2, 3, …​) and should be any one of the indexes displayed! Negative examples include:
-  * `delete 0` produces an error, as 0 is not a positive integer
-  * `delete 300` for a task list with less than 300 tasks, will produce an error as there is no 300<sup>th</sup> task
+    * `delete 0` produces an error, as 0 is not a positive integer
+    * `delete 300` for a task list with less than 300 tasks, will produce an error as there is no 300<sup>th</sup> task
 
 (Positive) Examples:
 * `delete 2` with a task list of at least 2 tasks, deletes the 2nd task in the task list.
@@ -388,23 +529,29 @@ Format: `deltask INDEX`
 
 #### Exiting TAilor: `exit`
 
-Simply type exit to close the application. All of your data will be stored if no unforseen error is encountered!
+Simply type exit to close the application. All of your data will be stored if no unforeseen errors have occurred!
 
-
-#### Clearing all entries : `clear`
+#### Clearing all entries: `clear`
 
 Clears all entries from the student roster.
 
 Format: `clear`
 
 ---
+
 ### Shortcuts
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-| Button   | Result                                                                 |
-|----------|------------------------------------------------------------------------|
-| **UP**   | Refills command textbox with previous entered command                  |
-| **DOWN** | Refills command textbox with the command entered after the current one |
+| Button    | Result                                                               |
+|-----------|----------------------------------------------------------------------|
+| &uparrow; | Refills command textbox with previous entered command                |
+| &downarrow; | Refills command textbox with the command entered after the current one |
+
+Example:
+1. Commands `delete 1` `find n/Bob` `list` are entered in the app.
+2. Pressing &uparrow; will fill the command box with `list`.
+3. Pressing &uparrow; again will fill the command box with `find n/Bob`.
+4. Pressing &downarrow; will then fill the command box with `list` again.
 
 ### Saving the data
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -421,8 +568,9 @@ ModuleList's data being saved as `[JAR file location]/data/modulelist.json`
 Advanced users are welcome to update the data directly by editing those data files.
 
 <div markdown="span" class="alert alert-warning"> :exclamation: **Caution:**
-If your changes to the data file makes its format invalid, TAilor will discard all data and start
-with an empty data file at the next run.
+If your changes to the data file makes its format invalid (e.g., deleting the field of a task), TAilor will discard data in all 3 files and start
+with no data at the next run. It is suggested that users manually backup copies of these files before directly editing
+any of these files.
 
 To reset the files, perform any command that changes the contact list or task list (ie add new task, add new contact).
 WARNING: This will override the pre-existing data with the new data you entered.
@@ -435,10 +583,24 @@ WARNING: This will override the pre-existing data with the new data you entered.
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the
-       file that contains the data of your previous TAilor home folder!
+file that contains the data of your previous TAilor home folder!
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Prefix usage table
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
+
+| Prefix | What it means  | Usage requirements                                                                                                                                                                                                                                             | Example Usages                               |
+|--------|----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
+| n/     | Name           | Can only contain alphanumeric characters or spaces, and cannot be blank.                                                                                                                                                                                       | n/Alex Yeoh <br> n/Bob Wee                   |
+| a/     | Student Number | Must start with an `a`, followed by 7 digits and ending with one letter.                                                                                                                                                                                       | a/A0123456N <br> a/a0102034x                 |
+| e/     | Email          | Has 2 parts separated by a mandatory `@`. <br><br>Before the `@`: Can contain alphanumeric characters or these special characters: `+``-``_``.`, but cannot start or end with the special characters.<br><br>After the `@`: At least 2 alphanumeric characters | e/johndoe@test.org <br> e/Alex@example.com   |
+| m/     | Module Code    | Must start with 2 or 3 **capital** letters, followed by 4 digits, and an optional last letter that is also **capitalised**.                                                                                                                                    | m/CS2030S <br> m/GER1000                     |
+| g/     | Group Number   | No restrictions on characters, but cannot be blank.                                                                                                                                                                                                            | g/group1 <br> g/tuesday 12pm                 |
+| t/     | Tags           | Must be alphanumeric, with no spaces. To add multiple tags, specify multiple `t/` prefixes.                                                                                                                                                                    | t/friend <br> t/foe                          |
+| by/    | Deadline       | Must be in the format of YYYY-MM-DDThh:mm, more details are under the [`newtask` command](#adding-a-new-task-newtask).                                                                                                                                         | by/2022-03-21T15:21 <br> by/2011-12-01T03:17 |
+
+---
 ## Command summary
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
