@@ -24,7 +24,7 @@ public class MailIndexCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Opens the mailbox to email the person identified by the "
             + "index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: INDEX (must be a positive integer, greater than or equals to 1)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_MAIL_PERSON_SUCCESS = "Opening System Default Mail Application : %1$s";

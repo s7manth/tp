@@ -20,4 +20,13 @@ public interface InputHistory {
      */
     String getNextUserInput();
 
+    /**
+     * Returns a boolean that indicates if a next input exists.
+     */
+    boolean canGetNextInput();
+
+    /**
+     * Returns a boolean that indicates if a prev input exists.
+     */
+    boolean canGetPrevInput();
 }
