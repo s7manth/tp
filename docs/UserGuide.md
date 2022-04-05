@@ -21,11 +21,11 @@ Assistant who can type fast, TAilor can get tedious contact management tasks don
 1. Ensure you have Java `11` or above installed in your Computer.
 
 <div markdown="span" class="alert alert-warning"> :exclamation: **Caution:**
-If you are a Mac User, it may be possible that some incompatibilities may surface in the form of garbled/unreadable 
-text in the GUI. It is advised to switch to Azul build of OpenJDK 11 to solve this issue. 
+If you are a Mac User, it may be possible that some incompatibilities may surface in the form of garbled/unreadable
+text in the GUI. It is advised to switch to Azul build of OpenJDK 11 to solve this issue.
 Please refer to this <a href="https://nus-cs2103-ay2122s2.github.io/website/admin/programmingLanguages.html#programming-language">link</a>
 for more information:)
- 
+
 </div>
 
 2. Download the latest `TAilor.jar` from [here](https://github.com/AY2122S2-CS2103T-W12-1/tp/releases).
@@ -103,16 +103,16 @@ Examples :
 * `help undo` will show the usage instructions for the `undo` command.
 * `help mail-x` will show the usage instructions for the `mail-x` command.
 
-#### Listing all persons : `list`
+#### Listing all students : `list`
 
-Shows a list of all persons in the student roster.
+Shows a list of all students in the student roster.
 
 Format: `list`
 
 
-#### Adding a person: `add`
+#### Adding a student: `add`
 
-Adds a person to the student roster.
+Adds a student to the student roster.
 
 Format:
 * `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MOD g/GROUP [t/TAG]…​` or
@@ -120,7 +120,8 @@ Format:
 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+If the student name is greater than 50 characters, the full name cannot be seen. Use initials if this is the case.
+A student can have any number of tags (including 0)
 </div>
 
 Examples:
@@ -155,42 +156,42 @@ a good user experience. Excel sheets downloaded from LumiNUS have 2 rows preceed
 result from writing anything or adding information that does not abide by the standard format in the file.
 </div>
 
-#### Editing a person : `edit`
+#### Editing a student : `edit`
 
-Edits an existing person in the student roster.
+Edits an existing student in the student roster.
 
 Format: `edit INDEX [n/NAME] [a/STUDENT_NUMBER] [e/EMAIL] [m/MOD] [g/GROUP] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+* When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
+* You can remove all the student’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
-*  `edit 1 a/A1122334X e/johndoe@example.com` Edits the studentNumber and email address of the 1st person to be
+*  `edit 1 a/A1122334X e/johndoe@example.com` Edits the studentNumber and email address of the 1st student to be
    `A1122334X` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
 
 
-#### Deleting a person : `delete`
+#### Deleting a student : `delete`
 
-Deletes the specified person from the student roster.
+Deletes the specified student from the student roster.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the student at the specified `INDEX`.
+* The index refers to the index number shown in the displayed student list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the student roster.
-* `find n/Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd student in the student roster.
+* `find n/Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
 #### Setting a default group value for a specific mod: `set-default-group`
 
-Sets a default group value for a particular mod that can be updated using the same command several times. Helps
-prevent users from repeatedly entering the same data.
+Sets a default group value for a particular mod that can be updated using the set-default command several times. Helps
+reduce redundancies when adding a student using the add command.
 
 Format: `set-default-group m/MOD g/GROUP`
 
@@ -206,7 +207,7 @@ Examples:
 
   ![result for updating default group of m/CS2101](images/set_default_ex2.png)
 
-#### Locating persons by name: `find`
+#### Locating students by name: `find`
 
 
 Finds students whose details matches all of the search parameters.
@@ -240,10 +241,10 @@ Note:
 
 * For names and tags, only full words will be matched e.g. `n/Han` will not match `Hans`
 * For the rest, partial words will be matched e.g. `e/exam` will match `abc@example.com`
-* Persons matching at least one keyword will be returned e.g. `n/Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Students matching at least one keyword will be returned e.g. `n/Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 
-* If multiple prefixes are specified, Persons matching ALL prefixes will be returned.
+* If multiple prefixes are specified, Students matching ALL prefixes will be returned.
 
 Example:
 
@@ -263,7 +264,7 @@ Let the initial state of the list contain these 3 people: Alex, Bernice, Charlot
 
 #### Undo or Redo a previous command : `undo/redo`
 
-Undoes or redoes a previously entered command that changed a person or task.
+Undoes or redoes a previously entered command that changed a student or task.
 
 Format: `undo` or `redo`
 
@@ -286,7 +287,7 @@ After a `redo`, the list will return to the state where Alex was deleted
 
 #### Mailing a particular student based on index : `mail-index`
 
-Mails a person from the student roster based on the index number shown in the application.
+Mails a student from the student roster based on the index number shown in the application.
 
 Format: `mail-index INDEX`
 
@@ -295,7 +296,7 @@ Format: `mail-index INDEX`
 
 Example:
 * `mail-index 2` would open the default mail on the system with the "to" box filled with the
-  specified mail. Now, the email is ready to be sent to the person with the index 2 as shown on the application.
+  specified mail. Now, the email is ready to be sent to the student with the index 2 as shown on the application.
 
 #### Mailing student subset based on arguments : `mail-x`
 
@@ -346,12 +347,12 @@ Format: `newtask DESCRIPTION by/DATETIME`
 | DD            | 2-digit day           | First day - 01 <br> Twelfth day - 12                                 |
 | hh            | 2-digit 24hour format | 3am - 03 <br> 3pm - 15                                               |
 | mm            | 2-digit minute        | On the hour - 00 <br> Last minute - 59                               |
-| `-`, `:`, `T` | Separators            | Do not change these! They need to be in the corresponding positions! | 
+| `-`, `:`, `T` | Separators            | Do not change these! They need to be in the corresponding positions! |
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 * The Time and Date being input must be valid. Ie, it is not possible to input a task
     with a deadline of 31st February.
-* It is possible to create tasks that have a deadline before the current time, for task-tracking purposes! 
+* It is possible to create tasks that have a deadline before the current time, for task-tracking purposes!
 </div>
 
 Note:
@@ -375,7 +376,7 @@ Format: `deltask INDEX`
 * The index refers to the index number shown in the displayed task list.
 * The index **must be a positive integer** (ie 1, 2, 3, …​) and should be any one of the indexes displayed! Negative examples include:
   * `delete 0` produces an error, as 0 is not a positive integer
-  * `delete 300` for a task list with less than 300 tasks, will produce an error as there is no 300<sup>th</sup> task 
+  * `delete 300` for a task list with less than 300 tasks, will produce an error as there is no 300<sup>th</sup> task
 
 (Positive) Examples:
 * `delete 2` with a task list of at least 2 tasks, deletes the 2nd task in the task list.
