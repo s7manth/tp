@@ -321,8 +321,8 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 We decided to go with alternative 1 as the memory usage expected of TAilor is not high, since users are not expected to 
-enter many content committing comments. The expected memory usage is not high as well, as the PersonList and TaskList 
-are generally not space intensive.
+enter many content committing comments. The expected memory usage is not high as well, as the PersonList, TaskList and 
+ModuleList are generally not space intensive.
 
 Another drawback for alternative 2 was undoing a command by doing its reverse implementation might not return it to the 
 same state. For example, after `delete 1`, we might save the person just deleted, and set `add "person"` as the `undo` 
