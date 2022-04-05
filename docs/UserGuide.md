@@ -432,7 +432,7 @@ ModuleList's data being saved as `[JAR file location]/data/modulelist.json`
 Advanced users are welcome to update the data directly by editing those data files.
 
 <div markdown="span" class="alert alert-warning"> :exclamation: **Caution:**
-If your changes to the data file makes its format invalid, TAilor will discard data in all 3 files and start
+If your changes to the data file makes its format invalid (e.g., deleting the field of a task), TAilor will discard data in all 3 files and start
 with no data at the next run. It is suggested that users manually backup copies of these files before directly editing
 any of these files.
 
