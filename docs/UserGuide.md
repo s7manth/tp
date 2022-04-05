@@ -181,7 +181,9 @@ Format: `delete INDEX`
 
 * Deletes the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed student list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …​and should be any one of the indexes displayed! Negative examples include:
+    * `delete 0` produces an error, as 0 is not a positive integer
+    * `delete 300` for a student list with less than 300 students, will produce an error as there is no 300<sup>th</sup> student
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the student roster.
