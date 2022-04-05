@@ -375,16 +375,14 @@ Note:
 * Multiple keywords can be given for each prefix.
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * The search is case-insensitive. e.g `hans` will match `Hans`
-* Keywords cannot be empty. e.g. `find n/` will return an error
+* Keywords **cannot be empty**. e.g. `find n/` will return an error
 * Only the specified prefixes will be searched
 
-<br>
 
-* For names and tags, only full words will be matched e.g. `n/Han` will not match `Hans`
-* For the rest, partial words will be matched e.g. `e/exam` will match `abc@example.com`
-* Persons matching at least one keyword will be returned e.g. `n/Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* For names and tags, **only full words will be matched** e.g. `n/Han` will not match `Hans`
+* For the rest, **partial words will be matched** e.g. `e/exam` will match `abc@example.com`
+* Persons matching **at least one** keyword will be returned e.g. `n/Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
-<br>
 
 * If multiple prefixes are specified, students matching ALL prefixes will be returned.
 
