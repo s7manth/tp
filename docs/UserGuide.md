@@ -163,15 +163,13 @@ The typical workflow for a Teaching Assistant is provided as follows:
 
 
 2. Add students to the student list via the [add command](#adding-a-student-add) or the [import command](#importing-a-csv-file-to-automatically-add-students-import-csv).
-
-   * Edit students if necessary via the [edit command](#editing-a-student-edit).
+   * Edit students if necessary via the [edit command](#editing-a-student-edit).<br>
 
     
 3. Perform any of the actions below whenever necessary:
    * Find students via the [find command](#locating-students-find).
    * Mail students via the [various mail commands](#mail-commands).
-   
-   * Manage tasks for yourself via the [new task](#adding-a-new-task-newtask) and [delete task](#deleting-an-existing-task-deltask) commands.
+   * Manage tasks for yourself via the [new task](#adding-a-new-task-newtask) and [delete task](#deleting-an-existing-task-deltask) commands.<br>
 
 
 4. Repeat steps 2 and 3 when necessary.
