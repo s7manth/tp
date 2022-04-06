@@ -38,8 +38,8 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_STUDENT_NUMBER = "Error! Student number %1$s is already associated " +
-            "with another student.";
+    public static final String MESSAGE_DUPLICATE_STUDENT_NUMBER = "Error! Student number %1$s is already associated "
+            + "with another student.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the class group";
     public static final String MESSAGE_NO_DEFAULT_GROUP = "This module doesn't have a default group set";
 
