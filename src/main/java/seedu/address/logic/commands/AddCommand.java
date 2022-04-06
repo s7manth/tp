@@ -38,6 +38,8 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
+    public static final String MESSAGE_DUPLICATE_STUDENT_NUMBER = "Error! Student number %1$s is already associated " +
+            "with another student.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the class group";
     public static final String MESSAGE_NO_DEFAULT_GROUP = "This module doesn't have a default group set";
 
@@ -62,9 +64,11 @@ public class AddCommand extends Command {
                 throw new CommandException(MESSAGE_NO_DEFAULT_GROUP);
             }
         }
-
+        String currStudentNumber = toAdd.getStudentNumber().value;
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        } else if (model.isStudentNumDuplicate(currStudentNumber)) {
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_STUDENT_NUMBER, currStudentNumber));
         }
 
         model.addPerson(toAdd);

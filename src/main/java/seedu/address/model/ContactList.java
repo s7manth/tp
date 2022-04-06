@@ -82,6 +82,16 @@ public class ContactList implements ReadOnlyContactList {
         return false;
     }
 
+    public boolean isStudentNumDuplicate(String stuNum) {
+        requireNonNull(stuNum);
+        for (Person p : persons) {
+            if (p.getStudentNumber().value.equals(stuNum)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.

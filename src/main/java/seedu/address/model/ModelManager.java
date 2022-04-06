@@ -159,6 +159,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean isStudentNumDuplicate(String stuNum) {
+        return contactList.isStudentNumDuplicate(stuNum);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         contactList.removePerson(target);
     }

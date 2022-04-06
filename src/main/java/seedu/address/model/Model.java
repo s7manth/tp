@@ -86,6 +86,13 @@ public interface Model {
     boolean hasPersonIgnoreTags(Person person);
 
     /**
+     * Returns true if the provided student number is already associated with another student
+     * @param stuNum a String representing matriculation Number assigned to NUS Students
+     * @return boolean, true if already exists
+     */
+    boolean isStudentNumDuplicate(String stuNum);
+
+    /**
      * Deletes the given person.
      * The person must exist in the contact list.
      */
