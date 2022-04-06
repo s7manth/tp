@@ -84,8 +84,8 @@ public class ContactList implements ReadOnlyContactList {
 
     /**
      * Checks if the contact list has any student that contain the same student number as provided in the argument.
-     * @param stuNum, the value field of class Student Number
-     *                that is associated to the new student that the user wants to add to the list.
+     * @param stuNum the value field of class Student Number
+     *               that is associated to the new student that the user wants to add to the list.
      * @return boolean, True if a match is detected.
      */
     public boolean isStudentNumDuplicate(String stuNum) {
