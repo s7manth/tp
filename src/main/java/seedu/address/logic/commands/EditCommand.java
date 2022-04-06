@@ -50,6 +50,8 @@ public class EditCommand extends Command {
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_DUPLICATE_STUDENT_NUMBER = "Error! Student number %1$s is already associated "
+            + "with another student.";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the mod book.";
 
@@ -82,6 +84,10 @@ public class EditCommand extends Command {
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+        if (model.isStudentNumDuplicate(editedPerson.getStudentNumber().value)) {
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_STUDENT_NUMBER, editedPerson.getStudentNumber().value));
         }
 
         model.setPerson(personToEdit, editedPerson);
