@@ -163,13 +163,13 @@ The typical workflow for a Teaching Assistant is provided as follows:
 
 
 2. Add students to the student list via the [add command](#adding-a-student-add) or the [import command](#importing-a-csv-file-to-automatically-add-students-import-csv).
-   * Edit students if necessary via the [edit command](#editing-a-student-edit).<br>
+   * Edit students if necessary via the [edit command](#editing-a-student-edit).
 
 
 3. Perform any of the actions below whenever necessary:
    * Find students via the [find command](#locating-students-find).
    * Mail students via the [various mail commands](#mail-commands).
-   * Manage tasks for yourself via the [new task](#adding-a-new-task-newtask) and [delete task](#deleting-an-existing-task-deltask) commands.<br>
+   * Manage tasks for yourself via the [new task](#adding-a-new-task-newtask) and [delete task](#deleting-an-existing-task-deltask) commands.
 
 
 4. Repeat steps 2 and 3 when necessary.
@@ -372,16 +372,16 @@ Note:
 * Multiple keywords can be given for each prefix.
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * The search is case-insensitive. e.g `hans` will match `Hans`
-* Keywords cannot be empty. e.g. `find n/` will return an error
+* Keywords **cannot be empty**. e.g. `find n/` will return an error
 * Only the specified prefixes will be searched
 
 
-* For names and tags, only full words will be matched e.g. `n/Han` will not match `Hans`
-* For the rest, partial words will be matched e.g. `e/exam` will match `abc@example.com`
-* Students matching at least one keyword will be returned e.g. `n/Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* For names and tags, **only full words** will be matched e.g. `n/Han` will not match `Hans`
+* For the rest, **partial words** will be matched e.g. `e/exam` will match `abc@example.com`
+* Students matching **at least one** keyword will be returned e.g. `n/Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 
-* If multiple prefixes are specified, students matching ALL prefixes will be returned.
+* If multiple prefixes are specified, students matching **ALL** prefixes will be returned.
 
 Example:
 
@@ -394,7 +394,7 @@ Let the initial state of the list contain these 3 students: Alex, Bernice, Charl
 ![result for `find n/alex bernice`](images/findcommandUG/find-alex-bernice.png)
 * `find n/alex charlotte m/CS g/t01` returns `Alex`, because:
     * `Alex` and `Charlotte` fit within the search arguments for the prefix `name` and `module`,
-    * but only `Alex` has a group of `T01`.
+    * However, only `Alex` has a group of `T01`.
     * Hence, only `Alex` meets the search requirements of ALL search arguments provided, and is shown.
 
 ![result for `find n/alex charlotte m/CS g/t01`](images/findcommandUG/find-alex-charlotte.png)
@@ -490,9 +490,9 @@ Format: `newtask DESCRIPTION by/DATETIME`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 
-* The Time and Date being input must be valid. Ie, it is not possible to input a task
-    with a deadline of 31st February.
-* It is possible to create tasks that have a deadline before the current time, for task-tracking purposes!
+The Time and Date being input must be valid. Ie, it is not possible to input a task
+with a deadline of 31st February.<br>
+It is also possible to create tasks that have a deadline before the current time, for task-tracking purposes! 
 
 </div>
 
@@ -544,14 +544,14 @@ Format: `clear`
 
 | Button    | Result                                                               |
 |-----------|----------------------------------------------------------------------|
-| &uparrow; | Refills command textbox with previous entered command                |
-| &downarrow; | Refills command textbox with the command entered after the current one |
+| &#8593; | Refills command textbox with previous entered command                |
+| &#8595; | Refills command textbox with the command entered after the current one |
 
 Example:
 1. Commands `delete 1` `find n/Bob` `list` are entered in the app.
-2. Pressing &uparrow; will fill the command box with `list`.
-3. Pressing &uparrow; again will fill the command box with `find n/Bob`.
-4. Pressing &downarrow; will then fill the command box with `list` again.
+2. Pressing &#8593; will fill the command box with `list`.
+3. Pressing &#8593; again will fill the command box with `find n/Bob`.
+4. Pressing &#8595; will then fill the command box with `list` again.
 
 ### Saving the data
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
