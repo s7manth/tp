@@ -12,7 +12,7 @@ title: User Guide
 
 TAilor is a **desktop app for managing contacts, optimized for use via a Command Line Interface (CLI)**
 while still having the benefits of a Graphical User Interface (GUI). If you belong to the home faculty of the School of
-Computing, are a Teaching Assistant in NUS and can type fast, TAilor can get tedious contact management tasks done 
+Computing, are a Teaching Assistant in NUS and can type fast, TAilor can get tedious contact management tasks done
 faster than traditional GUI apps!
 
 <br>
@@ -25,8 +25,8 @@ faculties.
 * There is only support for students whose home university is NUS currently as well, so their matriculation
 numbers should be in the form of "A0123456X" as according to NUS.
 
-If the intended usage above does not fit you, don't worry, you still can use our application. The only downside is that features 
-may seem a little odd to you, or you may need to do some manual adjustments. Fret not, we are currently working to produce a 
+If the intended usage above does not fit you, don't worry, you still can use our application. The only downside is that features
+may seem a little odd to you, or you may need to do some manual adjustments. Fret not, we are currently working to produce a
 version of TAilor that can be used by a wider range of users, so stay tuned!
 
 --------------------------------------------------------------------------------------------------------------------
@@ -37,8 +37,8 @@ version of TAilor that can be used by a wider range of users, so stay tuned!
 1. Ensure you have Java `11` or above installed in your Computer.
 
 <div markdown="span" class="alert alert-warning"> :exclamation: **Caution:**
-If you are a Mac User, it may be possible that some incompatibilities may surface in the form of garbled/unreadable 
-text in the GUI. It is advised to switch to Azul build of OpenJDK 11 to solve this issue. 
+If you are a Mac User, it may be possible that some incompatibilities may surface in the form of garbled/unreadable
+text in the GUI. It is advised to switch to Azul build of OpenJDK 11 to solve this issue.
 Please refer to this <a href="https://nus-cs2103-ay2122s2.github.io/website/admin/programmingLanguages.html#programming-language">link</a>
 for more information:)
 
@@ -120,10 +120,10 @@ Shown here is:
 | **Group** that the student is under             | T02                   |
 | **Email** of the student                        | charlotte@example.com |
 
-Note that the group of the student can be set to anything you want, so the meaning of it is derived upon 
+Note that the group of the student can be set to anything you want, so the meaning of it is derived upon
 your own usage. The example given, `T02`, is intended to imply that the student belongs to Tutorial Group 2.
 
-You can choose to follow module conventions for the naming of the groups or make groupings of your own. 
+You can choose to follow module conventions for the naming of the groups or make groupings of your own.
 Some additional examples are shown below:
 
 * CS2103T groups can be `W12-1` to represent the Wednesday 12PM time slot, group 1.
@@ -165,7 +165,7 @@ The typical workflow for a Teaching Assistant is provided as follows:
 2. Add students to the student list via the [add command](#adding-a-student-add) or the [import command](#importing-a-csv-file-to-automatically-add-students-import-csv).
    * Edit students if necessary via the [edit command](#editing-a-student-edit).
 
-    
+
 3. Perform any of the actions below whenever necessary:
    * Find students via the [find command](#locating-students-find).
    * Mail students via the [various mail commands](#mail-commands).
@@ -231,7 +231,6 @@ Examples :
 * `help undo` will show the usage instructions for the `undo` command.
 * `help mail-x` will show the usage instructions for the `mail-x` command.
 
-
 #### Listing all students : `list`
 
 Shows a list of all students in the student roster.
@@ -241,9 +240,7 @@ Format: `list`
 
 #### Adding a student: `add`
 
-
 Adds a student to the student roster.
-
 
 Format:
 * `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MOD g/GROUP [t/TAG]…​` or
@@ -251,6 +248,7 @@ Format:
 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If the student name is greater than 50 characters, the full name cannot be seen. Use initials if this is the case.
 A student can have any number of tags (including 0)
 </div>
 
@@ -286,14 +284,13 @@ a good user experience. Excel sheets downloaded from LumiNUS have 2 rows preceed
 result from writing anything or adding information that does not abide by the standard format in the file.
 </div>
 
-
 #### Editing a student : `edit`
 
 Edits an existing student in the student roster.
 
 Format: `edit INDEX [n/NAME] [a/STUDENT_NUMBER] [e/EMAIL] [m/MOD] [g/GROUP] [t/TAG]…​`
 
-* Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. 
+* Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list.
 The index **must be a positive integer** 1, 2, 3, …​ and should be any one of the indexes displayed! Negative examples include:
     * `delete 0` produces an error, as 0 is not a positive integer
     * `delete 300` for a student list with less than 300 students, will produce an error as there is no 300<sup>th</sup> student
@@ -329,8 +326,8 @@ Examples:
 
 #### Setting a default group value for a mod: `set-default-group`
 
-Sets a default group value for a particular mod that can be updated using the same command several times. Helps
-prevent users from repeatedly entering the same data.
+Sets a default group value for a particular mod that can be updated using the set-default command several times. Helps
+reduce redundancies when adding a student using the add command.
 
 Format: `set-default-group m/MOD g/GROUP`
 
@@ -429,8 +426,6 @@ After a `redo`, the list will return to the state where Alex was deleted
 ### Mail commands
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-#### Mailing a particular student based on index: `mail-index`
-
 Mails a student from the student list based on the index number shown in the application.
 
 Format: `mail-index INDEX`
@@ -491,7 +486,7 @@ Format: `newtask DESCRIPTION by/DATETIME`
 | DD            | 2-digit day           | First day - 01 <br> Twelfth day - 12                                 |
 | hh            | 2-digit 24hour format | 3am - 03 <br> 3pm - 15                                               |
 | mm            | 2-digit minute        | On the hour - 00 <br> Last minute - 59                               |
-| `-`, `:`, `T` | Separators            | Do not change these! They need to be in the corresponding positions! | 
+| `-`, `:`, `T` | Separators            | Do not change these! They need to be in the corresponding positions! |
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 
@@ -603,7 +598,7 @@ file that contains the data of your previous TAilor home folder!
 | m/     | Module Code    | Must start with 2 or 3 **capital** letters, followed by 4 digits, and an optional last letter that is also **capitalised**.                                                                                                                                    | m/CS2030S <br> m/GER1000                     |
 | g/     | Group Number   | No restrictions on characters, but cannot be blank.                                                                                                                                                                                                            | g/group1 <br> g/tuesday 12pm                 |
 | t/     | Tags           | Must be alphanumeric, with no spaces. To add multiple tags, specify multiple `t/` prefixes.                                                                                                                                                                    | t/friend <br> t/foe                          |
-| by/    | Deadline       | Must be in the format of YYYY-MM-DDThh:mm, more details are under the [`newtask` command](#adding-a-new-task-newtask).                                                                                                                                         | by/2022-03-21T15:21 <br> by/2011-12-01T03:17 | 
+| by/    | Deadline       | Must be in the format of YYYY-MM-DDThh:mm, more details are under the [`newtask` command](#adding-a-new-task-newtask).                                                                                                                                         | by/2022-03-21T15:21 <br> by/2011-12-01T03:17 |
 
 ---
 ## Command summary
