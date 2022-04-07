@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Mod;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniqueModuleList;
@@ -87,10 +88,12 @@ public interface Model {
 
     /**
      * Returns true if the provided student number is already associated with another student
-     * @param stuNum a String representing matriculation Number assigned to NUS Students
+     * @param person a String representing matriculation Number assigned to NUS Students
      * @return boolean, true if already exists
      */
-    boolean isStudentNumDuplicate(String stuNum);
+    boolean isStudentNumDuplicate(Person person);
+
+    boolean isStudentNumDuplicate(Person person, Index index);
 
     /**
      * Deletes the given person.

@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Mod;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniqueModuleList;
@@ -159,8 +160,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean isStudentNumDuplicate(String stuNum) {
-        return contactList.isStudentNumDuplicate(stuNum);
+    public boolean isStudentNumDuplicate(Person person) {
+        return contactList.isStudentNumDuplicate(person);
+    }
+
+    @Override
+    public boolean isStudentNumDuplicate(Person person, Index index) {
+        return contactList.isStudentNumDuplicate(person, index);
     }
 
     @Override

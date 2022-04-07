@@ -169,7 +169,7 @@ public class SetDefaultGroupCommandTest {
         }
 
         @Override
-        public boolean isStudentNumDuplicate(String stuNum) {
+        public boolean isStudentNumDuplicate(Person person) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -64,11 +64,10 @@ public class AddCommand extends Command {
                 throw new CommandException(MESSAGE_NO_DEFAULT_GROUP);
             }
         }
-        String currStudentNumber = toAdd.getStudentNumber().value;
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-        } else if (model.isStudentNumDuplicate(currStudentNumber)) {
-            throw new CommandException(String.format(MESSAGE_DUPLICATE_STUDENT_NUMBER, currStudentNumber));
+        } else if (model.isStudentNumDuplicate(toAdd)) {
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_STUDENT_NUMBER, toAdd.getStudentNumber().value;));
         }
 
         model.addPerson(toAdd);

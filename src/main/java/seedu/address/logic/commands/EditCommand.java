@@ -86,7 +86,7 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        if (model.isStudentNumDuplicate(editedPerson.getStudentNumber().value)) {
+        if (model.isStudentNumDuplicate(editedPerson)) {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_STUDENT_NUMBER,
                     editedPerson.getStudentNumber().value));
         }
