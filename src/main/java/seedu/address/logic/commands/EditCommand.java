@@ -53,8 +53,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_STUDENT_NUMBER = "Error! Student number %1$s is already associated "
             + "with another student.";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "Student already exists with the unique identifiers " +
-            "(email/student number) in the list";
+    public static final String MESSAGE_DUPLICATE_PERSON = "Student already exists with the unique identifiers "
+            + "(email/student number) in the list";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
