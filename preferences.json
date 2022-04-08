@@ -7,7 +7,7 @@
       "y" : 23
     }
   },
-  "contactListFilePath" : "data/contactlist.json",
-  "taskListFilePath" : "data/tasklist.json",
-  "moduleListFilePath" : "data/modulelist.json"
+  "contactListFilePath" : "data\\contactlist.json",
+  "taskListFilePath" : "data\\tasklist.json",
+  "moduleListFilePath" : "data\\modulelist.json"
 }

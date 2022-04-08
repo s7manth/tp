@@ -87,15 +87,6 @@ public interface Model {
     boolean hasPersonIgnoreTags(Person person);
 
     /**
-     * Returns true if the provided student number is already associated with another student
-     * @param person a String representing matriculation Number assigned to NUS Students
-     * @return boolean, true if already exists
-     */
-    boolean isStudentNumDuplicate(Person person);
-
-//    boolean isStudentNumDuplicate(Person person, Index index);
-
-    /**
      * Deletes the given person.
      * The person must exist in the contact list.
      */
@@ -140,7 +131,7 @@ public interface Model {
 
     /**
      * Retrieves the current default group value for a particular module
-     * @param mod the module object who's default value is to be retrieved.
+     * @param mod the module object whose default value is to be retrieved.
      * @return String the default group title.
      */
     String retrievePrevDefault(Mod mod);

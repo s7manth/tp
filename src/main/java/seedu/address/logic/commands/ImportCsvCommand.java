@@ -14,7 +14,6 @@ import java.util.stream.IntStream;
 import com.opencsv.exceptions.CsvValidationException;
 
 import seedu.address.commons.util.CsvUtil;
-import seedu.address.commons.util.FileUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Email;
@@ -29,10 +28,6 @@ public class ImportCsvCommand extends Command {
     public static final String COMMAND_WORD = "import-csv";
 
     public static final String EXPECTED_HEADERS = "Name,Student Number,Email,Group";
-
-    public static final String EXPECTED_HEADERS_MISSING = "The file does not follow required format - some header(s) "
-            + "are missing. \n"
-            + "The expected headers are: ";
 
     public static final String FILE_DOES_NOT_EXIST = "TAilor was unable to find a file at the stated path.";
 
@@ -70,6 +65,7 @@ public class ImportCsvCommand extends Command {
         }
 
         listToAddToModel.forEach(model::addPerson);
+        model.commitContent();
 
         return new CommandResult(MESSAGE_SUCCESS);
     }

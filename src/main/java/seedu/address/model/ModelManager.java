@@ -160,16 +160,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean isStudentNumDuplicate(Person person) {
-        return contactList.isStudentNumDuplicate(person);
-    }
-
-//    @Override
-//    public boolean isStudentNumDuplicate(Person person, Index index) {
-//        return contactList.isStudentNumDuplicate(person, index);
-//    }
-
-    @Override
     public void deletePerson(Person target) {
         contactList.removePerson(target);
     }

@@ -80,12 +80,15 @@ public class Person {
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
+        assert otherPerson != null;
         if (otherPerson == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        boolean isSameStudentNumber = otherPerson.getStudentNumber().equals(getStudentNumber());
+        boolean isSameEmail = otherPerson.getEmail().equals(getEmail());
+
+        return isSameEmail || isSameStudentNumber;
     }
 
     /**

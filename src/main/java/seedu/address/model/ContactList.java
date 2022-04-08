@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -84,34 +83,6 @@ public class ContactList implements ReadOnlyContactList {
     }
 
     /**
-     * Checks if the contact list has any student that contain the same student number as provided in the argument.
-     * @param person the value field of class Student Number
-     *               that is associated to the new student that the user wants to add to the list.
-     * @return boolean, True if a match is detected.
-     */
-    public boolean isStudentNumDuplicate(Person person) {
-        String currStudentNumber = person.getStudentNumber().value;
-        requireNonNull(person);
-        for (Person p : persons) {
-            if (p.getStudentNumber().value.equals(currStudentNumber) && !p.equals(person)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-//    public boolean isStudentNumDuplicate(Person person, Index index) {
-//        requireNonNull(person);
-//        String currStudentNumber = person.getStudentNumber().value;
-//        for (int i = 0; i < persons.) {
-//            if (p.getStudentNumber().value.equals(currStudentNumber) && !p.equals(person)) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-
-    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
@@ -137,8 +108,6 @@ public class ContactList implements ReadOnlyContactList {
     public void removePerson(Person key) {
         persons.remove(key);
     }
-
-    //// util methods
 
     @Override
     public String toString() {
