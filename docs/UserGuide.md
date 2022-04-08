@@ -468,7 +468,8 @@ Format: `mail-x [e/EMAIL] [g/GROUP] [m/MOD] [n/NAME]`
 * This can be used to specify multiple prefix based arguments to send the same mail in a single go.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
-mail-x must have at least one prefix based argument passed.
+mail-x must have at least one prefix based argument passed. Also, `mail-x` supports only email, group, mod
+and name based prefix arguments to collate email addresses. All other categorization types are not supported.
 </div>
 
 Example:
