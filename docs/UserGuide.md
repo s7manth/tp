@@ -40,7 +40,7 @@ version of TAilor that can be used by a wider range of users, so stay tuned!
 If you are a Mac User, it may be possible that some incompatibilities may surface in the form of garbled/unreadable
 text in the GUI. It is advised to switch to Azul build of OpenJDK 11 to solve this issue.
 Please refer to this <a href="https://nus-cs2103-ay2122s2.github.io/website/admin/programmingLanguages.html#programming-language">link</a>
-for more information:)
+for more information :)
 
 </div>
 
@@ -50,8 +50,10 @@ for more information:)
 
 4. There are two ways to start TAilor.
    1. Open terminal on the PC, and change to the directory where `TAilor.jar` is saved. Then run `java -jar TAilor.jar`
-      the application. 
-   2. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note
+      the application. We recommend macOS users to use this method of starting the application to avoid errors.
+   2. Double-click the file to start the app. <br>
+      <br>
+      The GUI similar to the below should appear in a few seconds. Note
       how the app contains some sample data.<br>
       <br>
       ![Ui](images/Ui.png)
