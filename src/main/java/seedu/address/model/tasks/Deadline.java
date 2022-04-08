@@ -13,7 +13,9 @@ import java.time.Month;
 public class Deadline implements Comparable<Deadline> {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Deadlines should be in the format YYYY-MM-DDTHH:mm. Do not replace the \"T\". Example: 2022-03-21T19:38";
+            "Deadlines should be in the format YYYY-MM-DDTHH:mm. Do not replace the \"T\".\n"
+                    + "Additionally, the input date and time must be valid!\n"
+                    + "Example: 2022-03-21T19:38";
 
     /*
      * Deadlines should be in the format YYYY-MM-DD HH:mm exactly.
