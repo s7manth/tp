@@ -95,11 +95,15 @@ In **red**, is the input box for you to enter in your commands. Simply click on 
 In **green**, is the feedback box given for your command.
 
 An invalid or wrong command entered will display some error messages for you:
+<br>
+
 ![invalid add command result](images/UIexplanation/invalid-add.png)
 
 <br>
 
 A correct command will produce feedback to you about what has been done. In this case, the command `delete 3` was done:
+<br>
+
 ![valid delete command result](images/UIexplanation/valid-delete.png)
 
 <br>
