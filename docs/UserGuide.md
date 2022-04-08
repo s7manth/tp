@@ -59,7 +59,7 @@ for more information :)
       ![Ui](images/Ui.png)
       <br>
       <br>
-   
+
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter
    will open the help window.<br>
    Some example commands you can try:
@@ -520,7 +520,7 @@ Format: `newtask DESCRIPTION by/DATETIME`
 
 The Time and Date being input must be valid. Ie, it is not possible to input a task
 with a deadline of 31st February.<br>
-It is also possible to create tasks that have a deadline before the current time, for task-tracking purposes! 
+It is also possible to create tasks that have a deadline before the current time, for task-tracking purposes!
 
 </div>
 
