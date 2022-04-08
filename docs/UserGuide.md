@@ -134,7 +134,7 @@ Can create your student roster by directly importing a csv file and forgoing the
 This feature is tailor-made for NUS School of Computing teaching assistants who can export relevant class data from
 LumiNUS.
 
-Format: `import-csv [PATH-TO-FILE]`
+Format: `import-csv PATH-TO-FILE`
 
 To prepare your csv files, the following directions must be followed:
 
@@ -446,7 +446,7 @@ WARNING: This will override the pre-existing data with the new data you entered.
 | **Help**              | `help`, `help list`, `help mail-x`                                                                                                                                                                                                       |
 | **List**              | `list`                                                                                                                                                                                                                                   |
 | **Add**               | `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MODULE g/GROUP [t/TAG]…​` or `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MODULE [g/GROUP] [t/TAG]…​` <br> e.g., `add n/James Ho a/A1234567Y e/jamesho@example.com m/CS2100 g/W12 t/friend t/colleague` |
-| **Import csv**        | `import-csv [PATH_TO_CSV_FILE]`                                                                                                                                                                                                          |                                                                                                                                                         |
+| **Import csv**        | `import-csv PATH_TO_CSV_FILE`                                                                                                                                                                                                            |                                                                                                                                                         |
 | **Edit**              | `edit INDEX [n/NAME] [a/STUDENT_NUMBER] [e/EMAIL] [m/MODULE] [g/GROUP] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                   |
 | **Delete**            | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                      |
 | **Set Default Group** | `set-default-group m/MOD g/GROUP` <br> e.g., `set-default-group m/CS2103T g/W12-1`                                                                                                                                                       |
