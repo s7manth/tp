@@ -164,10 +164,10 @@ public class ModelManager implements Model {
         return contactList.isStudentNumDuplicate(person);
     }
 
-    @Override
-    public boolean isStudentNumDuplicate(Person person, Index index) {
-        return contactList.isStudentNumDuplicate(person, index);
-    }
+//    @Override
+//    public boolean isStudentNumDuplicate(Person person, Index index) {
+//        return contactList.isStudentNumDuplicate(person, index);
+//    }
 
     @Override
     public void deletePerson(Person target) {

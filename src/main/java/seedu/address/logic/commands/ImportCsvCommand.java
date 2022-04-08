@@ -14,6 +14,7 @@ import java.util.stream.IntStream;
 import com.opencsv.exceptions.CsvValidationException;
 
 import seedu.address.commons.util.CsvUtil;
+import seedu.address.commons.util.FileUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Email;
@@ -39,6 +40,9 @@ public class ImportCsvCommand extends Command {
             + "importing.";
 
     public static final String UNEXPECTED_ERROR = "TAilor ran into an unexpected error. Please try again.";
+
+    public static final String WRONG_FORMAT_ERROR = "The file does not follow the required format. Please check for"
+            + "our file requirements in TAilor's user guide";
 
     public static final String NOTHING_NEW_TO_IMPORT = "The current roster is in sync with data in the csv file.\n "
             + "Nothing new to import!";
@@ -152,7 +156,7 @@ public class ImportCsvCommand extends Command {
         }
 
         if (!fileConforms) {
-            throw new CommandException(EXPECTED_HEADERS_MISSING + EXPECTED_HEADERS);
+            throw new CommandException(WRONG_FORMAT_ERROR);
         }
 
         return true;

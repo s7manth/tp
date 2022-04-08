@@ -100,16 +100,16 @@ public class ContactList implements ReadOnlyContactList {
         return false;
     }
 
-    public boolean isStudentNumDuplicate(Person person, Index index) {
-        requireNonNull(person);
-        String currStudentNumber = person.getStudentNumber().value;
-        for (int i = 0; i < persons.) {
-            if (p.getStudentNumber().value.equals(currStudentNumber) && !p.equals(person)) {
-                return true;
-            }
-        }
-        return false;
-    }
+//    public boolean isStudentNumDuplicate(Person person, Index index) {
+//        requireNonNull(person);
+//        String currStudentNumber = person.getStudentNumber().value;
+//        for (int i = 0; i < persons.) {
+//            if (p.getStudentNumber().value.equals(currStudentNumber) && !p.equals(person)) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 
     /**
      * Adds a person to the address book.

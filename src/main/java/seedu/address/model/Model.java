@@ -93,7 +93,7 @@ public interface Model {
      */
     boolean isStudentNumDuplicate(Person person);
 
-    boolean isStudentNumDuplicate(Person person, Index index);
+//    boolean isStudentNumDuplicate(Person person, Index index);
 
     /**
      * Deletes the given person.
