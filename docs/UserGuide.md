@@ -445,6 +445,14 @@ After a `redo`, the list will return to the state where Alex was deleted<br>
 ### Mail commands
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
+<div markdown="span" class="alert alert-primary">:bulb: **Before you use mail commands :**
+Every system has a default mail application which opens up when `mailto` commands are invoked. If not, the
+operating system would request for the suitable application to respond with. If you wish to send mails through your
+preferred mail client, you may set it as the default application in the OS settings.
+</div>
+
+#### Mailing students based on the index: `mail-index`
+
 Mails a student from the student list based on the index number shown in the application.
 
 Format: `mail-index INDEX`
