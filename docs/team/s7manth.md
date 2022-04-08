@@ -15,6 +15,7 @@ mundane administrative tasks, or by providing efficient ways to accomplish those
     * **Feature**: Implementing mailing commands 
         * **Sub-Feature**: `mail-index` command
             * What it does:
+            Allows the user to 
           
             * Justification:
           
@@ -42,13 +43,21 @@ mundane administrative tasks, or by providing efficient ways to accomplish those
     
     * **Feature**: Extending `help` command's functionality 
         * What it does:
-          
+        Allows the user to understand the usage of specific commands. In addition to the traditional `help` command
+        invoking the user to refer to the user guide, the extended `help` command can be used to refer to the syntax
+        and expected usage of the other commands.
+      
         * Justification:
+        This feature allows the user to look up how each command works without constantly referring to the user
+        guide and hence saves time. It was inspired from the `--help` flag that is present in most of the modern day CLI 
+        tools.
           
         * Time spent on this (estimate):
+        100mins
         
     * **Utility Classes**: `StringBuilderUtil` and `MailUtil`
         * What it does:
+        Allows developers in the future to make use of faster string concatenation and bulk appending 
 
         * Justification:
 
