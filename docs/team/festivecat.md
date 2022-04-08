@@ -63,7 +63,7 @@ Given below are my contributions to the project.
       * I also incorporated the new Task Manager commands, `newtask` and `deltask` and how they should be used.
     * I also added in additional sections on prefix usages, intended workflow and an extended introduction at the start
       of the document to better guide users along with how to use our application.
-    * I also incorporated the link to table of contents under most major headings and subheadings 
+    * I also incorporated the link to table of contents under most major headings and subheadings
   * Developer Guide (DG):
     * Changed some "Address Book" into "Contact List" to better represent the project.
     * Updated DG for parts I have modified/implemented/extended.

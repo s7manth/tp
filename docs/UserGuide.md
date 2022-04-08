@@ -494,7 +494,7 @@ Format: `newtask DESCRIPTION by/DATETIME`
 
 The Time and Date being input must be valid. Ie, it is not possible to input a task
 with a deadline of 31st February.<br>
-It is also possible to create tasks that have a deadline before the current time, for task-tracking purposes! 
+It is also possible to create tasks that have a deadline before the current time, for task-tracking purposes!
 
 </div>
 
