@@ -275,13 +275,14 @@ To prepare your csv files, the following directions must be followed:
     4. Group
 3. Once exported, convert the file to CSV format. This can be accomplished using any modern day spreadsheet
    visualization software. Please follow this step through thoroughly. This <a href="https://support.microsoft.com/en-us/office/save-a-workbook-to-text-format-txt-or-csv-3e9a9d6c-70da-4255-aa28-fcacf1f081e6">link</a> can be referred to if guidance is required.
-4. Copy the file's path and import the file into TAilor with the above command! Your file path can be an absolute or
-   a relative path - it doesn't matter as long as it is valid.
+4. Copy the file's path and import the file into TAilor with the above command! Your file path can be an **absolute** or
+   a **relative path** - it doesn't matter as long as it is valid!
 
 
 <div markdown="span" class="alert alert-primary">:exclamation: **Note:**
 The file format, including choice of headers, will need to be adhered to for TAilor to function smoothly and provide
-a good user experience. Excel sheets downloaded from LumiNUS have 2 rows preceed the row containing column headers- this would be a requirement as well if you choose to draft your own file from scratch. As such, please be mindful to not corrupt your csv file before importing to TAilor- something that can
+a good user experience. Excel sheets downloaded from LumiNUS have 2 rows precede the row containing column headers- this would be a requirement as well if you choose to draft your own file from scratch.
+A sample csv file can be found [here]. As such, please be mindful to not corrupt your csv file before importing to TAilor- something that can
 result from writing anything or adding information that does not abide by the standard format in the file.
 </div>
 
