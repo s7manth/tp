@@ -32,10 +32,16 @@ for more information:)
 
 3. Copy the file to the folder you want to use as the _home folder_ for your TAilor Application.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note
-   how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-
+4. There are two ways to start TAilor.
+   1. Open terminal on the PC, and change to the directory where `TAilor.jar` is saved. Then run `java -jar TAilor.jar`
+      the application. 
+   2. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note
+      how the app contains some sample data.<br>
+      <br>
+      ![Ui](images/Ui.png)
+      <br>
+      <br>
+   
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter
    will open the help window.<br>
    Some example commands you can try:
@@ -52,7 +58,7 @@ for more information:)
 
    * **`exit`** : Exits the app.
 
-7. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
