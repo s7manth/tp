@@ -52,7 +52,7 @@ class ContentTest {
     @Test
     void testNotEquals() {
         ContactList editedContactList = new ContactList(getTypicalContactList());
-        editedContactList.addPerson(new PersonBuilder(ALICE).withName("TEST").build());
+        editedContactList.addPerson(new PersonBuilder(ALICE).withName("TEST").withStudentNumber("A0000000Q").withEmail("x@xdqx").build());
         Content editedContent = new Content(editedContactList, getTypicalTaskList());
         assertNotEquals(typicalContent, editedContent);
     }

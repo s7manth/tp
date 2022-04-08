@@ -80,7 +80,10 @@ public class Person {
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
-        assert otherPerson != null;
+        if (otherPerson == null) {
+            return false;
+        }
+
         if (otherPerson == this) {
             return true;
         }
