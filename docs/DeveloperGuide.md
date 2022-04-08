@@ -121,6 +121,9 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 How the parsing works:
 * When called upon to parse a user command, the `TailorParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `TailorParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* The following Figure 8 depicts parsing in action:
+<img alt="ParsingSequenceDiagram.png" src="images/ParsingSequenceDiagram.png" width="1000"/>
+<b>Fig.8 - parsing of commands taking in arguments</b>
 
 ### Model component
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -365,20 +368,15 @@ about repeatedly entering the same group value for several students over an exte
 #### Implementation
 The following classes were created in the process of implementing the `set-default-group` command:
 
-Logic:
-* SetDefaultGroupCommand (and its parser)
 
-Model:
-* ModuleList
-* UniqueModuleList
-* DuplicateModuleException
-* ModuleNotFoundException
+| Logic                   | Model                    | Storage                    |
+|-------------------------|--------------------------|----------------------------|
+| SetDefaultCommand       | DuplicateModuleException | ModuleListStorage          |
+| SetDefaultCommandParser | ModuleNotFoundException  | JsonModuleListStorage      |
+|                         | ModuleList               | JsonSerializableModuleList |               
+|                         | UniqueModuleList         | JsonAdaptedModule          |               
 
-Storage:
-* JsonAdaptedModule
-* JsonModuleListStorage
-* JsonSerializableModuleList
-* ModuleListStorage
+
 
 The core idea behind this implementation is that there exists an empty `UniqueModuleList` which is a list of `Mod`.
 Every Mod object has a `defaultGroup` attribute that initially is unassigned. Once the user enters the command

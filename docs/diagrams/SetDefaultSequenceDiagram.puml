@@ -3,8 +3,6 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":TailorParser" as TailorParser LOGIC_COLOR
-participant ":SetDefaultGroupCommandParser" as SetDefaultGroupCommandParser LOGIC_COLOR
 participant ":SetDefaultGroupCommand" as SetDefaultGroupCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -15,39 +13,8 @@ participant ":ModuleList" as ModuleList MODEL_COLOR
 participant "cs2103t:Mod" as Mod MODEL_COLOR
 end box
 
-[-> LogicManager : execute(set-default-group)
-activate LogicManager
 
-LogicManager -> TailorParser : parseCommand(set-default-group))
-activate TailorParser
-
-create SetDefaultGroupCommandParser
-TailorParser -> SetDefaultGroupCommandParser
-activate SetDefaultGroupCommandParser
-
-SetDefaultGroupCommandParser --> TailorParser
-deactivate SetDefaultGroupCommandParser
-
-TailorParser -> SetDefaultGroupCommandParser : parse()
-activate SetDefaultGroupCommandParser
-
-create SetDefaultGroupCommand
-SetDefaultGroupCommandParser -> SetDefaultGroupCommand
-activate SetDefaultGroupCommand
-
-SetDefaultGroupCommand --> SetDefaultGroupCommandParser : s
-deactivate SetDefaultGroupCommand
-
-SetDefaultGroupCommandParser --> TailorParser
-deactivate SetDefaultGroupCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-SetDefaultGroupCommandParser -[hidden]-> TailorParser
-destroy SetDefaultGroupCommandParser
-
-TailorParser --> LogicManager
-deactivate TailorParser
-
-LogicManager -> SetDefaultGroupCommand : execute()
+[-> SetDefaultGroupCommand : execute()
 activate SetDefaultGroupCommand
 
 SetDefaultGroupCommand -> Model : doesModExist("CS2103T")
