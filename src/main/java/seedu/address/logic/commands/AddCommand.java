@@ -25,15 +25,15 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_STUDENT_NUMBER + "STUDENT_NUMBER "
             + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_GROUP + "GROUP "
             + PREFIX_MOD + "MOD "
+            + PREFIX_GROUP + "GROUP "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_STUDENT_NUMBER + "A2345678Q "
             + PREFIX_EMAIL + "johnd@example.com "
+            + PREFIX_MOD + "CS2030S "
             + PREFIX_GROUP + "W12-1 "
-            + PREFIX_MOD + "CS2030S"
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 

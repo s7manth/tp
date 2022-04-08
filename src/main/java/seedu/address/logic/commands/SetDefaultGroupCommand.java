@@ -29,6 +29,8 @@ public class SetDefaultGroupCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Default value for %1$s Module has been set to %2$s successfully!";
     public static final String MESSAGE_DEFAULT_UPDATE = "Default value for %1$s has been updated from %2$s to %3$s.";
+    public static final String MESSAGE_SAME_UPDATE = "Default value provided for %1$s is %2$s which is "
+            + "the same as before.";
     private static final String DEFAULT_GROUP = "T01";
 
     private static final Logger logger = LogsCenter.getLogger(SetDefaultGroupCommand.class);
@@ -65,8 +67,12 @@ public class SetDefaultGroupCommand extends Command {
             assert matchingMod != null;
             if (model.isDefaultGroupOfModPresent(matchingMod.get())) {
                 String prevDefault = model.retrievePrevDefault(matchingMod.get());
-                model.setDefaultGroup(matchingMod.get(), defaultValue);
-                return new CommandResult(String.format(MESSAGE_DEFAULT_UPDATE, mod, prevDefault, defaultValue));
+                if (!prevDefault.equals(defaultValue)) {
+                    model.setDefaultGroup(matchingMod.get(), defaultValue);
+                    return new CommandResult(String.format(MESSAGE_DEFAULT_UPDATE, mod, prevDefault, defaultValue));
+                } else {
+                    return new CommandResult(String.format(MESSAGE_SAME_UPDATE, mod, prevDefault));
+                }
             }
         } else {
             model.addMod(mod);

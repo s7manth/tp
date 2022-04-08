@@ -5,6 +5,6 @@ package seedu.address.model.person.exceptions;
  */
 public class PersonNotFoundException extends RuntimeException {
     public PersonNotFoundException() {
-        super("Error 404, person not found!");
+        super("Error 404, student not found!");
     }
 }
