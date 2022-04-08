@@ -347,11 +347,14 @@ Format: `set-default-group m/MOD g/GROUP`
 * GROUP can be set any number of times for the same Mod
 
 Examples:
-* `set-default-group m/CS2101 g/G02`
+* `set-default-group m/CS2101 g/G02`<br>
+
+
   ![result for 'set-default-group m/CS2101 g/G02'](images/set_default_ex1.png)
 
 
-* followed by `set-default-group m/CS2101 g/G02-MonThur4-6`
+* followed by `set-default-group m/CS2101 g/G02-MonThur4-6`<br>
+
 
   ![result for updating default group of m/CS2101](images/set_default_ex2.png)
 
@@ -423,16 +426,20 @@ Format: `undo` or `redo`
 
 Example:
 
-Let the initial state of the list contain these 3 students: Alex, Bernice, Charlotte.
+Let the initial state of the list contain these 3 students: Alex, Bernice, Charlotte.<br>
+
 ![Initial State](images/undocommandUG/initial_state.png)
 
-After `delete 1`, we will delete Alex and the list will not have Alex anymore.
+After `delete 1`, we will delete Alex and the list will not have Alex anymore.<br>
+
 ![Before Undo](images/undocommandUG/before_undo.png)
 
-After `undo`, the list will return to having Alex in it
+After `undo`, the list will return to having Alex in it<br>
+
 ![Initial State](images/undocommandUG/initial_state.png)
 
-After a `redo`, the list will return to the state where Alex was deleted
+After a `redo`, the list will return to the state where Alex was deleted<br>
+
 ![Before Undo](images/undocommandUG/before_undo.png)
 
 ### Mail commands
@@ -516,6 +523,9 @@ Note:
 Examples:
 * `newtask Do Homework by/2022-03-21T23:59` creates a task with description of "Do Homework" and is due on 21 March 2022, 11:59pm.
 * `newtask Check Alex's lab 4 by/2022-03-31T23:59` creates a task with description "Check Alex's lab 4" and is due on 31 March 2022, 11:59pm
+<br>
+
+
   ![result for `newtask Check Alex's lab 4 by/2022-03-31T23:59`](images/newTask-okay.png)
 
 
