@@ -30,7 +30,7 @@ public class AddCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
-            + PREFIX_STUDENT_NUMBER + "A2345678Q"
+            + PREFIX_STUDENT_NUMBER + "A2345678Q "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_GROUP + "W12-1 "
             + PREFIX_MOD + "CS2030S"
@@ -67,7 +67,7 @@ public class AddCommand extends Command {
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         } else if (model.isStudentNumDuplicate(toAdd)) {
-            throw new CommandException(String.format(MESSAGE_DUPLICATE_STUDENT_NUMBER, toAdd.getStudentNumber().value;));
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_STUDENT_NUMBER, toAdd.getStudentNumber().value));
         }
 
         model.addPerson(toAdd);
