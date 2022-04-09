@@ -24,6 +24,9 @@ faster than traditional GUI apps!
 faculties.
 * There is only support for students whose home university is NUS currently as well, so their matriculation
 numbers should be in the form of "A0123456X" as according to NUS.
+* Before you use mail commands : Every system has a default mail application which opens up when `mailto` links are invoked. If not, the
+  operating system would request for the suitable application to respond with. If you wish to send mails through your
+  preferred mail client, you may set it as the default application in the OS settings.
 
 If the intended usage above does not fit you, don't worry, you still can use our application. The only downside is that features
 may seem a little odd to you, or you may need to do some manual adjustments. Fret not, we are currently working to produce a
@@ -446,7 +449,7 @@ After a `redo`, the list will return to the state where Alex was deleted<br>
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 <div markdown="span" class="alert alert-primary">:bulb: **Before you use mail commands :**
-Every system has a default mail application which opens up when `mailto` commands are invoked. If not, the
+Every system has a default mail application which opens up when `mailto` links are invoked. If not, the
 operating system would request for the suitable application to respond with. If you wish to send mails through your
 preferred mail client, you may set it as the default application in the OS settings.
 </div>
