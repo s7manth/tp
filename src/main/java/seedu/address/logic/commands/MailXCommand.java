@@ -34,13 +34,13 @@ public class MailXCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Opens the mail box with the emails of the people identified by parameters \n"
-            + "Optionally include parameters: \n"
+            + "Optionally include parameters: "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_GROUP + "GROUP] "
-            + "[" + PREFIX_MOD + "MOD] "
-            + "Example: " + COMMAND_WORD + " 1"
-            + "or " + COMMAND_WORD + PREFIX_EMAIL + "johndoe@example.com";
+            + "[" + PREFIX_MOD + "MOD] \n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_GROUP + "G02"
+            + " or " + COMMAND_WORD + " " + PREFIX_MOD + "CS1234";
 
     public static final String MESSAGE_SUCCESS = "Opening System Default Mail App";
 

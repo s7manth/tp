@@ -24,6 +24,9 @@ faster than traditional GUI apps!
 faculties.
 * There is only support for students whose home university is NUS currently as well, so their matriculation
 numbers should be in the form of "A0123456X" as according to NUS.
+* Before you use mail commands : Every system has a default mail application which opens up when `mailto` links are invoked. If not, the
+  operating system would request for the suitable application to respond with. If you wish to send mails through your
+  preferred mail client, you may set it as the default application in the OS settings.
 
 If the intended usage above does not fit you, don't worry, you still can use our application. The only downside is that features
 may seem a little odd to you, or you may need to do some manual adjustments. Fret not, we are currently working to produce a
@@ -40,7 +43,7 @@ version of TAilor that can be used by a wider range of users, so stay tuned!
 If you are a Mac User, it may be possible that some incompatibilities may surface in the form of garbled/unreadable
 text in the GUI. It is advised to switch to Azul build of OpenJDK 11 to solve this issue.
 Please refer to this <a href="https://nus-cs2103-ay2122s2.github.io/website/admin/programmingLanguages.html#programming-language">link</a>
-for more information:)
+for more information :)
 
 </div>
 
@@ -48,9 +51,17 @@ for more information:)
 
 3. Copy the file to the folder you want to use as the _home folder_ for your TAilor Application.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note
-   how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+4. There are two ways to start TAilor.
+   1. Open terminal on the PC, and change to the directory where `TAilor.jar` is saved. Then run `java -jar TAilor.jar`
+      the application. We recommend macOS users to use this method of starting the application to avoid errors.
+   2. Double-click the file to start the app. <br>
+      <br>
+      The GUI similar to the below should appear in a few seconds. Note
+      how the app contains some sample data.<br>
+      <br>
+      ![Ui](images/Ui.png)
+      <br>
+      <br>
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter
    will open the help window.<br>
@@ -89,11 +100,15 @@ In **red**, is the input box for you to enter in your commands. Simply click on 
 In **green**, is the feedback box given for your command.
 
 An invalid or wrong command entered will display some error messages for you:
+<br>
+
 ![invalid add command result](images/UIexplanation/invalid-add.png)
 
 <br>
 
 A correct command will produce feedback to you about what has been done. In this case, the command `delete 3` was done:
+<br>
+
 ![valid delete command result](images/UIexplanation/valid-delete.png)
 
 <br>
@@ -335,11 +350,14 @@ Format: `set-default-group m/MOD g/GROUP`
 * GROUP can be set any number of times for the same Mod
 
 Examples:
-* `set-default-group m/CS2101 g/G02`
+* `set-default-group m/CS2101 g/G02`<br>
+
+
   ![result for 'set-default-group m/CS2101 g/G02'](images/set_default_ex1.png)
 
 
-* followed by `set-default-group m/CS2101 g/G02-MonThur4-6`
+* followed by `set-default-group m/CS2101 g/G02-MonThur4-6`<br>
+
 
   ![result for updating default group of m/CS2101](images/set_default_ex2.png)
 
@@ -411,20 +429,32 @@ Format: `undo` or `redo`
 
 Example:
 
-Let the initial state of the list contain these 3 students: Alex, Bernice, Charlotte.
+Let the initial state of the list contain these 3 students: Alex, Bernice, Charlotte.<br>
+
 ![Initial State](images/undocommandUG/initial_state.png)
 
-After `delete 1`, we will delete Alex and the list will not have Alex anymore.
+After `delete 1`, we will delete Alex and the list will not have Alex anymore.<br>
+
 ![Before Undo](images/undocommandUG/before_undo.png)
 
-After `undo`, the list will return to having Alex in it
+After `undo`, the list will return to having Alex in it<br>
+
 ![Initial State](images/undocommandUG/initial_state.png)
 
-After a `redo`, the list will return to the state where Alex was deleted
+After a `redo`, the list will return to the state where Alex was deleted<br>
+
 ![Before Undo](images/undocommandUG/before_undo.png)
 
 ### Mail commands
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
+
+<div markdown="span" class="alert alert-primary">:bulb: **Before you use mail commands :**
+Every system has a default mail application which opens up when `mailto` links are invoked. If not, the
+operating system would request for the suitable application to respond with. If you wish to send mails through your
+preferred mail client, you may set it as the default application in the OS settings.
+</div>
+
+#### Mailing students based on the index: `mail-index`
 
 Mails a student from the student list based on the index number shown in the application.
 
@@ -449,7 +479,8 @@ Format: `mail-x [e/EMAIL] [g/GROUP] [m/MOD] [n/NAME]`
 * This can be used to specify multiple prefix based arguments to send the same mail in a single go.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
-mail-x must have at least one prefix based argument passed.
+mail-x must have at least one prefix based argument passed. Also, `mail-x` supports only email, group, mod
+and name based prefix arguments to collate email addresses. All other categorization types are not supported.
 </div>
 
 Example:
@@ -492,7 +523,7 @@ Format: `newtask DESCRIPTION by/DATETIME`
 
 The Time and Date being input must be valid. Ie, it is not possible to input a task
 with a deadline of 31st February.<br>
-It is also possible to create tasks that have a deadline before the current time, for task-tracking purposes! 
+It is also possible to create tasks that have a deadline before the current time, for task-tracking purposes!
 
 </div>
 
@@ -504,6 +535,9 @@ Note:
 Examples:
 * `newtask Do Homework by/2022-03-21T23:59` creates a task with description of "Do Homework" and is due on 21 March 2022, 11:59pm.
 * `newtask Check Alex's lab 4 by/2022-03-31T23:59` creates a task with description "Check Alex's lab 4" and is due on 31 March 2022, 11:59pm
+<br>
+
+
   ![result for `newtask Check Alex's lab 4 by/2022-03-31T23:59`](images/newTask-okay.png)
 
 
