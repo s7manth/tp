@@ -47,7 +47,7 @@ public class ModelManager implements Model {
         this.moduleList = moduleList;
         this.taskList = new PriorityTaskList();
         this.filteredPersons = new FilteredList<>(this.contactList.getPersonList());
-        this.versionedContents = new VersionedContents(new Content(getContactList(), getTaskList()));
+        this.versionedContents = new VersionedContents(new Content(getContactList(), getTaskList(), getModuleList()));
     }
 
 
@@ -65,11 +65,11 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.moduleList = new UniqueModuleList();
         filteredPersons = new FilteredList<>(this.contactList.getPersonList());
-        this.versionedContents = new VersionedContents(new Content(getContactList(), getTaskList()));
+        this.versionedContents = new VersionedContents(new Content(getContactList(), getTaskList(), getModuleList()));
     }
 
     /**
-     * Initializes a ModelManager with the given contactList, userPrefs , taskList and an empty moduleList.
+     * Initializes a ModelManager with the given contactList, userPrefs , taskList and a moduleList.
      */
     public ModelManager(ReadOnlyContactList contactList, ReadOnlyUserPrefs userPrefs,
             ReadOnlyTaskList taskList, UniqueModuleList moduleList) {
@@ -83,7 +83,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.moduleList = moduleList;
         filteredPersons = new FilteredList<>(this.contactList.getPersonList());
-        this.versionedContents = new VersionedContents(new Content(getContactList(), getTaskList()));
+        this.versionedContents = new VersionedContents(new Content(getContactList(), getTaskList(), getModuleList()));
     }
     public ModelManager() {
         this(new ContactList(), new UserPrefs(), new PriorityTaskList());
@@ -215,7 +215,7 @@ public class ModelManager implements Model {
      */
     @Override
     public void commitContent() {
-        Content newContent = new Content(getContactList(), getTaskList());
+        Content newContent = new Content(getContactList(), getTaskList(), getModuleList());
         versionedContents.addContentVersion(newContent);
     }
 
@@ -232,9 +232,12 @@ public class ModelManager implements Model {
     private void updateContent(Content newContent) {
         ReadOnlyContactList newContactList = newContent.getContactList();
         ReadOnlyTaskList newTaskList = newContent.getTaskList();
+        UniqueModuleList newModuleList = newContent.getModuleList();
 
         this.contactList.resetData(new ContactList(newContactList));
         this.taskList.resetData(new PriorityTaskList(newTaskList));
+        this.moduleList.resetData(new UniqueModuleList(newModuleList));
+
     }
 
     //=========== Filtered Person List Accessors =============================================================

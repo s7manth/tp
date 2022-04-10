@@ -7,13 +7,29 @@ import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.ReadOnlyModuleList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.ModuleNotFoundException;
+import seedu.address.model.tasks.ReadOnlyTaskList;
 
 public class UniqueModuleList implements Iterable<Mod> {
 
 
     private ObservableList<Mod> internalList = FXCollections.observableArrayList();
+
+    public UniqueModuleList() {
+    }
+
+    /**
+     * Constructs a UniqueModuleList with a given UniqueModuleList to copy from.
+     *
+     * @param other the UniqueModuleList to copy from.
+     */
+    public UniqueModuleList(UniqueModuleList other) {
+        requireNonNull(other);
+        this.internalList.clear();
+        this.internalList.addAll(other.getInternalList());
+    }
 
     /**
      * Returns true if the list contains a module with the same code as the given argument.
