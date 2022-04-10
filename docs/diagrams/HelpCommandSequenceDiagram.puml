@@ -31,22 +31,30 @@ deactivate TailorParser
 LogicManager -> hc : execute()
 activate hc
 
-hc -> Model : deletePerson(1)
-activate Model
+alt commandWordArg is empty
+    create CommandResult
+     hc -> CommandResult
+     activate CommandResult
 
-Model --> DeleteCommand
-deactivate Model
+     CommandResult --> hc :result
+     deactivate CommandResult
 
-create CommandResult
-DeleteCommand -> CommandResult
-activate CommandResult
+     [<-- hc : result
 
-CommandResult --> DeleteCommand
-deactivate CommandResult
+else CommandWordArg is not empty
+    group switch through command words
 
-DeleteCommand --> LogicManager : result
-deactivate DeleteCommand
+        create CommandResult
+        hc -->  CommandResult : new CommandResult(XYZCommand.MESSAGE_USAGE)
+        activate CommandResult
 
-[<--LogicManager
-deactivate LogicManager
+        CommandResult --> hc :result
+        deactivate CommandResult
+
+        [<-- hc : result
+
+    end
+end
+
+deactivate hc
 @enduml
