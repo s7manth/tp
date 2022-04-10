@@ -36,7 +36,7 @@ public class ImportCsvCommand extends Command {
 
     public static final String UNEXPECTED_ERROR = "TAilor ran into an unexpected error. Please try again.";
 
-    public static final String WRONG_FORMAT_ERROR = "The file does not follow the required format. Please check for"
+    public static final String WRONG_FORMAT_ERROR = "The file does not follow the required format. Please check for \n"
             + "our file requirements in TAilor's user guide";
 
     public static final String NOTHING_NEW_TO_IMPORT = "The current roster is in sync with data in the csv file.\n "
