@@ -79,6 +79,7 @@ public class SetDefaultGroupCommand extends Command {
             model.setDefaultGroup(mod, defaultValue);
         }
 
+        model.commitContent();
         return new CommandResult(String.format(MESSAGE_SUCCESS, mod, defaultValue));
     }
 
