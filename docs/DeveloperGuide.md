@@ -364,8 +364,8 @@ the files are expected to conform to the format defined by LumiNUS (the learning
 system used by NUS). This however, can be modified and extended to cater to other systems
 as well.
 
-
-import csv command, takes in path, parser checks the path
+ImportCsvCommand takes in the path argument for the CSV file, which is parsed to retrieve
+the contents and load them into TAilor's database. Exception handling has been done 
 and checks (file not found, io, csvvalidation etc)
 
 #### Design Considerations
