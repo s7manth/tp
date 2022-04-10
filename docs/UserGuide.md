@@ -226,6 +226,18 @@ The typical workflow for a Teaching Assistant is provided as follows:
 
 </div>
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note on command inputs:**<br>
+
+* Currently, TAilor only supports single command executions in a go. As such, there is no support for running
+  multiple command sequences by specifying them once.
+* Example : `add n/a a/A1234567A e/a@test.com m/CS1010S g/1 add n/a a/A1234567A e/a@test.com m/CS1010S g/1`, something
+  of this sort would result in unintended behavior as it contains two `add` command sequences.
+* To avoid this kind of unintended behavior, the recommended input should be single command sequence.
+
+</div>
+
 ### Common commands
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
