@@ -323,6 +323,7 @@ Format: `edit INDEX [n/NAME] [a/STUDENT_NUMBER] [e/EMAIL] [m/MOD] [g/GROUP] [t/T
     * `edit 0` produces an error, as 0 is not a positive integer
     * `edit 100` for a student list with less than 100 students, will produce an error as there is no 100<sup>th</sup> student
 
+<br>
 
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -383,7 +384,7 @@ Finds students whose details matches all of the search parameters.
 Format: `find PREFIX/KEYWORD [MORE_KEYWORDS]…​    [PREFIX/KEYWORD [MORE_KEYWORDS]…​]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The format may seem daunting, but remember that Everything in `[]` are optional!
+The format may seem daunting, but remember that everything in `[]` are optional!
 
 A simple find command can be in the form of `find n/alex`. Try it out!
 </div>
@@ -423,10 +424,12 @@ Let the initial state of the list contain these 3 students: Alex, Bernice, Charl
 
 * `find n/alex bernice` returns `Alex` and `Bernice`, because `Alex` and `Bernice` fit into the search arguments for the prefix `name`.
   ![result for `find n/alex bernice`](images/findcommandUG/find-alex-bernice.png)
+
 * `find n/alex charlotte m/CS g/t01` returns `Alex`, because:
     * `Alex` and `Charlotte` fit within the search arguments for the prefix `name` and `module`,
     * However, only `Alex` has a group of `T01`.
     * Hence, only `Alex` meets the search requirements of ALL search prefixes provided, and is shown.
+  
   ![result for `find n/alex charlotte m/CS g/t01`](images/findcommandUG/find-alex-charlotte.png)
 
 #### Undo or Redo a previous command : `undo/redo`
