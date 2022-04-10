@@ -2,6 +2,7 @@
 !include style.puml
 
 box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":SetDefaultGroupCommand" as SetDefaultGroupCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -48,7 +49,9 @@ alt module exists
             CommandResult --[#green]> SetDefaultGroupCommand :updatedGroupResult
             deactivate CommandResult
 
-            [<[#green]--SetDefaultGroupCommand :updatedGroupResult
+            SetDefaultGroupCommand --[#green]> LogicManager : updatedGroupResult
+
+            [<[#green]--LogicManager :updatedGroupResult
 
         else the values are the same
 
@@ -59,7 +62,9 @@ alt module exists
             CommandResult --[#013220]> SetDefaultGroupCommand :noChangeResult
             deactivate CommandResult
 
-            [<[#013220]--SetDefaultGroupCommand : noChangeResult
+            SetDefaultGroupCommand --[#013220]> LogicManager : noChangeResult
+
+            [<[#013220]--LogicManager : noChangeResult
         end
     end
 
@@ -84,7 +89,9 @@ activate CommandResult
 CommandResult --> SetDefaultGroupCommand : successfulResult
 deactivate CommandResult
 
-
-[<--SetDefaultGroupCommand : successfulResult
+SetDefaultGroupCommand --> LogicManager : successfulResult
 deactivate SetDefaultGroupCommand
+
+[<--LogicManager : successfulResult
+deactivate LogicManager
 @enduml
