@@ -62,7 +62,7 @@ for more information.
       <br>
       <br>
 
-5. Type a command into the command box and press **&#9166; Enter** to execute it. e.g. typing **`help`** and pressing Enter
+5. Type a command into the command box and press **&#9166; Enter** to execute it. e.g. typing **`help`** and pressing **&#9166; Enter**
    will open the help window.<br>
    Some example commands you can try:
 
@@ -76,7 +76,7 @@ for more information.
 
     * `exit` : Exits the app.
 
-6. Refer to the [Features](#commands-and-features) below for details of each command.
+6. Refer to the [Commands and Features](#commands-and-features) below for details of each command.
 
 ### What you can see from TAilor
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -116,7 +116,7 @@ A correct command will produce feedback to you about what has been done. In this
 
 This is where you can see the students that are currently added into the application.
 
-![student list](images/UIexplanation/studentlist.png | width = 100)
+<img src="images/UIexplanation/studentlist.png" width="650">
 
 Let's take a closer look at one of the entries in the list:
 
@@ -168,16 +168,16 @@ Shown here is:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Typical usage flow**
+## **Typical usage workflow**
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 The typical usage for a Teaching Assistant is provided as follows:
 
-1. Launch the application.
+1. Launch the application from the steps given in [quick start](#quick-start)
 
 
 2. Add students to the student list via the [add command](#adding-a-student-add) or the [import command](#adding-students-from-a-csv-file-import-csv).
-   * Edit students if necessary via the [edit command](#editing-a-student--edit).
+   * Edit students, if necessary, via the [edit command](#editing-a-student--edit).
 
 
 3. Perform any of the actions below whenever necessary:
@@ -186,7 +186,7 @@ The typical usage for a Teaching Assistant is provided as follows:
    * Manage tasks for yourself via the [new task](#adding-a-new-task-newtask) and [delete task](#deleting-an-existing-task-deltask) commands.
 
 
-4. Repeat steps 2 and 3 when necessary.
+4. Repeat steps 2 and 3 whenever necessary.
 
 
 5. Exit the application via the [exit command](#exiting-tailor-exit) or by pressing the close button for the application.
@@ -230,8 +230,8 @@ The typical usage for a Teaching Assistant is provided as follows:
 **:information_source: Note on command inputs:**<br>
 
 * Currently, TAilor only supports a single command being executed at any one time. There is no support for executing multiple commands.
-* Example : `edit 1 n/Bob delete 2`, inputs like these result in unintended behavior as it specifies two commands, `edit` and `delete`.
-* To avoid these unintended behaviors, only enter in one command at a time before pressing **&#9166; Enter**.
+* Example : `edit 1 n/Bob delete 2`, inputs like these result in unintended behavior as it specifies more than one command, `edit` and `delete`.
+* To avoid these unintended behaviors, only enter in one command at a time before pressing <br>**&#9166; Enter**.
 
 </div>
 
@@ -252,7 +252,7 @@ for specific commands.
 Format: `help [COMMAND_WORD]`
 
 Examples :
-* `help` will show the popup message shown above.
+* `help` will show the popup message as shown above.
 * `help undo` will show the usage instructions for the `undo` command.
 * `help mail-x` will show the usage instructions for the `mail-x` command.
 
@@ -273,18 +273,18 @@ Format:
 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If the student name is greater than 50 characters, the full name may not be displayed entirely. A recommended workaround
-is to use initials instead. A student can also have any number of tags (including 0).
+If the entered student name has more than 50 characters, the entire name may not be displayed. A recommended usage
+is to use initials instead. <br>A student can also have any number of tags (including 0).
 </div>
 
 Examples:
 
 * `add n/John Doe a/A1234567L e/johnd@example.com m/CS2030S g/B12G`
-* `add n/Betsy Crowe t/friend e/bcrowe@example.com m/CS2100 g/T1 a/a0123456x t/needshelp`
+* `add n/Betsy t/friend e/btsy@example.com m/CS2100 g/T1 a/a0123456x t/needshelp`
 
 #### Adding students from a CSV file: `import-csv`
 
-Adds multiple students by importing a Comma Separated Values (CSV) file, forgoing the hassle of adding students one by
+Adds multiple students by importing a Comma Separated Values (CSV) file. This forgoes the hassle of adding students one by
 one with the `add` command above.
 
 Format: `import-csv PATH-TO-FILE`
@@ -301,15 +301,15 @@ To prepare your CSV files, follow the instructions below:
 carefully. If you are using Microsoft Office, this [link](https://support.microsoft.com/en-us/office/save-a-workbook-to-text-format-txt-or-csv-3e9a9d6c-70da-4255-aa28-fcacf1f081e6)
 may be helpful for guidance.
 3. Copy the file's path and import the file into TAilor with the above command! Your file path can be an **absolute** or
-   a **relative path** - it doesn't matter as long as it is valid!
+   a **relative path** - it doesn't matter as long as it is valid.
 
 
 <div markdown="span" class="alert alert-primary">:exclamation: **Note:**
 The file format, including choice of headers, must be adhered to for the command to work. Excel sheets downloaded from
 LumiNUS have 2 additional rows preceding the row containing the column headers that are included in the required CSV format.
-Hence, if you were to create your own CSV file, these additional rows are required as well.
-A sample csv file can be found [here]. As such, be careful not to corrupt your csv file before importing to TAilor- something that can
-result from writing anything or adding information that does not abide by the standard format in the file.
+Hence, if you were to create your own CSV file, these additional rows are required as well.<br>
+A sample csv file can be found [here]. As such, be careful not to corrupt your csv file before importing to TAilor - something that can
+result from writing anything or adding information that does not abide by the expected format in the file.
 </div>
 
 #### Editing a student : `edit`
@@ -319,10 +319,11 @@ Edits the details of an existing student in the student list.
 Format: `edit INDEX [n/NAME] [a/STUDENT_NUMBER] [e/EMAIL] [m/MOD] [g/GROUP] [t/TAG]…​`
 
 * Edits the student at the specified `INDEX`. This index refers to the index number shown in the displayed student list. 
-* The index **must be a positive integer** 1, 2, 3, …​ and should be any one of the indexes displayed. Negative examples include:
+* The index **must be a positive integer** (1, 2, 3, …​) and should be any one of the indexes displayed. Negative examples include:
     * `edit 0` produces an error, as 0 is not a positive integer
-    * `edit 300` for a student list with less than 300 students, will produce an error as there is no 300<sup>th</sup> student
-  
+    * `edit 100` for a student list with less than 100 students, will produce an error as there is no 100<sup>th</sup> student
+
+
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
@@ -343,18 +344,17 @@ Deletes the specified student from the student list.
 Format: `delete INDEX`
 
 * Deletes the student at the specified `INDEX`. This index refers to the index number shown in the displayed student list.
-
-* The index **must be a positive integer** 1, 2, 3, …​ and should be any one of the indexes displayed. Negative examples include:
+* The index **must be a positive integer** (1, 2, 3, …​) and should be one of the indexes displayed. Negative examples include:
     * `delete 0` produces an error, as 0 is not a positive integer
-    * `delete 300` for a student list with less than 300 students, will produce an error as there is no 300<sup>th</sup> student
+    * `delete 100` for a student list with less than 100 students, will produce an error as there is no 100<sup>th</sup> student
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the student list.
-* `find n/Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
+* `find n/Betsy` followed by `delete 1` deletes the 1<sup>st<sup> student in the results of the `find` command.
 
 #### Setting a default group for a mod: `set-default-group`
 
-Sets a default group for a particular mod. This replaces the previous default group, and helps reduce redundancies when
+Sets a default group for a particular module. This replaces the previous default group, and helps reduce redundancies when
 adding a student using the `add` command.
 
 Format: `set-default-group m/MOD g/GROUP`
@@ -422,14 +422,12 @@ Let the initial state of the list contain these 3 students: Alex, Bernice, Charl
 ![Initial State](images/findcommandUG/initialstate.png)
 
 * `find n/alex bernice` returns `Alex` and `Bernice`, because `Alex` and `Bernice` fit into the search arguments for the prefix `name`.
-
-![result for `find n/alex bernice`](images/findcommandUG/find-alex-bernice.png)
+  ![result for `find n/alex bernice`](images/findcommandUG/find-alex-bernice.png)
 * `find n/alex charlotte m/CS g/t01` returns `Alex`, because:
     * `Alex` and `Charlotte` fit within the search arguments for the prefix `name` and `module`,
     * However, only `Alex` has a group of `T01`.
-    * Hence, only `Alex` meets the search requirements of ALL search arguments provided, and is shown.
-
-![result for `find n/alex charlotte m/CS g/t01`](images/findcommandUG/find-alex-charlotte.png)
+    * Hence, only `Alex` meets the search requirements of ALL search prefixes provided, and is shown.
+  ![result for `find n/alex charlotte m/CS g/t01`](images/findcommandUG/find-alex-charlotte.png)
 
 #### Undo or Redo a previous command : `undo/redo`
 
@@ -475,9 +473,9 @@ Mails a particular student from the student list based on the index number.
 Format: `mail-index INDEX`
 
 * Mails the student at the specified `INDEX`. This index refers to the index number shown in the displayed student list.
-* The index **must be a positive integer** 1, 2, 3, …​ and should be any one of the indexes displayed. Negative examples include:
+* The index **must be a positive integer** (1, 2, 3, …​) and should be one of the indexes displayed. Negative examples include:
     * `mail-index 0` produces an error, as 0 is not a positive integer
-    * `mail-index 300` for a student list with less than 300 students, will produce an error as there is no 300<sup>th</sup> student
+    * `mail-index 100` for a student list with less than 100 students, will produce an error as there is no 100<sup>th</sup> student
 * This opens the default email application on the system with the specified mail address pre-filled at the receiver's
   address.
 
@@ -494,7 +492,7 @@ Format: `mail-x [e/EMAIL] [g/GROUP] [m/MOD] [n/NAME]`
 * This opens the default email application on the system with all the mail addresses specified by the arguments.
 * Anyone who matches at least one of the specified arguments will be included in the mailing list.
 * This can be used to specify multiple prefix based arguments to send the same mail in a single go.
-* There must have at least one prefix based argument present
+* At least one of the optional fields must be provided.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
 `mail-x` supports only email, group, mod and name based prefix arguments to collate email addresses. 
@@ -566,9 +564,9 @@ Deletes the specified task from the task list.
 Format: `deltask INDEX`
 
 * Deletes the task at the specified `INDEX`. This index refers to the index number shown in the displayed task list.
-* The index **must be a positive integer** (ie 1, 2, 3, …​) and should be any one of the indexes displayed! Negative examples include:
+* The index **must be a positive integer** (ie 1, 2, 3, …​) and should be one of the indexes displayed. Negative examples include:
     * `deltask 0` produces an error, as 0 is not a positive integer
-    * `deltask 300` for a task list with less than 300 tasks, will produce an error as there is no 300<sup>th</sup> task
+    * `deltask 100` for a task list with less than 100 tasks, will produce an error as there is no 100<sup>th</sup> task
 
 (Positive) Examples:
 * `deltask 2` with a task list of at least 2 tasks, deletes the 2nd task in the task list.
@@ -613,9 +611,12 @@ There is no need to save it manually.
 ### Editing the data file
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-TAilor's data is saved as three JSON files. The first being ContactList's data as`[JAR_file_location]/data/contactlist.
-json` and the second being Task List's data saved as `[JAR_file_location]/data/tasklist.json`. And finally,
-ModuleList's data being saved as `[JAR_file_location]/data/modulelist.json`
+TAilor's data is saved as three JSON files. 
+
+* The first being Student List's data as `[JAR_file_location]/data/contactlist.json`,
+* The second being Task List's data saved as `[JAR_file_location]/data/tasklist.json` and
+* The Module List's data being saved as `[JAR_file_location]/data/modulelist.json`
+
 Advanced users are welcome to update the data directly by editing those data files.
 
 <div markdown="span" class="alert alert-warning"> :exclamation: **Caution:**
@@ -633,7 +634,7 @@ WARNING: This will override the pre-existing data with the new data you entered.
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Download and run TAilor on your other computer and overwrite all 3 data files created with the data files that contains
-the data of your previous TAilor usage, as found in the locations mentioned [here](#editing-the-data-file)
+the data of your previous TAilor usage, as found in the locations mentioned in the above section on [editing data files.](#editing-the-data-file)
 
 --------------------------------------------------------------------------------------------------------------------
 
