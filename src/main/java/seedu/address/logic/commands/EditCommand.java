@@ -47,11 +47,14 @@ public class EditCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_STUDENT_NUMBER + "A0225771X "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_EMAIL + "johndoe@example.com ";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_DUPLICATE_STUDENT_NUMBER = "Error! Student number %1$s is already associated "
+            + "with another student.";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the mod book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "Student already exists with the unique identifiers "
+            + "(email/student number) in the list";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -80,7 +83,9 @@ public class EditCommand extends Command {
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+        if ((!personToEdit.getEmail().equals(editedPerson.getEmail())
+                || !personToEdit.getStudentNumber().equals(editedPerson.getStudentNumber()))
+                && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 

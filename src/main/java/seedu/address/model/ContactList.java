@@ -109,8 +109,6 @@ public class ContactList implements ReadOnlyContactList {
         persons.remove(key);
     }
 
-    //// util methods
-
     @Override
     public String toString() {
         return persons.asUnmodifiableObservableList().size() + " persons";

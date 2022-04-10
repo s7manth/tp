@@ -1,5 +1,6 @@
 package seedu.address.commons.util;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -23,7 +24,7 @@ public class CsvUtil {
      * @throws CsvValidationException if file does not conform to csv formatting standards
      */
     public static boolean isTheFileConformingToHeaders(Path path, String expectedCsvHeaders) throws IOException,
-            CsvValidationException {
+            CsvValidationException, FileNotFoundException {
         CSVReader csvReader = new CSVReader(new FileReader(String.valueOf(path)));
         csvReader.skip(2);
         String[] allColumnNames = csvReader.readNext();
