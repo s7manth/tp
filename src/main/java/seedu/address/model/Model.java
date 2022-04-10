@@ -130,7 +130,7 @@ public interface Model {
 
     /**
      * Retrieves the current default group value for a particular module
-     * @param mod the module object who's default value is to be retrieved.
+     * @param mod the module object whose default value is to be retrieved.
      * @return String the default group title.
      */
     String retrievePrevDefault(Mod mod);

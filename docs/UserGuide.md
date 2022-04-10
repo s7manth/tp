@@ -226,6 +226,18 @@ The typical workflow for a Teaching Assistant is provided as follows:
 
 </div>
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note on command inputs:**<br>
+
+* Currently, TAilor only supports single command executions in a go. As such, there is no support for running
+  multiple command sequences by specifying them once.
+* Example : `add n/a a/A1234567A e/a@test.com m/CS1010S g/1 add n/a a/A1234567A e/a@test.com m/CS1010S g/1`, something
+  of this sort would result in unintended behavior as it contains two `add` command sequences.
+* To avoid this kind of unintended behavior, the recommended input should be single command sequence.
+
+</div>
+
 ### Common commands
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
@@ -278,7 +290,7 @@ You can create your student list by directly importing a csv file and forgoing t
 This feature is tailor-made for NUS School of Computing teaching assistants who can export relevant class data from
 LumiNUS.
 
-Format: `import-csv [PATH-TO-FILE]`
+Format: `import-csv PATH-TO-FILE`
 
 To prepare your csv files, the following directions must be followed:
 
@@ -290,12 +302,14 @@ To prepare your csv files, the following directions must be followed:
     4. Group
 3. Once exported, convert the file to CSV format. This can be accomplished using any modern day spreadsheet
    visualization software. Please follow this step through thoroughly. This <a href="https://support.microsoft.com/en-us/office/save-a-workbook-to-text-format-txt-or-csv-3e9a9d6c-70da-4255-aa28-fcacf1f081e6">link</a> can be referred to if guidance is required.
-4. Copy the file's path and import the file into TAilor with the above command!
+4. Copy the file's path and import the file into TAilor with the above command! Your file path can be an **absolute** or
+   a **relative path** - it doesn't matter as long as it is valid!
 
 
 <div markdown="span" class="alert alert-primary">:exclamation: **Note:**
 The file format, including choice of headers, will need to be adhered to for TAilor to function smoothly and provide
-a good user experience. Excel sheets downloaded from LumiNUS have 2 rows preceed the row containing column headers- this would be a requirement as well if you choose to draft your own file from scratch. As such, please be mindful to not corrupt your csv file before importing to TAilor- something that can
+a good user experience. Excel sheets downloaded from LumiNUS have 2 rows precede the row containing column headers- this would be a requirement as well if you choose to draft your own file from scratch.
+A sample csv file can be found [here]. As such, please be mindful to not corrupt your csv file before importing to TAilor- something that can
 result from writing anything or adding information that does not abide by the standard format in the file.
 </div>
 
@@ -651,7 +665,7 @@ file that contains the data of your previous TAilor home folder!
 | **Help**              | `help`, `help list`, `help mail-x`                                                                                                                                                                                                       |
 | **List**              | `list`                                                                                                                                                                                                                                   |
 | **Add**               | `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MODULE g/GROUP [t/TAG]…​` or `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MODULE [g/GROUP] [t/TAG]…​` <br> e.g., `add n/James Ho a/A1234567Y e/jamesho@example.com m/CS2100 g/W12 t/friend t/colleague` |
-| **Import csv**        | `import-csv [PATH_TO_CSV_FILE]`                                                                                                                                                                                                          |                                                                                                                                                         |
+| **Import csv**        | `import-csv PATH_TO_CSV_FILE`                                                                                                                                                                                                            |                                                                                                                                                         |
 | **Edit**              | `edit INDEX [n/NAME] [a/STUDENT_NUMBER] [e/EMAIL] [m/MODULE] [g/GROUP] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                   |
 | **Delete**            | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                      |
 | **Set Default Group** | `set-default-group m/MOD g/GROUP` <br> e.g., `set-default-group m/CS2103T g/W12-1`                                                                                                                                                       |
