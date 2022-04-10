@@ -567,7 +567,15 @@ Simply type exit to close the application. All of your data will be stored if no
 
 #### Clearing all entries: `clear`
 
-Clears all entries from the student roster.
+Clears all entries from TAilor's database.
+
+<div markdown="span" class="alert alert-primary">:exclamation: **Caution:**
+
+Please be reminded that using the `clear` command clears all the information present in TAilor's database; this includes
+the Student list, the Module list and also your tasks on the task manager. The `clear` command, however, is reversible
+with the aid of `undo` command. 
+
+</div>
 
 Format: `clear`
 
@@ -576,9 +584,9 @@ Format: `clear`
 ### Shortcuts
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-| Button    | Result                                                               |
-|-----------|----------------------------------------------------------------------|
-| &#8593; | Refills command textbox with previous entered command                |
+| Button  | Result                                                                 |
+|---------|------------------------------------------------------------------------|
+| &#8593; | Refills command textbox with previous entered command                  |
 | &#8595; | Refills command textbox with the command entered after the current one |
 
 Example:

@@ -75,4 +75,15 @@ public class UniqueModuleList implements Iterable<Mod> {
     public ObservableList<Mod> getInternalList() {
         return internalList;
     }
+
+    /**
+     * Resets the module list to the given module list.
+     * @param ml The module list to reset to.
+     */
+    public void resetData(UniqueModuleList ml) {
+        this.internalList.clear();
+        for (Mod m : ml) {
+            this.internalList.add(m);
+        }
+    }
 }
