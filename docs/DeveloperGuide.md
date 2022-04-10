@@ -355,26 +355,37 @@ command :
 | ImportCsvCommand       | CsvUtil |
 | ImportCsvCommandParser |         |
 
-The external library used for reading CSV files is OpenCSV. OpenCSV supports
-a host of functions that allow one to manipulate and work with CSV files. The
-command utilizes the `CSVReader` from the library to read the files.
+The external library used for reading CSV files is OpenCSV. OpenCSV supports a host of functions that allow one to
+manipulate and work with CSV files. The command utilizes the `CSVReader` from the library to read the files.
 
-One important assumption made while implementing the `import-csv` command is that
-the files are expected to conform to the format defined by LumiNUS (the learning management
-system used by NUS). This however, can be modified and extended to cater to other systems
-as well.
+One important assumption made while implementing the `import-csv` command is that the files are expected to conform to
+the format defined by LumiNUS (the learning management system used by NUS). This however, can be modified and extended
+to cater to other systems as well.
 
-ImportCsvCommand takes in the path argument for the CSV file, which is parsed to retrieve
-the contents and load them into TAilor's database. Exception handling has been done 
-and checks (file not found, io, csvvalidation etc)
+ImportCsvCommand takes in the path argument for the CSV file, which is parsed to retrieve the contents and load them
+into TAilor's database. Exception handling has been done alongside checks (file not found, io, csvvalidation etc)
 
 #### Design Considerations
 
-**Aspect:**
+**Aspect: Defensive Coding**
 
-**Aspect:**
+* The import-csv command has been created in a manner that checks for most possible places where the user could go wrong
+and provides guidance to correct them through the error messages and the user guide section. This command is designed to
+be very easy to use for the current target users, which are TAs teaching a NUS module which implies that they would have 
+manager access on LumiNUS. The student database exported from LumiNUS conforms exactly to our csv file requirements and
+hence, any beginner user would be able to successfully use this command as long as they follow the directions provided
+in the user guide.
 
-**Aspect:**
+**Aspect: Usability and Improved User Experience**
+
+* One great feature that the import-csv focuses on is that it adds student contacts from the csv file **additively** to
+the student list. Essentially, if some student details already exist in the roster then importing a csv file would not
+replace the previous students' data but instead extend the list. This is extremely useful for TAs who are teaching more
+than one module and would get different excel files from LumiNUS. To prevent increasing administrative requirements on
+user's end, we will not need them to merge the files on their end, instead they can convert their excel sheets to csv
+and simply import one after the other. As such if the user prefers updating their csv locally and importing again then
+the command handles that situation too by ignoring duplicate students and simply importing the new updates.
+
 
 ### Mailing feature: mail-all
 
@@ -437,7 +448,8 @@ For example, LogicManager now tries to save to the storage's moduleList as well:
             storage.saveModuleList(model.getModuleList());
 ```
 
-The sequence diagram for the command `set-default-group m/CS2103T g/W12-1` follows:
+The sequence diagram for the command `set-default-group m/CS2103T g/W12-1` follows the parsing as mentioned in Fig 8.0
+above and the specific functioning of the command can be found in the sequence diagram below:
 
 <img src="images/SetDefaultSequenceDiagram.png" width="1000"/>
 
@@ -570,40 +582,40 @@ Finally, the user decides to enter a new command, `undo`. The `CommandBox` will 
 
 Priorities: High (must have), Medium (nice to have), Low (unlikely to have)
 
-|Priority       |User                                                |Function                                                                                                           |Benefit                                                                                                    |
-|---------------|----------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
-|priority.High  |As a Teaching Assistant,                            |I am able to see my students’ contact details                                                                      |so that I can more easily communicate messages to them                                                     |
-|priority.High  |As a Teaching Assistant,                            |I can send bulk emails to students to remind them of the deadlines or to make general PSAs                         |so that I don’t miss on passing them crucial information                                                   |
-|priority.High  |As a Teaching Assistant,                            |I can know the number of students in each of my tutorial classes and their names                                   |This helps me keep track of attendance for each session                                                    |
-|priority.High  |As a Teaching Assistant,                            |I can “tag” students with various tags                                                                             |so that I can keep track of who to follow up on, who to check up on more often etc                         |
-|priority.High  |As a Teaching Assistant                             |I can manually add new students into my contact list                                                               |so I have alternate methods to add students other than to rely on exporting from a file                    |
-|priority.High  |As a Teaching Assistant                             |I can edit my students’ contact details manually                                                                   |so that if they have any changes to their details, I can keep track of it and still be able to contact them|
-|priority.High  |As a Teaching Assistant                             |I can delete students from my contact list                                                                         |so I can make changes to my student list                                                                   |
-|priority.High  |As a new Teaching Assistant using this app          |I am able to get help on how to use the app                                                                        |so I can learn how to use this program                                                                     |
-|priority.High  |As a Teaching Assistant who makes typos often       |I am able to go back to the mistyped command                                                                       |so I can quickly correct spelling errors made                                                              |
-|priority.Medium|As a Teaching Assistant,                            |I can see the upcoming deadlines                                                                                   |so I prepare for it or remind students about it                                                            |
-|priority.Medium|As a Teaching Assistant,                            |I can keep track of how my students have been performing                                                           |so that I can better help the students who need more help                                                  |
-|priority.Medium|As a Teaching Assistant                             |I can see all the groups that I need to mark/supervise                                                             |so that I can track all my students and groups                                                             |
-|priority.Medium|As a Teaching Assistant,                            |I can manage consultations with my students with the calender system                                               |so that I can more easily cross-reference my availability with my students                                 |
-|priority.Medium|As a Teaching Assistant                             |I can know which student’s performance requires review and attention per assignment                                |so that I can reach out and offer help possibly in the form of a consultation.                             |
-|priority.Medium|As a Teaching Assistant                             |I can group students under different tutorial classes                                                              |so I can personalize messages to individual classes                                                        |
-|priority.Medium|As a Teaching Assistant,                            |I can receive anonymous feedback from my students                                                                  |so that I can help my students in a more effective way.                                                    |
-|priority.Medium|As a Teaching Assistant                             |I can automatically remind students about deadlines and examinations                                               |so that my students will be reminded about the upcoming deadlines easily                                   |
-|priority.Low   |As a Teaching Assistant,                            |I can export the necessary numbers about all students in my class from assignment marks to attendance to a CSV file|so that I can perform a better analysis of the semester on whole                                           |
-|priority.Low   |As a Teaching Assistant,                            |I can track student's assignment progress                                                                          |so that I know which student to focus on and give reminders to                                             |
-|priority.Low   |As a Teaching Assistant who uses different devices  |I can sync my data over different devices                                                                          |so I can use the app over diff devices                                                                     |
-|priority.Low   |As a first time user                                |I can see sample data                                                                                              |so I can see how the app can be used                                                                       |
-|priority.Low   |As a Teaching Assistant for a new class             |I can share an introduction document with my students                                                              |so that they can get to know each other a little bit more before the first session                         |
-|priority.Low   |As a Tech-Savvy Teaching Assistant who uses Telegram|I can create a telegram group and invite all students to it                                                        |so I can communicate to my students using telegram                                                         |
-|priority.Low   |As a Tech-Savvy Teaching Assistant who uses Discord |I can create a discord channel and invite all my students to it                                                    |so I can communicate to my students using discord                                                          |
-|priority.Low   |As a Teaching Assistant using Coursemology          |I can receive notifications from Coursemology on the application                                                   |so I can quickly respond to my student’s questions and submissions on Coursemology                         |
-|priority.Low   |As a Teaching Assistant who is involved in grading  |I can automatically distribute grades to students easily                                                           |so my students will not have to manually wait or check for the grades to be released                       |
-|priority.Low   |As a Teaching Assistant who takes makeup tutorials  |I can add students temporarily to a class                                                                          |so that I can have the students in my mailing list temporarily                                             |
-|priority.Low   |As a Teaching Assistant during unprecedented times  |I can instantly create Zoom meetings using the Zoom SDK                                                            |so that I can automate my workflow for sending meeting invitations to the group                            |
-|priority.Low   |As a Teaching Assistant                             |I can tag students for plagarism                                                                                   |so I can automatically inform my professors about plagiarism cases                                         |
-|priority.Low   |As a Teaching Assistant who is involved in grading  |I can see a graph of trends about my students’ performance individually                                            |so I can track the progress and improvement of my students                                                 |
-|priority.Low   |As a Teaching Assistant                             |I can create aliases for websites that are commonly used by students                                               |so that my students and I can access commonly visited websites easily                                      |
-|priority.Low   |As a Teaching Assistant teaching multiple modules   |I am able to separate the management of the modules                                                                |so that I can be more organised in my work and teaching                                                    |
+| Priority        | User                                                 | Function                                                                                                            | Benefit                                                                                                     |
+|-----------------|------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| priority.High   | As a Teaching Assistant,                             | I am able to see my students’ contact details                                                                       | so that I can more easily communicate messages to them                                                      |
+| priority.High   | As a Teaching Assistant,                             | I can send bulk emails to students to remind them of the deadlines or to make general PSAs                          | so that I don’t miss on passing them crucial information                                                    |
+| priority.High   | As a Teaching Assistant,                             | I can know the number of students in each of my tutorial classes and their names                                    | This helps me keep track of attendance for each session                                                     |
+| priority.High   | As a Teaching Assistant,                             | I can “tag” students with various tags                                                                              | so that I can keep track of who to follow up on, who to check up on more often etc                          |
+| priority.High   | As a Teaching Assistant                              | I can manually add new students into my contact list                                                                | so I have alternate methods to add students other than to rely on exporting from a file                     |
+| priority.High   | As a Teaching Assistant                              | I can edit my students’ contact details manually                                                                    | so that if they have any changes to their details, I can keep track of it and still be able to contact them |
+| priority.High   | As a Teaching Assistant                              | I can delete students from my contact list                                                                          | so I can make changes to my student list                                                                    |
+| priority.High   | As a new Teaching Assistant using this app           | I am able to get help on how to use the app                                                                         | so I can learn how to use this program                                                                      |
+| priority.High   | As a Teaching Assistant who makes typos often        | I am able to go back to the mistyped command                                                                        | so I can quickly correct spelling errors made                                                               |
+| priority.Medium | As a Teaching Assistant,                             | I can see the upcoming deadlines                                                                                    | so I prepare for it or remind students about it                                                             |
+| priority.Medium | As a Teaching Assistant,                             | I can keep track of how my students have been performing                                                            | so that I can better help the students who need more help                                                   |
+| priority.Medium | As a Teaching Assistant                              | I can see all the groups that I need to mark/supervise                                                              | so that I can track all my students and groups                                                              |
+| priority.Medium | As a Teaching Assistant,                             | I can manage consultations with my students with the calender system                                                | so that I can more easily cross-reference my availability with my students                                  |
+| priority.Medium | As a Teaching Assistant                              | I can know which student’s performance requires review and attention per assignment                                 | so that I can reach out and offer help possibly in the form of a consultation.                              |
+| priority.Medium | As a Teaching Assistant                              | I can group students under different tutorial classes                                                               | so I can personalize messages to individual classes                                                         |
+| priority.Medium | As a Teaching Assistant,                             | I can receive anonymous feedback from my students                                                                   | so that I can help my students in a more effective way.                                                     |
+| priority.Medium | As a Teaching Assistant                              | I can automatically remind students about deadlines and examinations                                                | so that my students will be reminded about the upcoming deadlines easily                                    |
+| priority.Low    | As a Teaching Assistant,                             | I can export the necessary numbers about all students in my class from assignment marks to attendance to a CSV file | so that I can perform a better analysis of the semester on whole                                            |
+| priority.Low    | As a Teaching Assistant,                             | I can track student's assignment progress                                                                           | so that I know which student to focus on and give reminders to                                              |
+| priority.Low    | As a Teaching Assistant who uses different devices   | I can sync my data over different devices                                                                           | so I can use the app over diff devices                                                                      |
+| priority.Low    | As a first time user                                 | I can see sample data                                                                                               | so I can see how the app can be used                                                                        |
+| priority.Low    | As a Teaching Assistant for a new class              | I can share an introduction document with my students                                                               | so that they can get to know each other a little bit more before the first session                          |
+| priority.Low    | As a Tech-Savvy Teaching Assistant who uses Telegram | I can create a telegram group and invite all students to it                                                         | so I can communicate to my students using telegram                                                          |
+| priority.Low    | As a Tech-Savvy Teaching Assistant who uses Discord  | I can create a discord channel and invite all my students to it                                                     | so I can communicate to my students using discord                                                           |
+| priority.Low    | As a Teaching Assistant using Coursemology           | I can receive notifications from Coursemology on the application                                                    | so I can quickly respond to my student’s questions and submissions on Coursemology                          |
+| priority.Low    | As a Teaching Assistant who is involved in grading   | I can automatically distribute grades to students easily                                                            | so my students will not have to manually wait or check for the grades to be released                        |
+| priority.Low    | As a Teaching Assistant who takes makeup tutorials   | I can add students temporarily to a class                                                                           | so that I can have the students in my mailing list temporarily                                              |
+| priority.Low    | As a Teaching Assistant during unprecedented times   | I can instantly create Zoom meetings using the Zoom SDK                                                             | so that I can automate my workflow for sending meeting invitations to the group                             |
+| priority.Low    | As a Teaching Assistant                              | I can tag students for plagarism                                                                                    | so I can automatically inform my professors about plagiarism cases                                          |
+| priority.Low    | As a Teaching Assistant who is involved in grading   | I can see a graph of trends about my students’ performance individually                                             | so I can track the progress and improvement of my students                                                  |
+| priority.Low    | As a Teaching Assistant                              | I can create aliases for websites that are commonly used by students                                                | so that my students and I can access commonly visited websites easily                                       |
+| priority.Low    | As a Teaching Assistant teaching multiple modules    | I am able to separate the management of the modules                                                                 | so that I can be more organised in my work and teaching                                                     |
 
 
 ### Use cases
