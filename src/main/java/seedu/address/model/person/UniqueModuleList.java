@@ -28,7 +28,10 @@ public class UniqueModuleList implements Iterable<Mod> {
     public UniqueModuleList(UniqueModuleList other) {
         requireNonNull(other);
         this.internalList.clear();
-        this.internalList.addAll(other.getInternalList());
+
+        for (Mod m : other) {
+            this.internalList.add(new Mod(m.getMod(), m.getDefaultGroup()));
+        }
     }
 
     /**
