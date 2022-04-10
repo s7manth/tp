@@ -241,6 +241,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setModuleList(UniqueModuleList moduleList) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public VersionedContents getVersionedContents() {
             return null;
         }

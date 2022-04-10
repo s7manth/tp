@@ -573,7 +573,7 @@ Clears all entries from TAilor's database.
 
 Please be reminded that using the `clear` command clears all the information present in TAilor's database; this includes
 the Student list, the Module list and also your tasks on the task manager. The `clear` command, however, is reversible
-with the aid of `undo` command. 
+with the aid of `undo` command.
 
 </div>
 
