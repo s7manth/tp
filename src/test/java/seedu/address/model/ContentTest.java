@@ -24,8 +24,10 @@ class ContentTest {
 
     @Test
     void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Content(null, getTypicalTaskList(), new UniqueModuleList()));
-        assertThrows(NullPointerException.class, () -> new Content(getTypicalContactList(), null, new UniqueModuleList()));
+        assertThrows(NullPointerException.class, () -> new Content(null, getTypicalTaskList(),
+                new UniqueModuleList()));
+        assertThrows(NullPointerException.class, () -> new Content(getTypicalContactList(), null,
+                new UniqueModuleList()));
     }
 
     @Test
@@ -47,7 +49,8 @@ class ContentTest {
 
     @Test
     void testEquals() {
-        assertEquals(typicalContent, new Content(getTypicalContactList(), getTypicalTaskList(), new UniqueModuleList()));
+        assertEquals(typicalContent, new Content(getTypicalContactList(), getTypicalTaskList(),
+                new UniqueModuleList()));
     }
 
     @Test

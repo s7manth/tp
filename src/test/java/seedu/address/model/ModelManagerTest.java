@@ -118,7 +118,8 @@ public class ModelManagerTest {
         modelManager.commitContent();
         modelManager.undoContents();
 
-        assertEquals(modelManager.getCurrentContent(), new Content(new ContactList(), new PriorityTaskList(), new UniqueModuleList()));
+        assertEquals(modelManager.getCurrentContent(), new Content(new ContactList(), new PriorityTaskList(),
+                new UniqueModuleList()));
     }
 
     @Test
@@ -129,7 +130,8 @@ public class ModelManagerTest {
         modelManager.redoContents();
 
         ContactList contactListWithAlice = new ContactListBuilder().withPerson(ALICE).build();
-        assertEquals(modelManager.getCurrentContent(), new Content(contactListWithAlice, new PriorityTaskList(), new UniqueModuleList()));
+        assertEquals(modelManager.getCurrentContent(), new Content(contactListWithAlice, new PriorityTaskList(),
+                new UniqueModuleList()));
     }
 
     @Test
@@ -140,7 +142,8 @@ public class ModelManagerTest {
 
     @Test
     public void getCurrentContent() {
-        assertEquals(modelManager.getCurrentContent(), new Content(new ContactList(), new PriorityTaskList(), new UniqueModuleList()));
+        assertEquals(modelManager.getCurrentContent(), new Content(new ContactList(), new PriorityTaskList(),
+                new UniqueModuleList()));
     }
 
     @Test

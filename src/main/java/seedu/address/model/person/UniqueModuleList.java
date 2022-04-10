@@ -7,10 +7,8 @@ import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.ReadOnlyModuleList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.ModuleNotFoundException;
-import seedu.address.model.tasks.ReadOnlyTaskList;
 
 public class UniqueModuleList implements Iterable<Mod> {
 
