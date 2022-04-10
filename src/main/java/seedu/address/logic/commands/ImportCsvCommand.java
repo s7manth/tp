@@ -29,16 +29,15 @@ public class ImportCsvCommand extends Command {
 
     public static final String EXPECTED_HEADERS = "Name,Student Number,Email,Group";
 
-    public static final String EXPECTED_HEADERS_MISSING = "The file does not follow required format - some header(s) "
-            + "are missing. \n"
-            + "The expected headers are: ";
-
     public static final String FILE_DOES_NOT_EXIST = "TAilor was unable to find a file at the stated path.";
 
     public static final String NOT_A_CSV_FILE = "This file is not in CSV format. Please convert to .csv before "
             + "importing.";
 
     public static final String UNEXPECTED_ERROR = "TAilor ran into an unexpected error. Please try again.";
+
+    public static final String WRONG_FORMAT_ERROR = "The file does not follow the required format. Please check for \n"
+            + "our file requirements in TAilor's user guide";
 
     public static final String NOTHING_NEW_TO_IMPORT = "The current roster is in sync with data in the csv file.\n "
             + "Nothing new to import!";
@@ -66,6 +65,7 @@ public class ImportCsvCommand extends Command {
         }
 
         listToAddToModel.forEach(model::addPerson);
+        model.commitContent();
 
         return new CommandResult(MESSAGE_SUCCESS);
     }
@@ -152,7 +152,7 @@ public class ImportCsvCommand extends Command {
         }
 
         if (!fileConforms) {
-            throw new CommandException(EXPECTED_HEADERS_MISSING + EXPECTED_HEADERS);
+            throw new CommandException(WRONG_FORMAT_ERROR);
         }
 
         return true;
