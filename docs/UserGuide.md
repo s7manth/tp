@@ -437,8 +437,8 @@ Undoes or redoes a previously entered command that changed a student or task.
 
 Format: `undo` or `redo`
 
-* `undo` can only undo the effects of an `add`, `delete`, `edit`, `clear`, `newtask` and `deltask` commands.
-* Once you undo and enter a new `add`, `delete`, `edit`, `clear`, `newtask` or `deltask` command, the state that was undone will not be accessible via `redo` anymore.
+* `undo` can only undo the effects of an `add`, `delete`, `edit`, `clear`, `newtask`, `deltask` and `set-default-group` commands.
+* Once you undo and enter a new `add`, `delete`, `edit`, `clear`, `newtask`, `deltask` or `set-default-group` command, the state that was undone will not be accessible via `redo` anymore.
 * Note the `undo` command will **not** be able to undo the effects of TAilor clearing all of its data due to manual editing of data.
 
 Example:
