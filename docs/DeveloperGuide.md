@@ -342,7 +342,7 @@ amounts of data in an efficient manner. Since they are plain text files, they ar
 easier to transfer onto a spreadsheet or another storage database regardless of
 the software being used. Since LumiNUS provides a way to import student data from CSV files,
 the user would not have to go through the repeated, error-prone process of
-manually adding each student's data to the database. `Import-csv` automates this process and provides
+manually adding each student's data to the database. `import-csv` automates this process and provides
 a one-command solution to this problem.
 
 #### Implementation
@@ -355,9 +355,15 @@ command :
 | ImportCsvCommand       | CsvUtil |
 | ImportCsvCommandParser |         |
 
-csvreader, csv util and the library used
+The external library used for reading CSV files is OpenCSV. OpenCSV supports
+a host of functions that allow one to manipulate and work with CSV files. The
+command utilizes the `CSVReader` from the library to read the files.
 
-conforming to the expected format as found on luminus
+One important assumption made while implementing the `import-csv` command is that
+the files are expected to conform to the format defined by LumiNUS (the learning management
+system used by NUS). This however, can be modified and extended to cater to other systems
+as well.
+
 
 import csv command, takes in path, parser checks the path
 and checks (file not found, io, csvvalidation etc)
