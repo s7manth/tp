@@ -7,8 +7,13 @@ participant ":SetDefaultGroupCommand" as SetDefaultGroupCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
+
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":StorageManager" as sm STORAGE_COLOR
 end box
 
 activate LogicManager
@@ -91,6 +96,18 @@ deactivate CommandResult
 
 SetDefaultGroupCommand --> LogicManager : successfulResult
 deactivate SetDefaultGroupCommand
+
+LogicManager -> Model :getModuleList()
+activate Model
+
+Model --> LogicManager : ModuleList
+deactivate Model
+
+LogicManager -> sm: saveModuleList(ModuleList)
+activate sm
+
+sm --> LogicManager
+deactivate sm
 
 [<--LogicManager : successfulResult
 deactivate LogicManager
