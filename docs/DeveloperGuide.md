@@ -137,9 +137,10 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the content data i.e., all `Person` and `Task` objects (which are contained in a `UniquePersonList` and `PriorityTaskList` object).
+* stores the content data i.e., all `Person`, `Task` and `Module` objects (which are contained in a `UniquePersonList`, `PriorityTaskList` and `UniqueModuleList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores the task list data i.e., all `Task` objects (which are contained in a `PriorityTaskList` object).
+* stores the module list data and its default group mappings (in a `UniqueModuleList` object)
 * stores a `VersionedContents` object that stores the previous states of content data (to support `undo`/`redo`)
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
