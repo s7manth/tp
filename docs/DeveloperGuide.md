@@ -122,6 +122,7 @@ How the parsing works:
 * When called upon to parse a user command, the `TailorParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `TailorParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 * The following Figure 8 depicts parsing in action:
+
 <img alt="ParsingSequenceDiagram.png" src="images/ParsingSequenceDiagram.png" width="1000"/>
 <b>Fig.8 - parsing of commands taking in arguments</b>
 
@@ -332,6 +333,43 @@ same state. For example, after `delete 1`, we might save the person just deleted
 functionality. However, if we do `add "person"`, the person will be added to the end of the list, which does not exactly
 `undo` the effect of the original `delete 1`.
 
+### Import CSV feature
+
+##### Aim of the feature
+
+CSV files are by far one of the most commonly used formats for organizing large
+amounts of data in an efficient manner. Since they are plain text files, they are
+easier to transfer onto a spreadsheet or another storage database regardless of
+the software being used. Since LumiNUS provides a way to import student data from CSV files,
+the user would not have to go through the repeated, error-prone process of
+manually adding each student's data to the database. `Import-csv` automates this process and provides
+a one-command solution to this problem.
+
+#### Implementation
+
+The following classes were created in the process of implementing the `import-csv`
+command :
+
+| Logic                  | Commons |
+|------------------------|---------|
+| ImportCsvCommand       | CsvUtil |
+| ImportCsvCommandParser |         |
+
+csvreader, csv util and the library used
+
+conforming to the expected format as found on luminus
+
+import csv command, takes in path, parser checks the path
+and checks (file not found, io, csvvalidation etc)
+
+#### Design Considerations
+
+**Aspect:**
+
+**Aspect:**
+
+**Aspect:**
+
 ### Mailing feature: mail-all
 
 #### Implementation
@@ -394,6 +432,7 @@ For example, LogicManager now tries to save to the storage's moduleList as well:
 ```
 
 The sequence diagram for the command `set-default-group m/CS2103T g/W12-1` follows:
+
 <img src="images/SetDefaultSequenceDiagram.png" width="1000"/>
 
 #### Design Considerations
@@ -431,22 +470,26 @@ Given below is an example usage scenario and how the mechanism behaves at each s
 Step 1. The user launches the application for the first time. The `InputHistory` will be initialized with an empty
 `previousInputs`, and the `indexPointer` pointing to `0`. The `CommandBox` is empty upon initialization as well.
 <br>
+
 ![PreviousInputState0](images/PreviousInputState0.png)
 
 Step 2. The user enters the command `delete 1`. The `CommandBox` will call `storeInput("delete 1")` on `InputHistory`.
 The `indexPointer` will increment by 1, pointing to `1`. The `CommandBox` clears itself upon entering the command.
 <br>
+
 ![PreviousInputState1](images/PreviousInputState1.png)
 
 Step 3. The user enters the command `delet 1`. The `CommandBox` will call `storeInput("delet 1")`. The `indexPointer`
 will increment by 1, pointing to `2`. However, as the input command is invalid, the `CommandBox` does not clear itself
 upon entering the command.
 <br>
+
 ![PreviousInputState2](images/PreviousInputState2.png)
 
 Step 4. When the user presses the &uarr; button, the `CommandBox` will call `getPreviousUserInput()`, which decrements
 the pointer by 1, pointing it to `"delet 1"`. The text in `CommandBox` will still remain as "delet 1".
 <br>
+
 ![PreviousInputState3](images/PreviousInputState3.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `indexPointer` is at index 0, where
@@ -458,15 +501,18 @@ be updated.
 
 The following sequence diagram demonstrates how the refill previous input works
 <br>
+
 ![PreviousInputSequenceDiagram](images/PreviousInputSequenceDiagram.png)
 
 Step 5. When the user presses the &uarr; button, the `CommandBox` will call `getPreviousUserInput()`, which decrements
 the pointer by 1, pointing it to `"delete 1"`. The text in `CommandBox` will change to "delete 1".
 <br>
+
 ![PreviousInputState4](images/PreviousInputState4.png)
 
 Step 6. When the user presses the &darr; button, the `CommandBox` will call `getNextUserInput()`, which increments the
-pointer by 1, pointing it to "delet 1". The text in the `CommandBox` will update to "delet 1".
+pointer by 1, pointing it to "delete 1". The text in the `CommandBox` will update to "delete 1".
+
 ![PreviousInputState3](images/PreviousInputState3.png)
 
 
