@@ -322,8 +322,8 @@ Format: `edit INDEX [n/NAME] [a/STUDENT_NUMBER] [e/EMAIL] [m/MOD] [g/GROUP] [t/T
 * The index **must be a positive integer** (1, 2, 3, …​) and should be any one of the indexes displayed. Negative examples include:
     * `edit 0` produces an error, as 0 is not a positive integer
     * `edit 100` for a student list with less than 100 students, will produce an error as there is no 100<sup>th</sup> student
+    
 
-<br>
 
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
