@@ -2,10 +2,13 @@
 layout: page
 title: User Guide
 ---
+<div style="page-break-after: always;"></div>
+
 ## Table of Contents
 * Table of Contents
 {:toc}
 
+<div style="page-break-after: always;"></div>
 
 ## **Introduction**
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -33,7 +36,8 @@ If the intended usage above does not fit you, don't worry, you still can use our
 may seem a little odd to you, or you may need to do some manual adjustments. Fret not, we are currently working to produce a
 version of TAilor that can be used by a wider range of users, so stay tuned!
 
---------------------------------------------------------------------------------------------------------------------
+--- 
+<div style="page-break-after: always;"></div>
 
 ## **Quick start**
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -78,6 +82,8 @@ for more information.
     * `exit` : Exits the app.
 
 6. Refer to the [Commands and Features](#commands-and-features) below for details of each command.
+
+<div style="page-break-after: always;"></div>
 
 ### Understanding TAilor's GUI
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -167,7 +173,8 @@ Shown here is:
 
 <br>
 
---------------------------------------------------------------------------------------------------------------------
+---
+<div style="page-break-after: always;"></div>
 
 ## **Typical usage workflow**
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
