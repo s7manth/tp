@@ -264,9 +264,9 @@ The current Task List uses a manually implemented priority system internally to 
 
 #### Design Considerations
 
-**Aspect: Extendibility**
+**Aspect: Extensibility**
 
-* Extendibility was heavily considered when implementing this feature. For Instance,
+* Extensibility was heavily considered when implementing this feature. For Instance,
   * A ReadOnlyTaskList was done instead of just a single TaskList class, to allow for multiple versions of a Task List being
     used if desired. Ie perhaps a Task List that is sorted according to a new "Emergency" level instead of just date-time.
   * Deadline and Description classes were used instead of just a String and a LocalDateTime field to make the codebase more
@@ -439,7 +439,7 @@ into TAilor's database. Exception handling has been done alongside checks (file 
 
 * The import-csv command has been created in a manner that checks for most possible places where the user could go wrong
 and provides guidance to correct them through the error messages and the user guide section. This command is designed to
-be very easy to use for the current target users, which are TAs teaching a NUS module which implies that they would have 
+be very easy to use for the current target users, which are TAs teaching a NUS module which implies that they would have
 manager access on LumiNUS. The student database exported from LumiNUS conforms exactly to our csv file requirements and
 hence, any beginner user would be able to successfully use this command as long as they follow the directions provided
 in the user guide.
@@ -455,26 +455,41 @@ and simply import one after the other. As such if the user prefers updating thei
 the command handles that situation too by ignoring duplicate students and simply importing the new updates.
 
 
-### Mailing feature: mail-all
+### Mailing feature
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 #### Implementation
 
 This Mailing feature enables the user to initiate the system
-default mail application (if present). In order to achieve this,
+default mail application (if present). In order to achieve this, 
 Java AWT (Abstract Window Toolkit) API is used.
 Below shows the important classes that were created:
 
-Logic:
-* MailIndexCommand (and its parser)
-* MailXCommand (and its parser)
-* MailAllCommand
+| Logic                  | Util     |
+|------------------------|----------|
+| MailIndexCommand       | MailUtil |
+| MailIndexCommandParser |          |
+| MailXCommand           |          |
+| MailXCommandParser     |          |
+| MailAllCommand         |          |
 
-Commons:
-* MailUtil
+MailUtil class contains the interaction of TAilor with the desktop mail application. All the commands
+call a `launchMail` method in this class to accomplish their respective functionalities.
 
-MailUtil class contains the interaction of TAior with the desktop. All the commands
-call a method in this class to accomplish their respective functionalities.
+`mail-index` command allows the user to email a specific student in the contact list based on their index, as displayed
+in the application. `mail-x` command enables the user to add multiple prefix-based arguments, using which multiple
+students can be mailed in one go. The arguments act as the criteria based on which students are
+considered to be a part of the mail group. The mail collation happens based on a descriptor class that takes care of
+processing the individual arguments. `mail-all` command is the solution if the user wants to email everyone
+in the contact list without any filters. This command allows the user to perform bulk emails.
+
+The following is the class diagram for the `MailIndexCommand` class :
+
+<img src="images/MailIndexClassDiagram.png" />
+
+The following sequence diagram shows how the `mail-x` operation works:
+
+<img src="images/MailXSequenceDiagram.png" />
 
 The following sequence diagram shows how the `mail-all` operation works:
 
@@ -482,6 +497,32 @@ The following sequence diagram shows how the `mail-all` operation works:
 <img src="images/MailAllSequenceDiagram.png" /> <br>
 <b>Fig. 22 - Execution of a `mail-all` command</b>
 </p>
+
+#### Design Considerations
+
+**Aspect: Motivation**
+
+This feature forms an integral part of automating communication for the user with the contacts present in the
+contact list. Mail commands allow the user to conveniently mail one or more students from the contact list.
+The main functionality of all the mail commands is that they would input the receiver's address for the user
+in the system default mail application, from where the user can continue on completing the mail on the external
+application.
+
+**Aspect: Compatibility**
+
+Mailing feature works across all the popular operating systems. It is able to operate with all mailto compatible
+mail applications as long as the default launching application has been set for the system.
+
+**Aspect: Extensibility**
+
+New capabilities for the mailing commands like cc, bcc and subject can be as the arguments without major changes
+in the underlying architecture of the product.
+
+**Aspect: Modularity**
+
+Mailing feature comprises well-defined, independent components which leads to better maintainability. All the components
+were implemented and tested in isolation before being integrated with the product. An example of this is the `MailUtil`
+class, which allows for testing compatibility of the system before integrating with the product to process commands.
 
 
 ### Setting a Default Group for a particular Mod
@@ -493,25 +534,29 @@ making administrative tasks less tedious and rudimentary. By setting a default g
 about repeatedly entering the same group value for several students over an extended period of time.
 
 #### Implementation
-The following classes were created in the process of implementing the `set-default-group` command:
+The following classes were created/edited in the process of implementing the `set-default-group` command:
 
 
 | Logic                   | Model                    | Storage                    |
 |-------------------------|--------------------------|----------------------------|
 | SetDefaultCommand       | DuplicateModuleException | ModuleListStorage          |
 | SetDefaultCommandParser | ModuleNotFoundException  | JsonModuleListStorage      |
-|                         | ModuleList               | JsonSerializableModuleList |               
-|                         | UniqueModuleList         | JsonAdaptedModule          |               
+|                         | ModuleList               | JsonSerializableModuleList |
+|                         | UniqueModuleList         | JsonAdaptedModule          |
 
 
 
 The core idea behind this implementation is that there exists an empty `UniqueModuleList` which is a list of `Mod`.
-Every Mod object has a `defaultGroup` attribute that initially is unassigned. Once the user enters the command
-`set-default-group m/MOD g/GROUP`, the `defaultGroup` value for that `MOD` gets set to `GROUP` and that `MOD` gets added to the `UniqueModuleList`.
-If the command is entered again, the value of the `MOD` gets updated in the `UniqueModuleList` and the user is notified.
+Every Mod object has a `defaultGroup` attribute that initially is unassigned. When a user enters the command `set-default-group m/MOD g/GROUP`, the code:
 
-Now when a user adds a new student, if he doesn't pass a group argument and there exists the given `MOD` in the `UniqueModuleList`, it places
-the `defaultGroup` as the group for the student, else it returns an error message to the user.
+* Uses `Model#doesModExistInList` to check if the `Mod` exists in `UniqueModuleList`.
+* If it exists, get the previous default group using `Model#retrievePrevDefault` and update it.
+* Else add the `Mod` to the `UniqueModuleList` with the given default `GROUP` using the `Model#setDefaultGroup` command.
+
+Now when a user adds a new student using the `add` command:
+* If the group argument has been passed, the code is run normally
+* If the group argument has not been passed, the code retrieves the default group from the `UniqueModuleList` and throws an error if the 
+given mod has no default group set.
 
 Similar to the TaskList implementation most of these classes are linked to the respective XYZManager components.
 For example, LogicManager now tries to save to the storage's moduleList as well:
@@ -519,6 +564,7 @@ For example, LogicManager now tries to save to the storage's moduleList as well:
 ```
             storage.saveModuleList(model.getModuleList());
 ```
+
 
 The sequence diagram for the command `set-default-group m/CS2103T g/W12-1` follows the parsing as mentioned in Fig 8.0
 above and the specific functioning of the command can be found in the sequence diagram below:
@@ -641,7 +687,6 @@ Finally, the user decides to enter a new command, `undo`. The `CommandBox` will 
 <b>Fig. 31 - Previous input state 5</b>
 </p>
 
-
 #### Design Considerations
 
 **Aspect: Motivation**
@@ -652,14 +697,60 @@ meet that need.
 
 **Aspect: Coupling**
 
-To reduce the coupling introduced by this feature as much as possible, the `InputHistoryManager` object only has an 
-association with the `CommandBox` UI part. As TAilor is designed only with 1 point of input, the `InputHistoryManager` 
+To reduce the coupling introduced by this feature as much as possible, the `InputHistoryManager` object only has an
+association with the `CommandBox` UI part. As TAilor is designed only with 1 point of input, the `InputHistoryManager`
 only needs to be associated with the `CommandBox`.
 
 **Aspect: Extendability**
 
-If the application is expanded to include multiple points of input, each input box can be associated with their own instance 
+If the application is expanded to include multiple points of input, each input box can be associated with their own instance
 of `InputHistoryManager`, which can allow each of them to store their own input histories.
+
+
+### Getting help
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
+
+#### Implementation
+
+The following classes were created/modified in the process of implementing `help` command :
+
+| Logic             |
+|-------------------|
+| HelpCommand       |
+| HelpCommandParser |
+
+The main idea behind this extension is that the user may request for help on how to use a particular command,
+what are the arguments that are accepted by that command, and what is the expected syntax.
+
+There are two main ways in which this command can be used : 
+* `help` will open a modal with a link to the user guide of the product.
+* `help COMMAND_WORD` will output the usage instructions of the `COMMAND_WORD` and a short description as to what
+  it does.
+
+Essentially `COMMAND_WORD` is an optional argument to the `help` command which gets parsed using the `HelpCommandParser`.
+
+The following is the sequence diagram of `help` command's execution :
+
+<img src="images/HelpCommandSequenceDiagram.png" />
+
+#### Design Considerations
+
+**Aspect: Motivation**
+
+This feature allows the user to access the user guide and check the usage of specific commands. The aim of this
+feature is to provide user the convenience to access the usage instructions of a particular command without
+referring to the user guide everytime. It forms an extension over the original `help` command.
+This feature was inspired from the `--help` flag that is present in most modern day CLI tools.
+
+**Aspect: Maintainability**
+
+`help` command's extension was done in a manner that any new command can be easily incorporated into the
+functionality without too many changes. In this way, it is highly maintainable.
+
+**Aspect: Robustness**
+
+`help` command is able to tolerate unpredictable or invalid input. Appropriate exception handling has been done to 
+ensure that it does not process erroneous input.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -971,6 +1062,36 @@ testers are expected to do more *exploratory* testing.
    3. Test case: `delete 0`, `delete`, `delete x`, `...` <br>
       Expected: Similar to the erroneous test cases from the list command above.
 
+### Mailing student(s)
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
+
+1. Mailing an individual student from the contact list
+
+   1. Prerequisites: Multiple students in the contact list.
+
+   2. Test case: `mail-index 1`<br>
+      Expected: System default mail application opens up with the receiver's field filled with the email address of
+      the student at the specified index ie 1.
+   
+   3. Test case: `mail-index 2`<br>
+         Expected: System default mail application opens up with the receiver's field filled with the email address of
+         the student at the specified index ie 2.
+
+2. Mailing all the students in a particular module
+   1. Prerequisites: Multiple students in the contact list belonging to the module CS2103 (example scenario).
+
+   2. Test case: `mail-x m/CS2103`<br>
+      Expected: System default mail application opens up with the receiver's field filled with the email addresses of
+      all the students belonging to CS2103 module in the contact list.
+
+3. Mailing everyone in the contact list
+
+   1. Prerequisites: Multiple students in the contact list.
+
+   2. Test case: `mail-all`<br>
+      Expected: System default mail application opens up with the receiver's field filled all the email addresses of
+      students in the entire contact list.
+
 ### Creating a Task
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
@@ -1003,14 +1124,15 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: Multiple tasks in the task list.
 
-    1. Test case: `del-task 1`<br>
+    2. Test case: `del-task 1`<br>
        Expected: First task is deleted from the list. Details of the deleted task shown in the feedback message.
 
-    1. Test case: `del-task 0`<br>
+    3. Test case: `del-task 0`<br>
        Expected: No task is deleted. Error details shown in the status message.
 
-    1. Other incorrect delete task commands to try: `del-task`, `del-task x`, `...` (where x is larger than the list size)<br>
+    4. Other incorrect delete task commands to try: `del-task`, `del-task x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
+
 
 ### Undoing/Redoing commands
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -1032,6 +1154,24 @@ testers are expected to do more *exploratory* testing.
 3. Redoing a command
 
    1. Similar to the undo command, flipping `undo` into `redo`, before into after.
+
+### Getting help
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
+
+1. Getting help through user guide
+
+   1. Prerequisites: None
+   
+   2. Test case: `help`<br>
+      Expected : A popup opens with a link to the user guide of the application.
+
+2. Getting help about a specific command
+
+   1. Prerequisites : None
+   
+   2. Test case: `help add-task`<br>
+      Expected : The usage instructions of the `add-task` command are displayed.
+   
 
 ### Saving data
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
