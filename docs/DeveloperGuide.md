@@ -33,7 +33,10 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 ### Architecture
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
+<p align="center">
 <img src="images/ArchitectureDiagram.png" width="280" />
+<b>Fig. 1 - Overall Architecture</b>
+</p>
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
@@ -59,7 +62,10 @@ The rest of the App consists of four components.
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
+<p align="center">
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<b>Fig. 2 - Architecture interactions</b>
+</p>
 
 Each of the four main components (also shown in the diagram above),
 
@@ -68,7 +74,10 @@ Each of the four main components (also shown in the diagram above),
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
+<p align="center">
 <img src="images/ComponentManagers.png" width="300" />
+<b>Fig. 3 - Interacting through the API interfaces</b>
+</p>
 
 The sections below give more details of each component.
 
@@ -77,7 +86,10 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2122S2-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
+<p align="center">
 ![Structure of the UI Component](images/UiClassDiagram.png)
+<b>Fig. 4 - Structure of the UI Component</b>
+</p>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -99,7 +111,10 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
+<p align="center">
 <img src="images/LogicClassDiagram.png" width="550"/>
+<b>Fig. 5 - Structure of the Logic Component</b>
+</p>
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `TailorParser` class to parse the user command.
@@ -109,31 +124,40 @@ How the `Logic` component works:
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
+<p align="center">
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+<b>Fig. 6 - Interactions of a delete command inside the Logic Component</b>
+</p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
+<p align="center">
 <img src="images/ParserClasses.png" width="600"/>
+<b>Fig. 7 - Classes in Logic that are involved in parsing</b>
+</p>
 
 How the parsing works:
 * When called upon to parse a user command, the `TailorParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `TailorParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 * The following Figure 8 depicts parsing in action:
 
+<p align="center">
 <img alt="ParsingSequenceDiagram.png" src="images/ParsingSequenceDiagram.png" width="1000"/>
-<b>Fig.8 - parsing of commands taking in arguments</b>
+<b>Fig. 8 - Parsing of commands that take in arguments</b>
+</p>
 
 ### Model component
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 **API** : [`Model.java`](https://github.com/AY2122S2-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-
+<p align="center">
 <img src="images/ModelClassDiagram.png" width="550" />
-
+<b>Fig. 9 - Structure of the Model Component</b>
+</p>
 
 The `Model` component,
 
@@ -147,11 +171,17 @@ The `Model` component,
 
 `VersionedContents` stores versions of the `Content` object, which in turn stores a `ContactList`, `PriorityTaskList` and `UniqueModuleList` object. The class diagram for VersionedContents can be found below.
 
+<p align="center">
 <img src="images/VersionedContentsDiagram.png" width="550" />
+<b>Fig. 10 - Structure of VersionedContents</b>
+</p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects. This diagram is also truncated slightly as it does not show the Task classes.<br>
 
+<p align="center">
 <img src="images/BetterModelClassDiagram.png" width="550" />
+<b>Fig. 11 - A better Model class diagram</b>
+</p>
 
 </div>
 
@@ -161,7 +191,10 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/AY2122S2-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
+<p align="center">
 <img src="images/StorageClassDiagramV3.png" width="550" />
+<b>Fig. 12 - Structure of the Storage component</b>
+</p>
 
 The `Storage` component,
 * can save contact list data, task list data and user preference data in json format, and read them back into corresponding objects.
@@ -211,7 +244,10 @@ For example, LogicManager now tries to save to the storage's contact list and ta
 Users also now have 2 additional commands to add new tasks and delete existing tasks, and
 the following sequence diagram shows how the new task command works in more detail:
 
+<p align="center">
 <img src="images/newTask-SequenceDiagram.png" width="1000" />
+<b>Fig. 12 - Internal execution of a new task command</b>
+</p>
 
 The current Task List uses a manually implemented priority system internally to sort/rank the tasks.
 
@@ -261,15 +297,24 @@ Given below is an example usage scenario and how the undo/redo mechanism behaves
 
 Step 1. The user launches the application for the first time. The `VersionedContents` will be initialized with the initial content state, and the `currentStatePointer` pointing to that single content state.
 
+<p align="center">
 ![UndoRedoState0](images/UndoRedoState0.png)
+<b>Fig. 13 - Undo/Redo State 0</b>
+</p>
 
 Step 2. The user executes `delete 5` command to delete the 5th student in the contact list. The `delete` command calls `Model#commitContent()`, causing the modified state of the content after the `delete 5` command executes to be saved in the `contentStateList`, and the `currentStatePointer` is shifted to the newly inserted content state.
 
+<p align="center">
 ![UndoRedoState1](images/UndoRedoState1.png)
+<b>Fig. 14 - Undo/Redo State 1</b>
+</p>
 
 Step 3. The user executes `add n/David …​` to add a new student. The `add` command also calls `Model#commitContent()`, causing another modified content state to be saved into the `contentStateList`.
 
+<p align="center">
 ![UndoRedoState2](images/UndoRedoState2.png)
+<b>Fig. 15 - Undo/Redo State 2</b>
+</p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitContent()`, so the content state will not be saved into the `contentStateList`.
 
@@ -277,7 +322,10 @@ Step 3. The user executes `add n/David …​` to add a new student. The `add` c
 
 Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoContents()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous content state, and restores the content to that state.
 
+<p align="center">
 ![UndoRedoState3](images/UndoRedoState3.png)
+<b>Fig. 16 - Undo/Redo State 3</b>
+</p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial content state, then there are no previous content states to restore. The `undo` command uses `Model#canUndoContent()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
@@ -286,7 +334,10 @@ than attempting to perform the undo.
 
 The following sequence diagram shows how the undo operation works:
 
+<p align="center">
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+<b>Fig. 17 - Undo Sequence Diagram</b>
+</p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
@@ -303,15 +354,24 @@ to the user rather than attempting to perform the redo.
 
 Step 5. The user then decides to execute the command `list`. Commands that do not modify the content, such as `list`, will usually not call `Model#commitContent()`, `Model#undoContents()` or `Model#redoContents()`. Thus, the `contentStateList` remains unchanged.
 
+<p align="center">
 ![UndoRedoState4](images/UndoRedoState4.png)
+<b>Fig. 18 - Undo/Redo State 4</b>
+</p>
 
 Step 6. The user executes `clear`, which calls `Model#commitContent()`. Since the `currentStatePointer` is not pointing at the end of the `contentStateList`, all content states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
+<p align="center">
 ![UndoRedoState5](images/UndoRedoState5.png)
+<b>Fig. 19 - Undo/Redo State 5</b>
+</p>
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
+<p align="center">
 <img src="images/CommitActivityDiagram.png" width="250" />
+<b>Fig. 20 - Summary of an execution of a new command 4</b>
+</p>
 
 #### Design considerations:
 
@@ -413,7 +473,10 @@ call a method in this class to accomplish their respective functionalities.
 
 The following sequence diagram shows how the `mail-all` operation works:
 
- <img src="images/MailAllSequenceDiagram.png" />
+<p align="center">
+<img src="images/MailAllSequenceDiagram.png" />
+<b>Fig. 21 - Execution of a `mail-all` command 4</b>
+</p>
 
 
 ### Setting a Default Group for a particular Mod
@@ -455,7 +518,10 @@ For example, LogicManager now tries to save to the storage's moduleList as well:
 The sequence diagram for the command `set-default-group m/CS2103T g/W12-1` follows the parsing as mentioned in Fig 8.0
 above and the specific functioning of the command can be found in the sequence diagram below:
 
+<p align="center">
 <img src="images/SetDefaultSequenceDiagram.png" width="1000"/>
+<b>Fig. 22 - Execution of a `set-default-group` command 4</b>
+</p>
 
 #### Design Considerations
 
@@ -488,26 +554,38 @@ Step 1. The user launches the application for the first time. The `InputHistory`
 `previousInputs`, and the `indexPointer` pointing to `0`. The `CommandBox` is empty upon initialization as well.
 <br>
 
+<p align="center">
 ![PreviousInputState0](images/PreviousInputState0.png)
+<b>Fig. 23 - Previous input state 0</b>
+</p>
 
 Step 2. The user enters the command `delete 1`. The `CommandBox` will call `storeInput("delete 1")` on `InputHistory`.
 The `indexPointer` will increment by 1, pointing to `1`. The `CommandBox` clears itself upon entering the command.
 <br>
 
+<p align="center">
 ![PreviousInputState1](images/PreviousInputState1.png)
+<b>Fig. 24 - Previous input state 1</b>
+</p>
 
 Step 3. The user enters the command `delet 1`. The `CommandBox` will call `storeInput("delet 1")`. The `indexPointer`
 will increment by 1, pointing to `2`. However, as the input command is invalid, the `CommandBox` does not clear itself
 upon entering the command.
 <br>
 
+<p align="center">
 ![PreviousInputState2](images/PreviousInputState2.png)
+<b>Fig. 25 - Previous input state 2</b>
+</p>
 
 Step 4. When the user presses the &uarr; button, the `CommandBox` will call `getPreviousUserInput()`, which decrements
 the pointer by 1, pointing it to `"delet 1"`. The text in `CommandBox` will still remain as "delet 1".
 <br>
 
+<p align="center">
 ![PreviousInputState3](images/PreviousInputState3.png)
+<b>Fig. 26 - Previous input state 3</b>
+</p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `indexPointer` is at index 0, where
 `previousInputs` is empty, then there are no previous inputs to refill. The `CommandBox` will call
@@ -519,18 +597,27 @@ be updated.
 The following sequence diagram demonstrates how the refill previous input works
 <br>
 
+<p align="center">
 ![PreviousInputSequenceDiagram](images/PreviousInputSequenceDiagram.png)
+<b>Fig. 27 - Previous input Sequence Diagram</b>
+</p>
 
 Step 5. When the user presses the &uarr; button, the `CommandBox` will call `getPreviousUserInput()`, which decrements
 the pointer by 1, pointing it to `"delete 1"`. The text in `CommandBox` will change to "delete 1".
 <br>
 
+<p align="center">
 ![PreviousInputState4](images/PreviousInputState4.png)
+<b>Fig. 28 - Previous input state 4</b>
+</p>
 
 Step 6. When the user presses the &darr; button, the `CommandBox` will call `getNextUserInput()`, which increments the
 pointer by 1, pointing it to "delete 1". The text in the `CommandBox` will update to "delete 1".
 
+<p align="center">
 ![PreviousInputState3](images/PreviousInputState3.png)
+<b>Fig. 29 - Previous input state 3</b>
+</p>
 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `indexPointer` is at index
@@ -543,7 +630,11 @@ be updated.
 Finally, the user decides to enter a new command, `undo`. The `CommandBox` will call `storeInput("undo")`. The
 `indexPointer` will update to point to `3`. The `CommandBox` clears itself upon entering the command.
 <br>
+
+<p align="center">
 ![PreviousInputState5](images/PreviousInputState5.png)
+<b>Fig. 30 - Previous input state 5</b>
+</p>
 
 
 #### Design Considerations
