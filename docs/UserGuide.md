@@ -151,7 +151,7 @@ Some additional examples are shown below:
 * CS2101 groups can be `G02` to represent sectional class #2 according to the conventions followed by the module in EduRec/NUSmods
 * If you are handling only one group, a simple description like `lab` or `tutorial` can suffice.
 
-<br><br>
+<br><br><br>
 
 #### Task List
 
@@ -199,6 +199,7 @@ The typical usage for a Teaching Assistant is provided as follows:
 5. Exit the application via the [exit command](#exiting-tailor-exit) or by pressing the close button for the application.
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## **Commands and features**
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -241,7 +242,7 @@ The typical usage for a Teaching Assistant is provided as follows:
 * To avoid these unintended behaviors, only enter in one command at a time before pressing <br>**&#9166; Enter**.
 
 </div>
-
+<div style="page-break-after: always;"></div>
 ### Common commands
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
