@@ -24,7 +24,7 @@ Given below are my contributions to the project.
       Incorporated many individual classes for each of the search conditions, as well as a compounded search condition
       that allows searching based on all conditions passed into it.
     * Time spent on this (estimate):
-      210mins<br><br>
+      240mins<br><br>
 
   * **Feature 2**: Implementing `Mod` class [\#72]()
     * What it does:
@@ -34,7 +34,7 @@ Given below are my contributions to the project.
       By having this `Mod` class, Teaching Assistants can now tag students with a certain Class, ie `CS2030S`
       To better keep track of their students.
     * Time spent on this (estimate):
-      150mins<br><br>
+      180mins<br><br>
 
   * **Feature 3**: Implementing the Task Manager [\#88]()
     * What it does:
