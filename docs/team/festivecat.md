@@ -55,7 +55,8 @@ Given below are my contributions to the project.
   * Find command *(Pull requests [\#75]())*
   * Extended UI to include the task manager feature *(Pull Requests [\#122]())*
   * Bugfixes *(Pull requests [\#111](), [\#136](), [\#137](), [\#207](), [\#212]())*
-  * Polish UG/DG *(Pull requests [\#212](), [\#229](), [\#233](), [\#239](), [\#243](), [#244]()*
+  * Polish UG/DG *(Pull requests [\#212](), [\#229](), [\#233](), [\#239](), [\#243](), [#244]())*
+<br><br>
 
 * **Documentation**:
   * **User Guide (UG):**
@@ -67,8 +68,10 @@ Given below are my contributions to the project.
     * I also added in additional sections on prefix usages, intended workflow and an extended introduction at the start
       of the document to better guide users along with how to use our application.
     * I also incorporated the link to table of contents under most major headings and subheadings. *(Pull Requests [#111]())*
+    * Scrutinised the User Guide for inconsistencies and issues.
     * Polished UG before final submission, inclusive of wording changes, formatting and whitespaces.
-    * Made final adjustments including page breaks for PDF conversion.<br><br>
+    * Made final adjustments including page breaks for PDF conversion.
+<br><br>
     
   * **Developer Guide (DG):**
     * Changed some "Address Book" into "Contact List" to better represent the project.
@@ -77,11 +80,13 @@ Given below are my contributions to the project.
       * In particular, I remade the Model and Storage UML diagrams (V2) to include the newly implemented Task Manager functionality.
       * There is also a section under "Implementations" that describes how the Task Manager interacts with the rest of TAilor.
     * I also incorporated the link to table of contents under most major headings and subheadings. *(Pull Requests [#111]())*
+    * Scrutinised the Developer Guide for inconsistencies and issues.
     * Polished DG before final submission, inclusive of wording changes, formatting and whitespaces.
     * Added additional test cases for Add, Edit, Delete, New Task, Delete Task, Undo/Redo.
     * Added last section on saving data
     * Added captions/figure references to the images used.
     * Made final adjustments including page breaks for PDF conversion.
+<br><br>
 
 * **Contribution to team-based tasks**:
   * Made team organisation and repository at the beginning.
@@ -89,6 +94,7 @@ Given below are my contributions to the project.
   * Incorporated a standardised commit message format: *Pull Request [\#67]()*
   * Vetted issues raised after the PE dry run to sort out duplicate or invalid bugs due to intentional design.
   * Produced .jar file for v1.4
+<br><br>
 
 * **Project management**:
   * Drove team meetings forward, increasing productivity.
@@ -97,6 +103,7 @@ Given below are my contributions to the project.
   * After the initial pass for the issues raised after PE dry run, organised them coherently and assigned them appropriately
     to the team.
   * Went through initial pass of consolidated UG/DG, raised issues and distributed them to the team.
+<br><br>
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments):
