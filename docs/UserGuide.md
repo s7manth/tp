@@ -231,14 +231,10 @@ The typical usage for a Teaching Assistant is provided as follows:
 
 * Refer to our [prefix usage table](#prefix-usage-table) for more details on the requirements for each prefix.
 
-</div>
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Note on command inputs:**<br>
-
 * Currently, TAilor only supports a single command being executed at any one time. There is no support for executing multiple commands.
+
 * Example : `edit 1 n/Bob delete 2`, inputs like these result in unintended behavior as it specifies more than one command, `edit` and `delete`.
+
 * To avoid these unintended behaviors, only enter in one command at a time before pressing <br>**&#9166; Enter**.
 
 </div>
