@@ -277,6 +277,10 @@ If the entered student name has more than 50 characters, the entire name may not
 is to use initials instead. <br>A student can also have any number of tags (including 0).
 </div>
 
+Note:
+* Only non-duplicate students can be added. Ie, we cannot add duplicate students into the student list.
+* Students are considered to be "duplicate" when two students have the same email address or student number.
+
 Examples:
 
 * `add n/John Doe a/A1234567L e/johnd@example.com m/CS2030S g/B12G`
