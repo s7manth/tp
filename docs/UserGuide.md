@@ -231,7 +231,7 @@ The typical usage for a Teaching Assistant is provided as follows:
 
 * Refer to our [prefix usage table](#prefix-usage-table) for more details on the requirements for each prefix.
 
-* Currently, TAilor only supports a single command being executed at any one time. There is no support for executing multiple commands.
+* Additionally, TAilor only supports a single command being executed at any one time. There is no support for executing multiple commands.
 
 * Example : `edit 1 n/Bob delete 2`, inputs like these result in unintended behavior as it specifies more than one command, `edit` and `delete`.
 
@@ -239,6 +239,7 @@ The typical usage for a Teaching Assistant is provided as follows:
 
 </div>
 <div style="page-break-after: always;"></div>
+
 ### Common commands
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
@@ -264,6 +265,7 @@ Shows a list of all students in the student list.
 
 Format: `list`
 
+<div style="page-break-after: always;"></div>
 
 #### Adding a student: `add`
 
@@ -325,6 +327,7 @@ A sample csv file can be found [here](https://github.com/AY2122S2-CS2103T-W12-1/
 As such, be careful not to corrupt your csv file before importing to TAilor - something that can result from writing
 anything or adding information that does not abide by the expected format in the file.
 </div>
+<div style="page-break-after: always;"></div>
 
 #### Editing a student : `edit`
 
