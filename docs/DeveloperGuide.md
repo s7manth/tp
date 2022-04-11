@@ -461,7 +461,7 @@ the command handles that situation too by ignoring duplicate students and simply
 #### Implementation
 
 This Mailing feature enables the user to initiate the system
-default mail application (if present). In order to achieve this, 
+default mail application (if present). In order to achieve this,
 Java AWT (Abstract Window Toolkit) API is used.
 Below shows the important classes that were created:
 
@@ -485,17 +485,23 @@ in the contact list without any filters. This command allows the user to perform
 
 The following is the class diagram for the `MailIndexCommand` class :
 
-<img src="images/MailIndexClassDiagram.png" />
+<p align="center">
+<img src="images/MailIndexClassDiagram.png" /> <br>
+<b>Fig. 22 - Summary of an execution of a new command</b>
+</p>
 
 The following sequence diagram shows how the `mail-x` operation works:
 
-<img src="images/MailXSequenceDiagram.png" />
+<p align="center">
+<img src="images/MailXSequenceDiagram.png" /> <br>
+<b>Fig. 23 - Summary of an execution of a new command</b>
+</p>
 
 The following sequence diagram shows how the `mail-all` operation works:
 
 <p align="center">
 <img src="images/MailAllSequenceDiagram.png" /> <br>
-<b>Fig. 22 - Execution of a `mail-all` command</b>
+<b>Fig. 24 - Execution of a `mail-all` command</b>
 </p>
 
 #### Design Considerations
@@ -571,7 +577,7 @@ above and the specific functioning of the command can be found in the sequence d
 
 <p align="center">
 <img src="images/SetDefaultSequenceDiagram.png" width="1000"/> <br>
-<b>Fig. 23 - Execution of a `set-default-group` command</b>
+<b>Fig. 25 - Execution of a `set-default-group` command</b>
 </p>
 
 #### Design Considerations
@@ -607,7 +613,7 @@ Step 1. The user launches the application for the first time. The `InputHistory`
 
 <p align="center">
 <img src="images/PreviousInputState0.png"/> <br>
-<b>Fig. 24 - Previous input state 0</b>
+<b>Fig. 26 - Previous input state 0</b>
 </p>
 
 Step 2. The user enters the command `delete 1`. The `CommandBox` will call `storeInput("delete 1")` on `InputHistory`.
@@ -616,7 +622,7 @@ The `indexPointer` will increment by 1, pointing to `1`. The `CommandBox` clears
 
 <p align="center">
 <img src="images/PreviousInputState1.png"/> <br>
-<b>Fig. 25 - Previous input state 1</b>
+<b>Fig. 27 - Previous input state 1</b>
 </p>
 
 Step 3. The user enters the command `delet 1`. The `CommandBox` will call `storeInput("delet 1")`. The `indexPointer`
@@ -626,7 +632,7 @@ upon entering the command.
 
 <p align="center">
 <img src="images/PreviousInputState2.png"/> <br>
-<b>Fig. 26 - Previous input state 2</b>
+<b>Fig. 28 - Previous input state 2</b>
 </p>
 
 Step 4. When the user presses the &uarr; button, the `CommandBox` will call `getPreviousUserInput()`, which decrements
@@ -635,7 +641,7 @@ the pointer by 1, pointing it to `"delet 1"`. The text in `CommandBox` will stil
 
 <p align="center">
 <img src="images/PreviousInputState3.png"/> <br>
-<b>Fig. 27 - Previous input state 3</b>
+<b>Fig. 29 - Previous input state 3</b>
 </p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `indexPointer` is at index 0, where
@@ -650,7 +656,7 @@ The following sequence diagram demonstrates how the refill previous input works
 
 <p align="center">
 <img src="images/PreviousInputSequenceDiagram.png"/> <br>
-<b>Fig. 28 - Previous input Sequence Diagram</b>
+<b>Fig. 30 - Previous input Sequence Diagram</b>
 </p>
 
 Step 5. When the user presses the &uarr; button, the `CommandBox` will call `getPreviousUserInput()`, which decrements
@@ -659,7 +665,7 @@ the pointer by 1, pointing it to `"delete 1"`. The text in `CommandBox` will cha
 
 <p align="center">
 <img src="images/PreviousInputState4.png"/> <br>
-<b>Fig. 29 - Previous input state 4</b>
+<b>Fig. 31 - Previous input state 4</b>
 </p>
 
 Step 6. When the user presses the &darr; button, the `CommandBox` will call `getNextUserInput()`, which increments the
@@ -667,7 +673,7 @@ pointer by 1, pointing it to "delete 1". The text in the `CommandBox` will updat
 
 <p align="center">
 <img src="images/PreviousInputState3.png"/> <br>
-<b>Fig. 30 - Previous input state 3</b>
+<b>Fig. 32 - Previous input state 3</b>
 </p>
 
 
@@ -684,7 +690,7 @@ Finally, the user decides to enter a new command, `undo`. The `CommandBox` will 
 
 <p align="center">
 <img src="images/PreviousInputState5.png"/> <br>
-<b>Fig. 31 - Previous input state 5</b>
+<b>Fig. 33 - Previous input state 5</b>
 </p>
 
 #### Design Considerations
