@@ -24,7 +24,7 @@ Given below are my contributions to the project.
       Incorporated many individual classes for each of the search conditions, as well as a compounded search condition
       that allows searching based on all conditions passed into it.
     * Time spent on this (estimate):
-      210mins<br>
+      210mins<br><br>
 
   * **Feature 2**: Implementing `Mod` class [\#72]()
     * What it does:
@@ -34,7 +34,7 @@ Given below are my contributions to the project.
       By having this `Mod` class, Teaching Assistants can now tag students with a certain Class, ie `CS2030S`
       To better keep track of their students.
     * Time spent on this (estimate):
-      150mins<br>
+      150mins<br><br>
 
   * **Feature 3**: Implementing the Task Manager [\#88]()
     * What it does:
@@ -48,7 +48,7 @@ Given below are my contributions to the project.
       This feature can also be extended to be linked to Students, Mods or Groups. It can also be extended to use
       different priority systems to rank the Tasks, as well as a reminder system for upcoming tasks.
     * Time spent on this (estimate):
-      900mins<br>
+      900mins<br><br>
 
 * **Enhancements to existing features**:
   * Add Mod class/field *(Pull request [\#72]())*
@@ -58,7 +58,7 @@ Given below are my contributions to the project.
   * Polish UG/DG *(Pull requests [\#212](), [\#229](), [\#233](), [\#239](), [\#243](), [#244]()*
 
 * **Documentation**:
-  * User Guide (UG):
+  * **User Guide (UG):**
     * Reviewed UG for v1.1, made minor formatting and grammatical changes. *(Pull Requests [#41]())*
     * Updated UG for parts I have modified/implemented/extended. In particular:
       * I included the extra search parameters that can be used in the Find Command.
@@ -68,9 +68,9 @@ Given below are my contributions to the project.
       of the document to better guide users along with how to use our application.
     * I also incorporated the link to table of contents under most major headings and subheadings. *(Pull Requests [#111]())*
     * Polished UG before final submission, inclusive of wording changes, formatting and whitespaces.
-    * Made final adjustments including page breaks for PDF conversion.<br>
+    * Made final adjustments including page breaks for PDF conversion.<br><br>
     
-  * Developer Guide (DG):
+  * **Developer Guide (DG):**
     * Changed some "Address Book" into "Contact List" to better represent the project.
     * Changed some "Persons" and "Contacts" into "Students" to better represent the project
     * Updated DG for parts I have modified/implemented/extended.
