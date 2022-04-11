@@ -235,10 +235,9 @@ The typical usage for a Teaching Assistant is provided as follows:
 
 * Example : `edit 1 n/Bob delete 2`, inputs like these result in unintended behavior as it specifies more than one command, `edit` and `delete`.
 
-* To avoid these unintended behaviors, only enter in one command at a time before pressing <br>**&#9166; Enter**.
+* To avoid these unintended behaviors, only enter in one command at a time before pressing **&#9166; Enter**.
 
-</div>
-<div style="page-break-after: always;"></div>
+</div><div style="page-break-after: always;"></div>
 
 ### Common commands
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
