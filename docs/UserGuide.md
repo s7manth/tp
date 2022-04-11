@@ -446,8 +446,8 @@ Undoes or redoes a previously entered command that changed a student, task or mo
 
 Format: `undo` or `redo`
 
-* `undo` can only undo the effects of an `add`, `delete`, `edit`, `clear`, `newtask`, `deltask` and `set-default-group` commands.
-* Once you undo and enter a new `add`, `delete`, `edit`, `clear`, `newtask`, `deltask` or `set-default-group` command, the state that was undone will not be accessible via `redo` anymore.
+* undo can only undo the effects of an add, delete, edit, clear, newtask, deltask, set-default-group and import-csv commands.
+* Once you undo and enter a new add, delete, edit, clear, newtask, deltask,  set-default-group and import-csv command, the state that was undone will not be accessible via redo anymore.
 * Note the `undo` command will **not** be able to undo the effects of TAilor clearing all of its data caused by incorrect manual editing of data while the app is closed.
 
 Example:
@@ -491,7 +491,7 @@ Format: `mail-index INDEX`
   address.
 
 Example:
-* `mail-index 2` would open the default mail on the system with the "to" box filled with the
+* `mail-index 2` would open the default mail on the system with the receivers' field filled with the
   specified mail. Now, the email is ready to be sent to the student with the index 2 as shown on the application.
 
 #### Mailing students based on arguments: `mail-x`
