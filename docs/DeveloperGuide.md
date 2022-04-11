@@ -34,6 +34,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 <img src="images/ArchitectureDiagram.png" width="280" />
+<b>Fig.1 - TAilor's Architecture</b>
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
@@ -60,6 +61,7 @@ The rest of the App consists of four components.
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<b>Fig.2 - Sequence diagram depicting interaction between architecture components</b>
 
 Each of the four main components (also shown in the diagram above),
 
@@ -69,6 +71,7 @@ Each of the four main components (also shown in the diagram above),
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
+<b>Fig.3 - Partial class diagram of TAilor's Logic Component</b>
 
 The sections below give more details of each component.
 
@@ -78,6 +81,7 @@ The sections below give more details of each component.
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2122S2-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
+<b>Fig.4 - TAilor's Ui Component</b>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -100,6 +104,7 @@ The `UI` component,
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
+<b>Fig.5 - Partial Class Diagram of TAilor's Logic Component</b>
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `TailorParser` class to parse the user command.
@@ -110,6 +115,7 @@ How the `Logic` component works:
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+<b>Fig.6 - Sequence diagram depicting interaction between Logic components for `execute("delete 1")`</b>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -117,6 +123,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <img src="images/ParserClasses.png" width="600"/>
+<b>Fig.7 - Partial Class Diagram highlighting associations during the parsing of a user command</b>
 
 How the parsing works:
 * When called upon to parse a user command, the `TailorParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `TailorParser` returns back as a `Command` object.
@@ -133,6 +140,7 @@ How the parsing works:
 
 
 <img src="images/ModelClassDiagram.png" width="550" />
+<b>Fig.9 - Class Diagram of TAilor's Model Component</b>
 
 
 The `Model` component,
@@ -148,8 +156,9 @@ The `Model` component,
 `VersionedContents` stores versions of the `Content` object, which in turn stores a `ContactList`, `PriorityTaskList` and `UniqueModuleList` object. The class diagram for VersionedContents can be found below.
 
 <img src="images/VersionedContentsDiagram.png" width="550" />
+<b>Fig.9 - Class Diagram for VersionedContents</b>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects. This diagram is also truncated slightly as it does not show the Task classes.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ContactList`, which `Person` references. This allows `ContactList` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects. This diagram is also truncated slightly as it does not show the Task classes.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="550" />
 
@@ -162,6 +171,7 @@ The `Model` component,
 **API** : [`Storage.java`](https://github.com/AY2122S2-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagramV3.png" width="550" />
+<b>Fig.10 - Class Diagram for TAilor's Storage Component</b>
 
 The `Storage` component,
 * can save contact list data, task list data and user preference data in json format, and read them back into corresponding objects.
@@ -212,6 +222,7 @@ Users also now have 2 additional commands to add new tasks and delete existing t
 the following sequence diagram shows how the new task command works in more detail:
 
 <img src="images/newTask-SequenceDiagram.png" width="1000" />
+<b>Fig.11 - Sequence Diagram showing the working of newTask</b>
 
 The current Task List uses a manually implemented priority system internally to sort/rank the tasks.
 
