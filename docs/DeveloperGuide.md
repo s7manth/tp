@@ -734,7 +734,6 @@ testers are expected to do more *exploratory* testing.
 1. Initial launch
 
    1. Download the jar file and copy into an empty folder
-
       * Double-click the jar file OR:
       * Open the terminal on your PC and move to the directory where `TAilor.jar` is contained in. Then, run `java -jar TAilor.jar`
       the application. We recommend macOS users to use this method of starting the application to avoid errors.
@@ -806,7 +805,7 @@ testers are expected to do more *exploratory* testing.
        to the student list. The index number assigned to `Hector` will be 4, the last pre-existing student + 1.<br>
        Details of the added student will be shown in the feedback box.
 
-
+<br>
 
 2. Adding multiple students using the `import-csv` command
 
