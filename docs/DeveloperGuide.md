@@ -1049,8 +1049,6 @@ testers are expected to do more *exploratory* testing.
    5. Test case: `edit 1` with at least 1 student in the list.<br>
       Expected: Similar to previous, as there are no arguments specified to be edited
 
-   5. ADD MORE FOR THE OTHER ATTRIBUTES, AND MAKE SURE WE MENTION TAG IS REMOVED/REPLACED
-
 
 ### Deleting a student
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
