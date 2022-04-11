@@ -244,12 +244,10 @@ Shows a popup message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
-Format: `help`
-
-In addition to this, the `help` command can be used to show usage instructions
-for specific commands.
-
 Format: `help [COMMAND_WORD]`
+
+`help` command can be used to show either the link to the user guide or
+usage instructions for specific commands.
 
 Examples :
 * `help` will show the popup message as shown above.
