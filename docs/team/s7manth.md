@@ -1,13 +1,13 @@
-#Sumanth's Project Portfolio Page
+# Sumanth's Project Portfolio Page
 
 ---
-##Project: TAilor
+## Project: TAilor
 
 TAilor is a desktop app for managing contacts powered by Java. The user interacts with it using a CLI-like interface, 
 and it has a GUI created with JavaFX. TAilor tries to simplify the life of teaching assistants by either automating
 mundane administrative tasks, or by providing efficient ways to accomplish those tasks.
 
-###Given below are my contributions to the project:
+### Given below are my contributions to the project:
 
 - **Code contributed:** [RepoSense Link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=s7manth&breakdown=true)
 
