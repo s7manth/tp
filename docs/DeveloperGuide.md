@@ -471,11 +471,6 @@ interactions with the XYZManagers the same.
 ### Refill previously typed command feature
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-#### Aim of the feature
-As quick typers, it is inevitable for us to make typos once in a while. In those cases, it is very convenient if we
-could quickly refill the `CommandBox` with the mistyped input, and correct the mistake there. This features serves to
-meet that need.
-
 #### Implementation
 This feature is facilitated by `InputHistoryManager`. It implements `InputHistory`, and stores the previously entered
 user commands internally as a `previousInputs` and `indexPointer`. `InputHistoryManager` also implements:
@@ -546,6 +541,26 @@ Finally, the user decides to enter a new command, `undo`. The `CommandBox` will 
 `indexPointer` will update to point to `3`. The `CommandBox` clears itself upon entering the command.
 <br>
 ![PreviousInputState5](images/PreviousInputState5.png)
+
+
+#### Design Considerations
+
+**Aspect: Motivation**
+
+As quick typers, it is inevitable for us to make typos once in a while. In those cases, it is very convenient if we
+could quickly refill the `CommandBox` with the mistyped input, and correct the mistake there. This features serves to
+meet that need.
+
+**Aspect: Coupling**
+
+To reduce the coupling introduced by this feature as much as possible, the `InputHistoryManager` object only has an 
+association with the `CommandBox` UI part. As TAilor is designed only with 1 point of input, the `InputHistoryManager` 
+only needs to be associated with the `CommandBox`.
+
+**Aspect: Extendability**
+
+If the application is expanded to include multiple points of input, each input box can be associated with their own instance 
+of `InputHistoryManager`, which can allow each of them to store their own input histories.
 
 --------------------------------------------------------------------------------------------------------------------
 
