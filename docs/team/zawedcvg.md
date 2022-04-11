@@ -1,12 +1,12 @@
-#Neeladri's Project Portfolio Page
+# Neeladri's Project Portfolio Page
 
 ---
-##Project: TAilor
+## Project: TAilor
 
 TAilor is a desktop app for managing contacts. The user interacts with it using a CLI, and it has a GUI
 created with JavaFX. It is written in Java, and has about 10 kLoC.
 
-###Given below are my contributions to the project:
+### Given below are my contributions to the project:
 
 - **Code contributed:** [RepoSense Link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=zawedcvg&breakdown=true)
 - **Enhancements Implemented:**
