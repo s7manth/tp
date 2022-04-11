@@ -7,4 +7,5 @@ skinparam classBackgroundColor MODEL_COLOR
 VersionedContents -down-> "1...*" Content
 Content -down-> "1" PriorityTaskList
 Content -down-> "1" ContactList
+Content -down-> "1" UniqueModuleList
 @enduml

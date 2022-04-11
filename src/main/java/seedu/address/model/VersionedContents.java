@@ -131,7 +131,6 @@ public class VersionedContents {
             return false;
         }
 
-        VersionedContents otherVersionedContentList = (VersionedContents) other;
         return this.contentStateList.equals(((VersionedContents) other).getContentStateList());
     }
 

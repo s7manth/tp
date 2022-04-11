@@ -85,6 +85,9 @@ public class HelpCommand extends Command {
             case UndoCommand.COMMAND_WORD:
                 return new CommandResult(UndoCommand.MESSAGE_USAGE);
 
+            case ImportCsvCommand.COMMAND_WORD:
+                return new CommandResult(ImportCsvCommand.MESSAGE_USAGE);
+
             default:
                 throw new CommandException(INVALID_COMMAND_USAGE);
             }

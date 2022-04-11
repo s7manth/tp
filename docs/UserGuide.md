@@ -7,7 +7,7 @@ title: User Guide
 {:toc}
 
 
-## Introduction
+## **Introduction**
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 TAilor is a **desktop app for managing contacts, optimized for use via a Command Line Interface (CLI)**
@@ -19,11 +19,14 @@ faster than traditional GUI apps!
 
 ### Things to note before you begin
 
-* Currently, TAilor supports only typical modules offered to students from the School of Computing, such as MA1101R and CS2103T.
+* Currently, TAilor supports only typical modules offered to students from NUS, such as MA1101R and GER1000.
 * There is no support for DYOM modules at the moment as they do not conform to module naming conventions followed by most NUS
 faculties.
 * There is only support for students whose home university is NUS currently as well, so their matriculation
 numbers should be in the form of "A0123456X" as according to NUS.
+* This application has mail commands that use your system's default mail application. If none was found or set, your
+computer will prompt you for an application to use. To use your preferred mail app, please ensure that the specified
+app is set as the default in your computer settings.
 
 If the intended usage above does not fit you, don't worry, you still can use our application. The only downside is that features
 may seem a little odd to you, or you may need to do some manual adjustments. Fret not, we are currently working to produce a
@@ -31,78 +34,89 @@ version of TAilor that can be used by a wider range of users, so stay tuned!
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## **Quick start**
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
-
-1. Ensure you have Java `11` or above installed in your Computer.
 
 <div markdown="span" class="alert alert-warning"> :exclamation: **Caution:**
 If you are a Mac User, it may be possible that some incompatibilities may surface in the form of garbled/unreadable
 text in the GUI. It is advised to switch to Azul build of OpenJDK 11 to solve this issue.
 Please refer to this <a href="https://nus-cs2103-ay2122s2.github.io/website/admin/programmingLanguages.html#programming-language">link</a>
-for more information:)
-
+for more information.
 </div>
+
+1. Ensure you have **Java 11** or above installed in your Computer. A link to download Java is provided [here.](https://openjdk.java.net/projects/jdk/11/)
 
 2. Download the latest `TAilor.jar` from [here](https://github.com/AY2122S2-CS2103T-W12-1/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your TAilor Application.
+3. Move the .jar file to the folder you want to use as the _home folder_ for your TAilor Application.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note
-   how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+4. There are two ways to start TAilor:
+   1. Open the terminal on your PC and move to the directory where `TAilor.jar` is contained in. Then, run `java -jar TAilor.jar`
+      the application. We recommend macOS users to use this method of starting the application to avoid errors.
+   2. Double-click the .jar file to start the app. <br>
+      <br>
+      The GUI similar to the one below should appear in a few seconds. Note
+      how the app contains some sample data.<br>
+      <br>
+      ![Ui](images/Ui.png)
+      <br>
+      <br>
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter
+5. Type a command into the command box and press **&#9166; Enter** to execute it. e.g. typing **`help`** and pressing **&#9166; Enter**
    will open the help window.<br>
    Some example commands you can try:
 
-    * **`list`** : Lists all contacts.
+    * `list` : Lists all contacts.
 
-    * **`add`**` n/John Doe a/A0123456P e/johnd@example.com m/CS2103T g/W12` : Adds a student
+    * `add n/John Doe a/A0123456P e/johnd@example.com m/CS2103T g/W12` : Adds a student
 
-    * **`delete`**` 3` : Deletes the 3rd student shown in the current student list.
+    * `delete 3` : Deletes the 3rd student shown in the current student list.
 
-    * **`clear`** : Deletes all students in the student list.
+    * `clear` : Deletes all students in the student list.
 
-    * **`exit`** : Exits the app.
+    * `exit` : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Commands and Features](#commands-and-features) below for details of each command.
 
 ### What you can see from TAilor
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 As seen in the above picture, there are several components of notice for TAilor:
 
-* Input box
+* Command/Input box
 * Feedback box
 * Student List
 * Task List
 
 The following sections will guide you through them one by one:
 
-#### Input box and Feedback box
+#### Command/Input box and Feedback box
 
 ![input feedback box](images/UIexplanation/input-feedback-box.png)
 
-In **red**, is the input box for you to enter in your commands. Simply click on the box and type away!
+In **red**, is the command/input box for you to enter in your commands. Simply click on the box and type away!
 
 In **green**, is the feedback box given for your command.
 
 An invalid or wrong command entered will display some error messages for you:
+<br>
+
 ![invalid add command result](images/UIexplanation/invalid-add.png)
 
 <br>
 
 A correct command will produce feedback to you about what has been done. In this case, the command `delete 3` was done:
+<br>
+
 ![valid delete command result](images/UIexplanation/valid-delete.png)
 
 <br>
 
 #### Student List
 
-This is where you will see the students that are currently added into the application.
+This is where you can see the students that are currently added into the application.
 
-![student list](images/UIexplanation/studentlist.png)
+<img src="images/UIexplanation/studentlist.png" width="650">
 
 Let's take a closer look at one of the entries in the list:
 
@@ -113,9 +127,9 @@ Shown here is:
 | Description                                     | From picture above    |
 |-------------------------------------------------|-----------------------|
 | **Index** of the student in the student list    | Index of 2            |
-| **Name** of the student                         | Charlotte Oliverio    |
-| **Tags** given to the student                   | One tag, `neighbours` |
-| **Matriculation/Student number** of the student | A9321028C             |
+| **Name** of the student                         | Charlotte Oliveiro    |
+| **Tags** given to the student                   | One tag, `PGPR`       |
+| **Matriculation/Student number** of the student | A0932133C             |
 | **Module** that the student is taking           | CS2030S               |
 | **Group** that the student is under             | T02                   |
 | **Email** of the student                        | charlotte@example.com |
@@ -154,16 +168,16 @@ Shown here is:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Typical workflow
+## **Typical usage workflow**
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-The typical workflow for a Teaching Assistant is provided as follows:
+The typical usage for a Teaching Assistant is provided as follows:
 
-1. Launch the application.
+1. Launch the application from the steps given in [quick start](#quick-start)
 
 
-2. Add students to the student list via the [add command](#adding-a-student-add) or the [import command](#importing-a-csv-file-to-automatically-add-students-import-csv).
-   * Edit students if necessary via the [edit command](#editing-a-student-edit).
+2. Add students to the student list via the [add command](#adding-a-student-add) or the [import command](#adding-students-from-a-csv-file-import-csv).
+   * Edit students, if necessary, via the [edit command](#editing-a-student--edit).
 
 
 3. Perform any of the actions below whenever necessary:
@@ -172,14 +186,14 @@ The typical workflow for a Teaching Assistant is provided as follows:
    * Manage tasks for yourself via the [new task](#adding-a-new-task-newtask) and [delete task](#deleting-an-existing-task-deltask) commands.
 
 
-4. Repeat steps 2 and 3 when necessary.
+4. Repeat steps 2 and 3 whenever necessary.
 
 
 5. Exit the application via the [exit command](#exiting-tailor-exit) or by pressing the close button for the application.
 
 ---
 
-## Features
+## **Commands and features**
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 <div markdown="block" class="alert alert-info">
@@ -211,36 +225,47 @@ The typical workflow for a Teaching Assistant is provided as follows:
 
 </div>
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note on command inputs:**<br>
+
+* Currently, TAilor only supports a single command being executed at any one time. There is no support for executing multiple commands.
+* Example : `edit 1 n/Bob delete 2`, inputs like these result in unintended behavior as it specifies more than one command, `edit` and `delete`.
+* To avoid these unintended behaviors, only enter in one command at a time before pressing <br>**&#9166; Enter**.
+
+</div>
+
 ### Common commands
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 #### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Shows a popup message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
-In addition to this, `help` command can be used to show usage instructions
+In addition to this, the `help` command can be used to show usage instructions
 for specific commands.
 
 Format: `help [COMMAND_WORD]`
 
 Examples :
+* `help` will show the popup message as shown above.
 * `help undo` will show the usage instructions for the `undo` command.
 * `help mail-x` will show the usage instructions for the `mail-x` command.
 
 #### Listing all students : `list`
 
-Shows a list of all students in the student roster.
+Shows a list of all students in the student list.
 
 Format: `list`
 
 
 #### Adding a student: `add`
 
-Adds a student to the student roster.
+Adds a student to the student list.
 
 Format:
 * `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MOD g/GROUP [t/TAG]…​` or
@@ -248,59 +273,63 @@ Format:
 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If the student name is greater than 50 characters, the full name cannot be seen. Use initials if this is the case.
-A student can have any number of tags (including 0)
+If the entered student name has more than 50 characters, the entire name may not be displayed. A recommended usage
+is to use initials instead. <br>A student can also have any number of tags (including 0).
 </div>
 
 Examples:
 
 * `add n/John Doe a/A1234567L e/johnd@example.com m/CS2030S g/B12G`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com m/CS2100 g/T1 a/a0123456x t/needs help`
+* `add n/Betsy t/friend e/btsy@example.com m/CS2100 g/T1 a/a0123456x t/needshelp`
 
-#### Importing a csv file to automatically add students: `import-csv`
+#### Adding students from a CSV file: `import-csv`
 
-You can create your student list by directly importing a csv file and forgoing the hassle of manually adding students.
-This feature is tailor-made for NUS School of Computing teaching assistants who can export relevant class data from
-LumiNUS.
+Adds multiple students by importing a Comma Separated Values (CSV) file. This forgoes the hassle of adding students one by
+one with the `add` command above.
 
-Format: `import-csv [PATH-TO-FILE]`
+Format: `import-csv PATH-TO-FILE`
 
-To prepare your csv files, the following directions must be followed:
+To prepare your CSV files, follow the instructions below:
 
 1. Export your student list from LumiNUS Classes and Groups.
-2. Be sure to select and export the following headers only as you choose the format of your file:
-    1. Name,
-    2. Student Number,
-    3. Email, and
-    4. Group
-3. Once exported, convert the file to CSV format. This can be accomplished using any modern day spreadsheet
-   visualization software. Please follow this step through thoroughly. This <a href="https://support.microsoft.com/en-us/office/save-a-workbook-to-text-format-txt-or-csv-3e9a9d6c-70da-4255-aa28-fcacf1f081e6">link</a> can be referred to if guidance is required.
-4. Copy the file's path and import the file into TAilor with the above command!
+   * When choosing the format of the file, select and export the following headers:
+     * Name,
+     * Student Number,
+     * Email, and
+     * Group
+2. Once exported, convert the file to a CSV file. This can be done using any modern spreadsheet software, and must be done
+carefully. If you are using Microsoft Office, this [link](https://support.microsoft.com/en-us/office/save-a-workbook-to-text-format-txt-or-csv-3e9a9d6c-70da-4255-aa28-fcacf1f081e6)
+may be helpful for guidance.
+3. Copy the file's path and import the file into TAilor with the above command! Your file path can be an **absolute** or
+   a **relative path** - it doesn't matter as long as it is valid.
 
 
 <div markdown="span" class="alert alert-primary">:exclamation: **Note:**
-The file format, including choice of headers, will need to be adhered to for TAilor to function smoothly and provide
-a good user experience. Excel sheets downloaded from LumiNUS have 2 rows preceed the row containing column headers- this would be a requirement as well if you choose to draft your own file from scratch. As such, please be mindful to not corrupt your csv file before importing to TAilor- something that can
-result from writing anything or adding information that does not abide by the standard format in the file.
+The file format, including choice of headers, must be adhered to for the command to work. Excel sheets downloaded from
+LumiNUS have 2 additional rows preceding the row containing the column headers that are included in the required CSV format.
+Hence, if you were to create your own CSV file, these additional rows are required as well.<br>
+A sample csv file can be found [here]. As such, be careful not to corrupt your csv file before importing to TAilor - something that can
+result from writing anything or adding information that does not abide by the expected format in the file.
 </div>
 
 #### Editing a student : `edit`
 
-Edits an existing student in the student roster.
+Edits the details of an existing student in the student list.
 
 Format: `edit INDEX [n/NAME] [a/STUDENT_NUMBER] [e/EMAIL] [m/MOD] [g/GROUP] [t/TAG]…​`
 
-* Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list.
-The index **must be a positive integer** 1, 2, 3, …​ and should be any one of the indexes displayed! Negative examples include:
-    * `delete 0` produces an error, as 0 is not a positive integer
-    * `delete 300` for a student list with less than 300 students, will produce an error as there is no 300<sup>th</sup> student
+* Edits the student at the specified `INDEX`. This index refers to the index number shown in the displayed student list. 
+* The index **must be a positive integer** (1, 2, 3, …​) and should be any one of the indexes displayed. Negative examples include:
+    * `edit 0` produces an error, as 0 is not a positive integer
+    * `edit 100` for a student list with less than 100 students, will produce an error as there is no 100<sup>th</sup> student
+
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
 * You can remove all the student’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
-*  `edit 1 a/A1122334X e/johndoe@example.com` Edits the studentNumber and email address of the 1st student to be
+*  `edit 1 a/A1122334X e/johndoe@example.com` Edits the student number and email address of the 1st student to be
    `A1122334X` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
 
@@ -313,33 +342,34 @@ Deletes the specified student from the student list.
 
 Format: `delete INDEX`
 
-* Deletes the student at the specified `INDEX`.
-* The index refers to the index number shown in the displayed student list.
-
-* The index **must be a positive integer** 1, 2, 3, …​ and should be any one of the indexes displayed! Negative examples include:
+* Deletes the student at the specified `INDEX`. This index refers to the index number shown in the displayed student list.
+* The index **must be a positive integer** (1, 2, 3, …​) and should be one of the indexes displayed. Negative examples include:
     * `delete 0` produces an error, as 0 is not a positive integer
-    * `delete 300` for a student list with less than 300 students, will produce an error as there is no 300<sup>th</sup> student
+    * `delete 100` for a student list with less than 100 students, will produce an error as there is no 100<sup>th</sup> student
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd student in the student roster.
-* `find n/Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd student in the student list.
+* `find n/Betsy` followed by `delete 1` deletes the 1<sup>st<sup> student in the results of the `find` command.
 
-#### Setting a default group value for a mod: `set-default-group`
+#### Setting a default group for a mod: `set-default-group`
 
-Sets a default group value for a particular mod that can be updated using the set-default command several times. Helps
-reduce redundancies when adding a student using the add command.
+Sets a default group for a particular module. This replaces the previous default group, and helps reduce redundancies when
+adding a student using the `add` command.
 
 Format: `set-default-group m/MOD g/GROUP`
 
-* MOD may or may not be an existing mod in TAilor's local database
-* GROUP can be set any number of times for the same Mod
+* `MOD` may or may not be an existing mod in TAilor's local database
+* `GROUP` can be set any number of times for the same Mod, replacing the previous default value if previously set.
 
 Examples:
-* `set-default-group m/CS2101 g/G02`
+* `set-default-group m/CS2101 g/G02`<br>
+
+
   ![result for 'set-default-group m/CS2101 g/G02'](images/set_default_ex1.png)
 
 
-* followed by `set-default-group m/CS2101 g/G02-MonThur4-6`
+* followed by `set-default-group m/CS2101 g/G02-MonThur4-6`<br>
+
 
   ![result for updating default group of m/CS2101](images/set_default_ex2.png)
 
@@ -352,7 +382,7 @@ Finds students whose details matches all of the search parameters.
 Format: `find PREFIX/KEYWORD [MORE_KEYWORDS]…​    [PREFIX/KEYWORD [MORE_KEYWORDS]…​]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The format may seem daunting, but remember that Everything in `[]` are optional!
+The format may seem daunting, but remember that everything in `[]` are optional!
 
 A simple find command can be in the form of `find n/alex`. Try it out!
 </div>
@@ -378,9 +408,10 @@ Note:
 
 * For names and tags, **only full words** will be matched e.g. `n/Han` will not match `Hans`
 * For the rest, **partial words** will be matched e.g. `e/exam` will match `abc@example.com`
-* Students matching **at least one** keyword will be returned e.g. `n/Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 
+* If multiple keywords are specified for a single prefix, students matching **at least one** keyword will be returned
+e.g. `n/Hans Bo` will return `Hans Gruber`, `Bo Yang`
 * If multiple prefixes are specified, students matching **ALL** prefixes will be returned.
 
 Example:
@@ -390,46 +421,62 @@ Let the initial state of the list contain these 3 students: Alex, Bernice, Charl
 ![Initial State](images/findcommandUG/initialstate.png)
 
 * `find n/alex bernice` returns `Alex` and `Bernice`, because `Alex` and `Bernice` fit into the search arguments for the prefix `name`.
+  ![result for `find n/alex bernice`](images/findcommandUG/find-alex-bernice.png)
 
-![result for `find n/alex bernice`](images/findcommandUG/find-alex-bernice.png)
 * `find n/alex charlotte m/CS g/t01` returns `Alex`, because:
     * `Alex` and `Charlotte` fit within the search arguments for the prefix `name` and `module`,
     * However, only `Alex` has a group of `T01`.
-    * Hence, only `Alex` meets the search requirements of ALL search arguments provided, and is shown.
-
-![result for `find n/alex charlotte m/CS g/t01`](images/findcommandUG/find-alex-charlotte.png)
+    * Hence, only `Alex` meets the search requirements of ALL search prefixes provided, and is shown.
+  
+  ![result for `find n/alex charlotte m/CS g/t01`](images/findcommandUG/find-alex-charlotte.png)
 
 #### Undo or Redo a previous command : `undo/redo`
 
-Undoes or redoes a previously entered command that changed a student or task.
+Undoes or redoes a previously entered command that changed a student, task or module.
 
 Format: `undo` or `redo`
 
-* `undo` can only undo the effects of an `add`, `delete`, `edit`, `clear`, `newtask` and `deltask` commands.
-* Once you undo and enter a new `add`, `delete`, `edit`, `clear`, `newtask` or `deltask` command, the state that was undone will not be accessible via `redo` anymore.
-* Note the `undo` command will **not** be able to undo the effects of TAilor clearing all of its data due to manual editing of data.
+* `undo` can only undo the effects of an `add`, `delete`, `edit`, `clear`, `newtask`, `deltask` and `set-default-group` commands.
+* Once you undo and enter a new `add`, `delete`, `edit`, `clear`, `newtask`, `deltask` or `set-default-group` command, the state that was undone will not be accessible via `redo` anymore.
+* Note the `undo` command will **not** be able to undo the effects of TAilor clearing all of its data caused by incorrect manual editing of data while the app is closed.
 
 Example:
 
-Let the initial state of the list contain these 3 students: Alex, Bernice, Charlotte.
+Let the initial state of the list contain these 3 students: Alex, Bernice, Charlotte and David.<br>
+
 ![Initial State](images/undocommandUG/initial_state.png)
 
-After `delete 1`, we will delete Alex and the list will not have Alex anymore.
+After `delete 1`, we will delete Alex and the list will not have Alex anymore.<br>
+
 ![Before Undo](images/undocommandUG/before_undo.png)
 
-After `undo`, the list will return to having Alex in it
+After `undo`, the list will return to having Alex in it<br>
+
 ![Initial State](images/undocommandUG/initial_state.png)
 
-After a `redo`, the list will return to the state where Alex was deleted
+After a `redo`, the list will return to the state where Alex was deleted<br>
+
 ![Before Undo](images/undocommandUG/before_undo.png)
 
 ### Mail commands
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-Mails a student from the student list based on the index number shown in the application.
+<div markdown="span" class="alert alert-primary">:bulb: **Before you use mail commands :**
+These mail commands use your system's default mail application. If none was found or set, your computer will prompt you
+for an application to use. To use your preferred mail app, please ensure that the specified app is set as the default in
+your computer settings.
+</div>
+
+#### Mailing students based on their index: `mail-index`
+
+Mails a particular student from the student list based on the index number.
 
 Format: `mail-index INDEX`
 
+* Mails the student at the specified `INDEX`. This index refers to the index number shown in the displayed student list.
+* The index **must be a positive integer** (1, 2, 3, …​) and should be one of the indexes displayed. Negative examples include:
+    * `mail-index 0` produces an error, as 0 is not a positive integer
+    * `mail-index 100` for a student list with less than 100 students, will produce an error as there is no 100<sup>th</sup> student
 * This opens the default email application on the system with the specified mail address pre-filled at the receiver's
   address.
 
@@ -439,17 +486,18 @@ Example:
 
 #### Mailing students based on arguments: `mail-x`
 
-Mails a subset of students from the contact list. This is a broader version of mail functionality as it can
-cover multiple students at once in order to mail them simultaneously.
+Mails multiple students from the contact list. This is a broader version of the mail functionality.
 
 Format: `mail-x [e/EMAIL] [g/GROUP] [m/MOD] [n/NAME]`
 
 * This opens the default email application on the system with all the mail addresses specified by the arguments.
 * Anyone who matches at least one of the specified arguments will be included in the mailing list.
 * This can be used to specify multiple prefix based arguments to send the same mail in a single go.
+* At least one of the optional fields must be provided.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
-mail-x must have at least one prefix based argument passed.
+`mail-x` supports only email, group, mod and name based prefix arguments to collate email addresses. 
+All other attributes of a student are not supported.
 </div>
 
 Example:
@@ -472,12 +520,12 @@ Format: `mail-all`
 
 #### Adding a new task: `newtask`
 
-Adds a new Task with a given description and deadline.
+Adds a new Task with the given description and deadline.
 
 Format: `newtask DESCRIPTION by/DATETIME`
 
 * Description must be non-empty. Ie, it cannot consist of all spaces.
-* DATETIME has to be in the format of : `YYYY-MM-DDThh:mm`. The format for this is shown below:
+* `DATETIME` has to be in the format of : `YYYY-MM-DDThh:mm`. The format for this is shown below:
 
 | Symbol        | What it represents    | Example                                                              |
 |---------------|-----------------------|----------------------------------------------------------------------|
@@ -492,7 +540,7 @@ Format: `newtask DESCRIPTION by/DATETIME`
 
 The Time and Date being input must be valid. Ie, it is not possible to input a task
 with a deadline of 31st February.<br>
-It is also possible to create tasks that have a deadline before the current time, for task-tracking purposes! 
+It is also possible to create tasks that have a deadline before the current time, for task-tracking purposes!
 
 </div>
 
@@ -504,6 +552,9 @@ Note:
 Examples:
 * `newtask Do Homework by/2022-03-21T23:59` creates a task with description of "Do Homework" and is due on 21 March 2022, 11:59pm.
 * `newtask Check Alex's lab 4 by/2022-03-31T23:59` creates a task with description "Check Alex's lab 4" and is due on 31 March 2022, 11:59pm
+<br>
+
+
   ![result for `newtask Check Alex's lab 4 by/2022-03-31T23:59`](images/newTask-okay.png)
 
 
@@ -513,14 +564,13 @@ Deletes the specified task from the task list.
 
 Format: `deltask INDEX`
 
-* Deletes the task at the specified `INDEX`.
-* The index refers to the index number shown in the displayed task list.
-* The index **must be a positive integer** (ie 1, 2, 3, …​) and should be any one of the indexes displayed! Negative examples include:
-    * `delete 0` produces an error, as 0 is not a positive integer
-    * `delete 300` for a task list with less than 300 tasks, will produce an error as there is no 300<sup>th</sup> task
+* Deletes the task at the specified `INDEX`. This index refers to the index number shown in the displayed task list.
+* The index **must be a positive integer** (ie 1, 2, 3, …​) and should be one of the indexes displayed. Negative examples include:
+    * `deltask 0` produces an error, as 0 is not a positive integer
+    * `deltask 100` for a task list with less than 100 tasks, will produce an error as there is no 100<sup>th</sup> task
 
 (Positive) Examples:
-* `delete 2` with a task list of at least 2 tasks, deletes the 2nd task in the task list.
+* `deltask 2` with a task list of at least 2 tasks, deletes the 2nd task in the task list.
 
 
 
@@ -529,11 +579,20 @@ Format: `deltask INDEX`
 
 #### Exiting TAilor: `exit`
 
-Simply type exit to close the application. All of your data will be stored if no unforeseen errors have occurred!
+Simply type `exit` in the command box to close the application. All of your data will be stored if no unforeseen errors have occurred.
 
 #### Clearing all entries: `clear`
 
-Clears all entries from the student roster.
+Clears all entries from TAilor's database.
+
+<div markdown="span" class="alert alert-primary">:exclamation: **Caution:**
+
+Please be reminded that using the `clear` command clears all the information present in TAilor's database; this includes
+the Student list, the Module list and also your tasks on the task manager. The `clear` command, however, is reversible
+with the aid of `undo` command.
+
+</div>
+
 
 Format: `clear`
 
@@ -562,32 +621,34 @@ There is no need to save it manually.
 ### Editing the data file
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-TAilor's data is saved as three JSON files. The first being ContactList's data as `[JAR file location]/data/contactlist.
-json` and the second being Task List's data saved as `[JAR file location]/data/tasklist.json`. And finally,
-ModuleList's data being saved as `[JAR file location]/data/modulelist.json`
+TAilor's data is saved as three JSON files. 
+
+* The first being Student List's data as `[JAR_file_location]/data/contactlist.json`,
+* The second being Task List's data saved as `[JAR_file_location]/data/tasklist.json` and
+* The Module List's data being saved as `[JAR_file_location]/data/modulelist.json`
+
 Advanced users are welcome to update the data directly by editing those data files.
 
 <div markdown="span" class="alert alert-warning"> :exclamation: **Caution:**
-If your changes to the data file makes its format invalid (e.g., deleting the field of a task), TAilor will discard data in all 3 files and start
-with no data at the next run. It is suggested that users manually backup copies of these files before directly editing
-any of these files.
-
-To reset the files, perform any command that changes the contact list or task list (ie add new task, add new contact).
+If your changes to the data file makes its format invalid (e.g., deleting the field of a task), TAilor will discard data in all 
+3 files and start with no data on the next run. It is suggested that users back up copies of these files manually, before editing any of them.
+<br>
+To reset the files, perform any command that changes the contact list or task list (ie add new task, add new contact).<br>
 WARNING: This will override the pre-existing data with the new data you entered.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## **FAQ**
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the
-file that contains the data of your previous TAilor home folder!
+**A**: Download and run TAilor on your other computer and overwrite all 3 data files created with the data files that contains
+the data of your previous TAilor usage, as found in the locations mentioned in the above section on [editing data files.](#editing-the-data-file)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Prefix usage table
+## **Prefix usage table**
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 | Prefix | What it means  | Usage requirements                                                                                                                                                                                                                                            | Example Usages                               |
@@ -601,7 +662,7 @@ file that contains the data of your previous TAilor home folder!
 | by/    | Deadline       | Must be in the format of YYYY-MM-DDThh:mm, more details are under the [`newtask` command](#adding-a-new-task-newtask).                                                                                                                                        | by/2022-03-21T15:21 <br> by/2011-12-01T03:17 |
 
 ---
-## Command summary
+## **Command summary**
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 | Action                | Format, Examples                                                                                                                                                                                                                         |
@@ -609,7 +670,7 @@ file that contains the data of your previous TAilor home folder!
 | **Help**              | `help`, `help list`, `help mail-x`                                                                                                                                                                                                       |
 | **List**              | `list`                                                                                                                                                                                                                                   |
 | **Add**               | `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MODULE g/GROUP [t/TAG]…​` or `add n/NAME a/STUDENT_NUMBER e/EMAIL m/MODULE [g/GROUP] [t/TAG]…​` <br> e.g., `add n/James Ho a/A1234567Y e/jamesho@example.com m/CS2100 g/W12 t/friend t/colleague` |
-| **Import csv**        | `import-csv [PATH_TO_CSV_FILE]`                                                                                                                                                                                                          |                                                                                                                                                         |
+| **Import csv**        | `import-csv PATH_TO_CSV_FILE`<br> e.g. `import-csv C:\Users\Alice\Downloads\file.csv`                                                                                                                                                    |                                                                                                                                                         |
 | **Edit**              | `edit INDEX [n/NAME] [a/STUDENT_NUMBER] [e/EMAIL] [m/MODULE] [g/GROUP] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                   |
 | **Delete**            | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                      |
 | **Set Default Group** | `set-default-group m/MOD g/GROUP` <br> e.g., `set-default-group m/CS2103T g/W12-1`                                                                                                                                                       |

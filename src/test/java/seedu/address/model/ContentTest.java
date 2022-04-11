@@ -11,6 +11,7 @@ import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.person.UniqueModuleList;
 import seedu.address.testutil.PersonBuilder;
 
 class ContentTest {
@@ -23,8 +24,10 @@ class ContentTest {
 
     @Test
     void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Content(null, getTypicalTaskList()));
-        assertThrows(NullPointerException.class, () -> new Content(getTypicalContactList(), null));
+        assertThrows(NullPointerException.class, () -> new Content(null, getTypicalTaskList(),
+                new UniqueModuleList()));
+        assertThrows(NullPointerException.class, () -> new Content(getTypicalContactList(), null,
+                new UniqueModuleList()));
     }
 
     @Test
@@ -46,14 +49,16 @@ class ContentTest {
 
     @Test
     void testEquals() {
-        assertEquals(typicalContent, new Content(getTypicalContactList(), getTypicalTaskList()));
+        assertEquals(typicalContent, new Content(getTypicalContactList(), getTypicalTaskList(),
+                new UniqueModuleList()));
     }
 
     @Test
     void testNotEquals() {
         ContactList editedContactList = new ContactList(getTypicalContactList());
-        editedContactList.addPerson(new PersonBuilder(ALICE).withName("TEST").build());
-        Content editedContent = new Content(editedContactList, getTypicalTaskList());
+        editedContactList.addPerson(new PersonBuilder(ALICE).withName("TEST")
+                .withStudentNumber("A0000000Q").withEmail("x@xdqx").build());
+        Content editedContent = new Content(editedContactList, getTypicalTaskList(), new UniqueModuleList());
         assertNotEquals(typicalContent, editedContent);
     }
 }

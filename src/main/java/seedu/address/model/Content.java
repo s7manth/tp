@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.util.StringBuilderUtil;
+import seedu.address.model.person.UniqueModuleList;
 import seedu.address.model.tasks.PriorityTaskList;
 import seedu.address.model.tasks.ReadOnlyTaskList;
 
@@ -12,16 +13,20 @@ import seedu.address.model.tasks.ReadOnlyTaskList;
 public class Content {
     private final ContactList contactList;
     private final PriorityTaskList taskList;
+    private final UniqueModuleList moduleList;
 
     /**
      * Constructor for the Content class.
      * @param contactList contact list version of the content
+     * @param moduleList
      */
-    public Content(ReadOnlyContactList contactList, ReadOnlyTaskList taskList) {
+    public Content(ReadOnlyContactList contactList, ReadOnlyTaskList taskList, UniqueModuleList moduleList) {
         requireNonNull(contactList);
         requireNonNull(taskList);
+        requireNonNull(moduleList);
         this.contactList = new ContactList(contactList);
         this.taskList = new PriorityTaskList(taskList);
+        this.moduleList = new UniqueModuleList(moduleList);
     }
 
     /**
@@ -30,7 +35,7 @@ public class Content {
      * @param otherContent other content to create a copy of
      */
     public static Content getContentCopy(Content otherContent) {
-        return new Content(otherContent.getContactList(), otherContent.getTaskList());
+        return new Content(otherContent.getContactList(), otherContent.getTaskList(), otherContent.getModuleList());
     }
 
     /**
@@ -41,10 +46,17 @@ public class Content {
     }
 
     /**
-     * Returns the taskList
+     * Returns the Task List.
      */
     public ReadOnlyTaskList getTaskList() {
         return new PriorityTaskList(this.taskList);
+    }
+
+    /**
+     * Returns the Module List.
+     */
+    public UniqueModuleList getModuleList() {
+        return this.moduleList;
     }
 
     @Override
@@ -54,9 +66,10 @@ public class Content {
         } else if (other instanceof Content) { // instance of handles nulls
             Content otherContent = (Content) other;
 
-            // checks both contactList and taskLists are the same
+            // checks contactList, taskLists and moduleLists are the same
             return contactList.equals(otherContent.getContactList())
-                    && taskList.equals(otherContent.getTaskList());
+                    && taskList.equals(otherContent.getTaskList())
+                    && moduleList.equals(otherContent.getModuleList());
         }
 
         return false;

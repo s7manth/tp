@@ -5,6 +5,7 @@ import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
 
 import seedu.address.model.ContactList;
 import seedu.address.model.Content;
+import seedu.address.model.person.UniqueModuleList;
 import seedu.address.model.tasks.PriorityTaskList;
 
 /**
@@ -20,11 +21,11 @@ public class ContentBuilder {
      * Creates a Content object with empty contact list and task list.
      */
     public ContentBuilder() {
-        this.content = new Content(new ContactList(), new PriorityTaskList());
+        this.content = new Content(new ContactList(), new PriorityTaskList(), new UniqueModuleList());
     }
 
     public ContentBuilder(ContactList contactList, PriorityTaskList taskList) {
-        this.content = new Content(contactList, taskList);
+        this.content = new Content(contactList, taskList, new UniqueModuleList());
     }
 
     public Content build() {

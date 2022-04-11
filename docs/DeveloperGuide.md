@@ -121,6 +121,10 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 How the parsing works:
 * When called upon to parse a user command, the `TailorParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `TailorParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* The following Figure 8 depicts parsing in action:
+
+<img alt="ParsingSequenceDiagram.png" src="images/ParsingSequenceDiagram.png" width="1000"/>
+<b>Fig.8 - parsing of commands taking in arguments</b>
 
 ### Model component
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -128,21 +132,22 @@ How the parsing works:
 **API** : [`Model.java`](https://github.com/AY2122S2-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 
-<img src="images/ModelClassDiagramV3.png" width="550" />
+<img src="images/ModelClassDiagram.png" width="550" />
 
 
 The `Model` component,
 
-* stores the content data i.e., all `Person` and `Task` objects (which are contained in a `UniquePersonList` and `PriorityTaskList` object).
+* stores the content data i.e., all `Person`, `Task` and `Module` objects (which are contained in a `UniquePersonList`, `PriorityTaskList` and `UniqueModuleList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores the task list data i.e., all `Task` objects (which are contained in a `PriorityTaskList` object).
+* stores the module list data and its default group mappings (in a `UniqueModuleList` object)
 * stores a `VersionedContents` object that stores the previous states of content data (to support `undo`/`redo`)
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-`VersionedContents` stores versions of the `Content` object, which in turn stores a `ContactList` and `PriorityTaskList` object. The class diagram for VersionedContents can be found below.
+`VersionedContents` stores versions of the `Content` object, which in turn stores a `ContactList`, `PriorityTaskList` and `UniqueModuleList` object. The class diagram for VersionedContents can be found below.
 
-<img src="images/VersionedContentsClassDiagram.png" width="250" />
+<img src="images/VersionedContentsDiagram.png" width="250" />
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects. This diagram is also truncated slightly as it does not show the Task classes.<br>
 
@@ -156,7 +161,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/AY2122S2-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagramV2.png" width="550" />
+<img src="images/StorageClassDiagramV3.png" width="550" />
 
 The `Storage` component,
 * can save contact list data, task list data and user preference data in json format, and read them back into corresponding objects.
@@ -180,8 +185,8 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-This Task Manager feature is implemented similarly to how commands interact with the XYZManagers,
-as seen in the [architecture](#architecture).
+This Task Manager feature is implemented similarly to how commands interact with the XYZManagers and the contact list,
+as seen in the [architecture section](#architecture).
 Below shows the important classes that were created:
 
 | Logic                   | Model                  | Storage                  | UI            |
@@ -203,7 +208,8 @@ For example, LogicManager now tries to save to the storage's contact list and ta
             storage.saveTaskList(model.getTaskList());
 ```
 
-The following sequence diagram also shows how the newTask operation works in more detail:
+Users also now have 2 additional commands to add new tasks and delete existing tasks, and
+the following sequence diagram shows how the new task command works in more detail:
 
 <img src="images/newTask-SequenceDiagram.png" width="1000" />
 
@@ -234,8 +240,8 @@ The current Task List uses a manually implemented priority system internally to 
   * An example would be to include a new `TaskListStorage` Interface for the `Storage` Interface to extend from. This
     hence provides the methods and an interface/facade for other parts of the code to perform task list operations on.
   * Another example would be how the Description and Deadlines for a `Task` are represented as individual classes instead
-    of a String and a non-wrapped LocalDateTime, respectively. This is similar to how `Person` wraps the individual person
-    attributes like Name and Phone. This also allows the Description and Deadline objects to be created separately and
+    of a String and a non-wrapped LocalDateTime, respectively. This is similar to how `Person` wraps the individual student
+    attributes like Name and Email. This also allows the Description and Deadline objects to be created separately and
     allow for finer control over the codebase.
 
 ### Undo/redo feature
@@ -257,11 +263,11 @@ Step 1. The user launches the application for the first time. The `VersionedCont
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the contact list. The `delete` command calls `Model#commitContent()`, causing the modified state of the content after the `delete 5` command executes to be saved in the `contentStateList`, and the `currentStatePointer` is shifted to the newly inserted content state.
+Step 2. The user executes `delete 5` command to delete the 5th student in the contact list. The `delete` command calls `Model#commitContent()`, causing the modified state of the content after the `delete 5` command executes to be saved in the `contentStateList`, and the `currentStatePointer` is shifted to the newly inserted content state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitContent()`, causing another modified content state to be saved into the `contentStateList`.
+Step 3. The user executes `add n/David …​` to add a new student. The `add` command also calls `Model#commitContent()`, causing another modified content state to be saved into the `contentStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -269,7 +275,7 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoContents()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous content state, and restores the content to that state.
+Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoContents()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous content state, and restores the content to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -317,7 +323,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 We decided to go with alternative 1 as the memory usage expected of TAilor is not high, since users are not expected to
@@ -325,11 +331,67 @@ enter many content committing comments. The expected memory usage is not high as
 ModuleList are generally not space intensive.
 
 Another drawback for alternative 2 was undoing a command by doing its reverse implementation might not return it to the
-same state. For example, after `delete 1`, we might save the person just deleted, and set `add "person"` as the `undo`
-functionality. However, if we do `add "person"`, the person will be added to the end of the list, which does not exactly
+same state. For example, after `delete 1`, we might save the student just deleted, and set `add "student"` as the `undo`
+functionality. However, if we do `add "student"`, the student will be added to the end of the list, which does not exactly
 `undo` the effect of the original `delete 1`.
 
-### Mailing feature 
+### Import CSV feature
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
+
+##### Aim of the feature
+
+CSV files are by far one of the most commonly used formats for organizing large
+amounts of data in an efficient manner. Since they are plain text files, they are
+easier to transfer onto a spreadsheet or another storage database regardless of
+the software being used. Since LumiNUS provides a way to import student data from CSV files,
+the user would not have to go through the repeated, error-prone process of
+manually adding each student's data to the database. `import-csv` automates this process and provides
+a one-command solution to this problem.
+
+#### Implementation
+
+The following classes were created in the process of implementing the `import-csv`
+command :
+
+| Logic                  | Commons |
+|------------------------|---------|
+| ImportCsvCommand       | CsvUtil |
+| ImportCsvCommandParser |         |
+
+The external library used for reading CSV files is OpenCSV. OpenCSV supports a host of functions that allow one to
+manipulate and work with CSV files. The command utilizes the `CSVReader` from the library to read the files.
+
+One important assumption made while implementing the `import-csv` command is that the files are expected to conform to
+the format defined by LumiNUS (the learning management system used by NUS). This however, can be modified and extended
+to cater to other systems as well.
+
+ImportCsvCommand takes in the path argument for the CSV file, which is parsed to retrieve the contents and load them
+into TAilor's database. Exception handling has been done alongside checks (file not found, io, csvvalidation etc)
+
+#### Design Considerations
+
+**Aspect: Defensive Coding**
+
+* The import-csv command has been created in a manner that checks for most possible places where the user could go wrong
+and provides guidance to correct them through the error messages and the user guide section. This command is designed to
+be very easy to use for the current target users, which are TAs teaching a NUS module which implies that they would have 
+manager access on LumiNUS. The student database exported from LumiNUS conforms exactly to our csv file requirements and
+hence, any beginner user would be able to successfully use this command as long as they follow the directions provided
+in the user guide.
+
+**Aspect: Usability and Improved User Experience**
+
+* One great feature that the import-csv focuses on is that it adds student contacts from the csv file **additively** to
+the student list. Essentially, if some student details already exist in the roster then importing a csv file would not
+replace the previous students' data but instead extend the list. This is extremely useful for TAs who are teaching more
+than one module and would get different excel files from LumiNUS. To prevent increasing administrative requirements on
+user's end, we will not need them to merge the files on their end, instead they can convert their excel sheets to csv
+and simply import one after the other. As such if the user prefers updating their csv locally and importing again then
+the command handles that situation too by ignoring duplicate students and simply importing the new updates.
+
+
+### Mailing feature
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 #### Aim of the feature
 This feature forms an integral part of automating communication for the user with the contacts present in the
@@ -405,20 +467,15 @@ about repeatedly entering the same group value for several students over an exte
 #### Implementation
 The following classes were created in the process of implementing the `set-default-group` command:
 
-Logic:
-* SetDefaultGroupCommand (and its parser)
 
-Model:
-* ModuleList
-* UniqueModuleList
-* DuplicateModuleException
-* ModuleNotFoundException
+| Logic                   | Model                    | Storage                    |
+|-------------------------|--------------------------|----------------------------|
+| SetDefaultCommand       | DuplicateModuleException | ModuleListStorage          |
+| SetDefaultCommandParser | ModuleNotFoundException  | JsonModuleListStorage      |
+|                         | ModuleList               | JsonSerializableModuleList |               
+|                         | UniqueModuleList         | JsonAdaptedModule          |               
 
-Storage:
-* JsonAdaptedModule
-* JsonModuleListStorage
-* JsonSerializableModuleList
-* ModuleListStorage
+
 
 The core idea behind this implementation is that there exists an empty `UniqueModuleList` which is a list of `Mod`.
 Every Mod object has a `defaultGroup` attribute that initially is unassigned. Once the user enters the command
@@ -435,7 +492,9 @@ For example, LogicManager now tries to save to the storage's moduleList as well:
             storage.saveModuleList(model.getModuleList());
 ```
 
-The sequence diagram for the command `set-default-group m/CS2103T g/W12-1` follows:
+
+The sequence diagram for the command `set-default-group m/CS2103T g/W12-1` follows the parsing as mentioned in Fig 8.0
+above and the specific functioning of the command can be found in the sequence diagram below:
 
 <img src="images/SetDefaultSequenceDiagram.png" width="1000"/>
 
@@ -515,7 +574,7 @@ the pointer by 1, pointing it to `"delete 1"`. The text in `CommandBox` will cha
 ![PreviousInputState4](images/PreviousInputState4.png)
 
 Step 6. When the user presses the &darr; button, the `CommandBox` will call `getNextUserInput()`, which increments the
-pointer by 1, pointing it to "delet 1". The text in the `CommandBox` will update to "delet 1".
+pointer by 1, pointing it to "delete 1". The text in the `CommandBox` will update to "delete 1".
 
 ![PreviousInputState3](images/PreviousInputState3.png)
 
@@ -599,14 +658,14 @@ ensure that it does not process erroneous input.
 
 **Target user profile**:
 
-* is a teaching assistant for a computing course
-* has a need to manage a significant number of contacts
+* is a teaching assistant from the School of Computing
+* has a need to manage a significant number of students/contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: The app will help to facilitate a Teaching Assistant’s journey within a single module, particularly with some tedious administrative tasks.
+**Value proposition**: The app will help to facilitate a Teaching Assistant’s journey for multiple modules, particularly with some tedious administrative tasks.
 
 
 ### User stories
@@ -727,12 +786,12 @@ Priorities: High (must have), Medium (nice to have), Low (unlikely to have)
 ### Non-Functional Requirements
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. The code should be open source.
-5. Should not require internet connection.
-
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 students without a noticeable sluggishness in performance for typical usage.
+3. Should be able to hold up to 100 tasks without a noticeable sluggishness in performance for typical usage.
+4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+5. The code should be open source.
+6. Should not require internet connection.
 *{More to be added}*
 
 ### Glossary
@@ -763,34 +822,172 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+      * Double-click the jar file OR:
+      * Open the terminal on your PC and move to the directory where `TAilor.jar` is contained in. Then, run `java -jar TAilor.jar`
+      the application. We recommend macOS users to use this method of starting the application to avoid errors.
+   
+   4. Expected: Shows the GUI with a set of sample contacts/students and tasks. The window size may not be optimum.
 
-1. Saving window preferences
+2. Closing the application
+
+    1. Type in `exit` in the input/command box
+
+    2. Press the close button for the application at the top right corner of the window.
+
+3. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
-### Deleting a person
+### Adding a student
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-1. Deleting a person while all persons are being shown
+1. Adding a student using the `add` command.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Preqrequisites: User needs to have the details of the following attributes of a student:
+      * Name (e.g. Alex)
+      * Student Number (e.g. A1234567B)
+      * Email (e.g. alex@example.com)
+      * Module (e.g. CS2030S)
+      * Group (e.g. 10G)
+      
+   2. Test case: `add n/Alex a/A0001112B e/alex@example.com m/CS2030S g/10G` when there are already 2 students in the list<br>
+      Expected: A new student with name `Alex`, student number `A1234567B`, email `alex@example.com`, module `CS2030S` and group `10G` is added
+      to the student list. The index number assigned to `Alex` will be 3, the last pre-existing student + 1.<br>
+      Details of the added student will be shown in the feedback box.
+
+   4. Test case: `add n/Bob a/A0001112B e/bob@example.com m/CS2030S g/10G` when there are already 3 students in the list, including Alex above.<br>
+      Expected: No new student will be added, as the provided student number already belongs to someone in the list (Alex, from the above test case).
+      Error details are shown in the feedback box.
+
+   5. Test case: `add n/Alexis a/A0001113B e/alex@example.com m/CS2030S g/10G` when there are already 3 students in the list, including Alex above.<br>
+      Expected: No new student will be added, as the provided email address already belongs to someone in the list (Alex, from the above test case).
+      Error details are shown in the feedback box.
+   
+   6. Test case: `add a/A0001114B e/charles@example.com m/CS2030S g/10G` without conflicting student number and emails present in the list.<br>
+      Expected: No new student will be added, as there is no name provided.
+      Error details are shown in the feedback box.
+
+   7. Test case: `add n/Dickson e/dson@example.com m/CS2030S g/10G` without conflicting student number and emails present in the list.<br>
+      Expected: No new student will be added, as there is no student number provided.
+      Error details are shown in the feedback box.
+
+   8. Test case: `add n/Eliza a/A0001115B m/CS2030S g/10G` without conflicting student number and emails present in the list.<br>
+      Expected: No new student will be added, as there is no email address provided.
+      Error details are shown in the feedback box.
+
+   9. Test case: `add n/Felicia a/A0001116B e/felicia@example.com g/10G` without conflicting student number and emails present in the list.<br>
+      Expected: No new student will be added, as there is no module provided.
+      Error details are shown in the feedback box.
+
+   10. Test case: `add n/George a/A0001117B e/george@example.com m/CS2030S` when there is **no** default group set for the module `CS2030S`,
+       and without any conflicting student number and emails present in the list.<br>
+       Expected: No new student will be added, as there is no group provided.
+       Error details are shown in the feedback box.
+
+   11. Test case: `add n/Hector a/A0001118B e/hectorzz@example.com m/CS2030S` when there **is** a default group set for the module `CS2030S`, for example `Group1`.
+       Also, there are no conflicting student number and emails present in the list, that currently contains 3 people.<br>
+       Expected: A new student with name `Hector`, student number `A0001118B`, email `hectorzz@example.com`, module `CS2030S` and group `Group1` is added
+       to the student list. The index number assigned to `Hector` will be 4, the last pre-existing student + 1.<br>
+       Details of the added student will be shown in the feedback box.
+
+
+
+2. Adding multiple students using the `import-csv` command
+
+   1. KASHISH PLEASE ADD THIS PART
+
+### Editing a student
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
+
+1. Editing an existing student in the student list.
+
+   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+
+   2. Test case: `edit 1 n/Bob` when the first student in the list has a name of `Alex`.<br>
+      Expected: The name of the first student is edited, from `Alex` to `Bob`. Details of the edit are shown in the feedback message.
+
+   3. Test case: `edit 0 n/Bob`<br>
+      Expected: No student is edited. Error details shown in the status message.
+
+   4. Other incorrect delete commands to try: `edit`, `edit x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+   5. Test case: `edit 1` with at least 1 student in the list.<br>
+      Expected: Similar to previous, as there are no arguments specified to be edited
+
+   5. ADD MORE FOR THE OTHER ATTRIBUTES, AND MAKE SURE WE MENTION TAG IS REMOVED/REPLACED
+
+
+### Deleting a student
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
+
+1. Deleting a student while all students are being shown.
+
+   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First student is deleted from the list. Details of the deleted student shown in the feedback message.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No student is deleted. Error details shown in the status message.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. Deleting a student while only some students are shown.
+
+   1. Prerequisites: Find some students using the `find` command. Multiple students in the list, depending on the result of the `find` command.
+    
+   2. Test case: `delete 1`<br>
+      Expected: First student is deleted from the list. Details of the deleted student shown in the feedback message. Performing a `list` command will also show that the deleted student is no longer in the list.
+
+   3. Test case: `delete 0`, `delete`, `delete x`, `...` <br>
+      Expected: Similar to the erroneous test cases from the list command above.
+
+### Creating a Task
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
+
+1. Creating a new task to keep track of.
+
+   1. Prerequisites: Brief description and deadline of the task should be known.
+
+   2. Test case: `newtask Do Homework by/2022-01-03T16:30` when there are already 2 tasks in the task list.<br>
+      Expected: A new task with description `Do Homework` and deadline of 3 January 2022, 4:30pm will be added to the task list.
+      The index number assigned to this task will be 3, the last pre-existing task + 1.<br>
+      Details of the added task will be shown in the feedback box.
+
+   3. Test case: `newtask Mark Tutorial`<br>
+      Expected: No task is added as no deadline is provided. Error details shown in the status message.
+
+   4. Test case: `newtask by/2022-02-04T17:29`<br>
+      Expected: No task is added as no description is provided. Error details shown in the status message.
+
+   5. Test case: `newtask Mark Lab 1 by/2022-02-04 17:29`<br>
+      Expected: No task is added as the provided date format is incorrect. Error details shown in the status message.
+
+   6. Test case: `newtask Mark Lab 1 by/2022-02-29T17:29`<br>
+      Expected: No task is added as 2022 is not a leap year, and has no Feb 29. Error details shown in the status message.
+
+
+### Deleting a Task
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
+
+1. Deleting a task from the task list.
+
+    1. Prerequisites: Multiple tasks in the task list.
+
+    1. Test case: `del-task 1`<br>
+       Expected: First task is deleted from the list. Details of the deleted task shown in the feedback message.
+
+    1. Test case: `del-task 0`<br>
+       Expected: No task is deleted. Error details shown in the status message.
+
+    1. Other incorrect delete task commands to try: `del-task`, `del-task x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
 
 ### Saving data
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
