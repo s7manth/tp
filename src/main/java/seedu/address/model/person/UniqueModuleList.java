@@ -15,6 +15,23 @@ public class UniqueModuleList implements Iterable<Mod> {
 
     private ObservableList<Mod> internalList = FXCollections.observableArrayList();
 
+    public UniqueModuleList() {
+    }
+
+    /**
+     * Constructs a UniqueModuleList with a given UniqueModuleList to copy from.
+     *
+     * @param other the UniqueModuleList to copy from.
+     */
+    public UniqueModuleList(UniqueModuleList other) {
+        requireNonNull(other);
+        this.internalList.clear();
+
+        for (Mod m : other) {
+            this.internalList.add(new Mod(m.getMod(), m.getDefaultGroup()));
+        }
+    }
+
     /**
      * Returns true if the list contains a module with the same code as the given argument.
      */
@@ -74,5 +91,16 @@ public class UniqueModuleList implements Iterable<Mod> {
 
     public ObservableList<Mod> getInternalList() {
         return internalList;
+    }
+
+    /**
+     * Resets the module list to the given module list.
+     * @param ml The module list to reset to.
+     */
+    public void resetData(UniqueModuleList ml) {
+        this.internalList.clear();
+        for (Mod m : ml) {
+            this.internalList.add(m);
+        }
     }
 }

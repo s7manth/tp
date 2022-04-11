@@ -436,8 +436,8 @@ Undoes or redoes a previously entered command that changed a student or task.
 
 Format: `undo` or `redo`
 
-* `undo` can only undo the effects of an `add`, `delete`, `edit`, `clear`, `newtask` and `deltask` commands.
-* Once you undo and enter a new `add`, `delete`, `edit`, `clear`, `newtask` or `deltask` command, the state that was undone will not be accessible via `redo` anymore.
+* `undo` can only undo the effects of an `add`, `delete`, `edit`, `clear`, `newtask`, `deltask` and `set-default-group` commands.
+* Once you undo and enter a new `add`, `delete`, `edit`, `clear`, `newtask`, `deltask` or `set-default-group` command, the state that was undone will not be accessible via `redo` anymore.
 * Note the `undo` command will **not** be able to undo the effects of TAilor clearing all of its data due to manual editing of data.
 
 Example:
@@ -583,7 +583,16 @@ Simply type `exit` in the command box to close the application. All of your data
 
 #### Clearing all entries: `clear`
 
-Clears all entries from the student list.
+Clears all entries from TAilor's database.
+
+<div markdown="span" class="alert alert-primary">:exclamation: **Caution:**
+
+Please be reminded that using the `clear` command clears all the information present in TAilor's database; this includes
+the Student list, the Module list and also your tasks on the task manager. The `clear` command, however, is reversible
+with the aid of `undo` command.
+
+</div>
+
 
 Format: `clear`
 
@@ -592,9 +601,9 @@ Format: `clear`
 ### Shortcuts
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-| Button    | Result                                                               |
-|-----------|----------------------------------------------------------------------|
-| &#8593; | Refills command textbox with previous entered command                |
+| Button  | Result                                                                 |
+|---------|------------------------------------------------------------------------|
+| &#8593; | Refills command textbox with previous entered command                  |
 | &#8595; | Refills command textbox with the command entered after the current one |
 
 Example:

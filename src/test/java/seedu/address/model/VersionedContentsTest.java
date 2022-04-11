@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniqueModuleList;
 import seedu.address.model.tasks.PriorityTaskList;
 import seedu.address.testutil.ContentBuilder;
 
@@ -65,7 +66,7 @@ class VersionedContentsTest {
     void undo() {
         List<Person> newPersons = List.of(ALICE);
         ContactListStub newData = new ContactListStub(newPersons);
-        Content content = new Content(newData, new PriorityTaskList());
+        Content content = new Content(newData, new PriorityTaskList(), new UniqueModuleList());
         VersionedContents emptyVersionedContents = new VersionedContents(emptyContent);
 
         emptyVersionedContents.addContentVersion(content);
@@ -77,7 +78,7 @@ class VersionedContentsTest {
     void redo() {
         List<Person> newPersons = List.of(ALICE);
         ContactListStub newData = new ContactListStub(newPersons);
-        Content content = new Content(newData, new PriorityTaskList());
+        Content content = new Content(newData, new PriorityTaskList(), new UniqueModuleList());
         VersionedContents emptyVersionedContents = new VersionedContents(emptyContent);
 
         emptyVersionedContents.addContentVersion(content);

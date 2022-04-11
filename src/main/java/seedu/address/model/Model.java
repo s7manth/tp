@@ -185,4 +185,6 @@ public interface Model {
      * {@code task} must not already exist in the task manager.
      */
     void addTask(Task task);
+
+    void setModuleList(UniqueModuleList moduleList);
 }

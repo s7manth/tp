@@ -17,6 +17,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.UniqueModuleList;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.address.model.tasks.PriorityTaskList;
 import seedu.address.testutil.ContactListBuilder;
@@ -117,7 +118,8 @@ public class ModelManagerTest {
         modelManager.commitContent();
         modelManager.undoContents();
 
-        assertEquals(modelManager.getCurrentContent(), new Content(new ContactList(), new PriorityTaskList()));
+        assertEquals(modelManager.getCurrentContent(), new Content(new ContactList(), new PriorityTaskList(),
+                new UniqueModuleList()));
     }
 
     @Test
@@ -128,7 +130,8 @@ public class ModelManagerTest {
         modelManager.redoContents();
 
         ContactList contactListWithAlice = new ContactListBuilder().withPerson(ALICE).build();
-        assertEquals(modelManager.getCurrentContent(), new Content(contactListWithAlice, new PriorityTaskList()));
+        assertEquals(modelManager.getCurrentContent(), new Content(contactListWithAlice, new PriorityTaskList(),
+                new UniqueModuleList()));
     }
 
     @Test
@@ -139,7 +142,8 @@ public class ModelManagerTest {
 
     @Test
     public void getCurrentContent() {
-        assertEquals(modelManager.getCurrentContent(), new Content(new ContactList(), new PriorityTaskList()));
+        assertEquals(modelManager.getCurrentContent(), new Content(new ContactList(), new PriorityTaskList(),
+                new UniqueModuleList()));
     }
 
     @Test

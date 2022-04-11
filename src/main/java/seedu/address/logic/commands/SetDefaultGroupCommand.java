@@ -69,6 +69,7 @@ public class SetDefaultGroupCommand extends Command {
                 String prevDefault = model.retrievePrevDefault(matchingMod.get());
                 if (!prevDefault.equals(defaultValue)) {
                     model.setDefaultGroup(matchingMod.get(), defaultValue);
+                    model.commitContent();
                     return new CommandResult(String.format(MESSAGE_DEFAULT_UPDATE, mod, prevDefault, defaultValue));
                 } else {
                     return new CommandResult(String.format(MESSAGE_SAME_UPDATE, mod, prevDefault));
@@ -77,7 +78,9 @@ public class SetDefaultGroupCommand extends Command {
         } else {
             model.addMod(mod);
             model.setDefaultGroup(mod, defaultValue);
+            model.commitContent();
         }
+
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, mod, defaultValue));
     }
