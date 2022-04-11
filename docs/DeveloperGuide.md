@@ -1,7 +1,8 @@
 ---
 layout: page
-title: Developer Guide
+
 ---
+<h1 align="center">Developer Guide</h1>
 <div style="page-break-after: always;"></div>
 
 ## Table of Contents
@@ -75,7 +76,7 @@ Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
-
+<div style="page-break-after: always;"></div>
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <p align="center">
@@ -126,7 +127,7 @@ How the `Logic` component works:
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
-
+<div style="page-break-after: always;"></div>
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 <p align="center">
@@ -252,7 +253,7 @@ For example, LogicManager now tries to save to the storage's contact list and ta
             storage.saveContactList(model.getContactList());
             storage.saveTaskList(model.getTaskList());
 ```
-
+<div style="page-break-after: always;"></div>
 Users also now have 2 additional commands to add new tasks and delete existing tasks, and
 the following sequence diagram shows how the new task command works in more detail:
 
@@ -344,7 +345,7 @@ Step 4. The user now decides that adding the student was a mistake, and decides 
 than attempting to perform the undo.
 
 </div>
-
+<div style="page-break-after: always;"></div>
 The following sequence diagram shows how the undo operation works:
 
 <p align="center">
@@ -364,7 +365,7 @@ restore. The `redo` command uses `Model#canRedoContent()` to check if this is th
 to the user rather than attempting to perform the redo.
 
 </div>
-
+<div style="page-break-after: always;"></div>
 Step 5. The user then decides to execute the command `list`. Commands that do not modify the content, such as `list`, will usually not call `Model#commitContent()`, `Model#undoContents()` or `Model#redoContents()`. Thus, the `contentStateList` remains unchanged.
 
 <p align="center">
@@ -443,7 +444,7 @@ the software being used. Since LumiNUS provides a way to import student data fro
 the user would not have to go through the repeated, error-prone process of
 manually adding each student's data to the database. `import-csv` automates this process and provides
 a one-command solution to this problem.
-
+<div style="page-break-after: always;"></div>
 **Aspect: Defensive Coding**
 
 * The import-csv command has been created in a manner that checks for most possible places where the user could go wrong
@@ -492,21 +493,21 @@ students can be mailed in one go. The arguments act as the criteria based on whi
 considered to be a part of the mail group. The mail collation happens based on a descriptor class that takes care of
 processing the individual arguments. `mail-all` command is the solution if the user wants to email everyone
 in the contact list without any filters. This command allows the user to perform bulk emails.
-
+<div style="page-break-after: always;"></div>
 The following is the class diagram for the `MailIndexCommand` class :
 
 <p align="center">
 <img src="images/MailIndexClassDiagram.png" /> <br>
 <b>Fig. 22 - Summary of an execution of a new command</b>
 </p>
-
+<div style="page-break-after: always;"></div>
 The following sequence diagram shows how the `mail-x` operation works:
 
 <p align="center">
 <img src="images/MailXSequenceDiagram.png" /> <br>
 <b>Fig. 23 - Summary of an execution of a new command</b>
 </p>
-
+<div style="page-break-after: always;"></div>
 The following sequence diagram shows how the `mail-all` operation works:
 
 <p align="center">
@@ -576,7 +577,7 @@ For example, LogicManager now tries to save to the storage's moduleList as well:
             storage.saveModuleList(model.getModuleList());
 ```
 
-
+<div style="page-break-after: always;"></div>
 The sequence diagram for the command `set-default-group m/CS2103T g/W12-1` follows the parsing as mentioned in Fig 8.0
 above and the specific functioning of the command can be found in the sequence diagram below:
 
