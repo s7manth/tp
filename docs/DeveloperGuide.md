@@ -176,7 +176,7 @@ The `Model` component,
 <b>Fig. 10 - Structure of VersionedContents</b>
 </p>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects. This diagram is also truncated slightly as it does not show the Task classes.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ContactList`, which `Person` references. This allows `ContactList` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects. This diagram is also truncated slightly as it does not show the Task classes.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="550" /> <br>
 <b>Fig. 11 - A better Model class diagram</b>
@@ -251,7 +251,7 @@ the following sequence diagram shows how the new task command works in more deta
 
 <p align="center">
 <img src="images/newTask-SequenceDiagram.png" width="1000" /> <br>
-<b>Fig. 13 - Internal execution of a new task command</b>
+<b>Fig. 13 - Internal workings of a new task command</b>
 </p>
 
 The current Task List uses a manually implemented priority system internally to sort/rank the tasks.
