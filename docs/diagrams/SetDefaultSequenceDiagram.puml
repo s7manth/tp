@@ -33,14 +33,14 @@ alt module exists
     Model --> SetDefaultGroupCommand : matchingMod
     deactivate Model
 
-    alt if default group exists for Mod
+    alt default group exists for Mod
         SetDefaultGroupCommand -[#blue]> Model: retrievePrevDefault()
         activate Model
 
         Model --[#blue]> SetDefaultGroupCommand : prevDefault
         deactivate Model
 
-        alt if requested default is different from prevDefault
+        alt requested default is different from prevDefault
             SetDefaultGroupCommand -[#green]> Model : setDefaultGroup()
             activate Model
 
