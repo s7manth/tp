@@ -403,16 +403,6 @@ functionality. However, if we do `add "student"`, the student will be added to t
 ### Import CSV feature
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-##### Aim of the feature
-
-CSV files are by far one of the most commonly used formats for organizing large
-amounts of data in an efficient manner. Since they are plain text files, they are
-easier to transfer onto a spreadsheet or another storage database regardless of
-the software being used. Since LumiNUS provides a way to import student data from CSV files,
-the user would not have to go through the repeated, error-prone process of
-manually adding each student's data to the database. `import-csv` automates this process and provides
-a one-command solution to this problem.
-
 #### Implementation
 
 The following classes were created in the process of implementing the `import-csv`
@@ -435,25 +425,35 @@ into TAilor's database. Exception handling has been done alongside checks (file 
 
 #### Design Considerations
 
+**Aspect: Motivation**
+
+CSV files are by far one of the most commonly used formats for organizing large
+amounts of data in an efficient manner. Since they are plain text files, they are
+easier to transfer onto a spreadsheet or another storage database regardless of
+the software being used. Since LumiNUS provides a way to import student data from CSV files,
+the user would not have to go through the repeated, error-prone process of
+manually adding each student's data to the database. `import-csv` automates this process and provides
+a one-command solution to this problem.
+
 **Aspect: Defensive Coding**
 
 * The import-csv command has been created in a manner that checks for most possible places where the user could go wrong
-and provides guidance to correct them through the error messages and the user guide section. This command is designed to
-be very easy to use for the current target users, which are TAs teaching a NUS module which implies that they would have
-manager access on LumiNUS. The student database exported from LumiNUS conforms exactly to our csv file requirements and
-hence, any beginner user would be able to successfully use this command as long as they follow the directions provided
-in the user guide.
+and provides guidance to correct them through the error messages and the user guide section. 
+* This command is designed to be very easy to use for the current target users, which are TAs teaching a NUS module
+which implies that they would have manager access on LumiNUS. 
+  * The student database exported from LumiNUS conforms exactly to our csv file requirements and hence, any beginner
+  user would be able to successfully use this command as long as they follow the directions provided in the user guide.
 
 **Aspect: Usability and Improved User Experience**
 
 * One great feature that the import-csv focuses on is that it adds student contacts from the csv file **additively** to
 the student list. Essentially, if some student details already exist in the roster then importing a csv file would not
-replace the previous students' data but instead extend the list. This is extremely useful for TAs who are teaching more
-than one module and would get different excel files from LumiNUS. To prevent increasing administrative requirements on
-user's end, we will not need them to merge the files on their end, instead they can convert their excel sheets to csv
-and simply import one after the other. As such if the user prefers updating their csv locally and importing again then
-the command handles that situation too by ignoring duplicate students and simply importing the new updates.
-
+replace the previous students' data but instead extend the list. 
+  * This is extremely useful for TAs who are teaching more than one module and would get different excel files from
+  LumiNUS. To prevent increasing administrative requirements on user's end, we will not need them to merge the files
+  on their end, instead they can convert their excel sheets to csv and simply import one after the other.
+* As such if the user prefers updating their csv locally and importing again then the command handles that situation too
+by ignoring duplicate students and simply importing the new updates.
 
 ### Mailing feature
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -534,11 +534,6 @@ class, which allows for testing compatibility of the system before integrating w
 ### Setting a Default Group for a particular Mod
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-#### Aim of the feature
-This feature helps facilitate a better user experience and aims to follow through on TAilor's primary objective of
-making administrative tasks less tedious and rudimentary. By setting a default group, the use need not worry
-about repeatedly entering the same group value for several students over an extended period of time.
-
 #### Implementation
 The following classes were created/edited in the process of implementing the `set-default-group` command:
 
@@ -581,6 +576,12 @@ above and the specific functioning of the command can be found in the sequence d
 </p>
 
 #### Design Considerations
+
+**Aspect: Motivation**
+
+With this feature we aim to help facilitate a better user experience and follow through on TAilor's primary objective of
+making administrative tasks less tedious and rudimentary. By setting a default group, the use need not worry
+about repeatedly entering the same group value for several students over an extended period of time.
 
 **Aspect: Conformity**
 
