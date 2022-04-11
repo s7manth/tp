@@ -349,7 +349,7 @@ Examples:
 *  `edit 1 a/A1122334X e/johndoe@example.com` Edits the student number and email address of the 1st student to be
    `A1122334X` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
-
+<div style="page-break-after: always;"></div>
 
 #### Deleting a student : `delete`
 
@@ -433,7 +433,7 @@ Note:
 * If multiple **keywords** are specified for a single prefix, students matching **at least one** keyword will be returned
 e.g. `n/Hans Bo` will return `Hans Gruber`, `Bo Yang`
 * If multiple **prefixes** are specified, students matching **all** prefixes will be returned.
-
+<div style="page-break-after: always;"></div>
 Example:
 
 Let the initial state of the list contain these 3 students: Alex, Bernice, Charlotte.
@@ -466,7 +466,7 @@ Example:
 Let the initial state of the list contain these 4 students: Alex, Bernice, Charlotte and David.<br>
 
 ![Initial State](images/undocommandUG/initial_state.png)
-
+<div style="page-break-after: always;"></div>
 After `delete 1`, we will delete Alex and the list will not have Alex anymore.<br>
 
 ![Before Undo](images/undocommandUG/before_undo.png)
@@ -474,7 +474,7 @@ After `delete 1`, we will delete Alex and the list will not have Alex anymore.<b
 After `undo`, the list will return to having Alex in it<br>
 
 ![Initial State](images/undocommandUG/initial_state.png)
-
+<div style="page-break-after: always;"></div>
 After a `redo`, the list will return to the state where Alex was deleted<br>
 
 ![Before Undo](images/undocommandUG/before_undo.png)
@@ -505,6 +505,7 @@ Format: `mail-index INDEX`
 Example:
 * `mail-index 2` would open the default mail on the system with the receivers' field filled with the
   specified mail. Now, the email is ready to be sent to the student with the index 2 as shown on the application.
+<div style="page-break-after: always;"></div>
 
 #### Mailing students based on arguments: `mail-x`
 
@@ -619,7 +620,6 @@ with the aid of `undo` command.
 Format: `clear`
 
 ---
-
 ### Shortcuts
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
