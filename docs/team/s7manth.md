@@ -128,4 +128,4 @@ mundane administrative tasks, or by providing efficient ways to accomplish those
       [#137](https://github.com/AY2122S2-CS2103T-W12-1/tp/pull/137),
       [#217](https://github.com/AY2122S2-CS2103T-W12-1/tp/pull/217)
     * Contributed to team discussions in the meetings.
-    
+
