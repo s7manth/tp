@@ -53,7 +53,7 @@ Given below are my contributions to the project.
   * Find command (Pull requests [\#75]())
   * Extended UI to include the task manager feature (Pull Requests [\#122]())
   * Bugfixes (Pull requests [\#111](), [\#136](), [\#207](), [\#212]())
-  * Polish UG/DG (Pull requests [\#212](), [\#229](), [\#233](), [\#239]())
+  * Polish UG/DG (Pull requests [\#212](), [\#229](), [\#233](), [\#239](), [\#243]())
 
 * **Documentation**:
   * User Guide (UG):
@@ -81,6 +81,7 @@ Given below are my contributions to the project.
   * Transferred half of User Stories into Issues to track.
   * Incorporated a standardised commit message format: [\#67]()
   * Vetted issues raised after the PE dry run to sort out duplicate or invalid bugs due to intentional design.
+  * Produced .jar file for v1.4
 
 * **Project management**:
   * Drove team meetings forward, increasing productivity.
@@ -95,4 +96,4 @@ Given below are my contributions to the project.
   [\#42](), [\#46](), [\#52](), [\#64](), [\#85](), [\#93](), [\#94](), [\#95](), [\#97](), [\#98](),
   [\#102](), [\#107](), [\#108](), [\#110](), [\#114](), [\#116](), [\#117](), [\#119](), [\#123](),
   [\#125](), [\#128](), [\#211](), [\#213](), [\#214](), [\#215](), [\#218](), [\#221](), [\#222](),
-  [\#226](), [\#227](), [\#228](), [\#231](), [\#234]()
+  [\#226](), [\#227](), [\#228](), [\#231](), [\#234](), [\#238](), [\#240]()
