@@ -1,6 +1,8 @@
-# Sumanth's Project Portfolio Page
-
 ---
+layout: page
+title: Sumanth's Project Portfolio Page
+---
+
 ## Project: TAilor
 
 TAilor is a desktop app for managing contacts powered by Java. The user interacts with it using a CLI-like interface, 
