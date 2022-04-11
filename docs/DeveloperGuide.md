@@ -947,6 +947,32 @@ testers are expected to do more *exploratory* testing.
    3. Test case: `delete 0`, `delete`, `delete x`, `...` <br>
       Expected: Similar to the erroneous test cases from the list command above.
 
+### Mailing student(s)
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
+
+1. Mailing an individual student from the contact list
+
+   1. Prerequisites: Multiple students in the contact list.
+
+   2. Test case: `mail-index 1`<br>
+      Expected: System default mail application opens up with the receiver's field filled with the email address of
+      the student at the specified index.
+
+2. Mailing all the students in a particular module
+   1. Prerequisites: Multiple students in the contact list belonging to the module CS2103 (example scenario).
+
+   2. Test case: `mail-x m/CS2103`<br>
+      Expected: System default mail application opens up with the receiver's field filled with the email addresses of
+      all the students belonging to CS2103 module in the contact list.
+
+3. Mailing everyone in the contact list
+
+   1. Prerequisites: Multiple students in the contact list.
+
+   2. Test case: `mail-all`<br>
+      Expected: System default mail application opens up with the receiver's field filled all the email addresses of
+      students in the entire contact list.
+
 ### Creating a Task
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
@@ -979,14 +1005,31 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: Multiple tasks in the task list.
 
-    1. Test case: `del-task 1`<br>
+    2. Test case: `del-task 1`<br>
        Expected: First task is deleted from the list. Details of the deleted task shown in the feedback message.
 
-    1. Test case: `del-task 0`<br>
+    3. Test case: `del-task 0`<br>
        Expected: No task is deleted. Error details shown in the status message.
 
-    1. Other incorrect delete task commands to try: `del-task`, `del-task x`, `...` (where x is larger than the list size)<br>
+    4. Other incorrect delete task commands to try: `del-task`, `del-task x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
+
+### Getting help
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
+
+1. Getting help through user guide
+
+   1. Prerequisites: None
+   
+   2. Test case: `help`<br>
+      Expected : A popup opens with a link to the user guide of the application.
+
+2. Getting help about a specific command
+
+   1. Prerequisites : None
+   
+   2. Test case: `help add-task`<br>
+      Expected : The usage instructions of the `add-task` command are displayed.
 
 
 ### Saving data
