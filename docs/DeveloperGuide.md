@@ -393,13 +393,6 @@ the command handles that situation too by ignoring duplicate students and simply
 ### Mailing feature
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-#### Aim of the feature
-This feature forms an integral part of automating communication for the user with the contacts present in the
-contact list. Mail commands allow the user to conveniently mail one or more students from the contact list.
-The main functionality of all the mail commands is that they would input the receiver's address for the user
-in the system default mail application, from where the user can continue on completing the mail on the external
-application.
-
 #### Implementation
 
 This Mailing feature enables the user to initiate the system
@@ -416,7 +409,7 @@ Below shows the important classes that were created:
 | MailAllCommand         |          |
 
 MailUtil class contains the interaction of TAior with the desktop mail application. All the commands
-call a method in this class to accomplish their respective functionalities.
+call a `launchMail` method in this class to accomplish their respective functionalities.
 
 `mail-index` command allows the user to email a specific student in the contact list based on their index, as displayed
 in the application. `mail-x` command enables the user to add multiple prefix-based arguments, using which multiple
@@ -438,6 +431,14 @@ The following sequence diagram shows how the `mail-all` operation works:
 <img src="images/MailAllSequenceDiagram.png" />
 
 #### Design Considerations
+
+**Aspect: Motivation**
+
+This feature forms an integral part of automating communication for the user with the contacts present in the
+contact list. Mail commands allow the user to conveniently mail one or more students from the contact list.
+The main functionality of all the mail commands is that they would input the receiver's address for the user
+in the system default mail application, from where the user can continue on completing the mail on the external
+application.
 
 **Aspect: Compatibility**
 
@@ -612,13 +613,7 @@ of `InputHistoryManager`, which can allow each of them to store their own input 
 
 
 ### Getting help
-
-#### Aim of the feature
-
-This feature allows the user to access the user guide and check the usage of specific commands. The aim of this
-feature is to provide user the convenience to access the usage instructions of a particular command without
-referring to the user guide everytime. It forms an extension over the original `help` command.
-This feature was inspired from the `--help` flag that is present in most modern day CLI tools.
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 #### Implementation
 
@@ -644,6 +639,13 @@ The following is the sequence diagram of `help` command's execution :
 <img src="images/HelpCommandSequenceDiagram.png" />
 
 #### Design Considerations
+
+**Aspect: Motivation**
+
+This feature allows the user to access the user guide and check the usage of specific commands. The aim of this
+feature is to provide user the convenience to access the usage instructions of a particular command without
+referring to the user guide everytime. It forms an extension over the original `help` command.
+This feature was inspired from the `--help` flag that is present in most modern day CLI tools.
 
 **Aspect: Maintainability**
 
