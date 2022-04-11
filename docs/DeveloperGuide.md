@@ -2,11 +2,14 @@
 layout: page
 title: Developer Guide
 ---
+<div style="page-break-after: always;"></div>
+
 ## Table of Contents
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Acknowledgements**
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -21,6 +24,7 @@ title: Developer Guide
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Design**
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -80,6 +84,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 </p>
 
 The sections below give more details of each component.
+<div style="page-break-after: always;"></div>
 
 ### UI component
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -102,7 +107,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 * keeps a reference to the `InputHistory` component, because the `CommandBox` relies on it to obtain previously entered commands by the user
-
+<div style="page-break-after: always;"></div>
 
 ### Logic component
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -147,7 +152,7 @@ How the parsing works:
 <p align="center">
 <img alt="ParsingSequenceDiagram.png" src="images/ParsingSequenceDiagram.png" width="1000"/> <br>
 <b>Fig. 8 - Parsing of commands that take in arguments</b>
-</p>
+</p><div style="page-break-after: always;"></div>
 
 ### Model component
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -182,7 +187,7 @@ The `Model` component,
 <b>Fig. 11 - A better Model class diagram</b>
 
 </div>
-
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -198,6 +203,7 @@ The `Storage` component,
 * can save contact list data, task list data and user preference data in json format, and read them back into corresponding objects.
 * inherits from `ContactListStorage`, `TaskListStorage`, `UserPrefStorage` and `ModuleListStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+<div style="page-break-after: always;"></div>
 
 ### Common classes
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -212,6 +218,7 @@ Some examples include:
 | MailUtil   | Launching the system default mail application and checking the input arguments |
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -284,6 +291,7 @@ The current Task List uses a manually implemented priority system internally to 
     of a String and a non-wrapped LocalDateTime, respectively. This is similar to how `Person` wraps the individual student
     attributes like Name and Email. This also allows the Description and Deadline objects to be created separately and
     allow for finer control over the codebase.
+<div style="page-break-after: always;"></div>
 
 ### Undo/redo feature
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -399,6 +407,7 @@ Another drawback for alternative 2 was undoing a command by doing its reverse im
 same state. For example, after `delete 1`, we might save the student just deleted, and set `add "student"` as the `undo`
 functionality. However, if we do `add "student"`, the student will be added to the end of the list, which does not exactly
 `undo` the effect of the original `delete 1`.
+<div style="page-break-after: always;"></div>
 
 ### Import CSV feature
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -454,6 +463,7 @@ replace the previous students' data but instead extend the list.
   on their end, instead they can convert their excel sheets to csv and simply import one after the other.
 * As such if the user prefers updating their csv locally and importing again then the command handles that situation too
 by ignoring duplicate students and simply importing the new updates.
+<div style="page-break-after: always;"></div>
 
 ### Mailing feature
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -529,7 +539,7 @@ in the underlying architecture of the product.
 Mailing feature comprises well-defined, independent components which leads to better maintainability. All the components
 were implemented and tested in isolation before being integrated with the product. An example of this is the `MailUtil`
 class, which allows for testing compatibility of the system before integrating with the product to process commands.
-
+<div style="page-break-after: always;"></div>
 
 ### Setting a Default Group for a particular Mod
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -594,6 +604,7 @@ user over the previously set default group value.
 interactions with the XYZManagers the same.
   * An example would be to include a new `ModuleListStorage` Interface for the `Storage` Interface to extend from. This
     hence provides the methods and an interface/facade for other parts of the code to perform module list operations on.
+<div style="page-break-after: always;"></div>
 
 ### Refill previously typed command feature
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -712,7 +723,7 @@ only needs to be associated with the `CommandBox`.
 
 If the application is expanded to include multiple points of input, each input box can be associated with their own instance
 of `InputHistoryManager`, which can allow each of them to store their own input histories.
-
+<div style="page-break-after: always;"></div>
 
 ### Getting help
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -763,6 +774,7 @@ functionality without too many changes. In this way, it is highly maintainable.
 ensure that it does not process erroneous input.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -774,6 +786,7 @@ ensure that it does not process erroneous input.
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Requirements**
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -791,7 +804,7 @@ ensure that it does not process erroneous input.
 * is reasonably comfortable using CLI apps
 
 **Value proposition**: The app will help to facilitate a Teaching Assistant’s journey for multiple modules, particularly with some tedious administrative tasks.
-
+<div style="page-break-after: always;"></div>
 
 ### User stories
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -832,7 +845,7 @@ Priorities: High (must have), Medium (nice to have), Low (unlikely to have)
 | priority.Low    | As a Teaching Assistant who is involved in grading   | I can see a graph of trends about my students’ performance individually                                             | so I can track the progress and improvement of my students                                                  |
 | priority.Low    | As a Teaching Assistant                              | I can create aliases for websites that are commonly used by students                                                | so that my students and I can access commonly visited websites easily                                       |
 | priority.Low    | As a Teaching Assistant teaching multiple modules    | I am able to separate the management of the modules                                                                 | so that I can be more organised in my work and teaching                                                     |
-
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -906,7 +919,7 @@ Priorities: High (must have), Medium (nice to have), Low (unlikely to have)
 
     User case ends
 
-*{More to be added}*
+<div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -917,7 +930,8 @@ Priorities: High (must have), Medium (nice to have), Low (unlikely to have)
 4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 5. The code should be open source.
 6. Should not require internet connection.
-*{More to be added}*
+
+<div style="page-break-after: always;"></div>
 
 ### Glossary
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -929,6 +943,7 @@ Priorities: High (must have), Medium (nice to have), Low (unlikely to have)
 * **Group**: A group of students belonging to a particular module managed under a tutor.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
