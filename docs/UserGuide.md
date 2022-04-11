@@ -1,5 +1,6 @@
 ---
 layout: page
+
 ---
 
 <h1 align="center">User Guide</h1>
@@ -62,7 +63,7 @@ for more information.
    2. Double-click the .jar file to start the app. <br>
       The GUI similar to the one below should appear in a few seconds. Note
       how the app contains some sample data.<br>
-      ![Ui](images/Ui.png)
+      ![Ui](images/Ui.png)<br><br>
 
 
 5. Type a command into the command box and press **&#9166; Enter** to execute it. e.g. typing **`help`** and pressing **&#9166; Enter**
@@ -123,6 +124,7 @@ This is where you can see the students that are currently added into the applica
 
 <img src="images/UIexplanation/studentlist.png" width="650">
 
+<br>
 Let's take a closer look at one of the entries in the list:
 
 ![one entry in the student list](images/UIexplanation/personcard.png)
@@ -149,7 +151,7 @@ Some additional examples are shown below:
 * CS2101 groups can be `G02` to represent sectional class #2 according to the conventions followed by the module in EduRec/NUSmods
 * If you are handling only one group, a simple description like `lab` or `tutorial` can suffice.
 
-<br>
+<br><br>
 
 #### Task List
 
@@ -169,7 +171,6 @@ Shown here is:
 | **Description** of the task                     | interview for project |
 | **Deadline** of the task                        | 2022-02-25, 12:00     |
 
-<br>
 
 ---
 <div style="page-break-after: always;"></div>
