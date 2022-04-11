@@ -33,7 +33,10 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 ### Architecture
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-<img src="images/ArchitectureDiagram.png" width="280" />
+<p align="center">
+<img src="images/ArchitectureDiagram.png" width="280" /> <br>
+<b>Fig. 1 - Overall Architecture</b>
+</p>
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
@@ -59,7 +62,10 @@ The rest of the App consists of four components.
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<p align="center">
+<img src="images/ArchitectureSequenceDiagram.png" width="574" /> <br>
+<b>Fig. 2 - Architecture interactions</b>
+</p>
 
 Each of the four main components (also shown in the diagram above),
 
@@ -68,7 +74,10 @@ Each of the four main components (also shown in the diagram above),
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
-<img src="images/ComponentManagers.png" width="300" />
+<p align="center">
+<img src="images/ComponentManagers.png" width="300" /> <br>
+<b>Fig. 3 - Interacting through the API interfaces</b>
+</p>
 
 The sections below give more details of each component.
 
@@ -77,7 +86,10 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2122S2-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+<p align="center">
+<img src="images/UiClassDiagram.png"/> <br>
+<b>Fig. 4 - Structure of the UI Component</b>
+</p>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -99,7 +111,10 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+<p align="center">
+<img src="images/LogicClassDiagram.png" width="550"/> <br>
+<b>Fig. 5 - Structure of the Logic Component</b>
+</p>
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `TailorParser` class to parse the user command.
@@ -109,31 +124,40 @@ How the `Logic` component works:
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+<p align="center">
+<img src="images/DeleteSequenceDiagram.png"/> <br>
+<b>Fig. 6 - Interactions of a delete command inside the Logic Component</b>
+</p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+<p align="center">
+<img src="images/ParserClasses.png" width="600"/> <br>
+<b>Fig. 7 - Classes in Logic that are involved in parsing</b>
+</p>
 
 How the parsing works:
 * When called upon to parse a user command, the `TailorParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `TailorParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 * The following Figure 8 depicts parsing in action:
 
-<img alt="ParsingSequenceDiagram.png" src="images/ParsingSequenceDiagram.png" width="1000"/>
-<b>Fig.8 - parsing of commands taking in arguments</b>
+<p align="center">
+<img alt="ParsingSequenceDiagram.png" src="images/ParsingSequenceDiagram.png" width="1000"/> <br>
+<b>Fig. 8 - Parsing of commands that take in arguments</b>
+</p>
 
 ### Model component
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 **API** : [`Model.java`](https://github.com/AY2122S2-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-
-<img src="images/ModelClassDiagram.png" width="550" />
-
+<p align="center">
+<img src="images/ModelClassDiagram.png" width="550" /> <br>
+<b>Fig. 9 - Structure of the Model Component</b>
+</p>
 
 The `Model` component,
 
@@ -147,11 +171,15 @@ The `Model` component,
 
 `VersionedContents` stores versions of the `Content` object, which in turn stores a `ContactList`, `PriorityTaskList` and `UniqueModuleList` object. The class diagram for VersionedContents can be found below.
 
-<img src="images/VersionedContentsDiagram.png" width="250" />
+<p align="center">
+<img src="images/VersionedContentsDiagram.png" width="550" /> <br>
+<b>Fig. 10 - Structure of VersionedContents</b>
+</p>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects. This diagram is also truncated slightly as it does not show the Task classes.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ContactList`, which `Person` references. This allows `ContactList` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects. This diagram is also truncated slightly as it does not show the Task classes.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="550" />
+<img src="images/BetterModelClassDiagram.png" width="550" /> <br>
+<b>Fig. 11 - A better Model class diagram</b>
 
 </div>
 
@@ -161,7 +189,10 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/AY2122S2-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagramV3.png" width="550" />
+<p align="center">
+<img src="images/StorageClassDiagramV3.png" width="550" /> <br>
+<b>Fig. 12 - Structure of the Storage component</b>
+</p>
 
 The `Storage` component,
 * can save contact list data, task list data and user preference data in json format, and read them back into corresponding objects.
@@ -172,6 +203,13 @@ The `Storage` component,
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
+
+Some examples include:
+
+| Class Name | What it is used for                                                            |
+|------------|--------------------------------------------------------------------------------|
+| CsvUtil    | Checking and parsing CSV files for the import-csv command                      |
+| MailUtil   | Launching the system default mail application and checking the input arguments |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -185,8 +223,8 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-This Task Manager feature is implemented similarly to how commands interact with the XYZManagers,
-as seen in the [architecture](#architecture).
+This Task Manager feature is implemented similarly to how commands interact with the XYZManagers and the contact list,
+as seen in the [architecture section](#architecture).
 Below shows the important classes that were created:
 
 | Logic                   | Model                  | Storage                  | UI            |
@@ -208,9 +246,13 @@ For example, LogicManager now tries to save to the storage's contact list and ta
             storage.saveTaskList(model.getTaskList());
 ```
 
-The following sequence diagram also shows how the newTask operation works in more detail:
+Users also now have 2 additional commands to add new tasks and delete existing tasks, and
+the following sequence diagram shows how the new task command works in more detail:
 
-<img src="images/newTask-SequenceDiagram.png" width="1000" />
+<p align="center">
+<img src="images/newTask-SequenceDiagram.png" width="1000" /> <br>
+<b>Fig. 13 - Internal workings of a new task command</b>
+</p>
 
 The current Task List uses a manually implemented priority system internally to sort/rank the tasks.
 
@@ -222,9 +264,9 @@ The current Task List uses a manually implemented priority system internally to 
 
 #### Design Considerations
 
-**Aspect: Extendibility**
+**Aspect: Extensibility**
 
-* Extendibility was heavily considered when implementing this feature. For Instance,
+* Extensibility was heavily considered when implementing this feature. For Instance,
   * A ReadOnlyTaskList was done instead of just a single TaskList class, to allow for multiple versions of a Task List being
     used if desired. Ie perhaps a Task List that is sorted according to a new "Emergency" level instead of just date-time.
   * Deadline and Description classes were used instead of just a String and a LocalDateTime field to make the codebase more
@@ -239,8 +281,8 @@ The current Task List uses a manually implemented priority system internally to 
   * An example would be to include a new `TaskListStorage` Interface for the `Storage` Interface to extend from. This
     hence provides the methods and an interface/facade for other parts of the code to perform task list operations on.
   * Another example would be how the Description and Deadlines for a `Task` are represented as individual classes instead
-    of a String and a non-wrapped LocalDateTime, respectively. This is similar to how `Person` wraps the individual person
-    attributes like Name and Phone. This also allows the Description and Deadline objects to be created separately and
+    of a String and a non-wrapped LocalDateTime, respectively. This is similar to how `Person` wraps the individual student
+    attributes like Name and Email. This also allows the Description and Deadline objects to be created separately and
     allow for finer control over the codebase.
 
 ### Undo/redo feature
@@ -260,23 +302,35 @@ Given below is an example usage scenario and how the undo/redo mechanism behaves
 
 Step 1. The user launches the application for the first time. The `VersionedContents` will be initialized with the initial content state, and the `currentStatePointer` pointing to that single content state.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+<p align="center">
+<img src="images/UndoRedoState0.png"/> <br>
+<b>Fig. 14 - Undo/Redo State 0</b>
+</p>
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the contact list. The `delete` command calls `Model#commitContent()`, causing the modified state of the content after the `delete 5` command executes to be saved in the `contentStateList`, and the `currentStatePointer` is shifted to the newly inserted content state.
+Step 2. The user executes `delete 5` command to delete the 5th student in the contact list. The `delete` command calls `Model#commitContent()`, causing the modified state of the content after the `delete 5` command executes to be saved in the `contentStateList`, and the `currentStatePointer` is shifted to the newly inserted content state.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+<p align="center">
+<img src="images/UndoRedoState1.png"/> <br>
+<b>Fig. 15 - Undo/Redo State 1</b>
+</p>
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitContent()`, causing another modified content state to be saved into the `contentStateList`.
+Step 3. The user executes `add n/David …​` to add a new student. The `add` command also calls `Model#commitContent()`, causing another modified content state to be saved into the `contentStateList`.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+<p align="center">
+<img src="images/UndoRedoState2.png"/> <br>
+<b>Fig. 16 - Undo/Redo State 2</b>
+</p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitContent()`, so the content state will not be saved into the `contentStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoContents()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous content state, and restores the content to that state.
+Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoContents()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous content state, and restores the content to that state.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+<p align="center">
+<img src="images/UndoRedoState3.png"/> <br>
+<b>Fig. 17 - Undo/Redo State 3</b>
+</p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial content state, then there are no previous content states to restore. The `undo` command uses `Model#canUndoContent()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
@@ -285,7 +339,10 @@ than attempting to perform the undo.
 
 The following sequence diagram shows how the undo operation works:
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+<p align="center">
+<img src="images/UndoSequenceDiagram.png"/> <br>
+<b>Fig. 18 - Undo Sequence Diagram</b>
+</p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
@@ -302,15 +359,24 @@ to the user rather than attempting to perform the redo.
 
 Step 5. The user then decides to execute the command `list`. Commands that do not modify the content, such as `list`, will usually not call `Model#commitContent()`, `Model#undoContents()` or `Model#redoContents()`. Thus, the `contentStateList` remains unchanged.
 
-![UndoRedoState4](images/UndoRedoState4.png)
+<p align="center">
+<img src="images/UndoRedoState4.png"/> <br>
+<b>Fig. 19- Undo/Redo State 4</b>
+</p>
 
 Step 6. The user executes `clear`, which calls `Model#commitContent()`. Since the `currentStatePointer` is not pointing at the end of the `contentStateList`, all content states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
-![UndoRedoState5](images/UndoRedoState5.png)
+<p align="center">
+<img src="images/UndoRedoState5.png"/> <br>
+<b>Fig. 20 - Undo/Redo State 5</b>
+</p>
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<img src="images/CommitActivityDiagram.png" width="250" />
+<p align="center">
+<img src="images/CommitActivityDiagram.png" width="250" /> <br>
+<b>Fig. 21 - Summary of an execution of a new command</b>
+</p>
 
 #### Design considerations:
 
@@ -322,7 +388,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 We decided to go with alternative 1 as the memory usage expected of TAilor is not high, since users are not expected to
@@ -330,11 +396,12 @@ enter many content committing comments. The expected memory usage is not high as
 ModuleList are generally not space intensive.
 
 Another drawback for alternative 2 was undoing a command by doing its reverse implementation might not return it to the
-same state. For example, after `delete 1`, we might save the person just deleted, and set `add "person"` as the `undo`
-functionality. However, if we do `add "person"`, the person will be added to the end of the list, which does not exactly
+same state. For example, after `delete 1`, we might save the student just deleted, and set `add "student"` as the `undo`
+functionality. However, if we do `add "student"`, the student will be added to the end of the list, which does not exactly
 `undo` the effect of the original `delete 1`.
 
 ### Import CSV feature
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 ##### Aim of the feature
 
@@ -372,7 +439,7 @@ into TAilor's database. Exception handling has been done alongside checks (file 
 
 * The import-csv command has been created in a manner that checks for most possible places where the user could go wrong
 and provides guidance to correct them through the error messages and the user guide section. This command is designed to
-be very easy to use for the current target users, which are TAs teaching a NUS module which implies that they would have 
+be very easy to use for the current target users, which are TAs teaching a NUS module which implies that they would have
 manager access on LumiNUS. The student database exported from LumiNUS conforms exactly to our csv file requirements and
 hence, any beginner user would be able to successfully use this command as long as they follow the directions provided
 in the user guide.
@@ -388,7 +455,8 @@ and simply import one after the other. As such if the user prefers updating thei
 the command handles that situation too by ignoring duplicate students and simply importing the new updates.
 
 
-### Mailing feature: mail-all
+### Mailing feature
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 #### Implementation
 
@@ -397,20 +465,70 @@ default mail application (if present). In order to achieve this,
 Java AWT (Abstract Window Toolkit) API is used.
 Below shows the important classes that were created:
 
-Logic:
-* MailIndexCommand (and its parser)
-* MailXCommand (and its parser)
-* MailAllCommand
+| Logic                  | Util     |
+|------------------------|----------|
+| MailIndexCommand       | MailUtil |
+| MailIndexCommandParser |          |
+| MailXCommand           |          |
+| MailXCommandParser     |          |
+| MailAllCommand         |          |
 
-Commons:
-* MailUtil
+MailUtil class contains the interaction of TAilor with the desktop mail application. All the commands
+call a `launchMail` method in this class to accomplish their respective functionalities.
 
-MailUtil class contains the interaction of TAior with the desktop. All the commands
-call a method in this class to accomplish their respective functionalities.
+`mail-index` command allows the user to email a specific student in the contact list based on their index, as displayed
+in the application. `mail-x` command enables the user to add multiple prefix-based arguments, using which multiple
+students can be mailed in one go. The arguments act as the criteria based on which students are
+considered to be a part of the mail group. The mail collation happens based on a descriptor class that takes care of
+processing the individual arguments. `mail-all` command is the solution if the user wants to email everyone
+in the contact list without any filters. This command allows the user to perform bulk emails.
+
+The following is the class diagram for the `MailIndexCommand` class :
+
+<p align="center">
+<img src="images/MailIndexClassDiagram.png" /> <br>
+<b>Fig. 22 - Summary of an execution of a new command</b>
+</p>
+
+The following sequence diagram shows how the `mail-x` operation works:
+
+<p align="center">
+<img src="images/MailXSequenceDiagram.png" /> <br>
+<b>Fig. 23 - Summary of an execution of a new command</b>
+</p>
 
 The following sequence diagram shows how the `mail-all` operation works:
 
- <img src="images/MailAllSequenceDiagram.png" />
+<p align="center">
+<img src="images/MailAllSequenceDiagram.png" /> <br>
+<b>Fig. 24 - Execution of a `mail-all` command</b>
+</p>
+
+#### Design Considerations
+
+**Aspect: Motivation**
+
+This feature forms an integral part of automating communication for the user with the contacts present in the
+contact list. Mail commands allow the user to conveniently mail one or more students from the contact list.
+The main functionality of all the mail commands is that they would input the receiver's address for the user
+in the system default mail application, from where the user can continue on completing the mail on the external
+application.
+
+**Aspect: Compatibility**
+
+Mailing feature works across all the popular operating systems. It is able to operate with all mailto compatible
+mail applications as long as the default launching application has been set for the system.
+
+**Aspect: Extensibility**
+
+New capabilities for the mailing commands like cc, bcc and subject can be as the arguments without major changes
+in the underlying architecture of the product.
+
+**Aspect: Modularity**
+
+Mailing feature comprises well-defined, independent components which leads to better maintainability. All the components
+were implemented and tested in isolation before being integrated with the product. An example of this is the `MailUtil`
+class, which allows for testing compatibility of the system before integrating with the product to process commands.
 
 
 ### Setting a Default Group for a particular Mod
@@ -422,25 +540,29 @@ making administrative tasks less tedious and rudimentary. By setting a default g
 about repeatedly entering the same group value for several students over an extended period of time.
 
 #### Implementation
-The following classes were created in the process of implementing the `set-default-group` command:
+The following classes were created/edited in the process of implementing the `set-default-group` command:
 
 
 | Logic                   | Model                    | Storage                    |
 |-------------------------|--------------------------|----------------------------|
 | SetDefaultCommand       | DuplicateModuleException | ModuleListStorage          |
 | SetDefaultCommandParser | ModuleNotFoundException  | JsonModuleListStorage      |
-|                         | ModuleList               | JsonSerializableModuleList |               
-|                         | UniqueModuleList         | JsonAdaptedModule          |               
+|                         | ModuleList               | JsonSerializableModuleList |
+|                         | UniqueModuleList         | JsonAdaptedModule          |
 
 
 
 The core idea behind this implementation is that there exists an empty `UniqueModuleList` which is a list of `Mod`.
-Every Mod object has a `defaultGroup` attribute that initially is unassigned. Once the user enters the command
-`set-default-group m/MOD g/GROUP`, the `defaultGroup` value for that `MOD` gets set to `GROUP` and that `MOD` gets added to the `UniqueModuleList`.
-If the command is entered again, the value of the `MOD` gets updated in the `UniqueModuleList` and the user is notified.
+Every Mod object has a `defaultGroup` attribute that initially is unassigned. When a user enters the command `set-default-group m/MOD g/GROUP`, the code:
 
-Now when a user adds a new student, if he doesn't pass a group argument and there exists the given `MOD` in the `UniqueModuleList`, it places
-the `defaultGroup` as the group for the student, else it returns an error message to the user.
+* Uses `Model#doesModExistInList` to check if the `Mod` exists in `UniqueModuleList`.
+* If it exists, get the previous default group using `Model#retrievePrevDefault` and update it.
+* Else add the `Mod` to the `UniqueModuleList` with the given default `GROUP` using the `Model#setDefaultGroup` command.
+
+Now when a user adds a new student using the `add` command:
+* If the group argument has been passed, the code is run normally
+* If the group argument has not been passed, the code retrieves the default group from the `UniqueModuleList` and throws an error if the 
+given mod has no default group set.
 
 Similar to the TaskList implementation most of these classes are linked to the respective XYZManager components.
 For example, LogicManager now tries to save to the storage's moduleList as well:
@@ -449,10 +571,14 @@ For example, LogicManager now tries to save to the storage's moduleList as well:
             storage.saveModuleList(model.getModuleList());
 ```
 
+
 The sequence diagram for the command `set-default-group m/CS2103T g/W12-1` follows the parsing as mentioned in Fig 8.0
 above and the specific functioning of the command can be found in the sequence diagram below:
 
-<img src="images/SetDefaultSequenceDiagram.png" width="1000"/>
+<p align="center">
+<img src="images/SetDefaultSequenceDiagram.png" width="1000"/> <br>
+<b>Fig. 25 - Execution of a `set-default-group` command</b>
+</p>
 
 #### Design Considerations
 
@@ -471,11 +597,6 @@ interactions with the XYZManagers the same.
 ### Refill previously typed command feature
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-#### Aim of the feature
-As quick typers, it is inevitable for us to make typos once in a while. In those cases, it is very convenient if we
-could quickly refill the `CommandBox` with the mistyped input, and correct the mistake there. This features serves to
-meet that need.
-
 #### Implementation
 This feature is facilitated by `InputHistoryManager`. It implements `InputHistory`, and stores the previously entered
 user commands internally as a `previousInputs` and `indexPointer`. `InputHistoryManager` also implements:
@@ -490,26 +611,38 @@ Step 1. The user launches the application for the first time. The `InputHistory`
 `previousInputs`, and the `indexPointer` pointing to `0`. The `CommandBox` is empty upon initialization as well.
 <br>
 
-![PreviousInputState0](images/PreviousInputState0.png)
+<p align="center">
+<img src="images/PreviousInputState0.png"/> <br>
+<b>Fig. 26 - Previous input state 0</b>
+</p>
 
 Step 2. The user enters the command `delete 1`. The `CommandBox` will call `storeInput("delete 1")` on `InputHistory`.
 The `indexPointer` will increment by 1, pointing to `1`. The `CommandBox` clears itself upon entering the command.
 <br>
 
-![PreviousInputState1](images/PreviousInputState1.png)
+<p align="center">
+<img src="images/PreviousInputState1.png"/> <br>
+<b>Fig. 27 - Previous input state 1</b>
+</p>
 
 Step 3. The user enters the command `delet 1`. The `CommandBox` will call `storeInput("delet 1")`. The `indexPointer`
 will increment by 1, pointing to `2`. However, as the input command is invalid, the `CommandBox` does not clear itself
 upon entering the command.
 <br>
 
-![PreviousInputState2](images/PreviousInputState2.png)
+<p align="center">
+<img src="images/PreviousInputState2.png"/> <br>
+<b>Fig. 28 - Previous input state 2</b>
+</p>
 
 Step 4. When the user presses the &uarr; button, the `CommandBox` will call `getPreviousUserInput()`, which decrements
 the pointer by 1, pointing it to `"delet 1"`. The text in `CommandBox` will still remain as "delet 1".
 <br>
 
-![PreviousInputState3](images/PreviousInputState3.png)
+<p align="center">
+<img src="images/PreviousInputState3.png"/> <br>
+<b>Fig. 29 - Previous input state 3</b>
+</p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `indexPointer` is at index 0, where
 `previousInputs` is empty, then there are no previous inputs to refill. The `CommandBox` will call
@@ -521,18 +654,27 @@ be updated.
 The following sequence diagram demonstrates how the refill previous input works
 <br>
 
-![PreviousInputSequenceDiagram](images/PreviousInputSequenceDiagram.png)
+<p align="center">
+<img src="images/PreviousInputSequenceDiagram.png"/> <br>
+<b>Fig. 30 - Previous input Sequence Diagram</b>
+</p>
 
 Step 5. When the user presses the &uarr; button, the `CommandBox` will call `getPreviousUserInput()`, which decrements
 the pointer by 1, pointing it to `"delete 1"`. The text in `CommandBox` will change to "delete 1".
 <br>
 
-![PreviousInputState4](images/PreviousInputState4.png)
+<p align="center">
+<img src="images/PreviousInputState4.png"/> <br>
+<b>Fig. 31 - Previous input state 4</b>
+</p>
 
 Step 6. When the user presses the &darr; button, the `CommandBox` will call `getNextUserInput()`, which increments the
 pointer by 1, pointing it to "delete 1". The text in the `CommandBox` will update to "delete 1".
 
-![PreviousInputState3](images/PreviousInputState3.png)
+<p align="center">
+<img src="images/PreviousInputState3.png"/> <br>
+<b>Fig. 32 - Previous input state 3</b>
+</p>
 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `indexPointer` is at index
@@ -545,7 +687,79 @@ be updated.
 Finally, the user decides to enter a new command, `undo`. The `CommandBox` will call `storeInput("undo")`. The
 `indexPointer` will update to point to `3`. The `CommandBox` clears itself upon entering the command.
 <br>
-![PreviousInputState5](images/PreviousInputState5.png)
+
+<p align="center">
+<img src="images/PreviousInputState5.png"/> <br>
+<b>Fig. 33 - Previous input state 5</b>
+</p>
+
+#### Design Considerations
+
+**Aspect: Motivation**
+
+As quick typers, it is inevitable for us to make typos once in a while. In those cases, it is very convenient if we
+could quickly refill the `CommandBox` with the mistyped input, and correct the mistake there. This features serves to
+meet that need.
+
+**Aspect: Coupling**
+
+To reduce the coupling introduced by this feature as much as possible, the `InputHistoryManager` object only has an
+association with the `CommandBox` UI part. As TAilor is designed only with 1 point of input, the `InputHistoryManager`
+only needs to be associated with the `CommandBox`.
+
+**Aspect: Extendability**
+
+If the application is expanded to include multiple points of input, each input box can be associated with their own instance
+of `InputHistoryManager`, which can allow each of them to store their own input histories.
+
+
+### Getting help
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
+
+#### Implementation
+
+The following classes were created/modified in the process of implementing `help` command :
+
+| Logic             |
+|-------------------|
+| HelpCommand       |
+| HelpCommandParser |
+
+The main idea behind this extension is that the user may request for help on how to use a particular command,
+what are the arguments that are accepted by that command, and what is the expected syntax.
+
+There are two main ways in which this command can be used : 
+* `help` will open a modal with a link to the user guide of the product.
+* `help COMMAND_WORD` will output the usage instructions of the `COMMAND_WORD` and a short description as to what
+  it does.
+
+Essentially `COMMAND_WORD` is an optional argument to the `help` command which gets parsed using the `HelpCommandParser`.
+
+The following is the sequence diagram of `help` command's execution :
+
+<p align="center">
+<img src="images/HelpCommandSequenceDiagram.png" />
+<b>Fig. 34 - Help command execution</b>
+</p>
+
+#### Design Considerations
+
+**Aspect: Motivation**
+
+This feature allows the user to access the user guide and check the usage of specific commands. The aim of this
+feature is to provide user the convenience to access the usage instructions of a particular command without
+referring to the user guide everytime. It forms an extension over the original `help` command.
+This feature was inspired from the `--help` flag that is present in most modern day CLI tools.
+
+**Aspect: Maintainability**
+
+`help` command's extension was done in a manner that any new command can be easily incorporated into the
+functionality without too many changes. In this way, it is highly maintainable.
+
+**Aspect: Robustness**
+
+`help` command is able to tolerate unpredictable or invalid input. Appropriate exception handling has been done to 
+ensure that it does not process erroneous input.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -568,14 +782,14 @@ Finally, the user decides to enter a new command, `undo`. The `CommandBox` will 
 
 **Target user profile**:
 
-* is a teaching assistant for a computing course
-* has a need to manage a significant number of contacts
+* is a teaching assistant from the School of Computing
+* has a need to manage a significant number of students/contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: The app will help to facilitate a Teaching Assistant’s journey within a single module, particularly with some tedious administrative tasks.
+**Value proposition**: The app will help to facilitate a Teaching Assistant’s journey for multiple modules, particularly with some tedious administrative tasks.
 
 
 ### User stories
@@ -696,12 +910,12 @@ Priorities: High (must have), Medium (nice to have), Low (unlikely to have)
 ### Non-Functional Requirements
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. The code should be open source.
-5. Should not require internet connection.
-
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 students without a noticeable sluggishness in performance for typical usage.
+3. Should be able to hold up to 100 tasks without a noticeable sluggishness in performance for typical usage.
+4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+5. The code should be open source.
+6. Should not require internet connection.
 *{More to be added}*
 
 ### Glossary
@@ -731,41 +945,260 @@ testers are expected to do more *exploratory* testing.
 1. Initial launch
 
    1. Download the jar file and copy into an empty folder
+      * Double-click the jar file OR:
+      * Open the terminal on your PC and move to the directory where `TAilor.jar` is contained in. Then, run `java -jar TAilor.jar`
+      the application. We recommend macOS users to use this method of starting the application to avoid errors.
+   
+   4. Expected: Shows the GUI with a set of sample contacts/students and tasks. The window size may not be optimum.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+2. Closing the application
 
-1. Saving window preferences
+    1. Type in `exit` in the input/command box
+
+    2. Press the close button for the application at the top right corner of the window.
+
+3. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
-### Deleting a person
+### Adding a student
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-1. Deleting a person while all persons are being shown
+1. Adding a student using the `add` command.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Preqrequisites: User needs to have the details of the following attributes of a student:
+      * Name (e.g. Alex)
+      * Student Number (e.g. A1234567B)
+      * Email (e.g. alex@example.com)
+      * Module (e.g. CS2030S)
+      * Group (e.g. 10G)
+      
+   2. Test case: `add n/Alex a/A0001112B e/alex@example.com m/CS2030S g/10G` when there are already 2 students in the list<br>
+      Expected: A new student with name `Alex`, student number `A1234567B`, email `alex@example.com`, module `CS2030S` and group `10G` is added
+      to the student list. The index number assigned to `Alex` will be 3, the last pre-existing student + 1.<br>
+      Details of the added student will be shown in the feedback box.
+
+   4. Test case: `add n/Bob a/A0001112B e/bob@example.com m/CS2030S g/10G` when there are already 3 students in the list, including Alex above.<br>
+      Expected: No new student will be added, as the provided student number already belongs to someone in the list (Alex, from the above test case).
+      Error details are shown in the feedback box.
+
+   5. Test case: `add n/Alexis a/A0001113B e/alex@example.com m/CS2030S g/10G` when there are already 3 students in the list, including Alex above.<br>
+      Expected: No new student will be added, as the provided email address already belongs to someone in the list (Alex, from the above test case).
+      Error details are shown in the feedback box.
+   
+   6. Test case: `add a/A0001114B e/charles@example.com m/CS2030S g/10G` without conflicting student number and emails present in the list.<br>
+      Expected: No new student will be added, as there is no name provided.
+      Error details are shown in the feedback box.
+
+   7. Test case: `add n/Dickson e/dson@example.com m/CS2030S g/10G` without conflicting student number and emails present in the list.<br>
+      Expected: No new student will be added, as there is no student number provided.
+      Error details are shown in the feedback box.
+
+   8. Test case: `add n/Eliza a/A0001115B m/CS2030S g/10G` without conflicting student number and emails present in the list.<br>
+      Expected: No new student will be added, as there is no email address provided.
+      Error details are shown in the feedback box.
+
+   9. Test case: `add n/Felicia a/A0001116B e/felicia@example.com g/10G` without conflicting student number and emails present in the list.<br>
+      Expected: No new student will be added, as there is no module provided.
+      Error details are shown in the feedback box.
+
+   10. Test case: `add n/George a/A0001117B e/george@example.com m/CS2030S` when there is **no** default group set for the module `CS2030S`,
+       and without any conflicting student number and emails present in the list.<br>
+       Expected: No new student will be added, as there is no group provided.
+       Error details are shown in the feedback box.
+
+   11. Test case: `add n/Hector a/A0001118B e/hectorzz@example.com m/CS2030S` when there **is** a default group set for the module `CS2030S`, for example `Group1`.
+       Also, there are no conflicting student number and emails present in the list, that currently contains 3 people.<br>
+       Expected: A new student with name `Hector`, student number `A0001118B`, email `hectorzz@example.com`, module `CS2030S` and group `Group1` is added
+       to the student list. The index number assigned to `Hector` will be 4, the last pre-existing student + 1.<br>
+       Details of the added student will be shown in the feedback box.
+
+
+
+
+2. Adding multiple students using the `import-csv` command
+
+   1. KASHISH PLEASE ADD THIS PART
+
+### Editing a student
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
+
+1. Editing an existing student in the student list.
+
+   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+
+   2. Test case: `edit 1 n/Bob` when the first student in the list has a name of `Alex`.<br>
+      Expected: The name of the first student is edited, from `Alex` to `Bob`. Details of the edit are shown in the feedback message.
+
+   3. Test case: `edit 0 n/Bob`<br>
+      Expected: No student is edited. Error details shown in the status message.
+
+   4. Other incorrect delete commands to try: `edit`, `edit x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+   5. Test case: `edit 1` with at least 1 student in the list.<br>
+      Expected: Similar to previous, as there are no arguments specified to be edited
+
+   5. ADD MORE FOR THE OTHER ATTRIBUTES, AND MAKE SURE WE MENTION TAG IS REMOVED/REPLACED
+
+
+### Deleting a student
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
+
+1. Deleting a student while all students are being shown.
+
+   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First student is deleted from the list. Details of the deleted student shown in the feedback message.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No student is deleted. Error details shown in the status message.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. Deleting a student while only some students are shown.
+
+   1. Prerequisites: Find some students using the `find` command. Multiple students in the list, depending on the result of the `find` command.
+    
+   2. Test case: `delete 1`<br>
+      Expected: First student is deleted from the list. Details of the deleted student shown in the feedback message. Performing a `list` command will also show that the deleted student is no longer in the list.
+
+   3. Test case: `delete 0`, `delete`, `delete x`, `...` <br>
+      Expected: Similar to the erroneous test cases from the list command above.
+
+### Mailing student(s)
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
+
+1. Mailing an individual student from the contact list
+
+   1. Prerequisites: Multiple students in the contact list.
+
+   2. Test case: `mail-index 1`<br>
+      Expected: System default mail application opens up with the receiver's field filled with the email address of
+      the student at the specified index ie 1.
+   
+   3. Test case: `mail-index 2`<br>
+         Expected: System default mail application opens up with the receiver's field filled with the email address of
+         the student at the specified index ie 2.
+
+2. Mailing all the students in a particular module
+   1. Prerequisites: Multiple students in the contact list belonging to the module CS2103 (example scenario).
+
+   2. Test case: `mail-x m/CS2103`<br>
+      Expected: System default mail application opens up with the receiver's field filled with the email addresses of
+      all the students belonging to CS2103 module in the contact list.
+
+3. Mailing everyone in the contact list
+
+   1. Prerequisites: Multiple students in the contact list.
+
+   2. Test case: `mail-all`<br>
+      Expected: System default mail application opens up with the receiver's field filled all the email addresses of
+      students in the entire contact list.
+
+### Creating a Task
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
+
+1. Creating a new task to keep track of.
+
+   1. Prerequisites: Brief description and deadline of the task should be known.
+
+   2. Test case: `newtask Do Homework by/2022-01-03T16:30` when there are already 2 tasks in the task list.<br>
+      Expected: A new task with description `Do Homework` and deadline of 3 January 2022, 4:30pm will be added to the task list.
+      The index number assigned to this task will be 3, the last pre-existing task + 1.<br>
+      Details of the added task will be shown in the feedback box.
+
+   3. Test case: `newtask Mark Tutorial`<br>
+      Expected: No task is added as no deadline is provided. Error details shown in the status message.
+
+   4. Test case: `newtask by/2022-02-04T17:29`<br>
+      Expected: No task is added as no description is provided. Error details shown in the status message.
+
+   5. Test case: `newtask Mark Lab 1 by/2022-02-04 17:29`<br>
+      Expected: No task is added as the provided date format is incorrect. Error details shown in the status message.
+
+   6. Test case: `newtask Mark Lab 1 by/2022-02-29T17:29`<br>
+      Expected: No task is added as 2022 is not a leap year, and has no Feb 29. Error details shown in the status message.
+
+
+### Deleting a Task
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
+
+1. Deleting a task from the task list.
+
+    1. Prerequisites: Multiple tasks in the task list.
+
+    2. Test case: `del-task 1`<br>
+       Expected: First task is deleted from the list. Details of the deleted task shown in the feedback message.
+
+    3. Test case: `del-task 0`<br>
+       Expected: No task is deleted. Error details shown in the status message.
+
+    4. Other incorrect delete task commands to try: `del-task`, `del-task x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+
+### Undoing/Redoing commands
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
+
+1. Undoing a command
+
+   1. Prerequisites: There must be an undo-able command executed beforehand in the same usage session.
+
+   2. Test case: `undo` and the previous command added a new student (`add` command)<br>
+      Expected: The add command is undone, and the new student no longer appears in the student list. Feedback is shown in the feedback box
+      that the undo command has been done.
+
+   3. Test case: `undo` and the only previous commands are `list` or `find` commands<br>
+      Expected: No undo-able command is available. Nothing changes, and an error pops up indicating that there is nothing to undo.
+
+   4. Test case: `undo` and there are no commands done yet since launching the application<br>
+      Expected: Same as above.
+
+3. Redoing a command
+
+   1. Similar to the undo command, flipping `undo` into `redo`, before into after.
+
+### Getting help
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
+
+1. Getting help through user guide
+
+   1. Prerequisites: None
+   
+   2. Test case: `help`<br>
+      Expected : A popup opens with a link to the user guide of the application.
+
+2. Getting help about a specific command
+
+   1. Prerequisites : None
+   
+   2. Test case: `help add-task`<br>
+      Expected : The usage instructions of the `add-task` command are displayed.
+   
 
 ### Saving data
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing/corrupted data files (contactlist.json, tasklist.json, modulelist.json)
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Missing/corrupted data can occur from some ways listed below: (non-exhaustive!)
+      * The .json files have been tampered with, intentionally or not.
+      * The .json files cannot be read by TAilor upon startup.
 
-1. _{ more test cases …​ }_
+   2. Currently, TAilor does not have any in-built back up system. As such, we recommend users to do manual back ups
+      once in a while, to ensure that everything is saved at a restore point.
+   
+   3. Additionally, if users decide to modify the .json files manually to add in new data, it is also recommended for them
+      to make a backup copy of the data files before doing so.
+
+   4. In the case of unfortunate events where the user did not make a back up and data is indeed lost, the user has no choice
+      but to manually enter in the data again from scratch.
+
+2. TAilor should save to the 3 data files automatically, upon the execution of most commands. As such, there is no need to perform a "save"
+   command to ensure that the data files are updated.

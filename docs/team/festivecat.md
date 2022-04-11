@@ -53,6 +53,7 @@ Given below are my contributions to the project.
   * Find command (Pull requests [\#75]())
   * Extended UI to include the task manager feature (Pull Requests [\#122]())
   * Bugfixes (Pull requests [\#111](), [\#136](), [\#207](), [\#212]())
+  * Polish UG/DG (Pull requests [\#212](), [\#229](), [\#233](), [\#239]())
 
 * **Documentation**:
   * User Guide (UG):
@@ -63,13 +64,17 @@ Given below are my contributions to the project.
       * I also incorporated the new Task Manager commands, `newtask` and `deltask` and how they should be used.
     * I also added in additional sections on prefix usages, intended workflow and an extended introduction at the start
       of the document to better guide users along with how to use our application.
-    * I also incorporated the link to table of contents under most major headings and subheadings
+    * I also incorporated the link to table of contents under most major headings and subheadings.
+    * Polished UG before final submission, inclusive of wording changes, formatting and whitespaces.
   * Developer Guide (DG):
     * Changed some "Address Book" into "Contact List" to better represent the project.
     * Updated DG for parts I have modified/implemented/extended.
       * In particular, I remade the Model and Storage UML diagrams (V2) to include the newly implemented Task Manager functionality.
       * There is also a section under "Implementations" that describes how the Task Manager interacts with the rest of TAilor.
-    * I also incorporated the link to table of contents under most major headings and subheadings
+    * I also incorporated the link to table of contents under most major headings and subheadings.
+    * Polished DG before final submission, inclusive of wording changes, formatting and whitespaces.
+    * Added additional test cases.
+    * Added captions/figure references to the images used.
 
 * **Contribution to team-based tasks**:
   * Made team organisation and repository at the beginning.
@@ -81,11 +86,13 @@ Given below are my contributions to the project.
   * Drove team meetings forward, increasing productivity.
   * Up-kept a list of deliverables per week, updating it frequently so that everyone
   is on the same page.
-  * After the initial pass for the issues rasied after PE dry run, organised them coherently and assigned them appropriately
+  * After the initial pass for the issues raised after PE dry run, organised them coherently and assigned them appropriately
     to the team.
+  * Went through initial pass of consolidated UG/DG, raised issues and distributed them to the team.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments):
   [\#42](), [\#46](), [\#52](), [\#64](), [\#85](), [\#93](), [\#94](), [\#95](), [\#97](), [\#98](),
   [\#102](), [\#107](), [\#108](), [\#110](), [\#114](), [\#116](), [\#117](), [\#119](), [\#123](),
-  [\#125](), [\#128](), [\#211](), [\#213]()
+  [\#125](), [\#128](), [\#211](), [\#213](), [\#214](), [\#215](), [\#218](), [\#221](), [\#222](),
+  [\#226](), [\#227](), [\#228](), [\#231](), [\#234]()

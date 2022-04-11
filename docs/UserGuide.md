@@ -23,7 +23,8 @@ faster than traditional GUI apps!
 * There is no support for DYOM modules at the moment as they do not conform to module naming conventions followed by most NUS
 faculties.
 * There is only support for students whose home university is NUS currently as well, so their matriculation
-numbers should be in the form of "A0123456X" as according to NUS.
+numbers should be in the form of "A0123456X" as according to NUS. This is essentially a 7-digit number preceded by a
+capital letter "A" and followed by another concluding capital letter.
 * This application has mail commands that use your system's default mail application. If none was found or set, your
 computer will prompt you for an application to use. To use your preferred mail app, please ensure that the specified
 app is set as the default in your computer settings.
@@ -78,7 +79,7 @@ for more information.
 
 6. Refer to the [Commands and Features](#commands-and-features) below for details of each command.
 
-### What you can see from TAilor
+### Understanding TAilor's GUI
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 As seen in the above picture, there are several components of notice for TAilor:
@@ -141,7 +142,7 @@ You can choose to follow module conventions for the naming of the groups or make
 Some additional examples are shown below:
 
 * CS2103T groups can be `W12-1` to represent the Wednesday 12PM time slot, group 1.
-* CS2101 groups can be `G02` to represent the tutorial group 2 according to EduRec/NUSmods
+* CS2101 groups can be `G02` to represent sectional class #2 according to the conventions followed by the module in EduRec/NUSmods
 * If you are handling only one group, a simple description like `lab` or `tutorial` can suffice.
 
 <br>
@@ -218,8 +219,8 @@ The typical usage for a Teaching Assistant is provided as follows:
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `a/A0123456H a/A1111111H`, only `a/A1111111H` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Extraneous parameters for commands that do not take in parameters (such as `list`, `exit` and `clear`) will be ignored.<br>
+  e.g. if the command specifies `list 123`, it will be interpreted as `list`.
 
 * Refer to our [prefix usage table](#prefix-usage-table) for more details on the requirements for each prefix.
 
@@ -244,12 +245,10 @@ Shows a popup message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
-Format: `help`
-
-In addition to this, the `help` command can be used to show usage instructions
-for specific commands.
-
 Format: `help [COMMAND_WORD]`
+
+`help` command can be used to show either the link to the user guide or
+usage instructions for specific commands.
 
 Examples :
 * `help` will show the popup message as shown above.
@@ -295,6 +294,13 @@ Format: `import-csv PATH-TO-FILE`
 
 To prepare your CSV files, follow the instructions below:
 
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+The following steps assume that you, the user, will be having manager access for the Module on LumiNUS and thus will be
+able to export the needed Excel sheets as directed. If you do not have that level of access, fret not! You can follow
+the requirements below and look at our sample csv file
+[here](https://github.com/AY2122S2-CS2103T-W12-1/tp/blob/master/src/test/data/ImportCsvTest/second-sample-tutorial-data.csv) to create your own file from scratch and you're good to go!
+</div>
+
 1. Export your student list from LumiNUS Classes and Groups.
    * When choosing the format of the file, select and export the following headers:
      * Name,
@@ -312,8 +318,9 @@ may be helpful for guidance.
 The file format, including choice of headers, must be adhered to for the command to work. Excel sheets downloaded from
 LumiNUS have 2 additional rows preceding the row containing the column headers that are included in the required CSV format.
 Hence, if you were to create your own CSV file, these additional rows are required as well.<br>
-A sample csv file can be found [here]. As such, be careful not to corrupt your csv file before importing to TAilor - something that can
-result from writing anything or adding information that does not abide by the expected format in the file.
+A sample csv file can be found [here](https://github.com/AY2122S2-CS2103T-W12-1/tp/blob/master/src/test/data/ImportCsvTest/second-sample-tutorial-data.csv).
+As such, be careful not to corrupt your csv file before importing to TAilor - something that can result from writing
+anything or adding information that does not abide by the expected format in the file.
 </div>
 
 #### Editing a student : `edit`
@@ -363,7 +370,8 @@ adding a student using the `add` command.
 Format: `set-default-group m/MOD g/GROUP`
 
 * `MOD` may or may not be an existing mod in TAilor's local database
-* `GROUP` can be set any number of times for the same Mod, replacing the previous default value if previously set.
+* `GROUP` can be set any number of times for the same Mod. If a default group value is already set, the new group value
+will simply replace it as default.
 
 Examples:
 * `set-default-group m/CS2101 g/G02`<br>
@@ -381,7 +389,7 @@ Examples:
 #### Locating students: `find`
 
 
-Finds students whose details matches all of the search parameters.
+Finds students whose details matches **all** of the search parameters.
 
 Format: `find PREFIX/KEYWORD [MORE_KEYWORDS]…​    [PREFIX/KEYWORD [MORE_KEYWORDS]…​]…​`
 
@@ -414,9 +422,9 @@ Note:
 * For the rest, **partial words** will be matched e.g. `e/exam` will match `abc@example.com`
 
 
-* If multiple keywords are specified for a single prefix, students matching **at least one** keyword will be returned
+* If multiple **keywords** are specified for a single prefix, students matching **at least one** keyword will be returned
 e.g. `n/Hans Bo` will return `Hans Gruber`, `Bo Yang`
-* If multiple prefixes are specified, students matching **ALL** prefixes will be returned.
+* If multiple **prefixes** are specified, students matching **all** prefixes will be returned.
 
 Example:
 
@@ -430,23 +438,23 @@ Let the initial state of the list contain these 3 students: Alex, Bernice, Charl
 * `find n/alex charlotte m/CS g/t01` returns `Alex`, because:
     * `Alex` and `Charlotte` fit within the search arguments for the prefix `name` and `module`,
     * However, only `Alex` has a group of `T01`.
-    * Hence, only `Alex` meets the search requirements of ALL search prefixes provided, and is shown.
+    * Hence, only `Alex` meets the search requirements of **all** search prefixes provided, and is shown.
   
   ![result for `find n/alex charlotte m/CS g/t01`](images/findcommandUG/find-alex-charlotte.png)
 
 #### Undo or Redo a previous command : `undo/redo`
 
-Undoes or redoes a previously entered command that changed a student or task.
+Undoes or redoes a previously entered command that changed a student, task or module.
 
 Format: `undo` or `redo`
 
-* `undo` can only undo the effects of an `add`, `delete`, `edit`, `clear`, `newtask`, `deltask` and `set-default-group` commands.
-* Once you undo and enter a new `add`, `delete`, `edit`, `clear`, `newtask`, `deltask` or `set-default-group` command, the state that was undone will not be accessible via `redo` anymore.
-* Note the `undo` command will **not** be able to undo the effects of TAilor clearing all of its data due to manual editing of data.
+* undo can only undo the effects of an add, delete, edit, clear, newtask, deltask, set-default-group and import-csv commands.
+* Once you undo and enter a new add, delete, edit, clear, newtask, deltask,  set-default-group and import-csv command, the state that was undone will not be accessible via redo anymore.
+* Note the `undo` command will **not** be able to undo the effects of TAilor clearing all of its data caused by incorrect manual editing of data while the app is closed.
 
 Example:
 
-Let the initial state of the list contain these 3 students: Alex, Bernice, Charlotte.<br>
+Let the initial state of the list contain these 4 students: Alex, Bernice, Charlotte and David.<br>
 
 ![Initial State](images/undocommandUG/initial_state.png)
 
@@ -485,7 +493,7 @@ Format: `mail-index INDEX`
   address.
 
 Example:
-* `mail-index 2` would open the default mail on the system with the "to" box filled with the
+* `mail-index 2` would open the default mail on the system with the receivers' field filled with the
   specified mail. Now, the email is ready to be sent to the student with the index 2 as shown on the application.
 
 #### Mailing students based on arguments: `mail-x`
@@ -495,7 +503,7 @@ Mails multiple students from the contact list. This is a broader version of the 
 Format: `mail-x [e/EMAIL] [g/GROUP] [m/MOD] [n/NAME]`
 
 * This opens the default email application on the system with all the mail addresses specified by the arguments.
-* Anyone who matches at least one of the specified arguments will be included in the mailing list.
+* Anyone who matches **at least one** of the specified arguments will be included in the mailing list.
 * This can be used to specify multiple prefix based arguments to send the same mail in a single go.
 * At least one of the optional fields must be provided.
 
@@ -637,8 +645,8 @@ Advanced users are welcome to update the data directly by editing those data fil
 If your changes to the data file makes its format invalid (e.g., deleting the field of a task), TAilor will discard data in all 
 3 files and start with no data on the next run. It is suggested that users back up copies of these files manually, before editing any of them.
 <br>
-To reset the files, perform any command that changes the contact list or task list (ie add new task, add new contact).<br>
-WARNING: This will override the pre-existing data with the new data you entered.
+To **save the current state** into the data files, perform any command that changes the contact list or task list (ie add new task, add new contact).<br>
+WARNING: This overrides any changes made to the data after TAilor has started, if you modified them while TAilor is running.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -655,15 +663,15 @@ the data of your previous TAilor usage, as found in the locations mentioned in t
 ## **Prefix usage table**
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-| Prefix | What it means  | Usage requirements                                                                                                                                                                                                                                             | Example Usages                               |
-|--------|----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
-| n/     | Name           | Can only contain alphanumeric characters or spaces, and cannot be blank.                                                                                                                                                                                       | n/Alex Yeoh <br> n/Bob Wee                   |
-| a/     | Student Number | Must start with an `a`, followed by 7 digits and ending with one letter.                                                                                                                                                                                       | a/A0123456N <br> a/a0102034x                 |
-| e/     | Email          | Has 2 parts separated by a mandatory `@`. <br><br>Before the `@`: Can contain alphanumeric characters or these special characters: `+``-``_``.`, but cannot start or end with the special characters.<br><br>After the `@`: At least 2 alphanumeric characters | e/johndoe@test.org <br> e/Alex@example.com   |
-| m/     | Module Code    | Must start with 2 or 3 **capital** letters, followed by 4 digits, and an optional last letter that is also **capitalised**.                                                                                                                                    | m/CS2030S <br> m/GER1000                     |
-| g/     | Group Number   | No restrictions on characters, but cannot be blank.                                                                                                                                                                                                            | g/group1 <br> g/tuesday 12pm                 |
-| t/     | Tags           | Must be alphanumeric, with no spaces. To add multiple tags, specify multiple `t/` prefixes.                                                                                                                                                                    | t/friend <br> t/foe                          |
-| by/    | Deadline       | Must be in the format of YYYY-MM-DDThh:mm, more details are under the [`newtask` command](#adding-a-new-task-newtask).                                                                                                                                         | by/2022-03-21T15:21 <br> by/2011-12-01T03:17 |
+| Prefix | What it means  | Usage requirements                                                                                                                                                                                                                                            | Example Usages                               |
+|--------|----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
+| n/     | Name           | Can only contain alphanumeric characters or spaces, and cannot be blank.                                                                                                                                                                                      | n/Alex Yeoh <br> n/Bob Wee                   |
+| a/     | Student Number | Must start with an `a`, followed by 7 digits and ending with one letter.                                                                                                                                                                                      | a/A0123456N <br> a/a0102034x                 |
+| e/     | Email          | Has 2 parts separated by a mandatory `@`. <br><br>Before the `@`: Can contain alphanumeric characters or these special characters: `+``-``_``.`, but cannot start or end with the special characters.<br><br>After the `@`: At least 1 alphanumeric character | e/johndoe@test.org <br> e/Alex@example.com   |
+| m/     | Module Code    | Must start with 2 or 3 **capital** letters, followed by 4 digits, and an optional last letter that is also **capitalised**.                                                                                                                                   | m/CS2030S <br> m/GER1000                     |
+| g/     | Group Number   | No restrictions on characters, but cannot be blank.                                                                                                                                                                                                           | g/group1 <br> g/tuesday 12pm                 |
+| t/     | Tags           | Must be alphanumeric, with no spaces. To add multiple tags, specify multiple `t/` prefixes.                                                                                                                                                                   | t/friend <br> t/foe                          |
+| by/    | Deadline       | Must be in the format of YYYY-MM-DDThh:mm, more details are under the [`newtask` command](#adding-a-new-task-newtask).                                                                                                                                        | by/2022-03-21T15:21 <br> by/2011-12-01T03:17 |
 
 ---
 ## **Command summary**
