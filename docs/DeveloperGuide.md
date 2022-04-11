@@ -87,7 +87,7 @@ The sections below give more details of each component.
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2122S2-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 <p align="center">
-![Structure of the UI Component](images/UiClassDiagram.png) <br>
+<img src="images/UiClassDiagram.png"/> <br>
 <b>Fig. 4 - Structure of the UI Component</b>
 </p>
 
@@ -125,7 +125,7 @@ How the `Logic` component works:
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 <p align="center">
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png) <br>
+<img src="images/DeleteSequenceDiagram.png"/> <br>
 <b>Fig. 6 - Interactions of a delete command inside the Logic Component</b>
 </p>
 
@@ -298,21 +298,21 @@ Given below is an example usage scenario and how the undo/redo mechanism behaves
 Step 1. The user launches the application for the first time. The `VersionedContents` will be initialized with the initial content state, and the `currentStatePointer` pointing to that single content state.
 
 <p align="center">
-![UndoRedoState0](images/UndoRedoState0.png) <br>
+<img src="images/UndoRedoState0.png"/> <br>
 <b>Fig. 14 - Undo/Redo State 0</b>
 </p>
 
 Step 2. The user executes `delete 5` command to delete the 5th student in the contact list. The `delete` command calls `Model#commitContent()`, causing the modified state of the content after the `delete 5` command executes to be saved in the `contentStateList`, and the `currentStatePointer` is shifted to the newly inserted content state.
 
 <p align="center">
-![UndoRedoState1](images/UndoRedoState1.png) <br>
+<img src="images/UndoRedoState1.png"/> <br>
 <b>Fig. 15 - Undo/Redo State 1</b>
 </p>
 
 Step 3. The user executes `add n/David …​` to add a new student. The `add` command also calls `Model#commitContent()`, causing another modified content state to be saved into the `contentStateList`.
 
 <p align="center">
-![UndoRedoState2](images/UndoRedoState2.png) <br>
+<img src="images/UndoRedoState2.png"/> <br>
 <b>Fig. 16 - Undo/Redo State 2</b>
 </p>
 
@@ -323,7 +323,7 @@ Step 3. The user executes `add n/David …​` to add a new student. The `add` c
 Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoContents()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous content state, and restores the content to that state.
 
 <p align="center">
-![UndoRedoState3](images/UndoRedoState3.png) <br>
+<img src="images/UndoRedoState3.png"/> <br>
 <b>Fig. 17 - Undo/Redo State 3</b>
 </p>
 
@@ -335,7 +335,7 @@ than attempting to perform the undo.
 The following sequence diagram shows how the undo operation works:
 
 <p align="center">
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png) <br>
+<img src="images/UndoSequenceDiagram.png"/> <br>
 <b>Fig. 18 - Undo Sequence Diagram</b>
 </p>
 
@@ -355,14 +355,14 @@ to the user rather than attempting to perform the redo.
 Step 5. The user then decides to execute the command `list`. Commands that do not modify the content, such as `list`, will usually not call `Model#commitContent()`, `Model#undoContents()` or `Model#redoContents()`. Thus, the `contentStateList` remains unchanged.
 
 <p align="center">
-![UndoRedoState4](images/UndoRedoState4.png) <br>
+<img src="images/UndoRedoState4.png"/> <br>
 <b>Fig. 19- Undo/Redo State 4</b>
 </p>
 
 Step 6. The user executes `clear`, which calls `Model#commitContent()`. Since the `currentStatePointer` is not pointing at the end of the `contentStateList`, all content states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 <p align="center">
-![UndoRedoState5](images/UndoRedoState5.png) <br>
+<img src="images/UndoRedoState5.png"/> <br>
 <b>Fig. 20 - Undo/Redo State 5</b>
 </p>
 
@@ -555,7 +555,7 @@ Step 1. The user launches the application for the first time. The `InputHistory`
 <br>
 
 <p align="center">
-![PreviousInputState0](images/PreviousInputState0.png) <br>
+<img src="images/PreviousInputState0.png"/> <br>
 <b>Fig. 24 - Previous input state 0</b>
 </p>
 
@@ -564,7 +564,7 @@ The `indexPointer` will increment by 1, pointing to `1`. The `CommandBox` clears
 <br>
 
 <p align="center">
-![PreviousInputState1](images/PreviousInputState1.png) <br>
+<img src="images/PreviousInputState1.png"/> <br>
 <b>Fig. 25 - Previous input state 1</b>
 </p>
 
@@ -574,7 +574,7 @@ upon entering the command.
 <br>
 
 <p align="center">
-![PreviousInputState2](images/PreviousInputState2.png) <br>
+<img src="images/PreviousInputState2.png"/> <br>
 <b>Fig. 26 - Previous input state 2</b>
 </p>
 
@@ -583,7 +583,7 @@ the pointer by 1, pointing it to `"delet 1"`. The text in `CommandBox` will stil
 <br>
 
 <p align="center">
-![PreviousInputState3](images/PreviousInputState3.png) <br>
+<img src="images/PreviousInputState3.png"/> <br>
 <b>Fig. 27 - Previous input state 3</b>
 </p>
 
@@ -598,7 +598,7 @@ The following sequence diagram demonstrates how the refill previous input works
 <br>
 
 <p align="center">
-![PreviousInputSequenceDiagram](images/PreviousInputSequenceDiagram.png) <br>
+<img src="images/PreviousInputSequenceDiagram.png"/> <br>
 <b>Fig. 28 - Previous input Sequence Diagram</b>
 </p>
 
@@ -607,7 +607,7 @@ the pointer by 1, pointing it to `"delete 1"`. The text in `CommandBox` will cha
 <br>
 
 <p align="center">
-![PreviousInputState4](images/PreviousInputState4.png) <br>
+<img src="images/PreviousInputState4.png"/> <br>
 <b>Fig. 29 - Previous input state 4</b>
 </p>
 
@@ -615,7 +615,7 @@ Step 6. When the user presses the &darr; button, the `CommandBox` will call `get
 pointer by 1, pointing it to "delete 1". The text in the `CommandBox` will update to "delete 1".
 
 <p align="center">
-![PreviousInputState3](images/PreviousInputState3.png) <br>
+<img src="images/PreviousInputState3.png"/> <br>
 <b>Fig. 30 - Previous input state 3</b>
 </p>
 
@@ -632,7 +632,7 @@ Finally, the user decides to enter a new command, `undo`. The `CommandBox` will 
 <br>
 
 <p align="center">
-![PreviousInputState5](images/PreviousInputState5.png) <br>
+<img src="images/PreviousInputState5.png"/> <br>
 <b>Fig. 31 - Previous input state 5</b>
 </p>
 
