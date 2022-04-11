@@ -178,10 +178,8 @@ The `Model` component,
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects. This diagram is also truncated slightly as it does not show the Task classes.<br>
 
-<p align="center">
 <img src="images/BetterModelClassDiagram.png" width="550" /> <br>
 <b>Fig. 11 - A better Model class diagram</b>
-</p>
 
 </div>
 
@@ -370,7 +368,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <p align="center">
 <img src="images/CommitActivityDiagram.png" width="250" /> <br>
-<b>Fig. 21 - Summary of an execution of a new command 4</b>
+<b>Fig. 21 - Summary of an execution of a new command</b>
 </p>
 
 #### Design considerations:
@@ -475,7 +473,7 @@ The following sequence diagram shows how the `mail-all` operation works:
 
 <p align="center">
 <img src="images/MailAllSequenceDiagram.png" /> <br>
-<b>Fig. 22 - Execution of a `mail-all` command 4</b>
+<b>Fig. 22 - Execution of a `mail-all` command</b>
 </p>
 
 
@@ -520,7 +518,7 @@ above and the specific functioning of the command can be found in the sequence d
 
 <p align="center">
 <img src="images/SetDefaultSequenceDiagram.png" width="1000"/> <br>
-<b>Fig. 23 - Execution of a `set-default-group` command 4</b>
+<b>Fig. 23 - Execution of a `set-default-group` command</b>
 </p>
 
 #### Design Considerations
