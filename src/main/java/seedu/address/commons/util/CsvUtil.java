@@ -43,7 +43,7 @@ public class CsvUtil {
     }
 
     /**
-     * Extracts all the data under the given column heaader at the given file path.
+     * Extracts all the data under the given column header at the given file path.
      * @param header String, the column header.
      * @param path the path to the file in consideration.
      * @return a list of Strings with all the data from the column
