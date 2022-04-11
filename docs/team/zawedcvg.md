@@ -47,10 +47,10 @@ created with JavaFX. It is written in Java, and has about 10 kLoC.
     - Glossary
     - modify implementation and design considerations for setDefaultCommand
     - make changes in the storage component
+    - update UML diagram for setDefaultCommand
 
 - **Contributions to team-based tasks:**
     - suggested and reinforced the git workflow for the team to follow
 
 - **Community Contribution:**
-    - PRs reviewed: to be added
-    - bugs reported: to be added soon
+    - PRs reviewed: [\#226] [\#217] [\#98] [\#110]
