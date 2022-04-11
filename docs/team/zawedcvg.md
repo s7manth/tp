@@ -54,3 +54,4 @@ created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 - **Community Contribution:**
     - PRs reviewed: [\#226] [\#217] [\#98] [\#110]
+    - Issues fixed: [\#1] [\#7] [\#31] [\#35] [\#49] [\#78] [\#82] [\#83] [\#92] [\#115] [\#146] [\#161] [\#183] [\#186] [\#208]
