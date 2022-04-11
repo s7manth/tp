@@ -687,3 +687,15 @@ the data of your previous TAilor usage, as found in the locations mentioned in t
 | **Undo/Redo**         | `undo`/`redo`                                                                                                                                                                                                                            |
 | **Clear**             | `clear`                                                                                                                                                                                                                                  |
 | **Exit**              | `exit`                                                                                                                                                                                                                                   |
+
+## Signing off
+
+We hope you have a great time using TAilor and that it helps make your everyday lives a little simpler.
+Thank you for everything that you do for the teaching community as Teaching Assistants!
+
+We've throughly enjoyed making this application for all of you!
+
+
+Warmest Regards,
+
+Team TAilor
