@@ -39,6 +39,7 @@ ModelManager .up..|> Model
 Model .down.> ReadOnlyUserPrefs
 Model .down.> ReadOnlyContactList
 Model .down.> ReadOnlyTaskList
+Model .down..> UniqueModuleList
 
 ModelManager -down-> "1" ContactList
 ModelManager -down-> "1" UserPrefs
