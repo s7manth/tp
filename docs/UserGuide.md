@@ -23,7 +23,8 @@ faster than traditional GUI apps!
 * There is no support for DYOM modules at the moment as they do not conform to module naming conventions followed by most NUS
 faculties.
 * There is only support for students whose home university is NUS currently as well, so their matriculation
-numbers should be in the form of "A0123456X" as according to NUS.
+numbers should be in the form of "A0123456X" as according to NUS. This is essentially a 7-digit number preceded by a
+capital letter "A" and followed by another concluding capital letter.
 * This application has mail commands that use your system's default mail application. If none was found or set, your
 computer will prompt you for an application to use. To use your preferred mail app, please ensure that the specified
 app is set as the default in your computer settings.
@@ -78,7 +79,7 @@ for more information.
 
 6. Refer to the [Commands and Features](#commands-and-features) below for details of each command.
 
-### What you can see from TAilor
+### Understanding TAilor's GUI
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
 As seen in the above picture, there are several components of notice for TAilor:
@@ -141,7 +142,7 @@ You can choose to follow module conventions for the naming of the groups or make
 Some additional examples are shown below:
 
 * CS2103T groups can be `W12-1` to represent the Wednesday 12PM time slot, group 1.
-* CS2101 groups can be `G02` to represent the tutorial group 2 according to EduRec/NUSmods
+* CS2101 groups can be `G02` to represent sectional class #2 according to the conventions followed by the module in EduRec/NUSmods
 * If you are handling only one group, a simple description like `lab` or `tutorial` can suffice.
 
 <br>
@@ -218,8 +219,8 @@ The typical usage for a Teaching Assistant is provided as follows:
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `a/A0123456H a/A1111111H`, only `a/A1111111H` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Extraneous parameters for commands that do not take in parameters (such as `list`, `exit` and `clear`) will be ignored.<br>
+  e.g. if the command specifies `list 123`, it will be interpreted as `list`.
 
 * Refer to our [prefix usage table](#prefix-usage-table) for more details on the requirements for each prefix.
 
@@ -291,6 +292,13 @@ Format: `import-csv PATH-TO-FILE`
 
 To prepare your CSV files, follow the instructions below:
 
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+The following steps assume that you, the user, will be having manager access for the Module on LumiNUS and thus will be
+able to export the needed Excel sheets as directed. If you do not have that level of access, fret not! You can follow
+the requirements below and look at our sample csv file
+[here](https://github.com/AY2122S2-CS2103T-W12-1/tp/blob/master/src/test/data/ImportCsvTest/second-sample-tutorial-data.csv) to create your own file from scratch and you're good to go!
+</div>
+
 1. Export your student list from LumiNUS Classes and Groups.
    * When choosing the format of the file, select and export the following headers:
      * Name,
@@ -308,8 +316,9 @@ may be helpful for guidance.
 The file format, including choice of headers, must be adhered to for the command to work. Excel sheets downloaded from
 LumiNUS have 2 additional rows preceding the row containing the column headers that are included in the required CSV format.
 Hence, if you were to create your own CSV file, these additional rows are required as well.<br>
-A sample csv file can be found [here]. As such, be careful not to corrupt your csv file before importing to TAilor - something that can
-result from writing anything or adding information that does not abide by the expected format in the file.
+A sample csv file can be found [here](https://github.com/AY2122S2-CS2103T-W12-1/tp/blob/master/src/test/data/ImportCsvTest/second-sample-tutorial-data.csv).
+As such, be careful not to corrupt your csv file before importing to TAilor - something that can result from writing
+anything or adding information that does not abide by the expected format in the file.
 </div>
 
 #### Editing a student : `edit`
