@@ -450,7 +450,7 @@ Format: `undo` or `redo`
 
 Example:
 
-Let the initial state of the list contain these 3 students: Alex, Bernice, Charlotte and David.<br>
+Let the initial state of the list contain these 4 students: Alex, Bernice, Charlotte and David.<br>
 
 ![Initial State](images/undocommandUG/initial_state.png)
 
@@ -499,7 +499,7 @@ Mails multiple students from the contact list. This is a broader version of the 
 Format: `mail-x [e/EMAIL] [g/GROUP] [m/MOD] [n/NAME]`
 
 * This opens the default email application on the system with all the mail addresses specified by the arguments.
-* Anyone who matches at least one of the specified arguments will be included in the mailing list.
+* Anyone who matches **at least one** of the specified arguments will be included in the mailing list.
 * This can be used to specify multiple prefix based arguments to send the same mail in a single go.
 * At least one of the optional fields must be provided.
 
