@@ -74,7 +74,6 @@ mundane administrative tasks, or by providing efficient ways to accomplish those
     [#128](https://github.com/AY2122S2-CS2103T-W12-1/tp/pull/128)
 
 * **Enhancements to existing features**:
-    * Extended the `help` command's functionality
     * Performed code refactoring aiding the migration from AddressBook to TAilor 
       [#66](https://github.com/AY2122S2-CS2103T-W12-1/tp/pull/66),
       [#69](https://github.com/AY2122S2-CS2103T-W12-1/tp/pull/69)
