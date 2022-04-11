@@ -368,7 +368,8 @@ adding a student using the `add` command.
 Format: `set-default-group m/MOD g/GROUP`
 
 * `MOD` may or may not be an existing mod in TAilor's local database
-* `GROUP` can be set any number of times for the same Mod, replacing the previous default value if previously set.
+* `GROUP` can be set any number of times for the same Mod. If a default group value is already set, the new group value
+will simply replace it as default.
 
 Examples:
 * `set-default-group m/CS2101 g/G02`<br>
@@ -386,7 +387,7 @@ Examples:
 #### Locating students: `find`
 
 
-Finds students whose details matches all of the search parameters.
+Finds students whose details matches **all** of the search parameters.
 
 Format: `find PREFIX/KEYWORD [MORE_KEYWORDS]…​    [PREFIX/KEYWORD [MORE_KEYWORDS]…​]…​`
 
@@ -419,9 +420,9 @@ Note:
 * For the rest, **partial words** will be matched e.g. `e/exam` will match `abc@example.com`
 
 
-* If multiple keywords are specified for a single prefix, students matching **at least one** keyword will be returned
+* If multiple **keywords** are specified for a single prefix, students matching **at least one** keyword will be returned
 e.g. `n/Hans Bo` will return `Hans Gruber`, `Bo Yang`
-* If multiple prefixes are specified, students matching **ALL** prefixes will be returned.
+* If multiple **prefixes** are specified, students matching **all** prefixes will be returned.
 
 Example:
 
@@ -435,7 +436,7 @@ Let the initial state of the list contain these 3 students: Alex, Bernice, Charl
 * `find n/alex charlotte m/CS g/t01` returns `Alex`, because:
     * `Alex` and `Charlotte` fit within the search arguments for the prefix `name` and `module`,
     * However, only `Alex` has a group of `T01`.
-    * Hence, only `Alex` meets the search requirements of ALL search prefixes provided, and is shown.
+    * Hence, only `Alex` meets the search requirements of **all** search prefixes provided, and is shown.
   
   ![result for `find n/alex charlotte m/CS g/t01`](images/findcommandUG/find-alex-charlotte.png)
 
