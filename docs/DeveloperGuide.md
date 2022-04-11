@@ -147,7 +147,7 @@ The `Model` component,
 
 `VersionedContents` stores versions of the `Content` object, which in turn stores a `ContactList`, `PriorityTaskList` and `UniqueModuleList` object. The class diagram for VersionedContents can be found below.
 
-<img src="images/VersionedContentsDiagram.png" width="250" />
+<img src="images/VersionedContentsDiagram.png" width="550" />
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects. This diagram is also truncated slightly as it does not show the Task classes.<br>
 
@@ -374,7 +374,7 @@ into TAilor's database. Exception handling has been done alongside checks (file 
 
 * The import-csv command has been created in a manner that checks for most possible places where the user could go wrong
 and provides guidance to correct them through the error messages and the user guide section. This command is designed to
-be very easy to use for the current target users, which are TAs teaching a NUS module which implies that they would have 
+be very easy to use for the current target users, which are TAs teaching a NUS module which implies that they would have
 manager access on LumiNUS. The student database exported from LumiNUS conforms exactly to our csv file requirements and
 hence, any beginner user would be able to successfully use this command as long as they follow the directions provided
 in the user guide.
@@ -465,25 +465,29 @@ making administrative tasks less tedious and rudimentary. By setting a default g
 about repeatedly entering the same group value for several students over an extended period of time.
 
 #### Implementation
-The following classes were created in the process of implementing the `set-default-group` command:
+The following classes were created/edited in the process of implementing the `set-default-group` command:
 
 
 | Logic                   | Model                    | Storage                    |
 |-------------------------|--------------------------|----------------------------|
 | SetDefaultCommand       | DuplicateModuleException | ModuleListStorage          |
 | SetDefaultCommandParser | ModuleNotFoundException  | JsonModuleListStorage      |
-|                         | ModuleList               | JsonSerializableModuleList |               
-|                         | UniqueModuleList         | JsonAdaptedModule          |               
+|                         | ModuleList               | JsonSerializableModuleList |
+|                         | UniqueModuleList         | JsonAdaptedModule          |
 
 
 
 The core idea behind this implementation is that there exists an empty `UniqueModuleList` which is a list of `Mod`.
-Every Mod object has a `defaultGroup` attribute that initially is unassigned. Once the user enters the command
-`set-default-group m/MOD g/GROUP`, the `defaultGroup` value for that `MOD` gets set to `GROUP` and that `MOD` gets added to the `UniqueModuleList`.
-If the command is entered again, the value of the `MOD` gets updated in the `UniqueModuleList` and the user is notified.
+Every Mod object has a `defaultGroup` attribute that initially is unassigned. When a user enters the command `set-default-group m/MOD g/GROUP`, the code:
 
-Now when a user adds a new student, if he doesn't pass a group argument and there exists the given `MOD` in the `UniqueModuleList`, it places
-the `defaultGroup` as the group for the student, else it returns an error message to the user.
+* Uses `Model#doesModExistInList` to check if the `Mod` exists in `UniqueModuleList`.
+* If it exists, get the previous default group using `Model#retrievePrevDefault` and update it.
+* Else add the `Mod` to the `UniqueModuleList` with the given default `GROUP` using the `Model#setDefaultGroup` command.
+
+Now when a user adds a new student using the `add` command:
+* If the group argument has been passed, the code is run normally
+* If the group argument has not been passed, the code retrieves the default group from the `UniqueModuleList` and throws an error if the 
+given mod has no default group set.
 
 Similar to the TaskList implementation most of these classes are linked to the respective XYZManager components.
 For example, LogicManager now tries to save to the storage's moduleList as well:
@@ -514,11 +518,6 @@ interactions with the XYZManagers the same.
 
 ### Refill previously typed command feature
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
-
-#### Aim of the feature
-As quick typers, it is inevitable for us to make typos once in a while. In those cases, it is very convenient if we
-could quickly refill the `CommandBox` with the mistyped input, and correct the mistake there. This features serves to
-meet that need.
 
 #### Implementation
 This feature is facilitated by `InputHistoryManager`. It implements `InputHistory`, and stores the previously entered
@@ -592,6 +591,26 @@ Finally, the user decides to enter a new command, `undo`. The `CommandBox` will 
 
 ![PreviousInputState5](images/PreviousInputState5.png)
 
+#### Design Considerations
+
+**Aspect: Motivation**
+
+As quick typers, it is inevitable for us to make typos once in a while. In those cases, it is very convenient if we
+could quickly refill the `CommandBox` with the mistyped input, and correct the mistake there. This features serves to
+meet that need.
+
+**Aspect: Coupling**
+
+To reduce the coupling introduced by this feature as much as possible, the `InputHistoryManager` object only has an
+association with the `CommandBox` UI part. As TAilor is designed only with 1 point of input, the `InputHistoryManager`
+only needs to be associated with the `CommandBox`.
+
+**Aspect: Extendability**
+
+If the application is expanded to include multiple points of input, each input box can be associated with their own instance
+of `InputHistoryManager`, which can allow each of them to store their own input histories.
+
+
 ### Getting help
 
 #### Aim of the feature
@@ -635,7 +654,6 @@ functionality without too many changes. In this way, it is highly maintainable.
 
 `help` command is able to tolerate unpredictable or invalid input. Appropriate exception handling has been done to 
 ensure that it does not process erroneous input.
-
 
 --------------------------------------------------------------------------------------------------------------------
 
