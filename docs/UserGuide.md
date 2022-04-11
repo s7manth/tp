@@ -288,6 +288,7 @@ Examples:
 
 * `add n/John Doe a/A1234567L e/johnd@example.com m/CS2030S g/B12G`
 * `add n/Betsy t/friend e/btsy@example.com m/CS2100 g/T1 a/a0123456x t/needshelp`
+<div style="page-break-after: always;"></div>
 
 #### Adding students from a CSV file: `import-csv`
 
@@ -365,7 +366,8 @@ Format: `delete INDEX`
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the student list.
-* `find n/Betsy` followed by `delete 1` deletes the 1<sup>st<sup> student in the results of the `find` command.
+* `find n/Betsy` followed by `delete 1` deletes the 1<sup>st</sup> student in the results of the `find` command.
+<div style="page-break-after: always;"></div>
 
 #### Setting a default group for a mod: `set-default-group`
 
@@ -390,6 +392,7 @@ Examples:
 
   ![result for updating default group of m/CS2101](images/set_default_ex2.png)
 
+<div style="page-break-after: always;"></div>
 
 #### Locating students: `find`
 
@@ -446,6 +449,7 @@ Let the initial state of the list contain these 3 students: Alex, Bernice, Charl
     * Hence, only `Alex` meets the search requirements of **all** search prefixes provided, and is shown.
   
   ![result for `find n/alex charlotte m/CS g/t01`](images/findcommandUG/find-alex-charlotte.png)
+<div style="page-break-after: always;"></div>
 
 #### Undo or Redo a previous command : `undo/redo`
 
@@ -474,6 +478,7 @@ After `undo`, the list will return to having Alex in it<br>
 After a `redo`, the list will return to the state where Alex was deleted<br>
 
 ![Before Undo](images/undocommandUG/before_undo.png)
+<div style="page-break-after: always;"></div>
 
 ### Mail commands
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -530,7 +535,7 @@ Format: `mail-all`
 
 * Opens the default email application on the system with all email addresses pre-filled in the receiver's
   field.
-
+<div style="page-break-after: always;"></div>
 
 ### Task List commands
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -589,7 +594,7 @@ Format: `deltask INDEX`
 (Positive) Examples:
 * `deltask 2` with a task list of at least 2 tasks, deletes the 2nd task in the task list.
 
-
+<div style="page-break-after: always;"></div>
 
 ### Closing Commands
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -628,6 +633,7 @@ Example:
 2. Pressing &#8593; will fill the command box with `list`.
 3. Pressing &#8593; again will fill the command box with `find n/Bob`.
 4. Pressing &#8595; will then fill the command box with `list` again.
+<div style="page-break-after: always;"></div>
 
 ### Saving the data
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -654,7 +660,8 @@ To **save the current state** into the data files, perform any command that chan
 WARNING: This overrides any changes made to the data after TAilor has started, if you modified them while TAilor is running.
 </div>
 
---------------------------------------------------------------------------------------------------------------------
+---
+<div style="page-break-after: always;"></div>
 
 ## **FAQ**
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -663,7 +670,8 @@ WARNING: This overrides any changes made to the data after TAilor has started, i
 **A**: Download and run TAilor on your other computer and overwrite all 3 data files created with the data files that contains
 the data of your previous TAilor usage, as found in the locations mentioned in the above section on [editing data files.](#editing-the-data-file)
 
---------------------------------------------------------------------------------------------------------------------
+---
+<div style="page-break-after: always;"></div>
 
 ## **Prefix usage table**
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -679,6 +687,8 @@ the data of your previous TAilor usage, as found in the locations mentioned in t
 | by/    | Deadline       | Must be in the format of YYYY-MM-DDThh:mm, more details are under the [`newtask` command](#adding-a-new-task-newtask).                                                                                                                                        | by/2022-03-21T15:21 <br> by/2011-12-01T03:17 |
 
 ---
+<div style="page-break-after: always;"></div>
+
 ## **Command summary**
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
@@ -702,6 +712,7 @@ the data of your previous TAilor usage, as found in the locations mentioned in t
 | **Exit**              | `exit`                                                                                                                                                                                                                                   |
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## **Signing off**
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
