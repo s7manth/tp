@@ -737,7 +737,10 @@ Essentially `COMMAND_WORD` is an optional argument to the `help` command which g
 
 The following is the sequence diagram of `help` command's execution :
 
+<p align="center">
 <img src="images/HelpCommandSequenceDiagram.png" />
+<b>Fig. 34 - Help command execution</b>
+</p>
 
 #### Design Considerations
 
