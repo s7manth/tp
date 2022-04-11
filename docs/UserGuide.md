@@ -1,11 +1,17 @@
 ---
 layout: page
-title: User Guide
+
 ---
+
+<h1 align="center">User Guide</h1>
+
+<div style="page-break-after: always;"></div>
+
 ## Table of Contents
 * Table of Contents
 {:toc}
 
+<div style="page-break-after: always;"></div>
 
 ## **Introduction**
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -15,7 +21,6 @@ while still having the benefits of a Graphical User Interface (GUI). If you belo
 Computing, are a Teaching Assistant in NUS and can type fast, TAilor can get tedious contact management tasks done
 faster than traditional GUI apps!
 
-<br>
 
 ### Things to note before you begin
 
@@ -33,7 +38,8 @@ If the intended usage above does not fit you, don't worry, you still can use our
 may seem a little odd to you, or you may need to do some manual adjustments. Fret not, we are currently working to produce a
 version of TAilor that can be used by a wider range of users, so stay tuned!
 
---------------------------------------------------------------------------------------------------------------------
+--- 
+<div style="page-break-after: always;"></div>
 
 ## **Quick start**
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -55,13 +61,10 @@ for more information.
    1. Open the terminal on your PC and move to the directory where `TAilor.jar` is contained in. Then, run `java -jar TAilor.jar`
       the application. We recommend macOS users to use this method of starting the application to avoid errors.
    2. Double-click the .jar file to start the app. <br>
-      <br>
       The GUI similar to the one below should appear in a few seconds. Note
       how the app contains some sample data.<br>
-      <br>
-      ![Ui](images/Ui.png)
-      <br>
-      <br>
+      ![Ui](images/Ui.png)<br><br>
+
 
 5. Type a command into the command box and press **&#9166; Enter** to execute it. e.g. typing **`help`** and pressing **&#9166; Enter**
    will open the help window.<br>
@@ -78,6 +81,8 @@ for more information.
     * `exit` : Exits the app.
 
 6. Refer to the [Commands and Features](#commands-and-features) below for details of each command.
+
+<div style="page-break-after: always;"></div>
 
 ### Understanding TAilor's GUI
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -119,6 +124,7 @@ This is where you can see the students that are currently added into the applica
 
 <img src="images/UIexplanation/studentlist.png" width="650">
 
+<br>
 Let's take a closer look at one of the entries in the list:
 
 ![one entry in the student list](images/UIexplanation/personcard.png)
@@ -145,7 +151,7 @@ Some additional examples are shown below:
 * CS2101 groups can be `G02` to represent sectional class #2 according to the conventions followed by the module in EduRec/NUSmods
 * If you are handling only one group, a simple description like `lab` or `tutorial` can suffice.
 
-<br>
+<br><br><br>
 
 #### Task List
 
@@ -165,9 +171,9 @@ Shown here is:
 | **Description** of the task                     | interview for project |
 | **Deadline** of the task                        | 2022-02-25, 12:00     |
 
-<br>
 
---------------------------------------------------------------------------------------------------------------------
+---
+<div style="page-break-after: always;"></div>
 
 ## **Typical usage workflow**
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -193,6 +199,7 @@ The typical usage for a Teaching Assistant is provided as follows:
 5. Exit the application via the [exit command](#exiting-tailor-exit) or by pressing the close button for the application.
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## **Commands and features**
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -224,17 +231,13 @@ The typical usage for a Teaching Assistant is provided as follows:
 
 * Refer to our [prefix usage table](#prefix-usage-table) for more details on the requirements for each prefix.
 
-</div>
+* Additionally, TAilor only supports a single command being executed at any one time. There is no support for executing multiple commands.
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Note on command inputs:**<br>
-
-* Currently, TAilor only supports a single command being executed at any one time. There is no support for executing multiple commands.
 * Example : `edit 1 n/Bob delete 2`, inputs like these result in unintended behavior as it specifies more than one command, `edit` and `delete`.
-* To avoid these unintended behaviors, only enter in one command at a time before pressing <br>**&#9166; Enter**.
 
-</div>
+* To avoid these unintended behaviors, only enter in one command at a time before pressing **&#9166; Enter**.
+
+</div><div style="page-break-after: always;"></div>
 
 ### Common commands
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -261,6 +264,7 @@ Shows a list of all students in the student list.
 
 Format: `list`
 
+<div style="page-break-after: always;"></div>
 
 #### Adding a student: `add`
 
@@ -276,10 +280,15 @@ If the entered student name has more than 50 characters, the entire name may not
 is to use initials instead. <br>A student can also have any number of tags (including 0).
 </div>
 
+Note:
+* Only non-duplicate students can be added. Ie, we cannot add duplicate students into the student list.
+* Students are considered to be "duplicate" when two students have the same email address or student number.
+
 Examples:
 
 * `add n/John Doe a/A1234567L e/johnd@example.com m/CS2030S g/B12G`
 * `add n/Betsy t/friend e/btsy@example.com m/CS2100 g/T1 a/a0123456x t/needshelp`
+<div style="page-break-after: always;"></div>
 
 #### Adding students from a CSV file: `import-csv`
 
@@ -318,6 +327,7 @@ A sample csv file can be found [here](https://github.com/AY2122S2-CS2103T-W12-1/
 As such, be careful not to corrupt your csv file before importing to TAilor - something that can result from writing
 anything or adding information that does not abide by the expected format in the file.
 </div>
+<div style="page-break-after: always;"></div>
 
 #### Editing a student : `edit`
 
@@ -339,7 +349,7 @@ Examples:
 *  `edit 1 a/A1122334X e/johndoe@example.com` Edits the student number and email address of the 1st student to be
    `A1122334X` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
-
+<div style="page-break-after: always;"></div>
 
 #### Deleting a student : `delete`
 
@@ -356,7 +366,8 @@ Format: `delete INDEX`
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the student list.
-* `find n/Betsy` followed by `delete 1` deletes the 1<sup>st<sup> student in the results of the `find` command.
+* `find n/Betsy` followed by `delete 1` deletes the 1<sup>st</sup> student in the results of the `find` command.
+<div style="page-break-after: always;"></div>
 
 #### Setting a default group for a mod: `set-default-group`
 
@@ -381,6 +392,7 @@ Examples:
 
   ![result for updating default group of m/CS2101](images/set_default_ex2.png)
 
+<div style="page-break-after: always;"></div>
 
 #### Locating students: `find`
 
@@ -421,7 +433,7 @@ Note:
 * If multiple **keywords** are specified for a single prefix, students matching **at least one** keyword will be returned
 e.g. `n/Hans Bo` will return `Hans Gruber`, `Bo Yang`
 * If multiple **prefixes** are specified, students matching **all** prefixes will be returned.
-
+<div style="page-break-after: always;"></div>
 Example:
 
 Let the initial state of the list contain these 3 students: Alex, Bernice, Charlotte.
@@ -437,6 +449,7 @@ Let the initial state of the list contain these 3 students: Alex, Bernice, Charl
     * Hence, only `Alex` meets the search requirements of **all** search prefixes provided, and is shown.
   
   ![result for `find n/alex charlotte m/CS g/t01`](images/findcommandUG/find-alex-charlotte.png)
+<div style="page-break-after: always;"></div>
 
 #### Undo or Redo a previous command : `undo/redo`
 
@@ -453,7 +466,7 @@ Example:
 Let the initial state of the list contain these 4 students: Alex, Bernice, Charlotte and David.<br>
 
 ![Initial State](images/undocommandUG/initial_state.png)
-
+<div style="page-break-after: always;"></div>
 After `delete 1`, we will delete Alex and the list will not have Alex anymore.<br>
 
 ![Before Undo](images/undocommandUG/before_undo.png)
@@ -461,10 +474,11 @@ After `delete 1`, we will delete Alex and the list will not have Alex anymore.<b
 After `undo`, the list will return to having Alex in it<br>
 
 ![Initial State](images/undocommandUG/initial_state.png)
-
+<div style="page-break-after: always;"></div>
 After a `redo`, the list will return to the state where Alex was deleted<br>
 
 ![Before Undo](images/undocommandUG/before_undo.png)
+<div style="page-break-after: always;"></div>
 
 ### Mail commands
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -491,6 +505,7 @@ Format: `mail-index INDEX`
 Example:
 * `mail-index 2` would open the default mail on the system with the receivers' field filled with the
   specified mail. Now, the email is ready to be sent to the student with the index 2 as shown on the application.
+<div style="page-break-after: always;"></div>
 
 #### Mailing students based on arguments: `mail-x`
 
@@ -521,7 +536,7 @@ Format: `mail-all`
 
 * Opens the default email application on the system with all email addresses pre-filled in the receiver's
   field.
-
+<div style="page-break-after: always;"></div>
 
 ### Task List commands
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -580,7 +595,7 @@ Format: `deltask INDEX`
 (Positive) Examples:
 * `deltask 2` with a task list of at least 2 tasks, deletes the 2nd task in the task list.
 
-
+<div style="page-break-after: always;"></div>
 
 ### Closing Commands
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -605,7 +620,6 @@ with the aid of `undo` command.
 Format: `clear`
 
 ---
-
 ### Shortcuts
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
@@ -619,6 +633,7 @@ Example:
 2. Pressing &#8593; will fill the command box with `list`.
 3. Pressing &#8593; again will fill the command box with `find n/Bob`.
 4. Pressing &#8595; will then fill the command box with `list` again.
+<div style="page-break-after: always;"></div>
 
 ### Saving the data
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -645,7 +660,8 @@ To **save the current state** into the data files, perform any command that chan
 WARNING: This overrides any changes made to the data after TAilor has started, if you modified them while TAilor is running.
 </div>
 
---------------------------------------------------------------------------------------------------------------------
+---
+<div style="page-break-after: always;"></div>
 
 ## **FAQ**
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -654,7 +670,8 @@ WARNING: This overrides any changes made to the data after TAilor has started, i
 **A**: Download and run TAilor on your other computer and overwrite all 3 data files created with the data files that contains
 the data of your previous TAilor usage, as found in the locations mentioned in the above section on [editing data files.](#editing-the-data-file)
 
---------------------------------------------------------------------------------------------------------------------
+---
+<div style="page-break-after: always;"></div>
 
 ## **Prefix usage table**
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -670,6 +687,8 @@ the data of your previous TAilor usage, as found in the locations mentioned in t
 | by/    | Deadline       | Must be in the format of YYYY-MM-DDThh:mm, more details are under the [`newtask` command](#adding-a-new-task-newtask).                                                                                                                                        | by/2022-03-21T15:21 <br> by/2011-12-01T03:17 |
 
 ---
+<div style="page-break-after: always;"></div>
+
 ## **Command summary**
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
@@ -691,3 +710,19 @@ the data of your previous TAilor usage, as found in the locations mentioned in t
 | **Undo/Redo**         | `undo`/`redo`                                                                                                                                                                                                                            |
 | **Clear**             | `clear`                                                                                                                                                                                                                                  |
 | **Exit**              | `exit`                                                                                                                                                                                                                                   |
+
+---
+<div style="page-break-after: always;"></div>
+
+## **Signing off**
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
+
+We hope you have a great time using TAilor and that it helps make your everyday lives a little simpler.
+Thank you for everything that you do for the teaching community as Teaching Assistants!
+
+We've thoroughly enjoyed making this application for all of you!
+
+
+Warmest Regards,
+
+Team TAilor
