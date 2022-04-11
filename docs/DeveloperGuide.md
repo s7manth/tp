@@ -204,6 +204,13 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
+Some examples include:
+
+| Class Name | What it is used for                                                            |
+|------------|--------------------------------------------------------------------------------|
+| CsvUtil    | Checking and parsing CSV files for the import-csv command                      |
+| MailUtil   | Launching the system default mail application and checking the input arguments |
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
@@ -1005,12 +1012,44 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect delete task commands to try: `del-task`, `del-task x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
+### Undoing/Redoing commands
+[<sub><sup>Back to top</sup></sub>](#table-of-contents)
+
+1. Undoing a command
+
+   1. Prerequisites: There must be an undo-able command executed beforehand in the same usage session.
+
+   2. Test case: `undo` and the previous command added a new student (`add` command)<br>
+      Expected: The add command is undone, and the new student no longer appears in the student list. Feedback is shown in the feedback box
+      that the undo command has been done.
+
+   3. Test case: `undo` and the only previous commands are `list` or `find` commands<br>
+      Expected: No undo-able command is available. Nothing changes, and an error pops up indicating that there is nothing to undo.
+
+   4. Test case: `undo` and there are no commands done yet since launching the application<br>
+      Expected: Same as above.
+
+3. Redoing a command
+
+   1. Similar to the undo command, flipping `undo` into `redo`, before into after.
 
 ### Saving data
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing/corrupted data files (contactlist.json, tasklist.json, modulelist.json)
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Missing/corrupted data can occur from some ways listed below: (non-exhaustive!)
+      * The .json files have been tampered with, intentionally or not.
+      * The .json files cannot be read by TAilor upon startup.
 
-1. _{ more test cases …​ }_
+   2. Currently, TAilor does not have any in-built back up system. As such, we recommend users to do manual back ups
+      once in a while, to ensure that everything is saved at a restore point.
+   
+   3. Additionally, if users decide to modify the .json files manually to add in new data, it is also recommended for them
+      to make a backup copy of the data files before doing so.
+
+   4. In the case of unfortunate events where the user did not make a back up and data is indeed lost, the user has no choice
+      but to manually enter in the data again from scratch.
+
+2. TAilor should save to the 3 data files automatically, upon the execution of most commands. As such, there is no need to perform a "save"
+   command to ensure that the data files are updated.
