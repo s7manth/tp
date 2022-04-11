@@ -641,8 +641,8 @@ Advanced users are welcome to update the data directly by editing those data fil
 If your changes to the data file makes its format invalid (e.g., deleting the field of a task), TAilor will discard data in all 
 3 files and start with no data on the next run. It is suggested that users back up copies of these files manually, before editing any of them.
 <br>
-To reset the files, perform any command that changes the contact list or task list (ie add new task, add new contact).<br>
-WARNING: This will override the pre-existing data with the new data you entered.
+To **save the current state** into the data files, perform any command that changes the contact list or task list (ie add new task, add new contact).<br>
+WARNING: This overrides any changes made to the data after TAilor has started, if you modified them while TAilor is running.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
