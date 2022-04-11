@@ -18,7 +18,6 @@ while still having the benefits of a Graphical User Interface (GUI). If you belo
 Computing, are a Teaching Assistant in NUS and can type fast, TAilor can get tedious contact management tasks done
 faster than traditional GUI apps!
 
-<br>
 
 ### Things to note before you begin
 
@@ -59,13 +58,10 @@ for more information.
    1. Open the terminal on your PC and move to the directory where `TAilor.jar` is contained in. Then, run `java -jar TAilor.jar`
       the application. We recommend macOS users to use this method of starting the application to avoid errors.
    2. Double-click the .jar file to start the app. <br>
-      <br>
       The GUI similar to the one below should appear in a few seconds. Note
       how the app contains some sample data.<br>
-      <br>
       ![Ui](images/Ui.png)
-      <br>
-      <br>
+
 
 5. Type a command into the command box and press **&#9166; Enter** to execute it. e.g. typing **`help`** and pressing **&#9166; Enter**
    will open the help window.<br>
