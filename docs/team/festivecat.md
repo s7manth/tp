@@ -24,7 +24,8 @@ Given below are my contributions to the project.
       Incorporated many individual classes for each of the search conditions, as well as a compounded search condition
       that allows searching based on all conditions passed into it.
     * Time spent on this (estimate):
-      210mins
+      210mins<br>
+
   * **Feature 2**: Implementing `Mod` class [\#72]()
     * What it does:
       This is basically another field/detail about a person, like Name and Email.
@@ -33,7 +34,8 @@ Given below are my contributions to the project.
       By having this `Mod` class, Teaching Assistants can now tag students with a certain Class, ie `CS2030S`
       To better keep track of their students.
     * Time spent on this (estimate):
-      150mins
+      150mins<br>
+
   * **Feature 3**: Implementing the Task Manager [\#88]()
     * What it does:
       The task manager will help the target audience keep track of tasks for their students better.
@@ -46,40 +48,45 @@ Given below are my contributions to the project.
       This feature can also be extended to be linked to Students, Mods or Groups. It can also be extended to use
       different priority systems to rank the Tasks, as well as a reminder system for upcoming tasks.
     * Time spent on this (estimate):
-      900mins
+      900mins<br>
 
 * **Enhancements to existing features**:
-  * Add Mod class/field (Pull request [\#72]())
-  * Find command (Pull requests [\#75]())
-  * Extended UI to include the task manager feature (Pull Requests [\#122]())
-  * Bugfixes (Pull requests [\#111](), [\#136](), [\#207](), [\#212]())
-  * Polish UG/DG (Pull requests [\#212](), [\#229](), [\#233](), [\#239](), [\#243]())
+  * Add Mod class/field *(Pull request [\#72]())*
+  * Find command *(Pull requests [\#75]())*
+  * Extended UI to include the task manager feature *(Pull Requests [\#122]())*
+  * Bugfixes *(Pull requests [\#111](), [\#136](), [\#137](), [\#207](), [\#212]())*
+  * Polish UG/DG *(Pull requests [\#212](), [\#229](), [\#233](), [\#239](), [\#243](), [#244]()*
 
 * **Documentation**:
   * User Guide (UG):
-    * Reviewed UG for v1.1, made minor formatting and grammatical changes.
+    * Reviewed UG for v1.1, made minor formatting and grammatical changes. *(Pull Requests [#41]())*
     * Updated UG for parts I have modified/implemented/extended. In particular:
       * I included the extra search parameters that can be used in the Find Command.
       * I updated the `add`/`edit` commands to include `Mod`, as well as to add in the `Group` attribute
-      * I also incorporated the new Task Manager commands, `newtask` and `deltask` and how they should be used.
+      * I also incorporated the new Task Manager commands, `newtask` and `deltask` and how they should be used. *(Pull Requests [#121]())*
     * I also added in additional sections on prefix usages, intended workflow and an extended introduction at the start
       of the document to better guide users along with how to use our application.
-    * I also incorporated the link to table of contents under most major headings and subheadings.
+    * I also incorporated the link to table of contents under most major headings and subheadings. *(Pull Requests [#111]())*
     * Polished UG before final submission, inclusive of wording changes, formatting and whitespaces.
+    * Made final adjustments including page breaks for PDF conversion.<br>
+    
   * Developer Guide (DG):
     * Changed some "Address Book" into "Contact List" to better represent the project.
+    * Changed some "Persons" and "Contacts" into "Students" to better represent the project
     * Updated DG for parts I have modified/implemented/extended.
       * In particular, I remade the Model and Storage UML diagrams (V2) to include the newly implemented Task Manager functionality.
       * There is also a section under "Implementations" that describes how the Task Manager interacts with the rest of TAilor.
-    * I also incorporated the link to table of contents under most major headings and subheadings.
+    * I also incorporated the link to table of contents under most major headings and subheadings. *(Pull Requests [#111]())*
     * Polished DG before final submission, inclusive of wording changes, formatting and whitespaces.
-    * Added additional test cases.
+    * Added additional test cases for Add, Edit, Delete, New Task, Delete Task, Undo/Redo.
+    * Added last section on saving data
     * Added captions/figure references to the images used.
+    * Made final adjustments including page breaks for PDF conversion.
 
 * **Contribution to team-based tasks**:
   * Made team organisation and repository at the beginning.
   * Transferred half of User Stories into Issues to track.
-  * Incorporated a standardised commit message format: [\#67]()
+  * Incorporated a standardised commit message format: *Pull Request [\#67]()*
   * Vetted issues raised after the PE dry run to sort out duplicate or invalid bugs due to intentional design.
   * Produced .jar file for v1.4
 

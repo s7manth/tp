@@ -1,9 +1,7 @@
 ---
 layout: page
-
+title: Developer Guide
 ---
-<h1 align="center">Developer Guide</h1>
-<div style="page-break-after: always;"></div>
 
 ## Table of Contents
 * Table of Contents
