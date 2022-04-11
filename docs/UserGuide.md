@@ -1,7 +1,9 @@
 ---
 layout: page
-title: User Guide
 ---
+
+<h1 align="center">User Guide</h1>
+
 <div style="page-break-after: always;"></div>
 
 ## Table of Contents
