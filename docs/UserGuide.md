@@ -542,9 +542,9 @@ Format: `clear`
 ### Shortcuts
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-| Button    | Result                                                               |
-|-----------|----------------------------------------------------------------------|
-| &#8593; | Refills command textbox with previous entered command                |
+| Button  | Result                                                                 |
+|---------|------------------------------------------------------------------------|
+| &#8593; | Refills command textbox with previous entered command                  |
 | &#8595; | Refills command textbox with the command entered after the current one |
 
 Example:
@@ -590,15 +590,15 @@ file that contains the data of your previous TAilor home folder!
 ## Prefix usage table
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-| Prefix | What it means  | Usage requirements                                                                                                                                                                                                                                             | Example Usages                               |
-|--------|----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
-| n/     | Name           | Can only contain alphanumeric characters or spaces, and cannot be blank.                                                                                                                                                                                       | n/Alex Yeoh <br> n/Bob Wee                   |
-| a/     | Student Number | Must start with an `a`, followed by 7 digits and ending with one letter.                                                                                                                                                                                       | a/A0123456N <br> a/a0102034x                 |
-| e/     | Email          | Has 2 parts separated by a mandatory `@`. <br><br>Before the `@`: Can contain alphanumeric characters or these special characters: `+``-``_``.`, but cannot start or end with the special characters.<br><br>After the `@`: At least 2 alphanumeric characters | e/johndoe@test.org <br> e/Alex@example.com   |
-| m/     | Module Code    | Must start with 2 or 3 **capital** letters, followed by 4 digits, and an optional last letter that is also **capitalised**.                                                                                                                                    | m/CS2030S <br> m/GER1000                     |
-| g/     | Group Number   | No restrictions on characters, but cannot be blank.                                                                                                                                                                                                            | g/group1 <br> g/tuesday 12pm                 |
-| t/     | Tags           | Must be alphanumeric, with no spaces. To add multiple tags, specify multiple `t/` prefixes.                                                                                                                                                                    | t/friend <br> t/foe                          |
-| by/    | Deadline       | Must be in the format of YYYY-MM-DDThh:mm, more details are under the [`newtask` command](#adding-a-new-task-newtask).                                                                                                                                         | by/2022-03-21T15:21 <br> by/2011-12-01T03:17 |
+| Prefix | What it means  | Usage requirements                                                                                                                                                                                                                                            | Example Usages                               |
+|--------|----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
+| n/     | Name           | Can only contain alphanumeric characters or spaces, and cannot be blank.                                                                                                                                                                                      | n/Alex Yeoh <br> n/Bob Wee                   |
+| a/     | Student Number | Must start with an `a`, followed by 7 digits and ending with one letter.                                                                                                                                                                                      | a/A0123456N <br> a/a0102034x                 |
+| e/     | Email          | Has 2 parts separated by a mandatory `@`. <br><br>Before the `@`: Can contain alphanumeric characters or these special characters: `+``-``_``.`, but cannot start or end with the special characters.<br><br>After the `@`: At least 1 alphanumeric character | e/johndoe@test.org <br> e/Alex@example.com   |
+| m/     | Module Code    | Must start with 2 or 3 **capital** letters, followed by 4 digits, and an optional last letter that is also **capitalised**.                                                                                                                                   | m/CS2030S <br> m/GER1000                     |
+| g/     | Group Number   | No restrictions on characters, but cannot be blank.                                                                                                                                                                                                           | g/group1 <br> g/tuesday 12pm                 |
+| t/     | Tags           | Must be alphanumeric, with no spaces. To add multiple tags, specify multiple `t/` prefixes.                                                                                                                                                                   | t/friend <br> t/foe                          |
+| by/    | Deadline       | Must be in the format of YYYY-MM-DDThh:mm, more details are under the [`newtask` command](#adding-a-new-task-newtask).                                                                                                                                        | by/2022-03-21T15:21 <br> by/2011-12-01T03:17 |
 
 ---
 ## Command summary
