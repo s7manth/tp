@@ -15,8 +15,8 @@ layout: page
 ## **Acknowledgements**
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-
+* We utilise an open-source CSV (comma-separated values) parser library called **Opencsv** to help aid the implementation
+  of our [import-csv command](#import-csv-feature). Click [here](http://opencsv.sourceforge.net/#general) to find out more about Opencsv.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -280,7 +280,7 @@ The current Task List uses a manually implemented priority system internally to 
   * Deadline and Description classes were used instead of just a String and a LocalDateTime field to make the codebase more
     consistent with one another as seen from Person and its corresponding fields. This also would then allow a consolidated
     parsing and checking via the utilities.
-
+<div style="page-break-after: always;"></div>
 **Aspect: Conformity**
 
 * To allow the entire application to look like it has been coded by one person, the implementation of this task manager
@@ -379,7 +379,7 @@ Step 6. The user executes `clear`, which calls `Model#commitContent()`. Since th
 <img src="images/UndoRedoState5.png"/> <br>
 <b>Fig. 20 - Undo/Redo State 5</b>
 </p>
-
+<div style="page-break-after: always;"></div>
 The following activity diagram summarizes what happens when a user executes a new command:
 
 <p align="center">
@@ -584,7 +584,7 @@ above and the specific functioning of the command can be found in the sequence d
 <p align="center">
 <img src="images/SetDefaultSequenceDiagram.png" width="1000"/> <br>
 <b>Fig. 25 - Execution of a `set-default-group` command</b>
-</p>
+</p><div style="page-break-after: always;"></div>
 
 #### Design Considerations
 
@@ -671,7 +671,7 @@ The following sequence diagram demonstrates how the refill previous input works
 <img src="images/PreviousInputSequenceDiagram.png"/> <br>
 <b>Fig. 30 - Previous input Sequence Diagram</b>
 </p>
-
+<div style="page-break-after: always;"></div>
 Step 5. When the user presses the &uarr; button, the `CommandBox` will call `getPreviousUserInput()`, which decrements
 the pointer by 1, pointing it to `"delete 1"`. The text in `CommandBox` will change to "delete 1".
 <br>
@@ -704,7 +704,7 @@ Finally, the user decides to enter a new command, `undo`. The `CommandBox` will 
 <p align="center">
 <img src="images/PreviousInputState5.png"/> <br>
 <b>Fig. 33 - Previous input state 5</b>
-</p>
+</p><div style="page-break-after: always;"></div>
 
 #### Design Considerations
 
@@ -846,6 +846,7 @@ Priorities: High (must have), Medium (nice to have), Low (unlikely to have)
 | priority.Low    | As a Teaching Assistant who is involved in grading   | I can see a graph of trends about my students’ performance individually                                             | so I can track the progress and improvement of my students                                                  |
 | priority.Low    | As a Teaching Assistant                              | I can create aliases for websites that are commonly used by students                                                | so that my students and I can access commonly visited websites easily                                       |
 | priority.Low    | As a Teaching Assistant teaching multiple modules    | I am able to separate the management of the modules                                                                 | so that I can be more organised in my work and teaching                                                     |
+
 <div style="page-break-after: always;"></div>
 
 ### Use cases
@@ -896,7 +897,7 @@ Priorities: High (must have), Medium (nice to have), Low (unlikely to have)
 
       Use case ends.
 
-
+<div style="page-break-after: always;"></div>
 
 **Use case 3 (UC3): Finding a student**
 
@@ -931,8 +932,6 @@ Priorities: High (must have), Medium (nice to have), Low (unlikely to have)
 4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 5. The code should be open source.
 6. Should not require internet connection.
-
-<div style="page-break-after: always;"></div>
 
 ### Glossary
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -980,6 +979,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
+<div style="page-break-after: always;"></div>
 
 ### Adding a student
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -1045,6 +1045,7 @@ testers are expected to do more *exploratory* testing.
 
    3. Test case: `import-csv ./second-sample-tutorial-data.csv` where there is a csv file in your current directory.
     Expected: New students are added with the details matching in the second-sample-tutorial-data.csv. Students with existing names/matric numbers are skipped.
+<div style="page-break-after: always;"></div>
 
 ### Editing a student
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -1064,7 +1065,7 @@ testers are expected to do more *exploratory* testing.
 
    5. Test case: `edit 1` with at least 1 student in the list.<br>
       Expected: Similar to previous, as there are no arguments specified to be edited
-
+<div style="page-break-after: always;"></div>
 
 ### Deleting a student
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -1091,6 +1092,7 @@ testers are expected to do more *exploratory* testing.
 
    3. Test case: `delete 0`, `delete`, `delete x`, `...` <br>
       Expected: Similar to the erroneous test cases from the list command above.
+<div style="page-break-after: always;"></div>
 
 ### Mailing student(s)
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -1121,6 +1123,7 @@ testers are expected to do more *exploratory* testing.
    2. Test case: `mail-all`<br>
       Expected: System default mail application opens up with the receiver's field filled all the email addresses of
       students in the entire contact list.
+<div style="page-break-after: always;"></div>
 
 ### Creating a Task
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -1145,7 +1148,7 @@ testers are expected to do more *exploratory* testing.
 
    6. Test case: `newtask Mark Lab 1 by/2022-02-29T17:29`<br>
       Expected: No task is added as 2022 is not a leap year, and has no Feb 29. Error details shown in the status message.
-
+<div style="page-break-after: always;"></div>
 
 ### Deleting a Task
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -1162,7 +1165,7 @@ testers are expected to do more *exploratory* testing.
 
     4. Other incorrect delete task commands to try: `del-task`, `del-task x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
-
+<div style="page-break-after: always;"></div>
 
 ### Undoing/Redoing commands
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -1184,6 +1187,7 @@ testers are expected to do more *exploratory* testing.
 3. Redoing a command
 
    1. Similar to the undo command, flipping `undo` into `redo`, before into after.
+<div style="page-break-after: always;"></div>
 
 ### Getting help
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
