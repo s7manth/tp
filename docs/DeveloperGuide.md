@@ -11,8 +11,7 @@ title: Developer Guide
 ## **Acknowledgements**
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-* We utilise an open-source CSV (comma-separated values) parser library called **Opencsv** to help aid the implementation
-of our [import-csv command](#import-csv-feature). Click [here](http://opencsv.sourceforge.net/#general) to find out more about Opencsv.
+* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -352,10 +351,10 @@ a one-command solution to this problem.
 The following classes were created in the process of implementing the `import-csv`
 command :
 
-| Logic                  | Commons                |
-|------------------------|------------------------|
-| ImportCsvCommand       | CsvUtil                |
-| ImportCsvCommandParser |                        |
+| Logic                  | Commons |
+|------------------------|---------|
+| ImportCsvCommand       | CsvUtil |
+| ImportCsvCommandParser |         |
 
 The external library used for reading CSV files is OpenCSV. OpenCSV supports a host of functions that allow one to
 manipulate and work with CSV files. The command utilizes the `CSVReader` from the library to read the files.
