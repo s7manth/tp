@@ -373,7 +373,7 @@ into TAilor's database. Exception handling has been done alongside checks (file 
 
 * The import-csv command has been created in a manner that checks for most possible places where the user could go wrong
 and provides guidance to correct them through the error messages and the user guide section. This command is designed to
-be very easy to use for the current target users, which are TAs teaching a NUS module which implies that they would have 
+be very easy to use for the current target users, which are TAs teaching a NUS module which implies that they would have
 manager access on LumiNUS. The student database exported from LumiNUS conforms exactly to our csv file requirements and
 hence, any beginner user would be able to successfully use this command as long as they follow the directions provided
 in the user guide.
@@ -423,25 +423,29 @@ making administrative tasks less tedious and rudimentary. By setting a default g
 about repeatedly entering the same group value for several students over an extended period of time.
 
 #### Implementation
-The following classes were created in the process of implementing the `set-default-group` command:
+The following classes were created/edited in the process of implementing the `set-default-group` command:
 
 
 | Logic                   | Model                    | Storage                    |
 |-------------------------|--------------------------|----------------------------|
 | SetDefaultCommand       | DuplicateModuleException | ModuleListStorage          |
 | SetDefaultCommandParser | ModuleNotFoundException  | JsonModuleListStorage      |
-|                         | ModuleList               | JsonSerializableModuleList |               
-|                         | UniqueModuleList         | JsonAdaptedModule          |               
+|                         | ModuleList               | JsonSerializableModuleList |
+|                         | UniqueModuleList         | JsonAdaptedModule          |
 
 
 
 The core idea behind this implementation is that there exists an empty `UniqueModuleList` which is a list of `Mod`.
-Every Mod object has a `defaultGroup` attribute that initially is unassigned. Once the user enters the command
-`set-default-group m/MOD g/GROUP`, the `defaultGroup` value for that `MOD` gets set to `GROUP` and that `MOD` gets added to the `UniqueModuleList`.
-If the command is entered again, the value of the `MOD` gets updated in the `UniqueModuleList` and the user is notified.
+Every Mod object has a `defaultGroup` attribute that initially is unassigned. When a user enters the command `set-default-group m/MOD g/GROUP`, the code:
 
-Now when a user adds a new student, if he doesn't pass a group argument and there exists the given `MOD` in the `UniqueModuleList`, it places
-the `defaultGroup` as the group for the student, else it returns an error message to the user.
+* Uses `Model#doesModExistInList` to check if the `Mod` exists in `UniqueModuleList`.
+* If it exists, get the previous default group using `Model#retrievePrevDefault` and update it.
+* Else add the `Mod` to the `UniqueModuleList` with the given default `GROUP` using the `Model#setDefaultGroup` command.
+
+Now when a user adds a new student using the `add` command:
+* If the group argument has been passed, the code is run normally
+* If the group argument has not been passed, the code retrieves the default group from the `UniqueModuleList` and throws an error if the 
+given mod has no default group set.
 
 Similar to the TaskList implementation most of these classes are linked to the respective XYZManager components.
 For example, LogicManager now tries to save to the storage's moduleList as well:
