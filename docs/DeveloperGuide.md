@@ -556,7 +556,7 @@ Every Mod object has a `defaultGroup` attribute that initially is unassigned. Wh
 
 Now when a user adds a new student using the `add` command:
 * If the group argument has been passed, the code is run normally
-* If the group argument has not been passed, the code retrieves the default group from the `UniqueModuleList` and throws an error if the 
+* If the group argument has not been passed, the code retrieves the default group from the `UniqueModuleList` and throws an error if the
 given mod has no default group set.
 
 Similar to the TaskList implementation most of these classes are linked to the respective XYZManager components.
@@ -729,7 +729,7 @@ The following classes were created/modified in the process of implementing `help
 The main idea behind this extension is that the user may request for help on how to use a particular command,
 what are the arguments that are accepted by that command, and what is the expected syntax.
 
-There are two main ways in which this command can be used : 
+There are two main ways in which this command can be used :
 * `help` will open a modal with a link to the user guide of the product.
 * `help COMMAND_WORD` will output the usage instructions of the `COMMAND_WORD` and a short description as to what
   it does.
@@ -759,7 +759,7 @@ functionality without too many changes. In this way, it is highly maintainable.
 
 **Aspect: Robustness**
 
-`help` command is able to tolerate unpredictable or invalid input. Appropriate exception handling has been done to 
+`help` command is able to tolerate unpredictable or invalid input. Appropriate exception handling has been done to
 ensure that it does not process erroneous input.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -949,7 +949,7 @@ testers are expected to do more *exploratory* testing.
       * Double-click the jar file OR:
       * Open the terminal on your PC and move to the directory where `TAilor.jar` is contained in. Then, run `java -jar TAilor.jar`
       the application. We recommend macOS users to use this method of starting the application to avoid errors.
-   
+
    4. Expected: Shows the GUI with a set of sample contacts/students and tasks. The window size may not be optimum.
 
 2. Closing the application
@@ -976,7 +976,7 @@ testers are expected to do more *exploratory* testing.
       * Email (e.g. alex@example.com)
       * Module (e.g. CS2030S)
       * Group (e.g. 10G)
-      
+
    2. Test case: `add n/Alex a/A0001112B e/alex@example.com m/CS2030S g/10G` when there are already 2 students in the list<br>
       Expected: A new student with name `Alex`, student number `A1234567B`, email `alex@example.com`, module `CS2030S` and group `10G` is added
       to the student list. The index number assigned to `Alex` will be 3, the last pre-existing student + 1.<br>
@@ -989,7 +989,7 @@ testers are expected to do more *exploratory* testing.
    5. Test case: `add n/Alexis a/A0001113B e/alex@example.com m/CS2030S g/10G` when there are already 3 students in the list, including Alex above.<br>
       Expected: No new student will be added, as the provided email address already belongs to someone in the list (Alex, from the above test case).
       Error details are shown in the feedback box.
-   
+
    6. Test case: `add a/A0001114B e/charles@example.com m/CS2030S g/10G` without conflicting student number and emails present in the list.<br>
       Expected: No new student will be added, as there is no name provided.
       Error details are shown in the feedback box.
@@ -1022,7 +1022,13 @@ testers are expected to do more *exploratory* testing.
 
 2. Adding multiple students using the `import-csv` command
 
-   1. KASHISH PLEASE ADD THIS PART
+   1.  Prerequisites: There needs to exist a csv file at the given path and start with an empty contactlist.
+
+   2. Test case: `import-csv src/test/data/ImportCsvTest/sample-tutorial-data.csv` where there is no other student data.
+    Expected: New students are added with the details matching in the sample-tutorial-data.csv.
+
+   3. Test case: `import-csv ./second-sample-tutorial-data.csv` where there is a csv file in your current directory.
+    Expected: New students are added with the details matching in the second-sample-tutorial-data.csv. Students with existing names/matric numbers are skipped.
 
 ### Editing a student
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -1065,7 +1071,7 @@ testers are expected to do more *exploratory* testing.
 2. Deleting a student while only some students are shown.
 
    1. Prerequisites: Find some students using the `find` command. Multiple students in the list, depending on the result of the `find` command.
-    
+
    2. Test case: `delete 1`<br>
       Expected: First student is deleted from the list. Details of the deleted student shown in the feedback message. Performing a `list` command will also show that the deleted student is no longer in the list.
 
@@ -1082,7 +1088,7 @@ testers are expected to do more *exploratory* testing.
    2. Test case: `mail-index 1`<br>
       Expected: System default mail application opens up with the receiver's field filled with the email address of
       the student at the specified index ie 1.
-   
+
    3. Test case: `mail-index 2`<br>
          Expected: System default mail application opens up with the receiver's field filled with the email address of
          the student at the specified index ie 2.
@@ -1171,17 +1177,17 @@ testers are expected to do more *exploratory* testing.
 1. Getting help through user guide
 
    1. Prerequisites: None
-   
+
    2. Test case: `help`<br>
       Expected : A popup opens with a link to the user guide of the application.
 
 2. Getting help about a specific command
 
    1. Prerequisites : None
-   
+
    2. Test case: `help add-task`<br>
       Expected : The usage instructions of the `add-task` command are displayed.
-   
+
 
 ### Saving data
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -1194,7 +1200,7 @@ testers are expected to do more *exploratory* testing.
 
    2. Currently, TAilor does not have any in-built back up system. As such, we recommend users to do manual back ups
       once in a while, to ensure that everything is saved at a restore point.
-   
+
    3. Additionally, if users decide to modify the .json files manually to add in new data, it is also recommended for them
       to make a backup copy of the data files before doing so.
 
