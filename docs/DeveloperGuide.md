@@ -807,7 +807,9 @@ testers are expected to do more *exploratory* testing.
        Details of the added student will be shown in the feedback box.
 
 
+
 2. Adding multiple students using the `import-csv` command
+
    1. KASHISH PLEASE ADD THIS PART
 
 ### Editing a student
@@ -817,7 +819,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
-   2. Test case: `edit 1 n/Bob` when the first student in the list has a name of `Alex`<br>
+   2. Test case: `edit 1 n/Bob` when the first student in the list has a name of `Alex`.<br>
       Expected: The name of the first student is edited, from `Alex` to `Bob`. Details of the edit are shown in the feedback message.
 
    3. Test case: `edit 0 n/Bob`<br>
@@ -865,7 +867,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: Brief description and deadline of the task should be known.
 
-   2. Test case: `newtask Do Homework by/2022-01-03T16:30` when there are already 2 tasks in the task list<br>
+   2. Test case: `newtask Do Homework by/2022-01-03T16:30` when there are already 2 tasks in the task list.<br>
       Expected: A new task with description `Do Homework` and deadline of 3 January 2022, 4:30pm will be added to the task list.
       The index number assigned to this task will be 3, the last pre-existing task + 1.<br>
       Details of the added task will be shown in the feedback box.
@@ -896,7 +898,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `del-task 0`<br>
        Expected: No task is deleted. Error details shown in the status message.
 
-    1. Other incorrect delete commands to try: `del-task`, `del-task x`, `...` (where x is larger than the list size)<br>
+    1. Other incorrect delete task commands to try: `del-task`, `del-task x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
 
