@@ -1,17 +1,22 @@
 ---
 layout: page
-title: Developer Guide
+
 ---
+<h1 align="center">Developer Guide</h1>
+<div style="page-break-after: always;"></div>
+
 ## Table of Contents
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Acknowledgements**
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* We utilise an open-source CSV (comma-separated values) parser library called **Opencsv** to help aid the implementation
+  of our [import-csv command](#import-csv-feature). Click [here](http://opencsv.sourceforge.net/#general) to find out more about Opencsv.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -21,6 +26,7 @@ title: Developer Guide
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Design**
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -71,7 +77,7 @@ Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
-
+<div style="page-break-after: always;"></div>
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <p align="center">
@@ -80,6 +86,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 </p>
 
 The sections below give more details of each component.
+<div style="page-break-after: always;"></div>
 
 ### UI component
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -102,7 +109,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 * keeps a reference to the `InputHistory` component, because the `CommandBox` relies on it to obtain previously entered commands by the user
-
+<div style="page-break-after: always;"></div>
 
 ### Logic component
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -121,7 +128,7 @@ How the `Logic` component works:
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
-
+<div style="page-break-after: always;"></div>
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 <p align="center">
@@ -147,7 +154,7 @@ How the parsing works:
 <p align="center">
 <img alt="ParsingSequenceDiagram.png" src="images/ParsingSequenceDiagram.png" width="1000"/> <br>
 <b>Fig. 8 - Parsing of commands that take in arguments</b>
-</p>
+</p><div style="page-break-after: always;"></div>
 
 ### Model component
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -182,7 +189,7 @@ The `Model` component,
 <b>Fig. 11 - A better Model class diagram</b>
 
 </div>
-
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -198,6 +205,7 @@ The `Storage` component,
 * can save contact list data, task list data and user preference data in json format, and read them back into corresponding objects.
 * inherits from `ContactListStorage`, `TaskListStorage`, `UserPrefStorage` and `ModuleListStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+<div style="page-break-after: always;"></div>
 
 ### Common classes
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -212,6 +220,7 @@ Some examples include:
 | MailUtil   | Launching the system default mail application and checking the input arguments |
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -245,7 +254,7 @@ For example, LogicManager now tries to save to the storage's contact list and ta
             storage.saveContactList(model.getContactList());
             storage.saveTaskList(model.getTaskList());
 ```
-
+<div style="page-break-after: always;"></div>
 Users also now have 2 additional commands to add new tasks and delete existing tasks, and
 the following sequence diagram shows how the new task command works in more detail:
 
@@ -272,7 +281,7 @@ The current Task List uses a manually implemented priority system internally to 
   * Deadline and Description classes were used instead of just a String and a LocalDateTime field to make the codebase more
     consistent with one another as seen from Person and its corresponding fields. This also would then allow a consolidated
     parsing and checking via the utilities.
-
+<div style="page-break-after: always;"></div>
 **Aspect: Conformity**
 
 * To allow the entire application to look like it has been coded by one person, the implementation of this task manager
@@ -284,6 +293,7 @@ The current Task List uses a manually implemented priority system internally to 
     of a String and a non-wrapped LocalDateTime, respectively. This is similar to how `Person` wraps the individual student
     attributes like Name and Email. This also allows the Description and Deadline objects to be created separately and
     allow for finer control over the codebase.
+<div style="page-break-after: always;"></div>
 
 ### Undo/redo feature
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -336,7 +346,7 @@ Step 4. The user now decides that adding the student was a mistake, and decides 
 than attempting to perform the undo.
 
 </div>
-
+<div style="page-break-after: always;"></div>
 The following sequence diagram shows how the undo operation works:
 
 <p align="center">
@@ -356,7 +366,7 @@ restore. The `redo` command uses `Model#canRedoContent()` to check if this is th
 to the user rather than attempting to perform the redo.
 
 </div>
-
+<div style="page-break-after: always;"></div>
 Step 5. The user then decides to execute the command `list`. Commands that do not modify the content, such as `list`, will usually not call `Model#commitContent()`, `Model#undoContents()` or `Model#redoContents()`. Thus, the `contentStateList` remains unchanged.
 
 <p align="center">
@@ -370,7 +380,7 @@ Step 6. The user executes `clear`, which calls `Model#commitContent()`. Since th
 <img src="images/UndoRedoState5.png"/> <br>
 <b>Fig. 20 - Undo/Redo State 5</b>
 </p>
-
+<div style="page-break-after: always;"></div>
 The following activity diagram summarizes what happens when a user executes a new command:
 
 <p align="center">
@@ -399,6 +409,7 @@ Another drawback for alternative 2 was undoing a command by doing its reverse im
 same state. For example, after `delete 1`, we might save the student just deleted, and set `add "student"` as the `undo`
 functionality. However, if we do `add "student"`, the student will be added to the end of the list, which does not exactly
 `undo` the effect of the original `delete 1`.
+<div style="page-break-after: always;"></div>
 
 ### Import CSV feature
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -434,7 +445,7 @@ the software being used. Since LumiNUS provides a way to import student data fro
 the user would not have to go through the repeated, error-prone process of
 manually adding each student's data to the database. `import-csv` automates this process and provides
 a one-command solution to this problem.
-
+<div style="page-break-after: always;"></div>
 **Aspect: Defensive Coding**
 
 * The import-csv command has been created in a manner that checks for most possible places where the user could go wrong
@@ -454,6 +465,7 @@ replace the previous students' data but instead extend the list.
   on their end, instead they can convert their excel sheets to csv and simply import one after the other.
 * As such if the user prefers updating their csv locally and importing again then the command handles that situation too
 by ignoring duplicate students and simply importing the new updates.
+<div style="page-break-after: always;"></div>
 
 ### Mailing feature
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -482,21 +494,21 @@ students can be mailed in one go. The arguments act as the criteria based on whi
 considered to be a part of the mail group. The mail collation happens based on a descriptor class that takes care of
 processing the individual arguments. `mail-all` command is the solution if the user wants to email everyone
 in the contact list without any filters. This command allows the user to perform bulk emails.
-
+<div style="page-break-after: always;"></div>
 The following is the class diagram for the `MailIndexCommand` class :
 
 <p align="center">
 <img src="images/MailIndexClassDiagram.png" /> <br>
 <b>Fig. 22 - Summary of an execution of a new command</b>
 </p>
-
+<div style="page-break-after: always;"></div>
 The following sequence diagram shows how the `mail-x` operation works:
 
 <p align="center">
 <img src="images/MailXSequenceDiagram.png" /> <br>
 <b>Fig. 23 - Summary of an execution of a new command</b>
 </p>
-
+<div style="page-break-after: always;"></div>
 The following sequence diagram shows how the `mail-all` operation works:
 
 <p align="center">
@@ -529,7 +541,7 @@ in the underlying architecture of the product.
 Mailing feature comprises well-defined, independent components which leads to better maintainability. All the components
 were implemented and tested in isolation before being integrated with the product. An example of this is the `MailUtil`
 class, which allows for testing compatibility of the system before integrating with the product to process commands.
-
+<div style="page-break-after: always;"></div>
 
 ### Setting a Default Group for a particular Mod
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -566,14 +578,14 @@ For example, LogicManager now tries to save to the storage's moduleList as well:
             storage.saveModuleList(model.getModuleList());
 ```
 
-
+<div style="page-break-after: always;"></div>
 The sequence diagram for the command `set-default-group m/CS2103T g/W12-1` follows the parsing as mentioned in Fig 8.0
 above and the specific functioning of the command can be found in the sequence diagram below:
 
 <p align="center">
 <img src="images/SetDefaultSequenceDiagram.png" width="1000"/> <br>
 <b>Fig. 25 - Execution of a `set-default-group` command</b>
-</p>
+</p><div style="page-break-after: always;"></div>
 
 #### Design Considerations
 
@@ -594,6 +606,7 @@ user over the previously set default group value.
 interactions with the XYZManagers the same.
   * An example would be to include a new `ModuleListStorage` Interface for the `Storage` Interface to extend from. This
     hence provides the methods and an interface/facade for other parts of the code to perform module list operations on.
+<div style="page-break-after: always;"></div>
 
 ### Refill previously typed command feature
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -659,7 +672,7 @@ The following sequence diagram demonstrates how the refill previous input works
 <img src="images/PreviousInputSequenceDiagram.png"/> <br>
 <b>Fig. 30 - Previous input Sequence Diagram</b>
 </p>
-
+<div style="page-break-after: always;"></div>
 Step 5. When the user presses the &uarr; button, the `CommandBox` will call `getPreviousUserInput()`, which decrements
 the pointer by 1, pointing it to `"delete 1"`. The text in `CommandBox` will change to "delete 1".
 <br>
@@ -692,7 +705,7 @@ Finally, the user decides to enter a new command, `undo`. The `CommandBox` will 
 <p align="center">
 <img src="images/PreviousInputState5.png"/> <br>
 <b>Fig. 33 - Previous input state 5</b>
-</p>
+</p><div style="page-break-after: always;"></div>
 
 #### Design Considerations
 
@@ -712,7 +725,7 @@ only needs to be associated with the `CommandBox`.
 
 If the application is expanded to include multiple points of input, each input box can be associated with their own instance
 of `InputHistoryManager`, which can allow each of them to store their own input histories.
-
+<div style="page-break-after: always;"></div>
 
 ### Getting help
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -763,6 +776,7 @@ functionality without too many changes. In this way, it is highly maintainable.
 ensure that it does not process erroneous input.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -774,6 +788,7 @@ ensure that it does not process erroneous input.
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Requirements**
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -791,7 +806,7 @@ ensure that it does not process erroneous input.
 * is reasonably comfortable using CLI apps
 
 **Value proposition**: The app will help to facilitate a Teaching Assistant’s journey for multiple modules, particularly with some tedious administrative tasks.
-
+<div style="page-break-after: always;"></div>
 
 ### User stories
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -833,6 +848,7 @@ Priorities: High (must have), Medium (nice to have), Low (unlikely to have)
 | priority.Low    | As a Teaching Assistant                              | I can create aliases for websites that are commonly used by students                                                | so that my students and I can access commonly visited websites easily                                       |
 | priority.Low    | As a Teaching Assistant teaching multiple modules    | I am able to separate the management of the modules                                                                 | so that I can be more organised in my work and teaching                                                     |
 
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -882,7 +898,7 @@ Priorities: High (must have), Medium (nice to have), Low (unlikely to have)
 
       Use case ends.
 
-
+<div style="page-break-after: always;"></div>
 
 **Use case 3 (UC3): Finding a student**
 
@@ -906,7 +922,7 @@ Priorities: High (must have), Medium (nice to have), Low (unlikely to have)
 
     User case ends
 
-*{More to be added}*
+<div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -917,7 +933,6 @@ Priorities: High (must have), Medium (nice to have), Low (unlikely to have)
 4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 5. The code should be open source.
 6. Should not require internet connection.
-*{More to be added}*
 
 ### Glossary
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -929,6 +944,7 @@ Priorities: High (must have), Medium (nice to have), Low (unlikely to have)
 * **Group**: A group of students belonging to a particular module managed under a tutor.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -964,6 +980,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
+<div style="page-break-after: always;"></div>
 
 ### Adding a student
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -1029,6 +1046,7 @@ testers are expected to do more *exploratory* testing.
 
    3. Test case: `import-csv ./second-sample-tutorial-data.csv` where there is a csv file in your current directory.
     Expected: New students are added with the details matching in the second-sample-tutorial-data.csv. Students with existing names/matric numbers are skipped.
+<div style="page-break-after: always;"></div>
 
 ### Editing a student
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -1048,9 +1066,7 @@ testers are expected to do more *exploratory* testing.
 
    5. Test case: `edit 1` with at least 1 student in the list.<br>
       Expected: Similar to previous, as there are no arguments specified to be edited
-
-   5. ADD MORE FOR THE OTHER ATTRIBUTES, AND MAKE SURE WE MENTION TAG IS REMOVED/REPLACED
-
+<div style="page-break-after: always;"></div>
 
 ### Deleting a student
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -1077,6 +1093,7 @@ testers are expected to do more *exploratory* testing.
 
    3. Test case: `delete 0`, `delete`, `delete x`, `...` <br>
       Expected: Similar to the erroneous test cases from the list command above.
+<div style="page-break-after: always;"></div>
 
 ### Mailing student(s)
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -1107,6 +1124,7 @@ testers are expected to do more *exploratory* testing.
    2. Test case: `mail-all`<br>
       Expected: System default mail application opens up with the receiver's field filled all the email addresses of
       students in the entire contact list.
+<div style="page-break-after: always;"></div>
 
 ### Creating a Task
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -1131,7 +1149,7 @@ testers are expected to do more *exploratory* testing.
 
    6. Test case: `newtask Mark Lab 1 by/2022-02-29T17:29`<br>
       Expected: No task is added as 2022 is not a leap year, and has no Feb 29. Error details shown in the status message.
-
+<div style="page-break-after: always;"></div>
 
 ### Deleting a Task
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -1148,7 +1166,7 @@ testers are expected to do more *exploratory* testing.
 
     4. Other incorrect delete task commands to try: `del-task`, `del-task x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
-
+<div style="page-break-after: always;"></div>
 
 ### Undoing/Redoing commands
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
@@ -1170,6 +1188,7 @@ testers are expected to do more *exploratory* testing.
 3. Redoing a command
 
    1. Similar to the undo command, flipping `undo` into `redo`, before into after.
+<div style="page-break-after: always;"></div>
 
 ### Getting help
 [<sub><sup>Back to top</sup></sub>](#table-of-contents)
