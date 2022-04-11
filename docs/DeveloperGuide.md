@@ -956,7 +956,11 @@ testers are expected to do more *exploratory* testing.
 
    2. Test case: `mail-index 1`<br>
       Expected: System default mail application opens up with the receiver's field filled with the email address of
-      the student at the specified index.
+      the student at the specified index ie 1.
+   
+   3. Test case: `mail-index 2`<br>
+         Expected: System default mail application opens up with the receiver's field filled with the email address of
+         the student at the specified index ie 2.
 
 2. Mailing all the students in a particular module
    1. Prerequisites: Multiple students in the contact list belonging to the module CS2103 (example scenario).
