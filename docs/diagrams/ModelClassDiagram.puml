@@ -17,6 +17,7 @@ Class VersionedContents
 
 Class PriorityTaskList
 Class Task
+Class UniqueModuleList
 Class Description
 Class Deadline
 
@@ -43,11 +44,15 @@ ModelManager -down-> "1" ContactList
 ModelManager -down-> "1" UserPrefs
 ModelManager -down-> "1" PriorityTaskList
 ModelManager -down-> "1" VersionedContents
+ModelManager -down-> "1" UniqueModuleList
 
 VersionedContents .right.> PriorityTaskList
+VersionedContents .right.> UniqueModuleList
 VersionedContents .left.> ContactList
 
 UserPrefs .up..|> ReadOnlyUserPrefs
+
+UniqueModuleList -down-> "*" Mod
 
 PriorityTaskList .up..|> ReadOnlyTaskList
 PriorityTaskList -down-> "~* all" Task
