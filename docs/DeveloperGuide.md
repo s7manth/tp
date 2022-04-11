@@ -223,9 +223,9 @@ The current Task List uses a manually implemented priority system internally to 
 
 #### Design Considerations
 
-**Aspect: Extendibility**
+**Aspect: Extensibility**
 
-* Extendibility was heavily considered when implementing this feature. For Instance,
+* Extensibility was heavily considered when implementing this feature. For Instance,
   * A ReadOnlyTaskList was done instead of just a single TaskList class, to allow for multiple versions of a Task List being
     used if desired. Ie perhaps a Task List that is sorted according to a new "Emergency" level instead of just date-time.
   * Deadline and Description classes were used instead of just a String and a LocalDateTime field to make the codebase more
@@ -408,7 +408,7 @@ Below shows the important classes that were created:
 | MailXCommandParser     |          |
 | MailAllCommand         |          |
 
-MailUtil class contains the interaction of TAior with the desktop mail application. All the commands
+MailUtil class contains the interaction of TAilor with the desktop mail application. All the commands
 call a `launchMail` method in this class to accomplish their respective functionalities.
 
 `mail-index` command allows the user to email a specific student in the contact list based on their index, as displayed
