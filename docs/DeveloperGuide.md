@@ -820,7 +820,8 @@ testers are expected to do more *exploratory* testing.
        to the student list. The index number assigned to `Hector` will be 4, the last pre-existing student + 1.<br>
        Details of the added student will be shown in the feedback box.
 
-<br>
+
+
 
 2. Adding multiple students using the `import-csv` command
 
